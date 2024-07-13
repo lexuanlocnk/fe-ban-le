@@ -1,0 +1,111 @@
+ .container_basic_infor {
+   border-right: 1px solid #afa2a2;
+ }
+
+ .name_company {
+   font-weight: 500;
+   font-size: 21px !important;
+
+   padding: 7px 25px !important;
+
+ }
+
+ .info_basic {
+   font-size: 16px;
+   font-weight: 500;
+   color: #302727;
+   line-height: 18px;
+ }
+
+ .infor_company_footer {
+   text-decoration: none;
+   font-size: 16px;
+   font-weight: 500;
+   color: #9d5b5b;
+   line-height: 19px;
+   margin-bottom: 2px;
+ }
+
+ .title_footer {
+   font-size: 18px !important;
+   font-weight: 500;
+   padding: 4px 22px !important;
+   width: 100%;
+ }
+
+ .icon_social_networt {
+   width: 50px;
+   height: 50px;
+ }
+
+ .number_contact {
+   display: block;
+   font-size: 20px;
+   font-weight: 500;
+   color: black;
+ }
+
+ .box_icon_social_network {
+   display: inline;
+   margin: 2px 5px;
+   cursor: pointer;
+ }
+
+
+
+
+
+ .infor_company_footer {
+   background-image: linear-gradient(to right, #416775, #416775 50%, #000 50%);
+   background-size: 200% 100%;
+   background-position: -100%;
+   display: inline-block;
+   padding: 1px 0;
+   position: relative;
+   -webkit-background-clip: text;
+   -webkit-text-fill-color: transparent;
+   transition: all 0.3s ease-in-out;
+ }
+
+ .infor_company_footer:before {
+   content: '';
+   background: #416775;
+   display: block;
+   position: absolute;
+   bottom: -3px;
+   left: 0;
+   width: 0;
+   height: 2px;
+   transition: all 0.3s ease-in-out;
+ }
+
+ .infor_company_footer:hover {
+   background-position: 0;
+ }
+
+ .infor_company_footer:hover::before {
+   width: 100%;
+ }
+
+ .img_policy {
+   width: 45px;
+ }
+
+ .title_policy {
+   font-size: 16px;
+   font-weight: 500;
+   color: #531dab;
+   margin-left: 3px;
+ }
+
+ .container_policy {
+   padding: 5px 20px;
+   border: 1px solid #c3d0fd;
+   border-radius: 8px;
+   margin-bottom: 7px;
+ }
+
+ .title_hotkey {
+   font-size: 22px;
+   font-weight: 700;
+ }

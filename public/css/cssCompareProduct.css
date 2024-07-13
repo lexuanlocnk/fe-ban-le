@@ -1,0 +1,156 @@
+ .content_info_compare_page {
+     border-radius: 8px;
+     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+
+ }
+
+ .box_image_product_compare_page {
+     padding: 0px 65px;
+ }
+
+
+
+ .line-ct {
+     position: relative;
+     height: 100%;
+     display: inline-block;
+ }
+
+ .line-ct hr {
+     width: 1px;
+     height: 100%;
+     background: #6e7377;
+     margin: 0px;
+ }
+
+ .img_vs {
+     right: 50%;
+     position: absolute;
+     top: 45%;
+     transform: translateX(50%);
+ }
+
+ .custom_antd_select_compare .ant-select-selector {
+     border-radius: 8px;
+ }
+
+ .custom_antd_select_compare .ant-select-selection-item {
+     font-size: 17px;
+ }
+
+ .container_img_compare_page {
+     padding: 0px 130px;
+ }
+
+ .custom_antd_select_compare {
+     padding: 0px 30px;
+     margin-bottom: 15px;
+ }
+
+ .box_img_light_box_item {
+     width: 35px;
+     height: 35px;
+     display: block;
+     margin: auto;
+ }
+
+ .box_img_light_box_compare {
+     flex-wrap: wrap;
+     gap: 15px;
+ }
+
+ .text_item_light_box {
+     color: #495057;
+     font-size: 14px;
+ }
+
+ .container_box_img_light_box_item {
+     cursor: pointer;
+     border-radius: 8px;
+     padding: 8px;
+ }
+
+ .container_box_img_light_box_item:hover {
+     background-color: rgba(39, 39, 42, 0.12);
+ }
+
+ .name_title_product {
+     font-size: 16px;
+     font-weight: 500;
+ }
+
+
+ .box_name_product_compare_2 {
+     display: flex;
+     flex-direction: column;
+     align-items: center;
+     gap: 20px;
+ }
+
+ .box_info_product_compare {
+     padding: 20px;
+ }
+
+ .box_card_product_compare {
+     padding: 10px;
+     border: 1px solid #c3d0fd;
+     border-radius: 8px;
+ }
+
+ .name_product_compare {
+     font-size: 15px;
+     font-weight: 500;
+     /* text-align: center; */
+     /* display: inline-block; */
+ }
+
+ .price_product_compare {
+     margin-top: 5px;
+     display: inline-block;
+     font-size: 15px;
+     font-weight: 600;
+     color: rgb(67, 70, 87);
+ }
+
+ .price_sale_product_compare {
+     display: block;
+     font-size: 14px;
+     font-weight: 500;
+ }
+
+ .btn_buy_now {
+     cursor: pointer;
+     margin-top: 15px;
+     padding: 3px 10px;
+     text-align: center;
+     border-radius: 8px;
+     border: 1px solid #c3d0fd;
+ }
+
+ .btn_buy_now span {
+     font-size: 16px;
+     font-weight: 500;
+ }
+
+ .title_brand_product_compare {
+     font-size: 14px;
+     color: rgb(132, 135, 136);
+ }
+
+ .value_brand_product_compare {
+     font-size: 15px;
+     font-weight: 500;
+ }
+
+ .image_antd_card_compare {
+     width: 100%;
+     height: 240px !important;
+     object-fit: contain;
+ }
+
+ .box_table_compare {
+     padding: 15px;
+     background: white;
+     border-radius: 8px;
+     box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+ }

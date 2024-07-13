@@ -1,0 +1,227 @@
+.box-content-installment-info {
+    width: 700px;
+    padding: 15px;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    background: white;
+}
+
+.box_img_card_product_installment {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    border: 1px solid #c3d0fd;
+    border-radius: 8px;
+}
+
+.box_img_card_product_installment img {
+
+    border-radius: 8px;
+}
+
+.box_price_product_installment {
+    display: flex;
+    flex-flow: column;
+    align-items: center;
+}
+
+.name_product_installment {
+    font-size: 16px;
+    font-weight: 500;
+    line-height: 23px;
+}
+
+.price_sale {
+    font-size: 14px;
+    font-weight: 300;
+}
+
+.price_real {
+    font-size: 16px;
+    font-weight: 500;
+    color: red;
+    line-height: normal;
+}
+
+.box_color_product_installment span {
+    color: #555;
+    font-size: 15px;
+    font-weight: 400;
+}
+
+.box_card_product_installment {
+    padding: 10px;
+    border: 1px solid #c3d0fd;
+    border-radius: 8px;
+}
+
+.number_progress {
+    display: inline-block;
+    background: #e5e5e5;
+    justify-content: center;
+    border-radius: 20px;
+    width: 20px;
+    height: 20px;
+    font-size: 13px;
+    text-align: center;
+    color: #3e3e3f;
+}
+
+.box_title_choose_bank {
+    display: flex;
+    align-items: center;
+    gap: 5px;
+
+}
+
+.title_choose_bank {
+    font-size: 16px;
+    font-weight: 600;
+}
+
+.text_show_installment {
+    font-size: 14px;
+    font-weight: 400;
+    color: rgb(20, 53, 195) !important;
+    cursor: pointer;
+}
+
+.item_bank {
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    width: 120px;
+    height: 70px;
+}
+
+.container_choose_bank {
+    grid-row-gap: 5px;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-column-gap: 5px;
+}
+
+.box_item_bank {
+    border: dashed 1px #c3d0fd;
+    border-radius: 8px;
+}
+
+.selected {
+    border: 1px solid #0071e3 !important;
+}
+
+.container_choose_card {
+    display: flex;
+    gap: 5px;
+}
+
+.title_month {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.value {
+    font-size: 13px;
+    text-align: center;
+}
+
+.title {
+    color: #333;
+    font-size: 13px;
+    font-weight: 500;
+}
+
+.tr_table_installment {
+    background: #f9f2e5;
+}
+
+.box_name_bank_choose {
+    font-size: 15px;
+    width: 100%;
+    text-align: center;
+    padding: 10px 1px;
+    border: 1px solid #c3d0fd;
+    border-bottom: none !important;
+    background: #f9f2e5;
+    border-radius: 8px 8px 0px 0px;
+}
+
+.table_payment td {
+    padding: 14px !important;
+}
+
+
+
+.table_payment {
+    border: 1px solid #c3d0fd;
+}
+
+.w_220px {
+    width: 220px;
+}
+
+.btn_choose_month {
+    cursor: pointer;
+    border-radius: 8px;
+    background: white;
+    font-size: 13px;
+    text-align: center;
+    padding: 8px 3px;
+    box-shadow: rgba(100, 100, 111, 0.2) 0px 7px 29px 0px;
+    border: 1px solid #c3d0fd;
+    font-weight: 500;
+    color: rgb(20, 53, 195) !important;
+}
+
+.box_bank_choose_month {
+    width: 100%;
+    display: grid;
+    grid-template-columns: repeat(5, 1fr);
+    grid-column-gap: 5px;
+    border: 1px solid #c3d0fd;
+    padding: 5px;
+    border-top: none;
+    border-radius: 0px 0px 8px 8px;
+    background: #f9f2e5;
+}
+
+.title_month {
+    text-align: center;
+}
+
+.not_selected {
+    opacity: 0.7;
+}
+
+.title_info_user {
+    font-size: 16px;
+    font-weight: 500;
+}
+
+.address_company {
+    line-height: normal;
+    font-size: 18px;
+    text-align: center;
+    font-weight: 500;
+    color: rgb(20, 53, 195) !important;
+}
+
+.space_installment .ant-space-item {
+    width: 100%;
+}
+
+.space_installment {
+    padding: 10px;
+    background: #edf3fd;
+    border: 1px solid #c3d0fd;
+    border-radius: 8px;
+    flex-flow: column;
+}
+
+.text_bank_card {
+    font-weight: 600;
+}
+
+.ant-space-item {
+    width: 50%;
+}

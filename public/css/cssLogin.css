@@ -1,0 +1,161 @@
+.box_content_login {
+
+    padding: 15px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+    max-width: 900px;
+    min-width: 750px;
+}
+
+.container_page_login {
+    margin: 15px 0px;
+    display: flex;
+    justify-content: center;
+}
+
+.content_login {
+    padding: 0px 140px;
+    margin-bottom: 15px;
+}
+
+.title_login span {
+    font-size: 18px;
+    line-height: normal;
+    font-weight: 500;
+    color: rgb(67, 70, 87);
+}
+
+.icon_func_login {
+    font-size: 30px;
+    color: white;
+}
+
+.title_login {
+    width: 100%;
+    text-align: center;
+    margin-bottom: 20px;
+}
+
+.box_func_login {
+    width: 100%;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+
+    padding: 4px 10px;
+    border-radius: 5px;
+    box-shadow: rgba(0, 0, 0, 0.16) 0px 10px 36px 0px, rgba(0, 0, 0, 0.06) 0px 0px 0px 1px;
+    cursor: pointer;
+}
+
+.bg_login_fb {
+    background: rgb(45, 136, 255);
+
+}
+
+.bg_login_google {
+    background: rgb(220, 78, 66);
+    opacity: 0.8;
+}
+
+.title_login_phone_func,
+.title_login_func {
+    width: 310px;
+    text-align: center;
+}
+
+.title_login_func span {
+    color: white;
+    font-weight: 400;
+    font-size: 14px;
+    line-height: normal;
+}
+
+.title_login_phone_func span {
+    color: rgb(20, 53, 195);
+    font-weight: 400;
+    font-size: 14px;
+    line-height: normal;
+}
+
+
+.icon_func_number_login {
+    padding: 4px;
+    font-size: 30px;
+    color: rgb(20, 53, 195);
+}
+
+.bg_login_phone {
+    border: 1px solid #c3d0fd;
+}
+
+
+.ui_login_user {
+    display: flex;
+    justify-content: center;
+    flex-direction: column;
+    align-items: center;
+    gap: 15px;
+    width: 370px;
+}
+
+.text_or span {
+    font-size: 14px;
+    color: rgb(132, 135, 136);
+    /* font-weight: 400; */
+}
+
+.text_or {
+    width: 100%;
+    text-align: center;
+}
+
+
+.text_error span {
+    font-size: 13px;
+    color: rgb(235, 31, 58);
+}
+
+.text_error {
+    height: 30px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.btn_send_number_phone span {
+    color: white;
+}
+
+.otp_number {
+    margin-top: 15px;
+    display: flex;
+    justify-content: center;
+}
+
+
+@media only screen and (min-width: 321px) and (max-width: 768px) {
+
+    .title_login span {
+        font-size: 23px;
+    }
+
+    .title_login_func span {
+        font-weight: 500;
+        font-size: 18px;
+    }
+
+
+    .title_login_phone_func span {
+        font-weight: 500;
+        font-size: 18px;
+    }
+
+    .text_or span {
+        font-size: 18px;
+
+    }
+
+
+}
