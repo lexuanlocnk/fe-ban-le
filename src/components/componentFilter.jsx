@@ -1,6 +1,6 @@
 "use client";
 
-import { Menu, ConfigProvider, Tooltip, Slider, Radio } from "antd";
+import { Menu, ConfigProvider, Tooltip, Slider, Checkbox } from "antd";
 import { Fragment, useState } from "react";
 import { usePathname, useSearchParams, useRouter } from "next/navigation";
 import { IoIosCloseCircle } from "react-icons/io";
@@ -52,8 +52,12 @@ const ComponentFilter = ({ dataProperties, getValueParams }) => {
 
   const handleChooseProperty = (value, key) => {
     const params = new URLSearchParams(searchParams);
-    params.set(key, value); // Use join to convert array to comma-separated string
+
+    params.set(key, [value]); // Use join to convert array to comma-separated string
     params.delete("page");
+    if (value.length == 0) {
+      params.delete(key);
+    }
     router.replace(`${pathname}?${params.toString()}`, { scroll: false });
   };
 
@@ -190,7 +194,7 @@ const ComponentFilter = ({ dataProperties, getValueParams }) => {
                   >
                     {item?.subCateOption?.length > 0 && (
                       <div className="text-center box_content_item_checkbox">
-                        <Radio.Group
+                        <Checkbox.Group
                           value={getValueParams && getValueParams[item.slug]}
                           name={item.label}
                           className={`${
@@ -204,9 +208,7 @@ const ComponentFilter = ({ dataProperties, getValueParams }) => {
                           //     ? item?.children[0]?.value
                           //     : item?.children[0]?.value.slice(0, 4)
                           // }
-                          onChange={(e) =>
-                            handleChooseProperty(e.target.value, item.slug)
-                          }
+                          onChange={(e) => handleChooseProperty(e, item.slug)}
                         >
                           {showMoreFilter[item.slug]
                             ? item?.subCateOption?.map((itemSub, index) => (
@@ -216,9 +218,9 @@ const ComponentFilter = ({ dataProperties, getValueParams }) => {
                                   color={"#2db7f5"}
                                   title={itemSub.catName}
                                 >
-                                  <Radio value={itemSub.slug}>
+                                  <Checkbox value={itemSub.slug}>
                                     {itemSub.catName}
-                                  </Radio>
+                                  </Checkbox>
                                 </Tooltip>
                               ))
                             : item?.subCateOption
@@ -230,12 +232,12 @@ const ComponentFilter = ({ dataProperties, getValueParams }) => {
                                     color={"#2db7f5"}
                                     title={itemSub.catName}
                                   >
-                                    <Radio value={itemSub.slug}>
+                                    <Checkbox value={itemSub.slug}>
                                       {itemSub.catName}
-                                    </Radio>
+                                    </Checkbox>
                                   </Tooltip>
                                 ))}
-                        </Radio.Group>
+                        </Checkbox.Group>
                         {showMoreFilter && showMoreFilter[item.slug] ? (
                           <div onClick={() => handleShowHide(item.slug)}>
                             <span className="text_hide_show"> Thu gọn</span>

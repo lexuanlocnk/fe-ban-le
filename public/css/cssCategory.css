@@ -126,11 +126,11 @@
  }
 
  .item_img {
-     width: 110px;
-     border: 1px solid #c3d0fd;
-     border-radius: 5px;
-     cursor: pointer;
-     height: 75px;
+    width: 80px;
+    border: 1px solid #c3d0fd;
+    border-radius: 5px;
+    cursor: pointer;
+    height: 55px;
  }
 
  .item_img img {

@@ -99,7 +99,7 @@ const StandardCategoryProduct = ({
                 <Card
                   className="item_card_standard_product"
                   key={index}
-                  style={{ width: "110px" }}
+                  style={{ width: "100px" }}
                   hoverable
                   cover={
                     <Image
