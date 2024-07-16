@@ -37,7 +37,7 @@ const ProductPayment = ({ dataOrder, userId }) => {
         },
         body: JSON.stringify({
           payment_method: methodPayment.methodPayment,
-          orderId: dataOrder.order_id,
+          orderId: dataOrder.orderSum.order_id,
         }),
       });
 
@@ -54,6 +54,8 @@ const ProductPayment = ({ dataOrder, userId }) => {
       setLoadingPayment(false);
     }
   };
+
+  console.log("dataOrder", dataOrder);
 
   return (
     <>

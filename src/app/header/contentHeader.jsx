@@ -15,27 +15,11 @@ import { Skeleton } from "antd";
 function ContentHeader({ data, status }) {
   const categories = [
     {
-      key: "recruitment",
-      allowLink: true,
-      title: "Tuyển dụng",
-      link: "https://vitinhnguyenkim.com.vn/tuyen-dung",
-      icon: <FiUserPlus />,
-    },
-
-    {
       key: "promotionInformation",
       allowLink: true,
       title: "Tin khuyến mãi",
       link: "/news/tin-khuyen-mai",
       icon: <IoMdPricetags />,
-    },
-
-    {
-      key: "contact",
-      allowLink: false,
-      title: "Liên hệ",
-      link: "/news",
-      icon: <MdOutlineSupportAgent />,
     },
     {
       key: "buildConfiguration",
@@ -43,6 +27,13 @@ function ContentHeader({ data, status }) {
       title: "Xây dựng cấu hình",
       link: "/build-configuration",
       icon: <IoBuild />,
+    },
+    {
+      key: "techNews",
+      allowLink: true,
+      title: "Tin công nghệ",
+      link: "/news",
+      icon: <GrTechnology />,
     },
     {
       key: "news",
@@ -53,11 +44,19 @@ function ContentHeader({ data, status }) {
     },
 
     {
-      key: "techNews",
-      allowLink: true,
-      title: "Tin công nghệ",
+      key: "contact",
+      allowLink: false,
+      title: "Liên hệ",
       link: "/news",
-      icon: <GrTechnology />,
+      icon: <MdOutlineSupportAgent />,
+    },
+
+    {
+      key: "recruitment",
+      allowLink: true,
+      title: "Tuyển dụng",
+      link: "https://vitinhnguyenkim.com.vn/tuyen-dung",
+      icon: <FiUserPlus />,
     },
   ];
 

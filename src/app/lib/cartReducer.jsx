@@ -44,7 +44,6 @@ export const cartReducer = (state, action) => {
 
     case "CALCULATE_TOTAL_COST":
       const { checkedProducts, points } = action.payload;
-
       let totalCost = 0;
 
       if (state[key] && state[key].length > 0) {
@@ -59,7 +58,8 @@ export const cartReducer = (state, action) => {
           }, 0);
       }
 
-      const total = totalCost - points * 5000;
+      const voucherValue = state?.valueVoucher?.valueVoucher || 0;
+      const total = totalCost - points * 5000 - voucherValue;
       return {
         ...state,
         total: Math.max(total, 0),
@@ -203,6 +203,30 @@ export const cartReducer = (state, action) => {
         ...state,
         products: action.payload,
       };
+
+    case "ADD_VOUCHER":
+      if (action?.payload?.status == "add") {
+        return {
+          ...state,
+          total:
+            state.total +
+            (action?.payload?.valueVoucherOld || 0) -
+            (action?.payload?.valueVoucher || 0),
+          valueVoucher: action.payload,
+        };
+      } else if (action?.payload?.status == "order") {
+        return {
+          ...state,
+          total: 0,
+          valueVoucher: null,
+        };
+      } else {
+        return {
+          ...state,
+          total: state.total + (action?.payload?.valueVoucherOld || 0),
+          valueVoucher: null,
+        };
+      }
 
     case "CLICK_BUY_NOW":
       return {

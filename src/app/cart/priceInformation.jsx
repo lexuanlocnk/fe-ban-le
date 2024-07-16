@@ -1,13 +1,26 @@
-const PriceInformation = ({ total, orderPoints, points, stateCheck }) => {
+import { Tag } from "antd";
+
+const PriceInformation = ({
+  total,
+  orderPoints,
+  points,
+  stateCheck,
+  valueVoucher,
+}) => {
   return (
     <div className="container_total ">
-      <div className="box_sum_total  mt-2">
-        <span className="title_points">Khuyến mãi:</span>
-        <span className="points">
-          {" "}
-          -89.500 <sup>đ</sup>
-        </span>
-      </div>
+      {valueVoucher && valueVoucher?.valueVoucher && (
+        <div className="box_sum_total  mt-2">
+          <span className="title_points">Mã giảm giá:</span>
+          <span className="points">
+            <Tag color="purple">{valueVoucher.MaCouponDes}</Tag>-{" "}
+            {valueVoucher?.valueVoucher.toLocaleString("vi", {
+              style: "currency",
+              currency: "VND",
+            })}
+          </span>
+        </div>
+      )}
 
       {stateCheck && stateCheck.useAccumulatedPoints && (
         <div className="box_sum_total  mt-1">
@@ -21,7 +34,8 @@ const PriceInformation = ({ total, orderPoints, points, stateCheck }) => {
           </span>
         </div>
       )}
-      <div className="box_sum_total mt-1 mb-3">
+
+      <div className="box_sum_total mt-2 mb-2">
         <span className="title_price">Tổng tiền:</span>
         <span className="price">
           {" "}

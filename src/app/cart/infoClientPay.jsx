@@ -383,12 +383,10 @@ const InfoClientPay = ({
         </div>
       )}
 
-      {showModalVoucher && (
-        <ComponentModalVoucher
-          setIsModalVoucherOpen={setShowModalVoucher}
-          isModalVoucherOpen={showModalVoucher}
-        />
-      )}
+      <ComponentModalVoucher
+        setIsModalVoucherOpen={setShowModalVoucher}
+        isModalVoucherOpen={showModalVoucher}
+      />
     </Form>
   );
 

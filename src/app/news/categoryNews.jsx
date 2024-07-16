@@ -96,21 +96,25 @@ const CategoryNews = ({ dataCategory, categoryNews }) => {
               <div className="position-relative">
                 <div className="d-flex menu_categories">
                   <div className="in_box_categories ">
-                    {dataCategory && dataCategory.length > 0 && (
-                      <div className="box_text_item_category">
-                        {dataCategory.slice(0, 3).map((item, index) => (
-                          <Link key={index} href={"/news/tin-khuyen-mai"}>
-                            <span
-                              className={`text_item_category ${
-                                index === 0 ? "active_category" : ""
-                              }`}
-                            >
-                              {item.cat_id}
-                            </span>
-                          </Link>
-                        ))}
-                      </div>
-                    )}
+                    {dataCategory &&
+                      dataCategory.length > 0 &&
+                      // <div className="box_text_item_category">
+
+                      // </div>
+                      dataCategory.slice(0, 3).map((item, index) => (
+                        <Link
+                          key={index}
+                          href={`/news?categoryNews=${item?.news_category_desc?.friendly_url}`}
+                        >
+                          <span
+                            className={`text_item_category ${
+                              index === 0 ? "active_category" : ""
+                            }`}
+                          >
+                            {item?.news_category_desc?.cat_name}
+                          </span>
+                        </Link>
+                      ))}
                   </div>
                   <div
                     onClick={() => setMenuCategories(!menuCategories)}
@@ -129,9 +133,18 @@ const CategoryNews = ({ dataCategory, categoryNews }) => {
                     dataCategory.length > 0 &&
                     dataCategory.map((item, index) => (
                       <div className="item_in_container" key={index}>
-                        <span className={`text_item_category `}>
-                          {item.cat_id}
-                        </span>
+                        {/* <span className={`text_item_category `}>
+                          {item?.news_category_desc?.cat_name}
+                        </span> */}
+
+                        <Link
+                          key={index}
+                          href={`/news?categoryNews=${item?.news_category_desc?.friendly_url}`}
+                        >
+                          <span className={`text_item_category `}>
+                            {item?.news_category_desc?.cat_name}
+                          </span>
+                        </Link>
                       </div>
                     ))}
                 </div>

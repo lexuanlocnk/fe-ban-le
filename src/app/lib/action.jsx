@@ -8,7 +8,14 @@ export async function navigate(url) {
   redirect(url);
 }
 
-export const handleOrder = async (values, status, total, data, orderPoints) => {
+export const handleOrder = async (
+  values,
+  status,
+  total,
+  data,
+  orderPoints,
+  valueVoucher
+) => {
   try {
     const response = await fetch(`${hostApi}/member/checkout`, {
       method: "POST",
@@ -20,6 +27,7 @@ export const handleOrder = async (values, status, total, data, orderPoints) => {
         total: total,
         userId: status === "unauthenticated" ? "" : data.user.id,
         orderPoints: orderPoints,
+        valueVoucher: valueVoucher,
       }),
     });
 

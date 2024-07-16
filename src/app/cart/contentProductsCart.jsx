@@ -11,6 +11,7 @@ import { hostApi } from "../lib/config";
 import { useDebouncedCallback } from "use-debounce";
 
 const ContentProductsCart = ({
+  valueVoucher,
   itemCart,
   dispatch,
   setCheckedProducts,
@@ -274,6 +275,7 @@ const ContentProductsCart = ({
       </div>
       {stateCheckedProducts && stateCheckedProducts.length > 0 && (
         <PriceInformation
+          valueVoucher={valueVoucher}
           stateCheck={stateCheck}
           orderPoints={orderPoints}
           total={total}

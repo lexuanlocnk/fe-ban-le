@@ -314,6 +314,25 @@
   border-radius: 8px;
 }
 
+.name_voucher p {
+  margin-bottom: 0px;
+  font-size: 13px;
+  font-weight: 700;
+  display: inline;
+}
+
+.active_voucher .box-img-voucher {
+  background-color: rgb(248, 248, 252) !important;
+
+}
+
+.box-img-voucher {
+  background-color: rgb(232, 235, 249);
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  flex-shrink: 0;
+}
 
 .box-review-product,
 .box-bundled-products,
@@ -325,6 +344,12 @@
 .img-product-detail {
   border-radius: 8px;
   box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.icon_voucher {
+  width: 50px;
+  height: 40px;
+  color: #e54848;
 }
 
 .img-product-detail {
@@ -342,6 +367,25 @@
 
 .ant-image-mask:hover {
   opacity: 0 !important;
+}
+
+.text_choose_voucher {
+  font-size: 14px;
+  color: rgb(25, 144, 255);
+  font-weight: 500;
+}
+
+.name_type_voucher {
+  color: #090d14;
+  font-size: 15px;
+  font-weight: 500;
+}
+
+.box_type_voucher {
+  padding: 10px;
+  background-color: #f3f4f6;
+  border-radius: 8px;
+  margin: 10px 0px;
 }
 
 /* .img-thumbnail-product,
@@ -392,6 +436,12 @@
   cursor: pointer;
   font-size: 13px;
 }
+
+.box_choose svg {
+  font-size: 25px;
+  color: #ff3c3c;
+}
+
 
 .buy-product-detail {
   height: fit-content;
@@ -773,6 +823,47 @@
   font-size: 13px;
   color: #627483;
   font-weight: 500;
+}
+
+.disabled_item-voucher {
+  opacity: 0.5;
+  pointer-events: none;
+}
+
+
+
+.disabled_item-voucher .box-img-voucher {
+  background-color: #ccc;
+  /* Change to a lighter color to indicate disabled */
+}
+
+.disabled_item-voucher .icon_voucher {
+  color: #999;
+  /* Change icon color to indicate disabled */
+}
+
+.disabled_item-voucher .name_voucher,
+.disabled_item-voucher .text-voucher {
+  color: #999;
+  /* Change text color to indicate disabled */
+}
+
+.disabled_item-voucher .btn_choose .box_choose {
+  display: none;
+  /* Hide the choose button for disabled state */
+}
+
+
+.active_voucher {
+  background: rgb(243, 245, 252) !important;
+  border: 1px solid rgb(20, 53, 195) !important;
+}
+
+.item-voucher {
+  border: 1px solid white;
+  background: white;
+  padding: 10px !important;
+  border-radius: 8px;
 }
 
 .item-voucher:hover {

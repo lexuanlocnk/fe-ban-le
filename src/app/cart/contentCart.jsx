@@ -29,6 +29,7 @@ const ContentCart = () => {
   const {
     setItemCart,
     stateCart: {
+      valueVoucher,
       idClickBuyNow,
       products,
       stateCheckedProducts,
@@ -98,10 +99,17 @@ const ContentCart = () => {
         status,
         total,
         data,
-        orderPoints
+        orderPoints,
+        valueVoucher
       );
 
       if (dataRes.status) {
+        dispatch({
+          type: "ADD_VOUCHER",
+          payload: {
+            status: "order",
+          },
+        });
         const productIds = values.dataOrder.map((item) => item.ProductId);
         const isUnauthenticated = status === "unauthenticated";
         const payload = {
@@ -148,6 +156,7 @@ const ContentCart = () => {
                       />
                     ) : (
                       <ContentProductsCart
+                        valueVoucher={valueVoucher}
                         dataUser={data}
                         stateCheck={stateCheck}
                         setStateCheck={setStateCheck}

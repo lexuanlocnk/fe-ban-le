@@ -69,8 +69,8 @@ const InfoMethodPayment = ({ dataOrder, methodPayment }) => {
         </span>
       </div>
       {dataOrder &&
-        dataOrder?.order_detail.length > 0 &&
-        dataOrder?.order_detail?.map((item, index) => (
+        dataOrder?.orderSum?.order_detail?.length > 0 &&
+        dataOrder?.orderSum?.order_detail?.map((item, index) => (
           <CardProductPayment key={index} item={item} />
         ))}
     </>

@@ -49,6 +49,7 @@ const StandardCategoryProduct = ({
       name: "Workstation",
     },
   ];
+
   const activeBrand = getValueParams["thuong-hieu"];
 
   const createPageURL = (value) => {
@@ -99,7 +100,7 @@ const StandardCategoryProduct = ({
                 <Card
                   className="item_card_standard_product"
                   key={index}
-                  style={{ width: "100px" }}
+                  style={{ width: "110px" }}
                   hoverable
                   cover={
                     <Image

@@ -143,6 +143,7 @@
  }
 
  .box_standard_product {
+    gap: 5px;
      display: flex;
      justify-content: space-between;
  }
