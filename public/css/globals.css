@@ -1003,6 +1003,20 @@ footer {
     max-width: 350px;
 }
 
+.text_empty_cart {
+    font-size: 14px;
+    font-weight: 400;
+    color: rgb(130, 134, 158);
+}
+
+.box_not_product_in_cart {
+    width: 300px;
+    display: flex;
+    align-items: center;
+    justify-content: center;
+    flex-direction: column;
+}
+
 .item_infor_product_cart_hover span {
     /* display: block; */
     line-height: 20px;
@@ -1642,4 +1656,12 @@ footer {
 
 
     border: 1px solid #5c7ffd !important;
+}
+
+.border_solid_common {
+    border: 1px solid #c3d0fd !important;
+}
+
+.border_solid__active_common {
+    border: 1px solid rgb(20, 53, 195) !important;
 }

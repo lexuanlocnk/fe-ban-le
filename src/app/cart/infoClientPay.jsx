@@ -251,6 +251,7 @@ const InfoClientPay = ({
 
   const renderForm = () => (
     <Form
+      scrollToFirstError
       initialValues={initialValues}
       form={formOrder}
       name="horizontal_login"

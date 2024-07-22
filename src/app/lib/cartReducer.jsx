@@ -52,8 +52,7 @@ export const cartReducer = (state, action) => {
             checkedProducts.idsProduct.includes(product.ProductId)
           )
           .reduce((total, product) => {
-            const price =
-              key === "productNotAccount" ? product.Price : product.PriceOld;
+            const price = product.PriceOld;
             return total + price * product.quantity;
           }, 0);
       }
@@ -190,13 +189,13 @@ export const cartReducer = (state, action) => {
     case "TOTAL_COST_ALL_PRODUCTS":
       return {
         ...state,
-        total: state[action.payload].reduce(
-          (total, product) =>
-            action.payload == "productNotAccount"
-              ? total + product.Price * product.quantity
-              : total + product.PriceOld * product.quantity,
-          0
-        ),
+        total:
+          state[action.payload] &&
+          state[action.payload].length &&
+          state[action.payload].reduce(
+            (total, product) => total + product.PriceOld * product.quantity,
+            0
+          ),
       };
     case "FETCH_PRODUCT_CART":
       return {
@@ -225,6 +224,26 @@ export const cartReducer = (state, action) => {
           ...state,
           total: state.total + (action?.payload?.valueVoucherOld || 0),
           valueVoucher: null,
+        };
+      }
+
+    case "ADD_VOUCHER_DETAIL":
+      if (action?.payload?.status == "add") {
+        return {
+          ...state,
+
+          valueVoucherDetail: action.payload,
+        };
+      } else if (action?.payload?.status == "order") {
+        return {
+          ...state,
+
+          valueVoucherDetail: null,
+        };
+      } else {
+        return {
+          ...state,
+          valueVoucherDetail: null,
         };
       }
 

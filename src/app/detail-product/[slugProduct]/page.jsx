@@ -14,8 +14,6 @@ export async function generateMetadata({ params }) {
     }
   ).then((res) => res.json());
 
-  console.log("productproductproduct", product);
-
   return {
     title: product?.productName,
     description: product?.description,
@@ -98,6 +96,7 @@ const HomePage = async ({ params }) => {
       <ContentDetailProduct
         dataRelated={dataRelated}
         dataProductsCompare={dataProductsCompare}
+        dataGiftProduct={dataProduct}
         dataProduct={dataProduct?.productDetail}
         params={params.slugProduct}
       />

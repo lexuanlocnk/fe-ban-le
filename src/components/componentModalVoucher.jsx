@@ -5,7 +5,6 @@ import { useEffect, useState } from "react";
 import { FiGift } from "react-icons/fi";
 import { hostApi } from "../app/lib/config";
 import dayjs from "dayjs";
-import { IoAddCircleOutline, IoAddCircleSharp } from "react-icons/io5";
 import { UseAppContext } from "../app/lib/appProvider";
 
 const ComponentModalVoucher = ({
@@ -27,7 +26,6 @@ const ComponentModalVoucher = ({
       }
       const data = await response.json();
       setVoucherDiscount(data.data);
-      console.log("data", data);
     } catch (error) {
       console.error("Fetch error:", error);
     }

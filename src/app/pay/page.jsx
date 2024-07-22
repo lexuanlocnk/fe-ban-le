@@ -30,7 +30,6 @@ async function fetchDataOrder(orderId, orderIdCookie, userId) {
 
     const data = await response.json();
 
-    // console.log("test loi dum anh long ", data);
     if (data.status == false) {
       redirect("/");
     }

@@ -1,22 +1,36 @@
 "use client";
 
-import { Image as ImageAntd } from "antd";
 import { IoShieldCheckmarkOutline } from "react-icons/io5";
+import { RiRefundLine } from "react-icons/ri";
+import { MdPriceCheck } from "react-icons/md";
+import { GiAutoRepair } from "react-icons/gi";
+
 import Breadcrumb from "../../../components/breadcrumb";
-import { hostImage } from "../../lib/config";
 import CompareProducts from "./compareProducts";
 import { scrollToElement } from "../../lib/functions";
 import { useSession } from "next-auth/react";
 import { memo, useEffect, useState } from "react";
-import { Modal } from "antd";
+import { Modal, Tag } from "antd";
 import { UseAppContext } from "../../lib/appProvider";
+import GalleryImage from "./galleryImage";
+import dayjs from "dayjs";
+import { FiGift } from "react-icons/fi";
+import { hostApi } from "../../lib/config";
+import { useDebouncedCallback } from "use-debounce";
+import { useRouter } from "next/navigation";
 
-const InfoProduct = ({ dataProduct, dataProductsCompare }) => {
-  const { status } = useSession();
+const InfoProduct = ({ dataProduct, dataProductsCompare, dataGiftProduct }) => {
+  const { data, status } = useSession();
   const [elementBoxDescription, setElementBoxDescription] = useState(null);
   const [checkShowInfo, setCheckShowInfo] = useState(false);
   const [modalDetail, setModalDetail] = useState(false);
-  const { handleAddProductViewed } = UseAppContext();
+  const {
+    handleAddProductViewed,
+    stateCart: { valueVoucherDetail },
+    dispatch,
+    openNotificationWithIcon,
+  } = UseAppContext();
+  const router = useRouter();
 
   const handleShowHide = (status) => {
     setCheckShowInfo(!checkShowInfo);
@@ -39,6 +53,102 @@ const InfoProduct = ({ dataProduct, dataProductsCompare }) => {
     handleAddProductViewed(dataProduct);
   }, []);
 
+  const addToCartNotAccount = () => {
+    const { parameter, listPictures, ...dataAddCart } = dataProduct;
+
+    openNotificationWithIcon(
+      "success",
+      "Thêm vào giỏ hàng thành công",
+      `Đã thêm sản phẩm ${dataAddCart.ProductName} vào giỏ hàng`
+    );
+    dispatch({ type: "ADD_TO_CART_NOT_ACCOUNT", payload: dataAddCart });
+  };
+
+  const addProductToCart = useDebouncedCallback(async () => {
+    const { parameter, listPictures, ...dataAddCart } = dataProduct;
+
+    try {
+      const response = await fetch(
+        `${hostApi}/member/add-update-cart/${data.user.id}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            value: dataAddCart,
+          }),
+        }
+      );
+
+      const dataRes = await response.json();
+
+      if (dataRes.status) {
+        openNotificationWithIcon(
+          "success",
+          "Thêm vào giỏ hàng thành công",
+          `Đã thêm sản phẩm ${dataRes.product.ProductName} vào giỏ hàng`
+        );
+
+        dispatch({ type: "ADD_TO_PRODUCT_TO_CART", payload: dataRes.product });
+      }
+    } catch (error) {
+      console.error("Err:", error);
+    }
+  }, 200);
+
+  const handleBuyNowNotAccount = () => {
+    const { parameter, listPictures, ...dataAddCart } = dataProduct;
+
+    dispatch({
+      type: "CLICK_BUY_NOW",
+      payload: {
+        idCart: null,
+        idProduct: dataAddCart.ProductId,
+      },
+    });
+    dispatch({ type: "ADD_TO_CART_NOT_ACCOUNT", payload: dataAddCart });
+
+    router.push("/cart");
+  };
+
+  const handleBuyNow = useDebouncedCallback(async () => {
+    const { parameter, listPictures, ...dataAddCart } = dataProduct;
+
+    try {
+      const response = await fetch(
+        `${hostApi}/member/add-update-cart/${data.user.id}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            value: dataAddCart,
+          }),
+        }
+      );
+
+      const dataRes = await response.json();
+
+      if (dataRes.status) {
+        router.push("/cart");
+
+        dispatch({
+          type: "CLICK_BUY_NOW",
+          payload: {
+            idCart: dataRes.product.CartId,
+            idProduct: dataRes.product.ProductId,
+          },
+        });
+
+        dispatch({ type: "ADD_TO_PRODUCT_TO_CART", payload: dataRes.product });
+      }
+    } catch (error) {
+      console.error("Err:", error);
+    }
+  }, 200);
+
   return (
     <>
       <div className="row container-content-detail-product ">
@@ -46,271 +156,306 @@ const InfoProduct = ({ dataProduct, dataProductsCompare }) => {
           <Breadcrumb nameItem={dataProduct.ProductName} />
         </div>
 
-        <div className="col-md-4 col-12  img-product-detail  bg-white ">
-          <div className="row mx-0">
-            <div className="box-img-product-detail  overflow-hidden col-12 mb-2">
-              <ImageAntd
-                className="h-100 w-100 avatar-product "
-                src={hostImage + dataProduct.Image}
+        <div className="col-md-9 col-12      ps-0 ">
+          <div className="row mx-0 box_info_detail_product bg-white">
+            <div className="col-5 px-0">
+              <GalleryImage
+                imageMain={dataProduct?.Image || ""}
+                listImages={
+                  dataProduct?.listPictures ? dataProduct.listPictures : []
+                }
+
+                // listImages={
+                //   dataProduct?.listPictures
+                //     ? dataProduct.listPictures.slice(0, 1)
+                //     : []
+                // }
               />
-            </div>
-            <div className="col-12 mt-1">
-              <span className="text-technical-specifications">
-                Thông số kĩ thuật
-              </span>
-              {dataProduct &&
-                dataProduct.parameter &&
-                dataProduct.parameter.length > 0 &&
-                dataProduct.parameter.slice(0, 7).map((item, index) => {
-                  return (
-                    <span
-                      key={index}
-                      className="d-block text-infor-product my-1"
-                    >
-                      <strong className="me-1">{item.catOption}:</strong>{" "}
-                      {item.nameCatOption || "Chưa cập nhật"}
-                    </span>
-                  );
-                })}
-              <span
-                onClick={() => setModalDetail(true)}
-                className="see-detail d-block text-center"
-              >
-                Xem chi tiết sản phẩm
-              </span>
-            </div>
-          </div>
-        </div>
-
-        <div className="col-md-5 col-12 infor-product-detail  ">
-          <div className="product-detail bg-white h-100">
-            <div className="mx-0 p-2 row list-thumbnail-info">
-              <ImageAntd.PreviewGroup>
+              <div>
+                <span className="text-technical-specifications">
+                  Thông số kĩ thuật
+                </span>
                 {dataProduct &&
-                  dataProduct.listPictures.length > 0 &&
-                  dataProduct.listPictures.map((item, index) => (
-                    <div
-                      className={
-                        "col-4 p-1   overflow-hidden" +
-                        (index + 1 > 6 ? " d-none" : "")
-                      }
-                      key={index}
-                    >
-                      <div className="box-image-thumbnail-product">
-                        <div className="  p-2 box-border-img-thumbnail ">
-                          <ImageAntd
-                            className={"img-thumbnail-product "}
-                            src={hostImage + item.picture}
-                          />
-                        </div>
-                      </div>
-                    </div>
-                  ))}
-              </ImageAntd.PreviewGroup>
-
-              <div className="col-12">
-                <span className="sum-img-thumbnail">Thương hiệu:</span>
-                <span className="text_brand">{dataProduct.brandName}</span>
-              </div>
-              <div className="col-12">
-                <span className="sum-img-thumbnail">hình ảnh :</span>
-                <span className="text_brand">
-                  {dataProduct.listPictures.length}
+                  dataProduct.parameter &&
+                  dataProduct.parameter.length > 0 &&
+                  dataProduct.parameter.slice(0, 6).map((item, index) => {
+                    return (
+                      <span
+                        key={index}
+                        className=" text-infor-product my-1 text_genaral_two_line_2"
+                      >
+                        <strong className="me-1">{item.catOption}:</strong>{" "}
+                        {item.nameCatOption || "Chưa cập nhật"}
+                      </span>
+                    );
+                  })}
+                <span
+                  onClick={() => setModalDetail(true)}
+                  className="see-detail d-block text-center"
+                >
+                  Xem chi tiết sản phẩm
                 </span>
               </div>
             </div>
-            <div className=" mx-2 pb-2 border-bottom"></div>
-            {/*
-          
-          Khuyến mãi
-          
-          {inforPromotion &&
-                !dayjs().isAfter(dayjs(inforPromotion.endDate)) &&
-                dayjs(inforPromotion.startDate).isBefore(dayjs()) && (
-                  <div className="row mx-0 mt-2">
-                    <div className="col-12 pt-4 ">
-                      <div className="box_info_promotion">
-                        <span>
-                          - Balo thời trang + Chuột Không Dây + Bàn di chuột
-                        </span>
-                        <span>
-                          - Giảm thêm 500.000Đ khi mua cùng Màn Hình di động LG
-                          Gram View 16MR70.ASDA5 (Hàng nhập KM) trị giá
-                          5.690.000Đ
-                        </span>
-                        <span>
-                          - Hỗ trợ miễn phí cài đặt phần mềm + vệ sinh máy trọn
-                          đời tại QUANGBAO
-                        </span>
-                        <div className="text_title_box">
-                          <Image
-                            src={"/image/icon_image/gift-box.png"}
-                            width={35}
-                            height={35}
-                            alt="icon_box_gift"
-                          />
-                          <p className="mb-0">Quà tặng/khuyến mãi</p>
-                        </div>
-                      </div>
-                    </div>
-                  </div>
-                )} */}
-
-            <div className="row mx-0">
-              <div className="col-12 p-3 ">
-                <span className="text-technical-specifications d-block ">
-                  {" "}
-                  Sơ lược sản phẩm
-                </span>
-
-                {dataProduct.DesShort ? (
-                  <div
-                    dangerouslySetInnerHTML={{ __html: dataProduct.DesShort }}
-                  />
-                ) : (
-                  <span className="text_summary">
-                    Không có sơ lược sản phẩm
-                  </span>
-                )}
+            <div className="col-7">
+              <div className="container_info_product">
+                <div className="box_name_product_detail">
+                  <span>{dataProduct.ProductName}</span>
+                </div>
               </div>
+              <div className="box_brand_product_detail">
+                <span className="title_brand_product_detail">Thương hiệu:</span>{" "}
+                <span className="value_brand_product_detail">
+                  {dataProduct.BrandName}
+                </span>
+              </div>
+              <div className="box_price_product_detail mt-2">
+                <div className="box_price_main">
+                  {valueVoucherDetail ? (
+                    <span>
+                      {(
+                        dataProduct.PriceOld - valueVoucherDetail.valueVoucher
+                      ).toLocaleString("vi", {
+                        style: "currency",
+                        currency: "VND",
+                      })}
+                    </span>
+                  ) : (
+                    <span>
+                      {dataProduct.PriceOld.toLocaleString("vi", {
+                        style: "currency",
+                        currency: "VND",
+                      })}
+                    </span>
+                  )}
+                </div>
+                <div className="box_price_sale">
+                  <s>
+                    {dataProduct.Price.toLocaleString("vi", {
+                      style: "currency",
+                      currency: "VND",
+                    })}
+                  </s>
+                  <span>-13.049%</span>
+                </div>
+              </div>
+
+              {dataGiftProduct?.checkPresent &&
+                dataGiftProduct.checkPresent.length > 0 && (
+                  <div className="box_gift_coupon">
+                    <span className="title_gift_product">
+                      QUÀ TẶNG SẢN PHẨM
+                    </span>
+                    {dataGiftProduct.checkPresent.map((item) => (
+                      <div className="box_gift_product" key={item.id}>
+                        <div
+                          className="box_content_gift_product"
+                          dangerouslySetInnerHTML={{
+                            __html: item.content,
+                          }}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+              {dataGiftProduct?.checkCoupon &&
+                dataGiftProduct.checkCoupon.length > 0 && (
+                  <div className="box_coupon_product">
+                    <span className="title_gift_product">
+                      CHỌN 1 TRONG NHỮNG KHUYẾN MÃI SAU
+                    </span>
+                    {dataGiftProduct.checkCoupon.map((item) => (
+                      <div className="my-2" key={item.id}>
+                        {item?.coupon_desc &&
+                          item.coupon_desc.length > 0 &&
+                          item.coupon_desc.map((itemVoucher, index) => {
+                            const customItemVoucher = {
+                              releaseCode: item.MaPhatHanh,
+                              valueVoucher: item.GiaTriCoupon,
+                              status: "add",
+                              ...itemVoucher,
+                            };
+
+                            const handleClick = () => {
+                              if (
+                                valueVoucherDetail?.MaCouponDes ===
+                                itemVoucher.MaCouponDes
+                              ) {
+                                dispatch({
+                                  type: "ADD_VOUCHER_DETAIL",
+                                  payload: {
+                                    valueVoucherOld: item.GiaTriCoupon || 0,
+                                    status: "remove",
+                                  },
+                                });
+                              } else {
+                                dispatch({
+                                  type: "ADD_VOUCHER_DETAIL",
+                                  payload: customItemVoucher,
+                                });
+                              }
+                            };
+
+                            return (
+                              <div
+                                key={index}
+                                className={` ${
+                                  valueVoucherDetail?.MaCouponDes ===
+                                  itemVoucher.MaCouponDes
+                                    ? " active_voucher"
+                                    : "border_solid_common"
+                                } row mx-0 mt-2 item-voucher cursor-pointer `}
+                                onClick={handleClick}
+                              >
+                                <div className="col-2 box-img-voucher">
+                                  <div>
+                                    <FiGift className="icon_voucher" />
+                                  </div>
+                                </div>
+                                <div className="col-10 d-flex justify-content-between align-items-center">
+                                  <div>
+                                    <div className="name_voucher">
+                                      <Tag color="geekblue">
+                                        {itemVoucher.MaCouponDes}
+                                      </Tag>
+                                      <p>
+                                        {item.GiaTriCoupon.toLocaleString(
+                                          "vi",
+                                          { style: "currency", currency: "VND" }
+                                        )}
+                                      </p>
+                                    </div>
+                                    <div className="text-voucher">
+                                      Đơn tối thiểu:{" "}
+                                      {item.DonHangChapNhanTu.toLocaleString(
+                                        "vi",
+                                        { style: "currency", currency: "VND" }
+                                      )}{" "}
+                                    </div>
+                                    <div className="text-voucher">
+                                      HSD:{" "}
+                                      {dayjs
+                                        .unix(item.EndCouponDate)
+                                        .format("DD/MM/YYYY")}
+                                    </div>
+                                  </div>
+                                  <div className="btn_choose">
+                                    {valueVoucherDetail?.MaCouponDes ===
+                                    itemVoucher?.MaCouponDes ? (
+                                      <div className="box_choose">
+                                        <span className="text_choose_voucher">
+                                          Bỏ chọn
+                                        </span>
+                                      </div>
+                                    ) : (
+                                      <div className="box_choose">
+                                        <span className="text_choose_voucher">
+                                          Áp dụng
+                                        </span>
+                                      </div>
+                                    )}
+                                  </div>
+                                </div>
+                              </div>
+                            );
+                          })}
+                      </div>
+                    ))}
+                  </div>
+                )}
+
+              <div className="box_btn_buy_now_add_cart_detail row mx-0 ">
+                <div className="  ps-0 pe-1 col-6">
+                  {status === "unauthenticated" ? (
+                    <div
+                      onClick={handleBuyNowNotAccount}
+                      className="btn_buy_now btn_detail border_solid_common"
+                    >
+                      <span>MUA NGAY</span>
+                    </div>
+                  ) : (
+                    <div
+                      onClick={handleBuyNow}
+                      className="btn_buy_now btn_detail border_solid_common"
+                    >
+                      <span>MUA NGAY</span>
+                    </div>
+                  )}
+                </div>
+                <div className="pe-0 ps-1  col-6">
+                  {status === "unauthenticated" ? (
+                    <div
+                      onClick={addToCartNotAccount}
+                      className="btn_add_cart btn_detail border_solid_common"
+                    >
+                      <span>THÊM VÀO GIỎ HÀNG</span>
+                    </div>
+                  ) : (
+                    <div
+                      onClick={addProductToCart}
+                      className="btn_add_cart btn_detail border_solid_common"
+                    >
+                      <span>THÊM VÀO GIỎ HÀNG</span>
+                    </div>
+                  )}
+                </div>
+              </div>
+
+              {dataGiftProduct?.checkGiftPromotion &&
+                dataGiftProduct.checkGiftPromotion.length > 0 && (
+                  <div className="box_news_promotion_related">
+                    <span className="title_promotion_related">
+                      Khuyến mãi liên quan
+                    </span>
+                    {dataGiftProduct.checkGiftPromotion.map((item) => (
+                      <div className="box_gift_product" key={item.id}>
+                        <div
+                          className="box_content_gift_product"
+                          dangerouslySetInnerHTML={{
+                            __html: item.content,
+                          }}
+                        />
+                      </div>
+                    ))}
+                  </div>
+                )}
             </div>
           </div>
         </div>
 
         <div className="col-md-3 col-12 buy-product-detail py-3 px-1">
-          <div className="row infor-store mx-1 pb-1">
+          <div className="row  mx-1 pb-1">
             <div className="col-12 px-0">
-              <div className="name-store ">
+              {/* <div className="name-store ">
                 <span>{dataProduct.ProductName}</span>
-              </div>
+              </div> */}
             </div>
           </div>
           <div className="row mx-1 pt-0">
             <div className="col-12 px-0  "></div>
 
-            {/* <div className="col-12 mt-2 text-center text-demand">
-                <strong>Nhu cầu: </strong>
-                Gamming
-              </div> */}
-            {/* {softwareSupport && softwareSupport.length > 0 && (
-                <div className="col-12 pt-1">
-                  <span className="text-supporting-software">
-                    Các phần mềm hổ trợ
-                  </span>
-                  <div className="supporting-software pt-1">
-                    <Swiper
-                      modules={[Navigation, Pagination, Scrollbar, Autoplay]}
-                      spaceBetween={10}
-                      slidesPerView={3}
-                      loop={true}
-                      autoplay={{ delay: 1500 }}
-                    >
-                      {softwareSupport &&
-                        softwareSupport.length > 0 &&
-                        softwareSupport.map((item, index) => (
-                          <SwiperSlide
-                            onClick={() =>
-                              handleOpenPopupSupportingSoftware(item)
-                            }
-                            className="overflow-hidden image is-2by1 custom-swiper "
-                            key={index}
-                          >
-                            <Tooltip
-                              placement="bottomRight"
-                              color={"#2db7f5"}
-                              title={"Cấu hình tối thiểu: " + index + "000"}
-                            >
-                              <Image
-                                quality={100}
-                                height={0}
-                                width={0}
-                                sizes="100vw"
-                                className="w-100 h-100 img-custom-swiper"
-                                src={item}
-                                alt="Các phần mềm hổ trợ"
-                              />
-                            </Tooltip>
-                          </SwiperSlide>
-                        ))}
-                    </Swiper>{" "}
-                  </div>
-                </div>
-              )} */}
-
             <div className="col-12 ">
-              <div className="mt-3 value-count">
+              <div className=" value-count">
                 <span>Chính sách bán hàng</span>
               </div>
               <div className="box_text_commit">
                 <IoShieldCheckmarkOutline />
                 <span>Cam kết chính hãng 100%</span>
               </div>
-            </div>
-
-            <div className="col-12 mb-1">
-              <div className="mt-3 value-price">
-                <span>Giá sản phẩm:</span>
+              <div className="box_text_commit">
+                <RiRefundLine />
+                <span>Chính sách hoàn tiền</span>
               </div>
-              <div className="mt-1 value-price">
-                <span className="price_detail_product">
-                  {status === "unauthenticated"
-                    ? // Đoạn mã khi không xác thực
-                      dataProduct.Price.toLocaleString("vi", {
-                        style: "currency",
-                        currency: "VND",
-                      })
-                    : // Đoạn mã khi đã xác thực
-                    status === "loading"
-                    ? "Đang cập nhật"
-                    : dataProduct.PriceOld.toLocaleString("vi", {
-                        style: "currency",
-                        currency: "VND",
-                      })}
-                </span>
-              </div>
+              <div className="box_text_commit">
+                <MdPriceCheck />
+                <span> Giá cạnh tranh nhất thị trường</span>
+              </div>{" "}
+              <div className="box_text_commit">
+                <GiAutoRepair />
+                <span> Bảo hành tại nơi sử dụng</span>
+              </div>{" "}
             </div>
-
-            {/* <div className="box-technical-specifications col-12 mb-1">
-                <div className="product_related_news">
-                  <div className="text_product_related_news">
-                    {dataMarquee &&
-                      dataMarquee.length > 0 &&
-                      dataMarquee.map((item, index) => (
-                        <div
-                          key={index}
-                          className="row   mx-0 box_product_related mb-3"
-                        >
-                          <div className="col-4 image is-1by1-custom mx-0">
-                            <Image
-                              quality={75}
-                              height={0}
-                              width={0}
-                              sizes="100vw"
-                              src={item.url}
-                              className="w-100 h-100"
-                              alt="image"
-                            />
-                          </div>
-                          <div className="col-8 d-flex align-items-center mx-0 px-1">
-                            <span
-                              title={item.content}
-                              className="text_genaral_three_line"
-                            >
-                              {item.content}
-                            </span>
-                          </div>
-                        </div>
-                      ))}
-                  </div>
-                </div>
-              </div> */}
-          </div>
-          <div className="row pt-2 mx-1">
-            <div className="col-12 btn-buy-product bg-danger">Mua ngay</div>
-            <div className="col-12 btn-buy-product bg-warning">
-              Thêm vào giỏ hàng
-            </div>
-            <div className="col-12 btn-buy-product bg-primary">So sánh</div>
           </div>
         </div>
       </div>

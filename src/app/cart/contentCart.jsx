@@ -26,6 +26,7 @@ const ContentCart = () => {
     idsCard: [],
     idsProduct: [],
   });
+
   const {
     setItemCart,
     stateCart: {
@@ -39,6 +40,7 @@ const ContentCart = () => {
       productNotAccount,
     },
     dispatch,
+    openNotificationWithIcon,
   } = UseAppContext();
 
   const [confirmTerm, setConfirmTerm] = useState({
@@ -123,6 +125,8 @@ const ContentCart = () => {
         });
 
         router.replace(`/pay?order=success&orderId=${dataRes.orderId}`);
+      } else {
+        openNotificationWithIcon("warning", "Đặt hàng", `Đặt hàng thất bại!`);
       }
     }
   };
@@ -133,11 +137,11 @@ const ContentCart = () => {
         <div className="row box-content-cart mx-0">
           <div className="col-12 ">
             <div className="row mx-0 container_content_layout_cart">
-              <div className="col-12 w-100 mt-2">
+              <div className="col-12 w-100 mt-2 d-flex justify-content-center">
                 <div className="box_breadcrumbs_cart d-flex justify-content-between">
                   <Breadcrumb nameItem={"Giỏ hàng"} />
-                  <div className="box_text_buy_other  d-flex align-items-center">
-                    <Link href={"/"}>
+                  <div className="box_text_buy_other  ">
+                    <Link href={"/"} className="d-flex align-items-center">
                       <span className="me-1">Mua thêm sản phẩm khác</span>
                       <MdNextWeek />
                     </Link>

@@ -50,8 +50,6 @@ const RegisterAccount = ({ setStatusAccount }) => {
         }
         setLoadingRegister(false);
       }
-
-      console.log("dataRes  haha ha", dataRes);
     } catch (error) {
       console.error("Err:", error);
     } finally {

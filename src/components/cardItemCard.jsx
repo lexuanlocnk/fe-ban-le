@@ -45,37 +45,28 @@ const CardItemCard = ({
                   {item.ProductName}
                 </span>
                 <div>
-                  {item.Brand && (
+                  {item.brandName && (
                     <span className="brand_product">
-                      Thương hiệu: {item.Brand}
+                      Thương hiệu: {item.brandName}
                     </span>
                   )}
                 </div>
               </div>
 
               <div className="box_price_card_cart">
-                {status === "unauthenticated" ? (
-                  <span className="price_product_cart  ">
-                    {item?.Price?.toLocaleString("vi", {
-                      style: "currency",
-                      currency: "VND",
-                    })}
-                  </span>
-                ) : (
-                  <span className="price_product_cart  ">
-                    {item?.PriceOld?.toLocaleString("vi", {
-                      style: "currency",
-                      currency: "VND",
-                    })}
-                  </span>
-                )}
-
-                {/* <s className="price_sale_product_cart  ">
-                  {item.PriceOld.toLocaleString("vi", {
+                <span className="price_product_cart  ">
+                  {item?.PriceOld?.toLocaleString("vi", {
                     style: "currency",
                     currency: "VND",
                   })}
-                </s> */}
+                </span>
+
+                <s className="price_sale_product_cart  ">
+                  {item?.Price?.toLocaleString("vi", {
+                    style: "currency",
+                    currency: "VND",
+                  })}
+                </s>
               </div>
             </div>
           </div>
@@ -135,6 +126,22 @@ const CardItemCard = ({
               </div>
             </div>
           </div>
+
+          {/* {item.checkPresent && item.checkPresent.length > 0 && (
+            <div className="col-2"></div>
+          )} */}
+
+          {item.checkPresent &&
+            item.checkPresent.length > 0 &&
+            item.checkPresent.map((item, index) => (
+              <div className="col-12 ">
+                <div
+                  className="box_promotion_product"
+                  key={index}
+                  dangerouslySetInnerHTML={{ __html: item.content }}
+                />
+              </div>
+            ))}
         </div>
       </div>
     </Fragment>

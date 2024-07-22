@@ -19,7 +19,6 @@ const LoginAccount = ({}) => {
 
       const dataRes = await response.json();
 
-      console.log("dataRes chinh la taoa", dataRes);
       // Check if the response is valid and contains user data
       if (dataRes.status) {
         // Return user object

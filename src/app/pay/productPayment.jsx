@@ -55,8 +55,6 @@ const ProductPayment = ({ dataOrder, userId }) => {
     }
   };
 
-  console.log("dataOrder", dataOrder);
-
   return (
     <>
       {!isEmptyObject(dataOrder) ? (

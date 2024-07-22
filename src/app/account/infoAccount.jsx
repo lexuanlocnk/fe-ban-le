@@ -50,8 +50,6 @@ const InfoAccount = ({}) => {
     }
   };
 
-  console.log("data", data);
-
   return status === "loading" ? (
     <ComponentSkeleton />
   ) : (

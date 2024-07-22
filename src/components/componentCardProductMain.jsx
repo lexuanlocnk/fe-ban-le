@@ -94,7 +94,7 @@ const ComponentCardProductMain = ({ item, col }) => {
           type: "CLICK_BUY_NOW",
           payload: {
             idCart: dataRes.product.CartId,
-            idProduct: ProductId,
+            idProduct: dataRes.product.ProductId,
           },
         });
 

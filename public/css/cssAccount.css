@@ -162,7 +162,7 @@
      border-radius: 8px;
      /* border: 1px solid #c3d0fd; */
      box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
-
+     width: fit-content;
  }
 
 
@@ -588,4 +588,18 @@
      background: #0077B6;
      color: white;
 
+ }
+
+
+ .box_empty_product_manage_order {
+     display: flex;
+     flex-flow: column;
+     gap: 5px;
+     justify-content: center;
+     align-items: center;
+ }
+
+ .box_empty_product_manage_order span {
+     font-size: 14px;
+     font-weight: 400;
  }

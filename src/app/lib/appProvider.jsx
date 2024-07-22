@@ -34,6 +34,7 @@ export default function AppProvider({ children }) {
     products: [],
     stateCheckedProducts: [],
     valueVoucher: null,
+    valueVoucherDetail: null,
     total: 0,
     orderPoints: 0,
     totalPoints: 1000,

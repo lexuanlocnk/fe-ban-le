@@ -9,11 +9,13 @@ const ContentDetailProduct = ({
   dataProductsCompare,
   params,
   dataRelated,
+  dataGiftProduct,
 }) => {
   return dataProduct ? (
     <div className="box-container-detail-product">
       <div className="in-box-container-detail-product">
         <InfoProduct
+          dataGiftProduct={dataGiftProduct}
           dataProductsCompare={dataProductsCompare}
           dataProduct={dataProduct}
         />

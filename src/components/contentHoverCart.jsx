@@ -14,7 +14,7 @@ const ContentHoverCart = ({ dataCart, total, status, dispatch }) => {
 
   return (
     <div className="container_hover_cart">
-      {dataCart && dataCart.length > 0 && (
+      {dataCart && dataCart.length > 0 ? (
         <>
           <div className="box_cart custom_scroll">
             {dataCart &&
@@ -46,15 +46,10 @@ const ContentHoverCart = ({ dataCart, total, status, dispatch }) => {
                         Số lượng: {item.quantity}
                       </span>
                       <span className="price_product_cart_hover d-block">
-                        {status == "unauthenticated"
-                          ? item?.Price?.toLocaleString("vi", {
-                              style: "currency",
-                              currency: "VND",
-                            })
-                          : item?.PriceOld?.toLocaleString("vi", {
-                              style: "currency",
-                              currency: "VND",
-                            })}
+                        {item?.PriceOld?.toLocaleString("vi", {
+                          style: "currency",
+                          currency: "VND",
+                        })}
                       </span>
                     </div>
                   </div>
@@ -72,12 +67,28 @@ const ContentHoverCart = ({ dataCart, total, status, dispatch }) => {
               })}{" "}
             </span>
           </div>
-        </>
-      )}
 
-      <div className="btn_to_cart text-center">
-        <Link href={"/cart"}>Đi đến giỏ hàng</Link>
-      </div>
+          <div className="btn_to_cart text-center">
+            <Link href={"/cart"}>Đi đến giỏ hàng</Link>
+          </div>
+        </>
+      ) : (
+        <div className="box_not_product_in_cart">
+          <div className="box_icon_not_found_2">
+            <Image
+              width={200}
+              height={200}
+              alt="Not Found Product"
+              src={"/image/empty_cart.png"}
+            />
+          </div>
+          <span className="text_empty_cart">Giỏ hàng chưa có sản phẩm nào</span>
+
+          <div className="btn_to_cart text-center">
+            <Link href={"/"}>Mua sắm ngay</Link>
+          </div>
+        </div>
+      )}
     </div>
   );
 };

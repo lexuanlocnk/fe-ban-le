@@ -81,11 +81,6 @@ const ComponentFilter = ({ dataProperties, getValueParams }) => {
       currency: "VND",
     })}`;
 
-  // console.log(
-  //   "dataProperties.asdsad.minPrice",
-  //   dataProperties.rangePrice.minPrice
-  // );
-
   return (
     <Fragment>
       <div className="box_value_selected_checkbox">

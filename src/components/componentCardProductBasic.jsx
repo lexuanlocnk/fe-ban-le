@@ -83,11 +83,17 @@ const ComponentCardProductBasic = ({ item, col }) => {
             <span>
               {status === "loading"
                 ? "Đang cập nhật"
-                : item.Price.toLocaleString("vi", {
+                : item.PriceOld.toLocaleString("vi", {
                     style: "currency",
                     currency: "VND",
                   })}
             </span>
+            <s className="price_yet_sale">
+              {item.Price.toLocaleString("vi", {
+                style: "currency",
+                currency: "VND",
+              })}
+            </s>
           </div>
           <div className="box_price_card_product_basic"></div>
           {status === "unauthenticated" ? (

@@ -19,7 +19,6 @@ async function fetchDataItem() {
 
 async function TopProducts({ session }) {
   const dataTopProducts = await fetchDataItem();
-  // console.log("dataTopProducts", dataTopProducts);
 
   return (
     <div className="container_top_products py-2">
