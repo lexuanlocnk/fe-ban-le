@@ -134,7 +134,7 @@ const BannerHomePage = ({ dataCategory }) => {
                           />
                         </div>
                       </div>
-                      <div className="col-12 text-center text_category">
+                      <div className="col-12 text-center text_category text_genaral_one_line">
                         <span>{item.cat_name}</span>
                       </div>
                     </div>

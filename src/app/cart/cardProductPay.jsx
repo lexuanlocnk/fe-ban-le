@@ -5,8 +5,6 @@ import { hostImage } from "../lib/config";
 import { useEffect } from "react";
 
 const CardProductPay = ({ item, status, formOrder }) => {
-  const dataOrder = formOrder.getFieldValue("dataOrder");
-
   const onChange = (value, productId) => {
     // Tìm productOrder và promotionChoose
     const productOrderNew = dataOrder.map((item) =>
@@ -22,12 +20,15 @@ const CardProductPay = ({ item, status, formOrder }) => {
   };
 
   const setPresentOrder = (value) => {
+    const dataOrder = formOrder.getFieldValue("dataOrder");
+
     if (value.checkPresent && value.checkPresent.length === 1) {
       const updatedDataOrder = dataOrder.map((itemOrder) =>
-        itemOrder.ProductId === value.ProductId
+        itemOrder.checkPresent && itemOrder.checkPresent.length == 1
           ? { ...itemOrder, presentOrder: itemOrder.checkPresent[0] }
           : itemOrder
       );
+      console.log("updatedDataOrder", updatedDataOrder);
 
       formOrder.setFieldsValue({ dataOrder: updatedDataOrder });
     }

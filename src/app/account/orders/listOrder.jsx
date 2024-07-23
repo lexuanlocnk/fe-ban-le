@@ -5,7 +5,17 @@ import "dayjs/locale/vi";
 import Image from "next/image";
 dayjs.locale("vi");
 
-const ListOrder = ({ dataOrder }) => {
+const ListOrder = ({ dataOrder, activeStatusOrder }) => {
+  const statusColors = {
+    pending: "#FFA500",
+    "customer-response": "#FF4500",
+    paid: "#32CD32",
+    delivered: "#1E90FF",
+    finished: "#6A5ACD",
+    fail: "#8B0000",
+    "customer-cancels": "#A9A9A9",
+  };
+
   return (
     <div className="box_list_order mt-2">
       <table className="table table-striped">
@@ -38,30 +48,52 @@ const ListOrder = ({ dataOrder }) => {
                     .replace(/^\w/, (c) => c.toUpperCase())}
                 </td>
                 <td>
-                  <span className="value_item_order text_genaral_one_line">
-                    {item.order_detail &&
-                      item.order_detail.length > 0 &&
-                      item.order_detail.map((item, index) => (
+                  {item.order_detail && item.order_detail.length > 1 ? (
+                    <ol className="ps-2 value_item_order ">
+                      {item.order_detail.map((item, index) => (
                         <Tooltip
                           color="#2db7f5"
                           placement="top"
                           key={index}
                           title={item.item_title}
                         >
-                          <span>{item.item_title}</span>
+                          <li className="name_product_manager my-1">
+                            {item.item_title}
+                          </li>
                         </Tooltip>
                       ))}
-                  </span>
+                    </ol>
+                  ) : (
+                    <span className="value_item_order ">
+                      {item.order_detail.map((item, index) => (
+                        <Tooltip
+                          color="#2db7f5"
+                          placement="top"
+                          key={index}
+                          title={item.item_title}
+                        >
+                          <span className="name_product_manager my-1">
+                            {item.item_title}
+                          </span>
+                        </Tooltip>
+                      ))}
+                    </span>
+                  )}
                 </td>
                 <td className="value_item_order">
-                  {item.total_cart.toLocaleString("vi", {
-                    style: "currency",
-                    currency: "VND",
-                  })}
+                  <span className="total_order_manager">
+                    {item.total_cart.toLocaleString("vi", {
+                      style: "currency",
+                      currency: "VND",
+                    })}
+                  </span>
                 </td>
 
                 <td>
-                  <span className={`value_item_status `}>
+                  <span
+                    style={{ color: statusColors[activeStatusOrder] }}
+                    className={`value_item_status `}
+                  >
                     {item.order_status.title}
                   </span>
                 </td>

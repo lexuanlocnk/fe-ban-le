@@ -147,7 +147,6 @@
      padding: 5px 10px;
      background: rgb(246, 246, 246);
      border-radius: 5px;
-     border: 1px solid #c3d0fd;
  }
 
  .icon_edit {
@@ -191,8 +190,13 @@
  }
 
  .value_item_order {
-     font-size: 13px;
+     font-size: 14px;
  }
+
+ .name_product_manager {
+     font-weight: 500;
+ }
+
 
  .code_item_order {
      cursor: pointer;
@@ -602,4 +606,15 @@
  .box_empty_product_manage_order span {
      font-size: 14px;
      font-weight: 400;
+ }
+
+ .total_order_manager {
+     font-size: 15px;
+     font-weight: 500;
+     color: #007bff;
+ }
+
+ .value_item_status {
+     font-size: 14px;
+     font-weight: 500;
  }

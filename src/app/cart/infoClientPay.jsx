@@ -24,6 +24,7 @@ const InfoClientPay = ({
   setPoints,
   status,
   dataUser,
+  dataMethodShipping,
 }) => {
   const formatter = (value) => `${value} điểm`;
 
@@ -282,7 +283,22 @@ const InfoClientPay = ({
         ]}
       >
         <Radio.Group onChange={onChangeCheckReceiving}>
-          <Radio value="ship" className="position-relative">
+          {dataMethodShipping &&
+            dataMethodShipping.length > 0 &&
+            dataMethodShipping.map((item, index) => (
+              <Radio value={item.name} className="position-relative">
+                <span
+                  className={
+                    checkReceivingAddress[item.name] ? "current_selected " : ""
+                  }
+                >
+                  {" "}
+                  {item.title}
+                </span>
+              </Radio>
+            ))}
+
+          {/* <Radio value="ship" className="position-relative">
             <span
               className={checkReceivingAddress.ship ? "current_selected" : ""}
             >
@@ -298,7 +314,7 @@ const InfoClientPay = ({
             >
               Nhận tại cửa hàng
             </span>
-          </Radio>
+          </Radio> */}
         </Radio.Group>
       </Form.Item>
       {checkReceivingAddress.ship ? (

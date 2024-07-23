@@ -6,12 +6,24 @@ import "dayjs/locale/vi";
 dayjs.locale("vi");
 
 const ChooseDeliveryTime = ({
+  statusReceive,
   valueDays,
   handleChangeSelectTime,
   onChangeDateTime,
   textChoose,
 }) => {
   const dateFormat = "YYYY-MM-DD";
+
+  const timeAtStore = [
+    {
+      value: "8h00 -12h00",
+      label: "Buổi sáng: 8h00 -12h00",
+    },
+    {
+      value: "12h00 - 18h00",
+      label: "Buổi trưa: 12h00 - 17h30",
+    },
+  ];
 
   return (
     <>
@@ -66,24 +78,28 @@ const ChooseDeliveryTime = ({
           <Select
             onChange={handleChangeSelectTime}
             placeholder="Chọn thời gian giao hàng"
-            options={[
-              {
-                value: "8h00 -12h00",
-                label: "Buổi sáng: 8h00 -12h00",
-              },
-              {
-                value: "12h00 - 18h00",
-                label: "Buổi trưa: 12h00 - 18h00",
-              },
-              {
-                value: "18h00 - 21h00",
-                label: "Buổi tối: 18h00 - 21h00",
-              },
-              {
-                value: "Cả ngày",
-                label: "Cả ngày",
-              },
-            ]}
+            options={
+              statusReceive && statusReceive == "atStore"
+                ? timeAtStore
+                : [
+                    {
+                      value: "8h00 -12h00",
+                      label: "Buổi sáng: 8h00 -12h00",
+                    },
+                    {
+                      value: "12h00 - 18h00",
+                      label: "Buổi trưa: 12h00 - 18h00",
+                    },
+                    {
+                      value: "18h00 - 21h00",
+                      label: "Buổi tối: 18h00 - 21h00",
+                    },
+                    {
+                      value: "Cả ngày",
+                      label: "Cả ngày",
+                    },
+                  ]
+            }
           />
         </Form.Item>
       </Space>

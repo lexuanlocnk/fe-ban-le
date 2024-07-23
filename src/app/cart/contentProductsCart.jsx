@@ -30,6 +30,7 @@ const ContentProductsCart = ({
   setPoints,
   status,
   dataUser,
+  dataMethodShipping,
 }) => {
   const handleUpQuantity = useDebouncedCallback(async (value) => {
     const isUnauthenticated = status === "unauthenticated";
@@ -257,6 +258,7 @@ const ContentProductsCart = ({
               ))}
             </div>
             <InfoClientPay
+              dataMethodShipping={dataMethodShipping}
               dataUser={status == "unauthenticated" ? [] : dataUser.user}
               status={status}
               points={points}

@@ -1,6 +1,8 @@
+import dayjs from "dayjs";
 import ComponentCardItemOrder from "../../../../components/componentCardItemOrder";
-
-const ContentDetailOrder = () => {
+import "dayjs/locale/vi";
+dayjs.locale("vi");
+const ContentDetailOrder = ({ dataDetailOrder }) => {
   let orderDetails = {
     customerInfo: {
       name: "Nguyễn Văn A",
@@ -42,53 +44,63 @@ const ContentDetailOrder = () => {
       <div className="top_content_detail_order ">
         <div className="item_top_content_order w-100 ">
           <span className="title_top_content_order">Thông tin người nhận</span>
-          {orderDetails && orderDetails.customerInfo && (
-            <div className="box_item_info_top">
-              <div className="item_info_top_content">
-                <span className="title_top_content">Người nhận:</span>
-                <span className="value_top_content">
-                  {orderDetails.customerInfo.name}
-                </span>
-              </div>
-              <div className="item_info_top_content">
-                <span className="title_top_content">Hình thức nhận hàng:</span>
-                <span className="value_top_content">
-                  {orderDetails.customerInfo.formReceipt}
-                </span>
-              </div>
+
+          <div className="box_item_info_top">
+            <div className="item_info_top_content">
+              <span className="title_top_content">Người nhận:</span>
+              <span className="value_top_content">
+                {dataDetailOrder.d_name}
+              </span>
+            </div>
+            <div className="item_info_top_content">
+              <span className="title_top_content">Hình thức nhận hàng:</span>
+              <span className="value_top_content">
+                {dataDetailOrder.shipping_method}
+              </span>
+            </div>
+
+            {dataDetailOrder.shipping_method != "Nhận tại cửa hàng" && (
               <div className="item_info_top_content">
                 <span className="title_top_content">Địa chỉ:</span>
                 <span className="value_top_content">
-                  {orderDetails.customerInfo.address}
+                  {dataDetailOrder.address.address}{" "}
+                  {dataDetailOrder.address.ward}{" "}
+                  {dataDetailOrder.address.district}{" "}
+                  {dataDetailOrder.address.province}
                 </span>
               </div>
-              <div className="item_info_top_content">
-                <span className="title_top_content">Điện thoại: </span>
-                <span className="value_top_content">
-                  {orderDetails.customerInfo.phone}
-                </span>
-              </div>
+            )}
+
+            <div className="item_info_top_content">
+              <span className="title_top_content">Điện thoại: </span>
+              <span className="value_top_content">
+                {dataDetailOrder.d_phone}
+              </span>
             </div>
-          )}
+          </div>
         </div>
         <div className="item_top_content_order w-100 ">
           <span className="title_top_content_order">Thông tin đơn hàng</span>
-          {orderDetails && orderDetails.orderInfo && (
-            <div className="box_item_info_top">
-              <div className="item_info_top_content">
-                <span className="title_top_content">Trạng thái đơn hàng:</span>
-                <span className="value_top_content">
-                  {orderDetails.orderInfo.status}
-                </span>
-              </div>
-              <div className="item_info_top_content">
-                <span className="title_top_content">Thời gian tạo: </span>
-                <span className="value_top_content">
-                  {orderDetails.orderInfo.orderTime}
-                </span>
-              </div>
+
+          <div className="box_item_info_top">
+            <div className="item_info_top_content">
+              <span className="title_top_content">Trạng thái đơn hàng:</span>
+              <span className="value_top_content">
+                {dataDetailOrder.order_status}
+              </span>
             </div>
-          )}
+            <div className="item_info_top_content">
+              <span className="title_top_content">Thời gian tạo: </span>
+              <span className="value_top_content">
+                {/* {dataDetailOrder.order_status} */}
+
+                {dayjs
+                  .unix(dataDetailOrder.date_order)
+                  .format("dddd, HH:mm DD-MM-YYYY")
+                  .replace(/^\w/, (c) => c.toUpperCase())}
+              </span>
+            </div>
+          </div>
         </div>
 
         <div className="item_top_content_order w-100 ">

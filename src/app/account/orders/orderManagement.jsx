@@ -15,7 +15,10 @@ const OrderManagement = ({ dataStatusOrder, activeStatusOrder, dataOrder }) => {
       </div>
       <div className="col-12 ">
         {" "}
-        <ListOrder dataOrder={dataOrder} />
+        <ListOrder
+          activeStatusOrder={activeStatusOrder}
+          dataOrder={dataOrder}
+        />
       </div>
     </div>
   );

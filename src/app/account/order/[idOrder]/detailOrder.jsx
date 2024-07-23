@@ -1,14 +1,14 @@
-"use client";
+// "use client";
 
 import Link from "next/link";
 import MenuAccount from "../../menuAccount";
-import { useParams } from "next/navigation";
+// import { useParams } from "next/navigation";
 import { IoMdArrowRoundBack } from "react-icons/io";
 import ContentDetailOrder from "./contentDetailOrder";
 import Breadcrumb from "../../../../components/breadcrumb";
 
-const ContentDetail = () => {
-  const params = useParams();
+const ContentDetail = ({ dataDetailOrder }) => {
+  // const params = useParams();
 
   const defaultMenuItem = {
     id: 3,
@@ -29,9 +29,11 @@ const ContentDetail = () => {
               <Link href={"/account/orders"}>
                 <IoMdArrowRoundBack className="icon_back" />
               </Link>
-              <span className="title_order">ĐƠN HÀNG: {params?.idOrder}</span>
+              <span className="title_order">
+                ĐƠN HÀNG: {dataDetailOrder.order_code}
+              </span>
             </div>
-            <ContentDetailOrder />
+            <ContentDetailOrder dataDetailOrder={dataDetailOrder} />
           </div>
         </div>
       </div>

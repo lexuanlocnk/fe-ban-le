@@ -11,7 +11,7 @@ import { useRouter } from "next/navigation";
 import { Skeleton } from "antd";
 import { useSession } from "next-auth/react";
 import { handleOrder } from "../lib/action";
-const ContentCart = () => {
+const ContentCart = ({ dataMethodShipping }) => {
   const { data, status } = useSession();
 
   const router = useRouter();
@@ -94,6 +94,7 @@ const ContentCart = () => {
   }, [idClickBuyNow]);
 
   const onFinish = async (values) => {
+    console.log("values", values);
     handleSetConfirmTerm(confirmTerm.check ? false : true, "message");
     if (confirmTerm && confirmTerm.check) {
       const dataRes = await handleOrder(
@@ -104,6 +105,8 @@ const ContentCart = () => {
         orderPoints,
         valueVoucher
       );
+
+      console.log("dataRes", dataRes);
 
       if (dataRes.status) {
         dispatch({
@@ -160,6 +163,7 @@ const ContentCart = () => {
                       />
                     ) : (
                       <ContentProductsCart
+                        dataMethodShipping={dataMethodShipping}
                         valueVoucher={valueVoucher}
                         dataUser={data}
                         stateCheck={stateCheck}

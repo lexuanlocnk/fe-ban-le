@@ -19,6 +19,7 @@ const ReceivedStore = ({
         <span>Nhận hàng tại 245B Trần Quang Khải, phường Tân Định, quận 1</span>
       </div>
       <ChooseDeliveryTime
+        statusReceive={"atStore"}
         textChoose={"Nhận hàng"}
         valueDays={valueDays}
         onChangeDateTime={onChangeDateTime}
