@@ -28,6 +28,8 @@ export default function AppProvider({ children }) {
   const [itemCart, setItemCart] = useState([]);
   const [stateCart, dispatch] = useReducer(cartReducer, {
     idClickBuyNow: {
+      status: null,
+
       idCart: null,
       idProduct: null,
     },

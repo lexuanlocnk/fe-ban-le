@@ -20,7 +20,7 @@ const ContentCart = ({ dataMethodShipping }) => {
     otherReceive: false,
     useAccumulatedPoints: false,
   });
-  const [points, setPoints] = useState(0);
+  const [points, setPoints] = useState(1);
   const [formOrder] = Form.useForm();
   const [checkedProducts, setCheckedProducts] = useState({
     idsCard: [],
@@ -35,7 +35,6 @@ const ContentCart = ({ dataMethodShipping }) => {
       products,
       stateCheckedProducts,
       total,
-      totalPoints,
       orderPoints,
       productNotAccount,
     },
@@ -86,24 +85,33 @@ const ContentCart = ({ dataMethodShipping }) => {
 
   useEffect(() => {
     if (idClickBuyNow.idCart || idClickBuyNow.idProduct) {
-      setCheckedProducts({
-        idsCard: idClickBuyNow.idCart ? [idClickBuyNow.idCart] : [],
-        idsProduct: idClickBuyNow.idProduct ? [idClickBuyNow.idProduct] : [],
-      });
+      if (idClickBuyNow.status == "only") {
+        setCheckedProducts({
+          idsCard: idClickBuyNow.idCart ? [idClickBuyNow.idCart] : [],
+          idsProduct: idClickBuyNow.idProduct ? [idClickBuyNow.idProduct] : [],
+        });
+      } else {
+        setCheckedProducts({
+          idsCard: idClickBuyNow.idCart ? idClickBuyNow.idCart : [],
+          idsProduct: idClickBuyNow.idProduct ? idClickBuyNow.idProduct : [],
+        });
+      }
     }
   }, [idClickBuyNow]);
 
   const onFinish = async (values) => {
-    console.log("values", values);
     handleSetConfirmTerm(confirmTerm.check ? false : true, "message");
     if (confirmTerm && confirmTerm.check) {
+      const valueOfPoint = 5000;
+
       const dataRes = await handleOrder(
         values,
         status,
         total,
         data,
         orderPoints,
-        valueVoucher
+        valueVoucher,
+        valueOfPoint
       );
 
       console.log("dataRes", dataRes);
@@ -168,7 +176,6 @@ const ContentCart = ({ dataMethodShipping }) => {
                         dataUser={data}
                         stateCheck={stateCheck}
                         setStateCheck={setStateCheck}
-                        totalPoints={totalPoints}
                         handleSetConfirmTerm={handleSetConfirmTerm}
                         confirmTerm={confirmTerm}
                         stateCheckedProducts={stateCheckedProducts}

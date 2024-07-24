@@ -59,6 +59,8 @@ const ComponentCardProductMain = ({ item, col }) => {
     dispatch({
       type: "CLICK_BUY_NOW",
       payload: {
+        status: "only",
+
         idCart: null,
         idProduct: ProductId,
       },
@@ -93,6 +95,8 @@ const ComponentCardProductMain = ({ item, col }) => {
         dispatch({
           type: "CLICK_BUY_NOW",
           payload: {
+            status: "only",
+
             idCart: dataRes.product.CartId,
             idProduct: dataRes.product.ProductId,
           },

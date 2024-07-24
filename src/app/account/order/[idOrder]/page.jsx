@@ -6,9 +6,6 @@ import ContentDetail from "./detailOrder";
 import { hostApi } from "../../../lib/config";
 
 async function fetchDetailOrder(userId, params) {
-  console.log("userId", userId);
-  console.log("params", params);
-
   try {
     const response = await fetch(
       `${hostApi}/member/detail-order/${params}/${userId}`,

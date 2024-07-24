@@ -330,6 +330,7 @@
 }
 
 .click_buy_now {
+    cursor: pointer;
     display: block;
     padding: 5px 10px;
     background: rgb(20, 53, 195);

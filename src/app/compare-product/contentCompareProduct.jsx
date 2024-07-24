@@ -30,6 +30,7 @@ const ContentCompareProduct = ({ dataCompare }) => {
     dispatch({
       type: "CLICK_BUY_NOW",
       payload: {
+        status: "only",
         idCart: null,
         idProduct: ProductId,
       },
@@ -65,6 +66,8 @@ const ContentCompareProduct = ({ dataCompare }) => {
         dispatch({
           type: "CLICK_BUY_NOW",
           payload: {
+            status: "only",
+
             idCart: dataRes.product.CartId,
             idProduct: ProductId,
           },

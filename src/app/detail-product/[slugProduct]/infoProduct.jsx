@@ -103,6 +103,8 @@ const InfoProduct = ({ dataProduct, dataProductsCompare, dataGiftProduct }) => {
     dispatch({
       type: "CLICK_BUY_NOW",
       payload: {
+        status: "only",
+
         idCart: null,
         idProduct: dataAddCart.ProductId,
       },
@@ -137,6 +139,8 @@ const InfoProduct = ({ dataProduct, dataProductsCompare, dataGiftProduct }) => {
         dispatch({
           type: "CLICK_BUY_NOW",
           payload: {
+            status: "only",
+
             idCart: dataRes.product.CartId,
             idProduct: dataRes.product.ProductId,
           },

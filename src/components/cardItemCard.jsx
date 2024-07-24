@@ -10,13 +10,11 @@ import { hostImage } from "../app/lib/config";
 
 const CardItemCard = ({
   item,
-
   handleUpQuantity,
   handleDownQuantity,
   handleRemoveProduct,
   handleCheckedProduct,
   checkedProduct,
-  status,
 }) => {
   return (
     <Fragment>

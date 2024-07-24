@@ -17,7 +17,6 @@ const InfoClientPay = ({
   formOrder,
   onFinish,
   stateCheckedProducts,
-  totalPoints,
   stateCheck,
   setStateCheck,
   points,
@@ -70,16 +69,6 @@ const InfoClientPay = ({
     setIsModalAddressOpen(false);
   };
 
-  const marks = {
-    0: "0 điểm",
-
-    [totalPoints.toString()]: {
-      style: {
-        color: "#f50",
-      },
-      label: <strong>{totalPoints} điểm</strong>,
-    },
-  };
   const [showModalVoucher, setShowModalVoucher] = useState(false);
   const [checkReceivingAddress, setCheckReceivingAddress] = useState({
     ship: false,
@@ -153,9 +142,9 @@ const InfoClientPay = ({
 
   const handleCheck = (e, nameCheck) => {
     if (nameCheck === "useAccumulatedPoints") {
-      setPoints(e.target.checked ? 50 : 0);
+      // setPoints(e.target.checked ? 50 : 0);
       formOrder.setFieldsValue({
-        accumulatedPoints: e.target.checked ? 50 : 0,
+        accumulatedPoints: e.target.checked ? 1 : 0,
       });
     }
     if (nameCheck === "billCompany") {
@@ -366,21 +355,36 @@ const InfoClientPay = ({
             </Checkbox>
           </Form.Item>
 
-          {stateCheck && stateCheck.useAccumulatedPoints && (
-            <Form.Item className="mt-0 mb-2 " name="accumulatedPoints">
-              <Slider
-                marks={marks}
-                step={50}
-                tooltip={{
-                  formatter,
-                }}
-                className="mb-0"
-                onChange={handSliderUsePoint}
-                min={50}
-                max={totalPoints}
-              />
-            </Form.Item>
-          )}
+          {stateCheck &&
+            stateCheck.useAccumulatedPoints &&
+            (dataUser.accumulatedPoints > 0 ? (
+              <Form.Item className="mt-0 mb-2" name="accumulatedPoints">
+                <Slider
+                  defaultValue={1}
+                  marks={{
+                    0: "0 điểm",
+                    [dataUser.accumulatedPoints.toString()]: {
+                      style: {
+                        color: "#f50",
+                      },
+                      label: <strong>{dataUser.accumulatedPoints} điểm</strong>,
+                    },
+                  }}
+                  step={1}
+                  tooltip={{
+                    formatter,
+                  }}
+                  className="mb-0"
+                  onChange={handSliderUsePoint}
+                  min={1}
+                  max={dataUser.accumulatedPoints}
+                />
+              </Form.Item>
+            ) : (
+              <span className="text_not_point">
+                Bạn không đủ điểm tích lũy!
+              </span>
+            ))}
         </Space>
       )}
 

@@ -28,7 +28,6 @@ const CardProductPay = ({ item, status, formOrder }) => {
           ? { ...itemOrder, presentOrder: itemOrder.checkPresent[0] }
           : itemOrder
       );
-      console.log("updatedDataOrder", updatedDataOrder);
 
       formOrder.setFieldsValue({ dataOrder: updatedDataOrder });
     }

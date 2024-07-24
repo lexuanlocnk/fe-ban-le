@@ -151,7 +151,6 @@ export const cartReducer = (state, action) => {
     case "ADD_TO_PRODUCT_MULTIPLE_TO_CART_NOT_ACCOUNT":
       const newItemsCart = action.payload;
 
-      // debugger;
       // Create a map to track existing products and their quantities
       const productMapNotAccount = new Map(
         state.productNotAccount.map((product) => [
@@ -251,6 +250,7 @@ export const cartReducer = (state, action) => {
       return {
         ...state,
         idClickBuyNow: {
+          status: action.payload.status,
           idCart: action.payload.idCart,
           idProduct: action.payload.idProduct,
         },

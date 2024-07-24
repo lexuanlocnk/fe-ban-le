@@ -22,7 +22,6 @@ const ContentProductsCart = ({
   stateCheckedProducts,
   handleSetConfirmTerm,
   confirmTerm,
-  totalPoints,
   orderPoints,
   stateCheck,
   setStateCheck,
@@ -263,7 +262,6 @@ const ContentProductsCart = ({
               status={status}
               points={points}
               setPoints={setPoints}
-              totalPoints={totalPoints}
               stateCheckedProducts={stateCheckedProducts}
               onFinish={onFinish}
               formOrder={formOrder}

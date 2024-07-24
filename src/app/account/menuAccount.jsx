@@ -60,6 +60,8 @@ const MenuAccount = async ({ defaultMenuItem }) => {
     },
   ];
 
+  console.log("session", session);
+
   return (
     <div className="col-3 menu-account mt-2">
       <div className="container_account_user">
@@ -99,7 +101,9 @@ const MenuAccount = async ({ defaultMenuItem }) => {
                   width={30}
                   height={30}
                 />
-                <span className="menu_account_points">1000 </span>
+                <span className="menu_account_points">
+                  {session.user.accumulatedPoints}{" "}
+                </span>
               </div>
             </div>
             <div className="image_bg_coin">

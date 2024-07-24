@@ -4,10 +4,13 @@ import { useSession } from "next-auth/react";
 import { useEffect, useMemo, useState } from "react";
 import { hostApi } from "../lib/config";
 import { UseAppContext } from "../lib/appProvider";
+import { useRouter } from "next/navigation";
+import { Spin } from "antd";
 
 const ConfigurationStatistics = ({ accessories, idConfiguration }) => {
   const { data, status } = useSession();
   const [isLoading, setIsLoading] = useState(false);
+  const router = useRouter();
 
   const { dispatch } = UseAppContext();
 
@@ -76,6 +79,95 @@ const ConfigurationStatistics = ({ accessories, idConfiguration }) => {
     }
   };
 
+  const handleBuyNow = async () => {
+    if (isLoading) return;
+    setIsLoading(true);
+
+    try {
+      const response = await fetch(
+        `${hostApi}/member/add-array-cart/${data.user.id}`,
+        {
+          method: "POST",
+          headers: {
+            "Content-Type": "application/json",
+          },
+          body: JSON.stringify({
+            value: accessories[idConfiguration],
+          }),
+        }
+      );
+
+      // Kiểm tra status code của phản hồi
+      if (!response.ok) {
+        // In ra nội dung lỗi nếu có
+        console.error("Error Response Text:", text);
+        throw new Error(`HTTP error! status: ${response.status}`);
+      }
+
+      const dataRes = await response.json();
+      if (dataRes.status == true) {
+        const arrId = [
+          {
+            idProduct: dataRes.product.map((item) => item.ProductId),
+            idCart: dataRes.product.map((item) => item.CartId),
+          },
+        ];
+        dispatch({
+          type: "ADD_TO_PRODUCT_MULTIPLE_TO_CART",
+          payload: dataRes.product,
+        });
+
+        dispatch({
+          type: "CLICK_BUY_NOW",
+          payload: {
+            status: "multiple",
+
+            idCart: arrId[0]["idCart"],
+            idProduct: arrId[0]["idProduct"],
+          },
+        });
+      }
+      setIsLoading(false);
+
+      router.push("/cart");
+    } catch (error) {
+      console.error("Err:", error);
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
+  const handleBuyNowNotAccount = () => {
+    const outputArray = Object.values(accessories[idConfiguration]);
+
+    console.log("outputArray", outputArray);
+    if (outputArray.length === 0 || isLoading) {
+      return;
+    }
+
+    setIsLoading(true);
+
+    try {
+      dispatch({
+        type: "CLICK_BUY_NOW",
+        payload: {
+          status: "multiple",
+          idCart: null,
+          idProduct: outputArray.map((item, index) => item.ProductId),
+        },
+      });
+
+      dispatch({
+        type: "ADD_TO_PRODUCT_MULTIPLE_TO_CART_NOT_ACCOUNT",
+        payload: outputArray,
+      });
+
+      router.push("/cart");
+    } finally {
+      setIsLoading(false);
+    }
+  };
+
   const addMultipleCartNotAccount = () => {
     const outputArray = Object.values(accessories[idConfiguration]);
 
@@ -120,73 +212,91 @@ const ConfigurationStatistics = ({ accessories, idConfiguration }) => {
   );
 
   return (
-    <div className=" mt-2">
-      {isEmpty ? (
-        <div className="box_empty_configuration mb-2">
-          <Empty description={false} />
-        </div>
-      ) : (
-        <div className="box_empty_configuration mb-2 ">
-          <div className="box_price_empty_configuration text-center">
-            <span className="title_price_configuration">Chi phí dự tính:</span>
-            <span className="total_price_configuration">
-              {total?.toLocaleString("vi", {
-                style: "currency",
-                currency: "VND",
-              })}
-            </span>
+    <>
+      <div className=" mt-2">
+        {isEmpty ? (
+          <div className="box_empty_configuration mb-2">
+            <Empty description={false} />
           </div>
-
-          <div className="box_price_empty_configuration">
-            <span className="click_buy_now">Mua ngay</span>
-          </div>
-
-          {status && status === "unauthenticated" ? (
-            <div
-              onClick={() => addMultipleCartNotAccount()}
-              className="box_price_empty_configuration"
-            >
-              <span className="btn_contact_consulting text-center ">
-                Thêm vào giỏ hàng
+        ) : (
+          <div className="box_empty_configuration mb-2 ">
+            <div className="box_price_empty_configuration text-center">
+              <span className="title_price_configuration">
+                Chi phí dự tính:
+              </span>
+              <span className="total_price_configuration">
+                {total?.toLocaleString("vi", {
+                  style: "currency",
+                  currency: "VND",
+                })}
               </span>
             </div>
-          ) : (
-            <div
-              onClick={() => addMultipleCart()}
-              className="box_price_empty_configuration"
-            >
-              <span className="btn_contact_consulting text-center ">
-                Thêm vào giỏ hàng
-              </span>
-            </div>
-          )}
-        </div>
-      )}
 
-      <div className="box_contact_consulting text-center">
-        <ConfigProvider
-          theme={{
-            components: {
-              Collapse: {
-                headerBg: "#edf3fd",
-                contentBg: "#edf3fd",
+            {status && status === "unauthenticated" ? (
+              <div
+                onClick={handleBuyNowNotAccount}
+                className="box_price_empty_configuration"
+              >
+                <span className="click_buy_now">Mua ngay</span>
+              </div>
+            ) : (
+              <div
+                onClick={handleBuyNow}
+                className="box_price_empty_configuration"
+              >
+                <span className="click_buy_now">Mua ngay</span>
+              </div>
+            )}
+
+            {status && status === "unauthenticated" ? (
+              <div
+                onClick={() => addMultipleCartNotAccount()}
+                className="box_price_empty_configuration"
+              >
+                <span className="btn_contact_consulting text-center ">
+                  Thêm vào giỏ hàng
+                </span>
+              </div>
+            ) : (
+              <div
+                onClick={() => addMultipleCart()}
+                className="box_price_empty_configuration"
+              >
+                <span className="btn_contact_consulting text-center ">
+                  Thêm vào giỏ hàng
+                </span>
+              </div>
+            )}
+          </div>
+        )}
+
+        <div className="box_contact_consulting text-center">
+          <ConfigProvider
+            theme={{
+              components: {
+                Collapse: {
+                  headerBg: "#edf3fd",
+                  contentBg: "#edf3fd",
+                },
               },
-            },
-          }}
-        >
-          <Collapse
-            className="box_item_collapse"
-            items={[
-              {
-                key: "1",
-                label: "Nhận tư vấn từ chuyên gia",
-                children: <p>{text}</p>,
-              },
-            ]}
-          />
-        </ConfigProvider>
+            }}
+          >
+            <Collapse
+              className="box_item_collapse"
+              items={[
+                {
+                  key: "1",
+                  label: "Nhận tư vấn từ chuyên gia",
+                  children: <p>{text}</p>,
+                },
+              ]}
+            />
+          </ConfigProvider>
+        </div>
       </div>
-    </div>
+
+      <Spin spinning={isLoading} fullscreen />
+    </>
   );
 };
 

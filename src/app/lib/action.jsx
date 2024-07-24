@@ -14,7 +14,8 @@ export const handleOrder = async (
   total,
   data,
   orderPoints,
-  valueVoucher
+  valueVoucher,
+  valueOfPoint
 ) => {
   try {
     const response = await fetch(`${hostApi}/member/checkout`, {
@@ -28,6 +29,7 @@ export const handleOrder = async (
         userId: status === "unauthenticated" ? "" : data.user.id,
         orderPoints: orderPoints,
         valueVoucher: valueVoucher,
+        valueOfPoint: valueOfPoint,
       }),
     });
 
