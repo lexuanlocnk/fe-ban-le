@@ -22,11 +22,11 @@ const ContentDetailOrder = ({ dataDetailOrder }) => {
             <div className="item_info_top_content">
               <span className="title_top_content">Hình thức nhận hàng:</span>
               <span className="value_top_content">
-                {dataDetailOrder.shipping_method}
+                {dataDetailOrder.shipping_method.title}
               </span>
             </div>
 
-            {dataDetailOrder.shipping_method != "Nhận tại cửa hàng" ? (
+            {dataDetailOrder.shipping_method.title != "Nhận tại cửa hàng" ? (
               <div className="item_info_top_content">
                 <span className="title_top_content">Địa chỉ:</span>
                 <span className="value_top_content">
@@ -53,6 +53,7 @@ const ContentDetailOrder = ({ dataDetailOrder }) => {
             </div>
           </div>
         </div>
+
         <div className="item_top_content_order w-100 ">
           <span className="title_top_content_order">Thông tin đơn hàng</span>
 
@@ -66,33 +67,35 @@ const ContentDetailOrder = ({ dataDetailOrder }) => {
             <div className="item_info_top_content">
               <span className="title_top_content">Thời gian tạo: </span>
               <span className="value_top_content">
-                {/* {dataDetailOrder.order_status} */}
-
                 {dayjs
                   .unix(dataDetailOrder.date_order)
                   .format("dddd, HH:mm DD-MM-YYYY")
                   .replace(/^\w/, (c) => c.toUpperCase())}
               </span>
             </div>
-            {dataDetailOrder.comment && (
+            {dataDetailOrder.comment ? (
               <div className="item_info_top_content">
                 <span className="title_top_content">Yêu cầu khác:</span>
                 <span className="value_top_content">
                   {dataDetailOrder.comment}
                 </span>
               </div>
+            ) : (
+              <></>
             )}
 
             {dataDetailOrder.accumulatedPoints &&
-              dataDetailOrder.accumulatedPoints > 0 && (
-                <div className="item_info_top_content">
-                  <span className="title_top_content">Điểm sử dụng:</span>
+            dataDetailOrder.accumulatedPoints > 0 ? (
+              <div className="item_info_top_content">
+                <span className="title_top_content">Điểm sử dụng:</span>
 
-                  <span className="value_top_content">
-                    {dataDetailOrder.accumulatedPoints} điểm
-                  </span>
-                </div>
-              )}
+                <span className="value_top_content">
+                  {dataDetailOrder.accumulatedPoints} điểm
+                </span>
+              </div>
+            ) : (
+              <></>
+            )}
 
             <div className="item_info_top_content">
               <span className="title_top_content">
@@ -249,7 +252,9 @@ const ContentDetailOrder = ({ dataDetailOrder }) => {
         </div>
         <div className="box_method_payment_2">
           <span className="">Phương thức thanh toán:</span>
-          <span className="title_top_content">Thanh toán khi nhận hàng</span>
+          <span className="title_top_content">
+            {dataDetailOrder?.payment_method?.title}
+          </span>
         </div>
 
         <ButtonRepurchase arrProduct={dataDetailOrder.orderDetail} />

@@ -60,8 +60,6 @@ const MenuAccount = async ({ defaultMenuItem }) => {
     },
   ];
 
-  console.log("session", session);
-
   return (
     <div className="col-3 menu-account mt-2">
       <div className="container_account_user">

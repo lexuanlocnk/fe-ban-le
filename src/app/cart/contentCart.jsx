@@ -114,8 +114,6 @@ const ContentCart = ({ dataMethodShipping }) => {
         valueOfPoint
       );
 
-      console.log("dataRes", dataRes);
-
       if (dataRes.status) {
         dispatch({
           type: "ADD_VOUCHER",
@@ -149,7 +147,7 @@ const ContentCart = ({ dataMethodShipping }) => {
           <div className="col-12 ">
             <div className="row mx-0 container_content_layout_cart">
               <div className="col-12 w-100 mt-2 d-flex justify-content-center">
-                <div className="box_breadcrumbs_cart d-flex justify-content-between">
+                <div className="box_breadcrumbs_cart d-flex justify-content-between align-items-center">
                   <Breadcrumb nameItem={"Giỏ hàng"} />
                   <div className="box_text_buy_other  ">
                     <Link href={"/"} className="d-flex align-items-center">

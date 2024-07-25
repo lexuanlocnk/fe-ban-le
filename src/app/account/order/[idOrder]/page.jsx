@@ -4,6 +4,8 @@ import Header from "../../../header/header";
 import { authOptions } from "../../../lib/nextAuth";
 import ContentDetail from "./detailOrder";
 import { hostApi } from "../../../lib/config";
+import Footer from "../../../../components/footer";
+import NotFoundProduct from "../../../detail-product/[slugProduct]/notFoundProduct";
 
 async function fetchDetailOrder(userId, params) {
   try {
@@ -18,7 +20,7 @@ async function fetchDetailOrder(userId, params) {
     }
 
     const data = await response.json();
-    return data.dataOrder;
+    return data;
   } catch (error) {
     console.error("Fetch error: ", error);
   }
@@ -30,10 +32,18 @@ const page = async ({ params }) => {
     session.user.id,
     params.idOrder
   );
+
   return (
     <div className="container-fluid px-0">
       <Header />
-      <ContentDetail dataDetailOrder={dataDetailOrder} />
+
+      {!dataDetailOrder ? (
+        <NotFoundProduct />
+      ) : (
+        <ContentDetail dataDetailOrder={dataDetailOrder.dataOrder} />
+      )}
+
+      <Footer />
     </div>
   );
 };

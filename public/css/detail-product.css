@@ -614,22 +614,7 @@
   font-weight: 600;
 }
 
-.swiper-button-prev {
-  left: var(--swiper-navigation-sides-offset, 0px) !important;
-}
 
-.swiper-button-next {
-  right: var(--swiper-navigation-sides-offset, 0px) !important;
-}
-
-.swiper-button-prev,
-.swiper-button-next {
-  padding: 23px;
-  --swiper-navigation-size: 23px;
-  background-color: rgba(168, 168, 168, 0.46);
-  --swiper-theme-color: #333333;
-  border-radius: 50%;
-}
 
 .table :where(thead, tfoot) {
   white-space: unset;

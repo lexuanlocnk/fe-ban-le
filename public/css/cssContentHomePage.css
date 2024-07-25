@@ -4,6 +4,24 @@
 
  }
 
+
+ .box_banner_category_product img {
+     width: 100%;
+ }
+
+ .text_show_more_category span {
+     display: flex;
+     align-items: center;
+     font-size: 14px;
+     line-height: normal;
+     font-weight: 500;
+ }
+
+ .box_banner_category_product {
+     border-radius: 8px;
+     overflow: hidden;
+ }
+
  .box_item_image_hot_products {
      border-radius: 8px;
      transition: 1s;

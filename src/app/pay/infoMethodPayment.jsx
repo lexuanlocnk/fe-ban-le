@@ -4,7 +4,8 @@ import CardProductPayment from "./cardProductsPayment";
 const InfoMethodPayment = ({ dataOrder, methodPayment }) => {
   return (
     <>
-      {methodPayment == "banking" && (
+      {(methodPayment == "bank_transfer" ||
+        methodPayment == "momo_transfer") && (
         <div className="box_info_banking mt-2">
           <div className="text_item_info">
             <span className="text_title_banking">Ngân hàng:</span>

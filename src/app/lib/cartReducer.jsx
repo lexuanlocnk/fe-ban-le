@@ -97,7 +97,7 @@ export const cartReducer = (state, action) => {
       };
 
     case "ADD_TO_PRODUCT_TO_CART":
-      const existingProduct = state.products.findIndex(
+      const existingProduct = state?.products?.findIndex(
         (item) => item.ProductId === action.payload.ProductId
       );
 

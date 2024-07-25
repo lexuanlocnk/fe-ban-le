@@ -1,4 +1,5 @@
 import Image from "next/image";
+import Link from "next/link";
 
 const InfoClientPayment = ({ dataOrder, userId }) => {
   return (
@@ -10,9 +11,9 @@ const InfoClientPayment = ({ dataOrder, userId }) => {
       </span>
       <div className="info_order">
         <div className="box_text_order_management">
-          <span className="text_management">Quản lý đơn hàng</span>
-          <span className="dot">•</span>
-          <span className="text_cancel">Hủy</span>
+          <Link href="/account/orders">
+            <span className="text_management">Quản lý đơn hàng</span>
+          </Link>
         </div>
         <ul>
           <li>
@@ -77,7 +78,14 @@ const InfoClientPayment = ({ dataOrder, userId }) => {
             <li>
               <span className="text_title">Điểm tích lũy sử dụng:</span>{" "}
               <span className="text_value">
-                {dataOrder.orderSum.accumulatedPoints} điểm
+                {dataOrder.orderSum.accumulatedPoints} điểm -{" "}
+                {(dataOrder.orderSum.accumulatedPoints * 5000).toLocaleString(
+                  "vi",
+                  {
+                    style: "currency",
+                    currency: "VND",
+                  }
+                )}
               </span>
             </li>
           ) : (

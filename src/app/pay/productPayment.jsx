@@ -10,7 +10,7 @@ import { hostApi } from "../lib/config";
 import { useRouter } from "next/navigation";
 import { UseAppContext } from "../lib/appProvider";
 
-const ProductPayment = ({ dataOrder, userId }) => {
+const ProductPayment = ({ dataOrder, userId, dataPaymentMethod }) => {
   const { openNotificationWithIcon } = UseAppContext();
 
   const [methodPayment, setMethodPayment] = useState({
@@ -79,10 +79,22 @@ const ProductPayment = ({ dataOrder, userId }) => {
                     defaultValue={"atStore"}
                   >
                     <Space direction="vertical">
-                      <Radio value={"atStore"}>Thanh toán khi nhận hàng</Radio>
-                      <Radio value={"banking"}>
-                        Thanh toán chuyển khoản trực tiếp
-                      </Radio>
+                      {dataPaymentMethod &&
+                        dataPaymentMethod.length > 0 &&
+                        dataPaymentMethod.map((item, index) => (
+                          <Radio
+                            disabled={
+                              (item.name == "company" &&
+                                dataOrder.orderSum.shipping_method !==
+                                  "pickUpStore") ||
+                              item.name == "vnpay_transfer"
+                            }
+                            key={index}
+                            value={item.name}
+                          >
+                            {item.title}
+                          </Radio>
+                        ))}
                     </Space>
                   </Radio.Group>
                 </div>

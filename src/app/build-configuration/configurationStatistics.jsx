@@ -140,7 +140,6 @@ const ConfigurationStatistics = ({ accessories, idConfiguration }) => {
   const handleBuyNowNotAccount = () => {
     const outputArray = Object.values(accessories[idConfiguration]);
 
-    console.log("outputArray", outputArray);
     if (outputArray.length === 0 || isLoading) {
       return;
     }

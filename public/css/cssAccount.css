@@ -268,15 +268,12 @@
 
  .top_content_detail_order {
      display: flex;
-     align-items: center;
      justify-content: space-between;
      gap: 10px;
      margin-top: 10px;
  }
 
- .item_top_content_order {
-     height: 200px;
- }
+
 
  .title_top_content_order {
      display: block;

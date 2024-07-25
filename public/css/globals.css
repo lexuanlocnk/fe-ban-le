@@ -1665,3 +1665,60 @@ footer {
 .border_solid__active_common {
     border: 1px solid rgb(20, 53, 195) !important;
 }
+
+.box_promotion_product p {
+    font-size: 14px;
+    margin-bottom: 5px;
+    margin-top: 5px;
+    display: flex;
+    align-items: center;
+    gap: 5px;
+    font-weight: 500;
+}
+
+.box_promotion_product img {
+    width: 20px !important;
+    height: 20px !important;
+}
+
+.box_promotion_product {
+    background: white;
+    border-radius: 8px;
+    padding: 10px;
+    margin-top: 8px;
+    /* box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px; */
+}
+
+.swiper-button-prev {
+    display: none !important;
+
+    left: var(--swiper-navigation-sides-offset, 0px) !important;
+}
+
+.swiper-button-next {
+    display: none !important;
+    right: var(--swiper-navigation-sides-offset, 0px) !important;
+}
+
+
+
+.container_featured_products_category:hover .swiper-button-prev,
+.container_featured_products_category:hover .swiper-button-next,
+.box_products_flash_sale:hover .swiper-button-prev,
+.box_products_flash_sale:hover .swiper-button-next,
+.container_swiper_category:hover .swiper-button-prev,
+.container_swiper_category:hover .swiper-button-next,
+.container_top_products:hover .swiper-button-prev,
+.container_top_products:hover .swiper-button-next {
+    display: flex !important;
+
+}
+
+.swiper-button-prev,
+.swiper-button-next {
+    padding: 23px !important;
+    --swiper-navigation-size: 23px;
+    background-color: rgba(168, 168, 168, 0.46);
+    --swiper-theme-color: #333333;
+    border-radius: 50%;
+}

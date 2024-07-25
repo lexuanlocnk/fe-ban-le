@@ -39,6 +39,23 @@ async function fetchDataOrder(orderId, orderIdCookie, userId) {
   }
 }
 
+async function fetchPaymentMethod() {
+  try {
+    const response = await fetch(`${hostApi}/member/show-payment-method`, {
+      method: "GET",
+    });
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+
+    const data = await response.json();
+
+    return data.data;
+  } catch (error) {
+    console.error("Fetch error: ", error);
+  }
+}
+
 export default async function Page({ searchParams }) {
   const session = await getServerSession(authOptions);
   const userId = session?.user?.id;
@@ -49,11 +66,16 @@ export default async function Page({ searchParams }) {
     cookieIdOrder,
     userId
   );
+  const dataPaymentMethod = await fetchPaymentMethod();
 
   return (
     <div className="container-fluid px-0">
       <Header />
-      <ContentPay dataOrder={dataOrder} userId={userId} />
+      <ContentPay
+        dataPaymentMethod={dataPaymentMethod}
+        dataOrder={dataOrder}
+        userId={userId}
+      />
       <Footer />
     </div>
   );

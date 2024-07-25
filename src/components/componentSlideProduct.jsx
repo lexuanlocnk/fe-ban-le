@@ -5,7 +5,7 @@ import "swiper/css/navigation";
 import { Swiper, SwiperSlide } from "swiper/react";
 import ComponentCardProductMain from "../components/componentCardProductMain";
 
-function SlideTopProducts({ dataTopProducts }) {
+function ComponentSlideProduct({ dataProducts }) {
   return (
     <div className="px-3">
       <Swiper
@@ -32,9 +32,9 @@ function SlideTopProducts({ dataTopProducts }) {
         modules={[Navigation]}
         className="mySwiper"
       >
-        {dataTopProducts &&
-          dataTopProducts?.productHot?.length > 0 &&
-          dataTopProducts?.productHot?.map((item, index) => (
+        {dataProducts &&
+          dataProducts?.length > 0 &&
+          dataProducts?.map((item, index) => (
             <SwiperSlide key={index}>
               <ComponentCardProductMain item={item} col={"col-auto"} />
             </SwiperSlide>
@@ -44,4 +44,4 @@ function SlideTopProducts({ dataTopProducts }) {
   );
 }
 
-export default SlideTopProducts;
+export default ComponentSlideProduct;

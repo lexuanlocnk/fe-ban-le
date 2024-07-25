@@ -26,12 +26,32 @@ async function fetchDataCategory() {
   }
 }
 
+async function fetchProductCategories() {
+  try {
+    const response = await fetch(`${hostApi}/member/show-category`, {
+      method: "GET",
+    });
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+
+    const data = await response.json();
+    return data.data;
+  } catch (error) {
+    console.error("Fetch error: ", error);
+  }
+}
+
 const ContentHomePage = async ({ searchParams }) => {
   const session = await getServerSession(authOptions);
   const dataCategory = await fetchDataCategory();
 
+  const productCategories = await fetchProductCategories();
+
   const page = searchParams["page"] ?? "1";
   const category = searchParams["category"] ?? "laptop";
+
+  console.log("productCategories.length", productCategories.length);
 
   return (
     <div className="box-container-content-homepage">
@@ -59,21 +79,27 @@ const ContentHomePage = async ({ searchParams }) => {
             <SecondaryBanner />
           </div>
         </div>
+        {/*  */}
 
-        <div className="col-12  box_container_hot_category mb-2">
-          <div className="hot_category  bg-white py-2">
-            <FeaturedProductsCategory
-              dataCategory={dataCategory}
-              session={session}
-              category={category}
-            />
-          </div>
-        </div>
+        {productCategories &&
+          productCategories.length > 0 &&
+          productCategories.map((item, index) => (
+            <div key={index} className="col-12 box_container_hot_category mb-2">
+              <div className="hot_category bg-white py-2">
+                <FeaturedProductsCategory
+                  item={item}
+                  session={session}
+                  category={category}
+                />
+              </div>
+            </div>
+          ))}
         <div className="col-12  box_container_hot_products mb-2">
           <div className="hot-products  bg-white py-2">
             <HotProducts page={page} session={session} />
           </div>
         </div>
+        {/*  */}
       </div>
       <BoxModalCompare session={session} />
     </div>

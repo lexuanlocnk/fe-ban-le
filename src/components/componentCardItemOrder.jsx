@@ -46,6 +46,16 @@ const ComponentCardItemOrder = ({ item }) => {
             <span className="name_web">QuangBao</span>
           </div>
         </div>
+
+        {item?.present && item?.present?.content && (
+          <div className="">
+            <div className="box_promotion_product p-0">
+              <div
+                dangerouslySetInnerHTML={{ __html: item?.present?.content }}
+              />
+            </div>
+          </div>
+        )}
       </div>
     </div>
   );
