@@ -8,7 +8,7 @@ import BoxModalCompare from "./boxModalCompare";
 import TopProducts from "./topProducts";
 import { getServerSession } from "next-auth";
 import { authOptions } from "./lib/nextAuth";
-import { hostApi } from "./lib/config";
+import { hostApi, hostImage } from "./lib/config";
 
 async function fetchDataCategory() {
   try {
@@ -51,8 +51,6 @@ const ContentHomePage = async ({ searchParams }) => {
   const page = searchParams["page"] ?? "1";
   const category = searchParams["category"] ?? "laptop";
 
-  console.log("productCategories.length", productCategories.length);
-
   return (
     <div className="box-container-content-homepage">
       <div className="row container-content-homepage">
@@ -85,7 +83,16 @@ const ContentHomePage = async ({ searchParams }) => {
           productCategories.length > 0 &&
           productCategories.map((item, index) => (
             <div key={index} className="col-12 box_container_hot_category mb-2">
-              <div className="hot_category bg-white py-2">
+              <div
+                style={{
+                  backgroundSize: "cover",
+
+                  backgroundImage: `url(${hostImage + item.background})`,
+                }}
+                className={`${
+                  item.background ? "" : "bg-white"
+                } hot_category py-2`}
+              >
                 <FeaturedProductsCategory
                   item={item}
                   session={session}

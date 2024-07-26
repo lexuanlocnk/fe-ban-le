@@ -8,9 +8,7 @@ const FeaturedProductsCategory = ({ item }) => {
   console.log("item.Banner", item?.Banner[0]?.picture);
   return (
     <div className="container_featured_products_category row mx-1">
-      <div className="col-12 mb-1 box_banner_category"></div>
-
-      <div className="col-12 px-3 mb-1 d-flex justify-content-between align-items-center">
+      <div className="col-12 px-3 mb-1 d-flex justify-content-between align-items-center text-light">
         <span className="related-product">
           DANH MỤC {item.Category.toUpperCase()}
         </span>
@@ -23,17 +21,19 @@ const FeaturedProductsCategory = ({ item }) => {
         </Link>
       </div>
 
-      <div className="col-12">
-        <div className="box_banner_category_product mb-3">
-          <Image
-            quality={75}
-            height={100}
-            width={0}
-            sizes="100vw"
-            src={hostImage + item?.Banner[0]?.picture}
-          />
+      {item?.Banner[0] && item?.Banner[0]?.picture && (
+        <div className="col-12">
+          <div className="box_banner_category_product mb-3">
+            <Image
+              quality={75}
+              height={100}
+              width={0}
+              sizes="100vw"
+              src={hostImage + item?.Banner[0]?.picture}
+            />
+          </div>
         </div>
-      </div>
+      )}
 
       <ComponentSlideProduct dataProducts={item.ProductChild} />
 
