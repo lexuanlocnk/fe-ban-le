@@ -123,7 +123,7 @@ const ModalCompareProducts = ({ session }) => {
             <Select
               className="w-100 custom_antd_select"
               showSearch
-              value={optionsFilter.brand}
+              // value={optionsFilter.brand}
               optionFilterProp="children"
               placeholder="Thương hiệu sản phẩm"
               options={brand}

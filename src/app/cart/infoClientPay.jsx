@@ -275,7 +275,11 @@ const InfoClientPay = ({
           {dataMethodShipping &&
             dataMethodShipping.length > 0 &&
             dataMethodShipping.map((item, index) => (
-              <Radio value={item.name} className="position-relative">
+              <Radio
+                key={index}
+                value={item.name}
+                className="position-relative"
+              >
                 <span
                   className={
                     checkReceivingAddress[item.name] ? "current_selected " : ""

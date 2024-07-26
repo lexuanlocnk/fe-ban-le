@@ -65,7 +65,7 @@ function ContentHeader({ data, status }) {
       <div className="box_image_banner_top_header">
         <Image
           priority
-          src={"/image/img-header/image_header_1.png"}
+          src={"/image/banner_top_header.gif"}
           quality={100}
           height={0}
           width={0}

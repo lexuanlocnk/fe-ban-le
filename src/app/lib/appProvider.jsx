@@ -9,6 +9,7 @@ import {
 } from "react";
 import { cartReducer } from "./cartReducer";
 import { notification } from "antd";
+import { Next13ProgressBar } from "next13-progressbar";
 
 export const AppContext = createContext();
 export const UseAppContext = () => {
@@ -130,6 +131,13 @@ export default function AppProvider({ children }) {
         itemCompare,
       }}
     >
+      <Next13ProgressBar
+        height="3px"
+        color="#0A2FFF"
+        options={{ showSpinner: true }}
+        showOnShallow
+      />
+
       {contextHolder}
       {children}
     </AppContext.Provider>

@@ -5,7 +5,6 @@ import ComponentSlideProduct from "../components/componentSlideProduct";
 import { hostImage } from "./lib/config";
 import Image from "next/image";
 const FeaturedProductsCategory = ({ item }) => {
-  console.log("item.Banner", item?.Banner[0]?.picture);
   return (
     <div className="container_featured_products_category row mx-1">
       <div className="col-12 px-3 mb-1 d-flex justify-content-between align-items-center text-light">

@@ -369,7 +369,7 @@ const InfoProduct = ({ dataProduct, dataProductsCompare, dataGiftProduct }) => {
                   </div>
                 )}
 
-              <div className="box_btn_buy_now_add_cart_detail row mx-0 ">
+              <div className="box_btn_buy_now_add_cart_detail row mx-0 mt-1">
                 <div className="  ps-0 pe-1 col-6">
                   {status === "unauthenticated" ? (
                     <div

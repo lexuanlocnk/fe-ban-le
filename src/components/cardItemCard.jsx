@@ -132,7 +132,7 @@ const CardItemCard = ({
           {item.checkPresent &&
             item.checkPresent.length > 0 &&
             item.checkPresent.map((item, index) => (
-              <div className="col-12 ">
+              <div className="col-12 " key={index}>
                 <div
                   className="box_promotion_product"
                   key={index}

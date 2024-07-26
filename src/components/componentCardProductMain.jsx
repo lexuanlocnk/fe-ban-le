@@ -71,8 +71,6 @@ const ComponentCardProductMain = ({ item, col }) => {
   };
 
   const handleBuyNow = useDebouncedCallback(async (value) => {
-    const { ProductId } = value;
-
     try {
       const response = await fetch(
         `${hostApi}/member/add-update-cart/${data.user.id}`,

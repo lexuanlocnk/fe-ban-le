@@ -24,6 +24,19 @@
 
 }
 
+.box_data_news_promotion_empty {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+    gap: 5px;
+}
+
+.box_data_news_promotion_empty span {
+    font-size: 15px;
+    font-weight: 500;
+    color: rgb(132, 135, 136);
+}
+
 .box_image_card_news_category {
     border-radius: 8px;
 }

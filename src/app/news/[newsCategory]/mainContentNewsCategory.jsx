@@ -34,15 +34,14 @@ const MainContentNewsCategory = async ({ page }) => {
         <div className="col-12  mb-2 d-flex align-items-center">
           <Image
             src="/image/icon_image/loudspeaker.png"
-            width={50}
-            height={50}
+            width={40}
+            height={40}
             alt="icon_image"
             quality={75}
           />
           <span className="text_title_common ms-2">Tin khuyến mãi</span>
         </div>
-        {dataNewsPromotion &&
-          dataNewsPromotion?.data?.length > 0 &&
+        {dataNewsPromotion && dataNewsPromotion?.data?.length > 0 ? (
           dataNewsPromotion?.data?.map((item, index) => (
             <div className=" col-xl-3 my-2 px-2  " key={item.promotion_id}>
               <div className="item_news_category">
@@ -99,12 +98,28 @@ const MainContentNewsCategory = async ({ page }) => {
                 </div>
               </div>
             </div>
-          ))}
+          ))
+        ) : (
+          <div className="box_data_news_promotion_empty">
+            <Image
+              alt="empty_cart"
+              quality={75}
+              width={150}
+              height={130}
+              src={"/image/empty-cart.png"}
+            />
+
+            <span>Chưa có tin khuyến mãi !</span>
+          </div>
+        )}
       </div>
-      <div className="col-12 ">
-        {" "}
-        <ComponentPagination pageSize={8} data={dataNewsPromotion} />{" "}
-      </div>
+
+      {dataNewsPromotion && dataNewsPromotion.length > 8 && (
+        <div className="col-12 ">
+          {" "}
+          <ComponentPagination pageSize={8} data={dataNewsPromotion} />{" "}
+        </div>
+      )}
     </div>
   );
 };
