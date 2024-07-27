@@ -97,8 +97,7 @@
      border: 1px solid rgb(165 147 147);
  }
 
- .container_banner,
- .img_banner_genaral {
+ .container_banner {
      border-radius: 8px;
  }
 
@@ -458,22 +457,56 @@
 
 
 
+
+
  /* CSS Compare Products End */
-
-
-
-
-
-
-
-
-
-
- @media only screen and (min-width: 768px) {
-     .box_main_banner {
-         padding-right: 0px;
-     }
+ .my_swiper_in_home {
+     position: absolute;
+     top: 0;
+     left: 0;
  }
+
+
+ .my_swiper_in_home {
+     width: 100%;
+     position: absolute;
+     top: 0;
+     left: 0;
+ }
+
+ .box_swiper_in_home {
+     flex: 1 1 0%;
+     max-width: 66.68%;
+ }
+
+ .box_menu_category {
+     flex: 0 0 16.66%;
+     display: block;
+     max-width: 16.66%;
+     height: 500px;
+     background: white;
+     position: relative;
+     z-index: 10;
+ }
+
+ .banner_pr_in_home {
+     flex: 0 0 16.66%;
+     display: block;
+     max-width: 16.66%;
+ }
+
+ .box_banner_swiper_menu_category {
+     display: flex;
+     align-items: center;
+     justify-content: space-around;
+ }
+
+
+
+
+
+
+ @media only screen and (min-width: 768px) {}
 
  @media only screen and (min-width: 321px) and (max-width: 768px) {
      .box_banner_small {

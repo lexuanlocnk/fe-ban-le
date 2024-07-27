@@ -13,6 +13,8 @@
     background: #edf3fd;
 }
 
+.container_banner_swiper_menu_category,
+.container_menu_category,
 .category_header,
 .in-box-container-content-account,
 .in-box-container-content-installment,
@@ -50,6 +52,8 @@
     background-color: #edf3fd;
 }
 
+.box_banner_swiper_menu_category,
+
 .category_header,
 .box-content-account,
 .box-content-installment,
@@ -60,7 +64,7 @@
 .box-content-category-news,
 .box_image_product_compare_page,
 .box_content_compare_product,
-.box_container_banner,
+/* .box_container_banner, */
 .box_container_slider_product,
 .box_container_flash_sale_bg,
 .box_container_secondary_banner,
@@ -380,7 +384,7 @@
     .box-content-category-news,
     .box_image_product_compare_page,
     .box_content_compare_product,
-    .box_container_banner,
+    /* .box_container_banner, */
     .box_container_slider_product,
     .box_container_flash_sale_bg,
     .box_container_secondary_banner,

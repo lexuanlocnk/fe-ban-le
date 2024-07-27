@@ -477,6 +477,10 @@
   text-decoration: none;
 }
 
+.container_img_banner img {
+  height: 570px !important;
+}
+
 .img_banner_small,
 .container_img_banner,
 .box-img-suppporting-software {
@@ -495,7 +499,7 @@
 .item_product_sale:hover .img_product_sale,
 .item_category:hover .image_category,
 .img_banner_small:hover .banner_small,
-.container_img_banner:hover .img_banner_genaral,
+/* .container_img_banner:hover .img_banner_genaral, */
 .box-img-bundled-product:hover .img-bundled-product,
 .box-img-suppporting-software:hover img,
 .custom-swiper:hover img,
