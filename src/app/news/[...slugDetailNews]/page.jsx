@@ -1,11 +1,15 @@
 import Header from "../../header/header";
 import DetailNews from "./detailNews";
+import DetailPromotionNews from "./detailPromotionNews";
+
 import { hostApi } from "../../lib/config";
 import "../../../../public/css/cssNews.css";
 import Footer from "../../../components/footer";
 
 async function fetchNewsDetail(slug) {
   const { slugDetailNews } = slug;
+
+  console.log("slugDetailNews ne con", slugDetailNews);
 
   try {
     const response = await fetch(
@@ -33,6 +37,11 @@ export const metadata = {
 async function fetchNewsRelated(slug) {
   const { slugDetailNews } = slug;
 
+  if (slugDetailNews[0] === "tin-khuyen-mai") {
+    console.log("co do day khong ta");
+    return [];
+  }
+
   try {
     const response = await fetch(
       `${hostApi}/member/related-new/${slugDetailNews[0]}/${slugDetailNews[1]}`,
@@ -40,6 +49,7 @@ async function fetchNewsRelated(slug) {
         method: "GET",
       }
     );
+
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
@@ -48,25 +58,32 @@ async function fetchNewsRelated(slug) {
     return data.relatedNew;
   } catch (error) {
     console.error("Fetch error: ", error);
+    return [];
   }
 }
 
 const HomePage = async ({ params }) => {
-  const apiNewsDetail = fetchNewsDetail(params);
-  const apiRelatedNews = fetchNewsRelated(params);
+  const { slugDetailNews } = params;
 
-  const [dataNewsDetail, dataRelatedNews] = await Promise.all([
-    apiNewsDetail,
-    apiRelatedNews,
-  ]);
+  const dataNewsDetail = await fetchNewsDetail(params);
+  let dataRelatedNews = [];
+
+  if (slugDetailNews[0] !== "tin-khuyen-mai") {
+    dataRelatedNews = await fetchNewsRelated(params);
+  }
 
   return (
     <div className="container-fluid px-0">
       <Header />
-      <DetailNews
-        dataRelatedNews={dataRelatedNews}
-        dataNewsDetail={dataNewsDetail}
-      />
+      {slugDetailNews[0] !== "tin-khuyen-mai" ? (
+        <DetailNews
+          dataRelatedNews={dataRelatedNews}
+          dataNewsDetail={dataNewsDetail}
+        />
+      ) : (
+        <DetailPromotionNews data={dataNewsDetail} />
+      )}
+
       <Footer />
     </div>
   );

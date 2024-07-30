@@ -477,12 +477,9 @@
   text-decoration: none;
 }
 
-.container_img_banner img {
-  height: 570px !important;
-}
+
 
 .img_banner_small,
-.container_img_banner,
 .box-img-suppporting-software {
   border-radius: 8px;
 }
@@ -583,6 +580,8 @@
   font-size: 11px;
   height: 2rem;
 }
+
+
 
 .color-price-related {
   color: rgb(20, 53, 195) !important;

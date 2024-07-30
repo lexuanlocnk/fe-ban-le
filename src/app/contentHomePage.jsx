@@ -10,21 +10,21 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "./lib/nextAuth";
 import { hostApi, hostImage } from "./lib/config";
 
-async function fetchDataCategory() {
-  try {
-    const response = await fetch(`${hostApi}/member/category-parent`, {
-      method: "GET",
-    });
-    if (!response.ok) {
-      throw new Error("Network response was not ok");
-    }
+// async function fetchDataCategory() {
+//   try {
+//     const response = await fetch(`${hostApi}/member/category-parent`, {
+//       method: "GET",
+//     });
+//     if (!response.ok) {
+//       throw new Error("Network response was not ok");
+//     }
 
-    const data = await response.json();
-    return data.categories;
-  } catch (error) {
-    console.error("Fetch error: ", error);
-  }
-}
+//     const data = await response.json();
+//     return data.categories;
+//   } catch (error) {
+//     console.error("Fetch error: ", error);
+//   }
+// }
 
 async function fetchProductCategories() {
   try {
@@ -42,9 +42,26 @@ async function fetchProductCategories() {
   }
 }
 
+async function fetchMenuCategories() {
+  try {
+    const response = await fetch(`${hostApi}/member/category-menu`, {
+      method: "GET",
+    });
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+
+    const data = await response.json();
+    return data.data;
+  } catch (error) {
+    console.error("Fetch error: ", error);
+  }
+}
+
 const ContentHomePage = async ({ searchParams }) => {
   const session = await getServerSession(authOptions);
-  const dataCategory = await fetchDataCategory();
+  // const dataCategory = await fetchDataCategory();
+  const dataMenuCategories = await fetchMenuCategories();
 
   const productCategories = await fetchProductCategories();
 
@@ -55,7 +72,7 @@ const ContentHomePage = async ({ searchParams }) => {
     <>
       <div className="col-12 box_container_banner   ">
         <div className="container_banner bg-white">
-          <BannerHomePage dataCategory={dataCategory} />
+          <BannerHomePage dataMenuCategories={dataMenuCategories} />
         </div>
       </div>
       <div className="box-container-content-homepage">

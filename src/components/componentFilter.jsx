@@ -76,7 +76,7 @@ const ComponentFilter = ({ dataProperties, getValueParams }) => {
   };
 
   const formatter = (value) =>
-    `${value.toLocaleString("vi-VN", {
+    `${value?.toLocaleString("vi-VN", {
       style: "currency",
       currency: "VND",
     })}`;
@@ -134,7 +134,7 @@ const ComponentFilter = ({ dataProperties, getValueParams }) => {
                       style: "currency",
                       currency: "VND",
                     })
-                  : dataProperties.rangePrice.maxPrice.toLocaleString("vi", {
+                  : dataProperties?.rangePrice.maxPrice?.toLocaleString("vi", {
                       style: "currency",
                       currency: "VND",
                     })}
