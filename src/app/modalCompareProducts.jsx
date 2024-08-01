@@ -9,7 +9,7 @@ import Image from "next/image";
 import { hostApi, hostImage } from "./lib/config";
 import { useDebouncedCallback } from "use-debounce";
 
-const ModalCompareProducts = ({ session }) => {
+const ModalCompareProducts = ({}) => {
   const initialOptionsFilter = {
     priceMin: 10000000,
     priceMax: 25000000,
@@ -195,21 +195,12 @@ const ModalCompareProducts = ({ session }) => {
                       </div>
                       <div className="box_price_select_compare">
                         Giá chỉ:
-                        {session ? (
-                          <span className="ms-1 price_select_compare">
-                            {option.data.price_old.toLocaleString("vi", {
-                              style: "currency",
-                              currency: "VND",
-                            })}
-                          </span>
-                        ) : (
-                          <span className="ms-1 price_select_compare">
-                            {option.data.price.toLocaleString("vi", {
-                              style: "currency",
-                              currency: "VND",
-                            })}
-                          </span>
-                        )}
+                        <span className="ms-1 price_select_compare">
+                          {option.data.price_old.toLocaleString("vi", {
+                            style: "currency",
+                            currency: "VND",
+                          })}
+                        </span>
                       </div>
                     </div>
                   </div>

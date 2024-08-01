@@ -2,9 +2,9 @@
 import { UseAppContext } from "./lib/appProvider";
 import ModalCompareProducts from "./modalCompareProducts";
 
-const BoxModalCompare = ({ session }) => {
+const BoxModalCompare = ({}) => {
   const { isModalOpen } = UseAppContext();
 
-  return <>{isModalOpen && <ModalCompareProducts session={session} />}</>;
+  return <>{isModalOpen && <ModalCompareProducts />}</>;
 };
 export default BoxModalCompare;

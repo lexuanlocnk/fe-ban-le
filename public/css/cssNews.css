@@ -625,3 +625,7 @@
      font-weight: 600;
      color: #32373d;
  }
+
+ .container_content_news img {
+     width: 100% !important;
+ }

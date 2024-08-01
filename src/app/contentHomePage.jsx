@@ -129,7 +129,7 @@ const ContentHomePage = async ({ searchParams }) => {
           </div>
           {/*  */}
         </div>
-        <BoxModalCompare session={session} />
+        <BoxModalCompare />
       </div>
     </>
   );

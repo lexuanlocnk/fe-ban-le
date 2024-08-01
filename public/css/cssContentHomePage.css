@@ -535,7 +535,7 @@
  }
 
  .box-container-content-homepage {
-     margin-top: 100px;
+     margin-top: 75px;
  }
 
 
@@ -546,7 +546,7 @@
  .container_img_news_sale {
      z-index: 1;
      bottom: 0px;
-     transform: translateY(38%);
+     transform: translateY(35%);
  }
 
  .box_img_news_sale {

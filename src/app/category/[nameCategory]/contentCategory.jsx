@@ -6,6 +6,7 @@ import SecondaryBanner from "../../secondaryBanner";
 // import ComponentSwiper from "../../detail-product/componentSwiper";
 import Breadcrumb from "../../../components/breadcrumb";
 import PostCategory from "./postCategory";
+import BoxModalCompare from "../../boxModalCompare";
 
 const ContentCategory = ({
   dataProperties,
@@ -62,6 +63,8 @@ const ContentCategory = ({
           </div>
         </div>
       </div>
+
+      <BoxModalCompare />
     </div>
   );
 };
