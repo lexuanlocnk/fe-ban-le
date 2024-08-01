@@ -234,7 +234,7 @@ const Footer = () => {
 
               <div className="col-md-4 mt-md-0 mt-2 col-12 text-center">
                 <Tag color="purple" className="title_footer text-center">
-                  HỔ TRỢ KHÁCH HÀNG
+                  HỖ TRỢ KHÁCH HÀNG
                 </Tag>
 
                 <span className="number_contact">Bán hàng: 1900 6739</span>
