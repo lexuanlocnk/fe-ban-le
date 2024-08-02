@@ -17,9 +17,6 @@ export async function generateMetadata({ params }) {
   return {
     title: product?.productName,
     description: product?.description,
-    // openGraph: {
-    //   title: 'Blog',
-    // },
   };
 }
 
@@ -94,6 +91,7 @@ const HomePage = async ({ params }) => {
       <Header />
 
       <ContentDetailProduct
+        breadcrumbData={dataProduct?.breadcrumb}
         dataRelated={dataRelated}
         dataProductsCompare={dataProductsCompare}
         dataGiftProduct={dataProduct}

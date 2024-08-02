@@ -1,8 +1,9 @@
 import Link from "next/link";
+import { Fragment } from "react";
 import { FaHome } from "react-icons/fa";
 import { FaAngleRight } from "react-icons/fa";
 
-const Breadcrumb = ({ nameItem, nameFirstItem }) => {
+const Breadcrumb = ({ nameItem, nameFirstItem, breadcrumbData }) => {
   return (
     <div className="box_breadcrumb_category  ">
       <div className=" breadcrumb_category  ">
@@ -10,6 +11,18 @@ const Breadcrumb = ({ nameItem, nameFirstItem }) => {
           {" "}
           <FaHome className="icon_home" />
         </Link>
+        {breadcrumbData &&
+          Object.keys(breadcrumbData).length > 0 &&
+          Object.values(breadcrumbData).map((item, index) =>
+            item && item.url != null ? (
+              <Fragment key={index}>
+                <FaAngleRight />
+                <span>
+                  <Link href={`/category/${item.url}`}>{item.cat_name}</Link>
+                </span>
+              </Fragment>
+            ) : null
+          )}
 
         {nameFirstItem && (
           <>
@@ -20,8 +33,13 @@ const Breadcrumb = ({ nameItem, nameFirstItem }) => {
             </span>
           </>
         )}
-        <FaAngleRight />
-        <span> {nameItem}</span>
+
+        {nameItem && (
+          <>
+            <FaAngleRight />
+            <span> {nameItem}</span>
+          </>
+        )}
       </div>
     </div>
   );

@@ -8,20 +8,14 @@ import { FaUserEdit } from "react-icons/fa";
 import LoginAccount from "./loginAccount";
 import RegisterAccount from "./registerAccount";
 
+import ForgotPassword from "./forgotPassword";
+
 import { signIn } from "next-auth/react";
+import { UseAppContext } from "../lib/appProvider";
 
-const Login = () => {
+const Login = ({ statusLogin }) => {
   const [statusAccount, setStatusAccount] = useState(null);
-  // const [checkOTP, setCheckOTP] = useState(false);
-  // const [otp, setOtp] = useState("");
-  // const [confirmationResult, setConfirmationResult] = useState(null);
-
-  // const [error, setError] = useState({
-  //   description: "",
-  //   error: true,
-  // });
-
-  // const [numberPhone, setNumberPhone] = useState("");
+  const { openNotificationWithIcon } = UseAppContext();
 
   return (
     <div className="container_page_login">
@@ -35,8 +29,10 @@ const Login = () => {
             </span>
           </div>
 
-          {statusAccount && statusAccount == "register" ? (
+          {statusAccount && statusAccount === "register" ? (
             <RegisterAccount setStatusAccount={setStatusAccount} />
+          ) : statusAccount === "forgotPassword" ? (
+            <ForgotPassword setStatusAccount={setStatusAccount} />
           ) : (
             <div className="d-flex justify-content-center">
               <div className="ui_login_user">
@@ -76,7 +72,7 @@ const Login = () => {
 
                 <div
                   onClick={() => setStatusAccount("login")}
-                  className="box_func_login bg_login_phone "
+                  className="box_func_login bg_login_phone"
                 >
                   <FaPhone className="icon_func_number_login" />
                   <div className="title_login_phone_func">
@@ -86,7 +82,7 @@ const Login = () => {
 
                 <div
                   onClick={() => setStatusAccount("register")}
-                  className="box_func_login bg_login_phone "
+                  className="box_func_login bg_login_phone"
                 >
                   <FaUserEdit className="icon_func_number_login" />
                   <div className="title_login_phone_func">
@@ -94,26 +90,14 @@ const Login = () => {
                   </div>
                 </div>
 
-                {statusAccount && statusAccount == "login" && <LoginAccount />}
+                <div
+                  onClick={() => setStatusAccount("forgotPassword")}
+                  className="text_or"
+                >
+                  <span>Quên mật khẩu?</span>
+                </div>
 
-                {/* {checkUseNumberPhone && checkOTP == false && (
-                    <LoginNumberPhone
-                      setConfirmationResult={setConfirmationResult}
-                      setNumberPhone={setNumberPhone}
-                      setError={setError}
-                      numberPhone={numberPhone}
-                      error={error}
-                      setCheckOTP={setCheckOTP}
-                    />
-                  )}
-                  {checkOTP && (
-                    <NumberOTP
-                      confirmationResult={confirmationResult}
-                      setOtp={setOtp}
-                      otp={otp}
-                      numberPhone={numberPhone}
-                    />
-                  )} */}
+                {statusAccount && statusAccount === "login" && <LoginAccount />}
               </div>
             </div>
           )}

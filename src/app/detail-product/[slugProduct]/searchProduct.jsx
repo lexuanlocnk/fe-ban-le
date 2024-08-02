@@ -14,6 +14,11 @@ const SearchProduct = ({}) => {
   const { data, status } = useSession();
 
   const [dataSearchProducts, setDataSearchProducts] = useState();
+  const [historySearch, setHistorySearch] = useState(
+    typeof window !== "undefined" && localStorage.getItem("history_search")
+      ? JSON.parse(localStorage.getItem("history_search"))
+      : []
+  );
 
   const HandleSearchProduct = () => {
     setStatusSearch(!statusSearch);
@@ -32,12 +37,12 @@ const SearchProduct = ({}) => {
   ]);
 
   const handleSearch = useDebouncedCallback((term) => {
-    if (term.length >= 4) {
+    if (term.length >= 2) {
       fetchDataProducts(term);
     } else {
       setDataSearchProducts({});
     }
-  }, 700);
+  }, 500);
 
   const fetchDataProducts = async (value) => {
     try {
@@ -50,6 +55,8 @@ const SearchProduct = ({}) => {
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
+      setHistorySearch((prev) => [value, ...prev]);
+
       const data = await response.json();
       setDataSearchProducts(data.product);
     } catch (error) {
@@ -83,7 +90,7 @@ const SearchProduct = ({}) => {
                 {dataSearchProducts &&
                   dataSearchProducts?.length > 0 &&
                   dataSearchProducts.map((item, index) => (
-                    <Link href={"#"}>
+                    <Link href={`detail-product/${item.friendLyUrl}`}>
                       <div className="col-12 px-4 py-2 " key={index}>
                         <div className="row mx-0 card_product_search">
                           <div className="col-3">

@@ -9,8 +9,6 @@ import Footer from "../../../components/footer";
 async function fetchNewsDetail(slug) {
   const { slugDetailNews } = slug;
 
-  console.log("slugDetailNews ne con", slugDetailNews);
-
   try {
     const response = await fetch(
       `${hostApi}/member/news-detail/${slugDetailNews[0]}/${slugDetailNews[1]}`,
@@ -38,7 +36,6 @@ async function fetchNewsRelated(slug) {
   const { slugDetailNews } = slug;
 
   if (slugDetailNews[0] === "tin-khuyen-mai") {
-    console.log("co do day khong ta");
     return [];
   }
 

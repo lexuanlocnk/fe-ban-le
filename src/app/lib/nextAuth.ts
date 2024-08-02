@@ -3,12 +3,18 @@ import GoogleProvider from "next-auth/providers/google";
 import FacebookProvider from "next-auth/providers/facebook";
 import CredentialsProvider from "next-auth/providers/credentials";
 import { hostApi, header } from "../lib/config";
+import { NextResponse } from "next/server"; // Import NextResponse
 
 export const authOptions: AuthOptions = {
   providers: [
     GoogleProvider({
       clientId: process.env.GOOGLE_CLIENT_ID as string,
       clientSecret: process.env.GOOGLE_CLIENT_SECRET as string,
+      authorization: {
+        params: {
+          prompt: "select_account", // Thêm dòng này để hiển thị cửa sổ chọn tài khoản Google
+        },
+      },
     }),
     FacebookProvider({
       clientId: process.env.FACEBOOK_CLIENT_ID as string,
@@ -78,7 +84,9 @@ export const authOptions: AuthOptions = {
 
           const data = await response.json();
 
-          // localStorage.setItem("user_info", JSON.stringify(data));
+          if (data.status == false) {
+            return false;
+          }
         } catch (error) {
           console.error("Lỗi khi lưu thông tin người dùng:", error);
           return false;
@@ -114,5 +122,6 @@ export const authOptions: AuthOptions = {
   secret: process.env.NEXTAUTH_SECRET,
   pages: {
     signIn: "/login",
+    error: "/login",
   },
 };

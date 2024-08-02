@@ -10,7 +10,7 @@ import dayjs from "dayjs";
 
 const InfoAccount = ({}) => {
   const [form] = Form.useForm();
-  const { data, status } = useSession();
+  const { data: session, status, update } = useSession();
   const { openNotificationWithIcon, setInfoUpdate } = UseAppContext();
 
   const onFinish = async (values) => {
@@ -20,12 +20,12 @@ const InfoAccount = ({}) => {
       Gender: values["gender"],
       DateOfBirth: values["birthday"].format("DD-MM-YYYY"),
       email: values["email"],
-      provider: data.user.provider,
+      provider: session.user.provider,
     };
 
     try {
       const response = await fetch(
-        `${hostApi}/member/upload-information-member/${data.user.id}`,
+        `${hostApi}/member/upload-information-member/${session.user.id}`,
         {
           method: "POST",
           headers: {
@@ -38,6 +38,7 @@ const InfoAccount = ({}) => {
       const dataRes = await response.json();
 
       if (dataRes.status) {
+        update();
         setInfoUpdate(dataRes.member);
         openNotificationWithIcon(
           "success",
@@ -64,20 +65,20 @@ const InfoAccount = ({}) => {
             <Form
               onFinish={onFinish}
               initialValues={{
-                fullName: data.user.full_name || "",
-                email: data.user.email || "",
+                fullName: session.user.full_name || "",
+                email: session.user.email || "",
                 numberPhone:
-                  data.user.phone && data.user.phone !== "NULL"
-                    ? data.user.phone
+                  session.user.phone && session.user.phone !== "NULL"
+                    ? session.user.phone
                     : "",
-                gender: data.user
-                  ? data.user.gender == "anh"
+                gender: session.user
+                  ? session.user.gender == "male"
                     ? "male"
                     : "female"
                   : null,
                 birthday:
-                  data.user && data.user.dateOfBirth
-                    ? dayjs(data.user.dateOfBirth, "DD-MM-YYYY")
+                  session.user && session.user.dateOfBirth
+                    ? dayjs(session.user.dateOfBirth, "DD-MM-YYYY")
                     : dayjs("01-01-1990", "DD-MM-YYYY"),
               }}
               requiredMark="optional"
@@ -120,8 +121,8 @@ const InfoAccount = ({}) => {
               >
                 <Input
                   readOnly={
-                    data.user.provider !== "google" &&
-                    data.user.provider !== "facebook"
+                    session.user.provider !== "google" &&
+                    session.user.provider !== "facebook"
                       ? false
                       : true
                   }
@@ -179,7 +180,6 @@ const InfoAccount = ({}) => {
                 <Radio.Group>
                   <Radio value="male">Nam</Radio>
                   <Radio value="female">Nữ</Radio>
-                  <Radio value="other">Khác</Radio>
                 </Radio.Group>
               </Form.Item>
 
@@ -198,7 +198,7 @@ const InfoAccount = ({}) => {
         </div>
       </div>
       <div className="col-4 ">
-        <AddAddress dataUser={data} />
+        <AddAddress dataUser={session} />
       </div>
     </div>
   );

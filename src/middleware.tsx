@@ -9,6 +9,14 @@ export default withAuth(
     const protectedRoutes = ["/account", "pay"];
     const isAuthRoute = pathname.startsWith("/login");
 
+    if (
+      isAuth &&
+      isAuth.provider !== "credentials" &&
+      pathname.startsWith("/account/change-password")
+    ) {
+      return NextResponse.redirect(new URL("/account", request.url));
+    }
+
     const isProtectedRoute = protectedRoutes.some((route) =>
       pathname.startsWith(route)
     );

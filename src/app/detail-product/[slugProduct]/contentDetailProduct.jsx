@@ -10,11 +10,13 @@ const ContentDetailProduct = ({
   params,
   dataRelated,
   dataGiftProduct,
+  breadcrumbData,
 }) => {
   return dataProduct ? (
     <div className="box-container-detail-product">
       <div className="in-box-container-detail-product">
         <InfoProduct
+          breadcrumbData={breadcrumbData}
           dataGiftProduct={dataGiftProduct}
           dataProductsCompare={dataProductsCompare}
           dataProduct={dataProduct}

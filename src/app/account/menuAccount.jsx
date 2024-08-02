@@ -1,6 +1,6 @@
 import { FaMapLocationDot } from "react-icons/fa6";
-import { IoLogOut, IoNotifications } from "react-icons/io5";
-import { FaUserCircle, FaUserLock, FaEye } from "react-icons/fa";
+import { IoLogOut, IoNotifications, IoKeySharp } from "react-icons/io5";
+import { FaUserCircle, FaEye } from "react-icons/fa";
 import { GiNotebook } from "react-icons/gi";
 import Image from "next/image";
 import Link from "next/link";
@@ -53,10 +53,17 @@ const MenuAccount = async ({ defaultMenuItem }) => {
     },
     {
       id: 7,
+      name: "Đổi mật khẩu",
+      link: "/account/change-password",
+      icon: <IoKeySharp />,
+      key: "changePassword",
+    },
+    {
+      id: 8,
       name: "Đăng xuất",
       signOut: "/account/notification",
       icon: <IoLogOut />,
-      key: "notification",
+      key: "signOut",
     },
   ];
 
@@ -123,24 +130,48 @@ const MenuAccount = async ({ defaultMenuItem }) => {
         </div>
       </div>
 
-      <div className="box_all_item_menu  mt-2">
+      <div className="box_all_item_menu mt-2">
         {MenuAccount &&
           MenuAccount.length > 0 &&
           MenuAccount.map((item, index) => {
-            return item && item.link ? (
-              <Link key={index} href={item.link}>
-                <div
-                  className={`item-menu-account ${
-                    defaultMenuItem.id === item.id ? "active" : ""
-                  }`}
-                >
-                  <div className="icon_menu_account">{item.icon}</div>
-                  <span>{item.name}</span>
-                </div>
-              </Link>
-            ) : (
-              <ButtonSignOut item={item} key={index} />
-            );
+            if (item && item.link) {
+              if (
+                item.key === "changePassword" &&
+                session?.user?.provider === "credentials"
+              ) {
+                return (
+                  <Link key={index} href={item.link}>
+                    <div
+                      className={`item-menu-account ${
+                        defaultMenuItem.id === item.id ? "active" : ""
+                      }`}
+                    >
+                      <div className="icon_menu_account">{item.icon}</div>
+                      <span>{item.name}</span>
+                    </div>
+                  </Link>
+                );
+              } else if (item.key !== "changePassword") {
+                return (
+                  <Link key={index} href={item.link}>
+                    <div
+                      className={`item-menu-account ${
+                        defaultMenuItem.id === item.id ? "active" : ""
+                      }`}
+                    >
+                      <div className="icon_menu_account">{item.icon}</div>
+                      <span>{item.name}</span>
+                    </div>
+                  </Link>
+                );
+              } else {
+                return null;
+              }
+            } else if (item && item.key === "signOut") {
+              return <ButtonSignOut item={item} key={index} />;
+            } else {
+              return null;
+            }
           })}
       </div>
     </div>

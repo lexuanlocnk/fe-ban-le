@@ -19,7 +19,12 @@ import { hostApi } from "../../lib/config";
 import { useDebouncedCallback } from "use-debounce";
 import { useRouter } from "next/navigation";
 
-const InfoProduct = ({ dataProduct, dataProductsCompare, dataGiftProduct }) => {
+const InfoProduct = ({
+  dataProduct,
+  dataProductsCompare,
+  dataGiftProduct,
+  breadcrumbData,
+}) => {
   const { data, status } = useSession();
   const [elementBoxDescription, setElementBoxDescription] = useState(null);
   const [checkShowInfo, setCheckShowInfo] = useState(false);
@@ -157,7 +162,10 @@ const InfoProduct = ({ dataProduct, dataProductsCompare, dataGiftProduct }) => {
     <>
       <div className="row container-content-detail-product ">
         <div className="my-2">
-          <Breadcrumb nameItem={dataProduct.ProductName} />
+          <Breadcrumb
+            breadcrumbData={breadcrumbData}
+            nameItem={dataProduct.ProductName}
+          />
         </div>
 
         <div className="col-md-9 col-12      ps-0 ">
@@ -210,9 +218,17 @@ const InfoProduct = ({ dataProduct, dataProductsCompare, dataGiftProduct }) => {
               <div className="box_brand_product_detail">
                 <span className="title_brand_product_detail">Thương hiệu:</span>{" "}
                 <span className="value_brand_product_detail">
-                  {dataProduct.BrandName}
+                  {dataProduct?.BrandName}
                 </span>
               </div>
+
+              <div className="box_brand_product_detail">
+                <span className="title_brand_product_detail">Mã sản phẩm:</span>{" "}
+                <span className="value_brand_product_detail">
+                  {dataProduct?.maso}
+                </span>
+              </div>
+
               <div className="box_price_product_detail mt-2">
                 <div className="box_price_main">
                   {valueVoucherDetail ? (

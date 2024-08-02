@@ -1479,8 +1479,9 @@
 }
 
 .container_gallery_image {
-  width: fit-content;
+  width: 100%;
   padding: 5px;
+  overflow: hidden;
 }
 
 .box_image_last {
@@ -1512,7 +1513,7 @@
 
 .box_image_thumbnail {
   cursor: pointer;
-
+  flex-shrink: 0;
   border-radius: 5px;
   border: 1px solid white;
   overflow: hidden;

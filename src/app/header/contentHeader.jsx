@@ -32,7 +32,7 @@ function ContentHeader({ data, status }) {
       key: "techNews",
       allowLink: true,
       title: "Tin công nghệ",
-      link: "/news",
+      link: "/news?categoryNews=tin-cong-nghe",
       icon: <GrTechnology />,
     },
     {
