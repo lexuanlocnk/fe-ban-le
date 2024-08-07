@@ -68,7 +68,7 @@ const InfoHeader = ({ status, data }) => {
     );
 
   return (
-    <div className="box_menu_header col-md-5 col-12 pb-1  ">
+    <div className="box_menu_header col-md-5 col-12 py-1  ">
       {status && status == "loading" ? (
         <div
           className={`item_menu_header ${

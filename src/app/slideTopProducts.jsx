@@ -5,7 +5,7 @@ import "swiper/css/navigation";
 import { Swiper, SwiperSlide } from "swiper/react";
 import ComponentCardProductMain from "../components/componentCardProductMain";
 
-function SlideTopProducts({ dataTopProducts }) {
+function  SlideTopProducts({ dataTopProducts }) {
   return (
     <div className="px-3">
       <Swiper
@@ -20,7 +20,7 @@ function SlideTopProducts({ dataTopProducts }) {
           },
 
           768: {
-            slidesPerView: 2,
+            slidesPerView: 3,
             spaceBetween: 10,
           },
           1280: {
