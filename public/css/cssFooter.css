@@ -131,7 +131,7 @@
     padding: 7px 10px !important;
   }
   .info_basic {
-    font-size: 12px;
+    font-size: 12px !important;
   }
   .title_footer {
     font-size: 13px !important;
@@ -150,17 +150,17 @@
     padding: 7px 10px !important;
   }
   .info_basic {
-    font-size: 12px;
+    font-size: 12px !important;
   }
   .title_footer {
     font-size: 12px !important;
     padding: 4px 2px !important;
   }
   .infor_company_footer {
-    font-size: 12px;
+    font-size: 12px !important;
   }
   .number_contact {
-    font-size: 12px;
+    font-size: 12px !important;
   }
 }
 @media only screen and (max-width: 768px) {
