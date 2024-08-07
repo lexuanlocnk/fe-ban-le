@@ -17,7 +17,7 @@ async function fetchDataItem() {
   }
 }
 
-async function TopProducts({ session }) {
+async function TopProducts({}) {
   const dataTopProducts = await fetchDataItem();
 
   return (
@@ -28,7 +28,7 @@ async function TopProducts({ session }) {
         </span>
       </div>
 
-      <SlideTopProducts session={session} dataTopProducts={dataTopProducts} />
+      <SlideTopProducts dataTopProducts={dataTopProducts} />
     </div>
   );
 }

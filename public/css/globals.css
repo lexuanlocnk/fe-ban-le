@@ -1114,10 +1114,20 @@ footer {
   gap: 5px;
 }
 
+.item_image_hot {
+  position: absolute;
+  top: 0px;
+  right: 0px;
+
+  width: 50px;
+  height: 50px;
+}
+
 .item_card_product_basic {
   border: 1px solid #c3d0fd;
   border-radius: 8px;
   padding: 10px;
+  position: relative;
 }
 
 .img_card_product_basic {

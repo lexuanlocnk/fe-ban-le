@@ -122,6 +122,19 @@ const ComponentCardProductMain = ({ item, col }) => {
               className="w-100 h-100"
             />
           </div>
+
+          {item.ImageStatus && (
+            <div className="item_image_hot">
+              <Image
+                quality={80}
+                height={40}
+                width={50}
+                src={hostImage + item.ImageStatus}
+                alt={item.nameStatus}
+                className="w-100 h-100"
+              />
+            </div>
+          )}
         </Link>
         <div className="info_card_product_basic">
           <div className="name_card_product_basic ">
@@ -136,12 +149,10 @@ const ComponentCardProductMain = ({ item, col }) => {
 
           <div className="price_discount_card_product_basic">
             <span>
-              {status === "loading"
-                ? "Đang cập nhật"
-                : item.Price.toLocaleString("vi", {
-                    style: "currency",
-                    currency: "VND",
-                  })}
+              {item.Price.toLocaleString("vi", {
+                style: "currency",
+                currency: "VND",
+              })}
             </span>
             <s className="price_yet_sale">
               {item.PriceOld.toLocaleString("vi", {

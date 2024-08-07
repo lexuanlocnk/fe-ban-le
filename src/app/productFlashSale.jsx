@@ -12,89 +12,16 @@ import { UseAppContext } from "./lib/appProvider";
 import { Autoplay, Navigation } from "swiper/modules";
 import Progressbar from "../components/componentProccessbar";
 import Image from "next/image";
+import { hostImage } from "./lib/config";
 
-const ProductsFlashSale = () => {
+const ProductsFlashSale = ({ productsFlashSale }) => {
   const { showModal } = UseAppContext();
 
   const deadline = getTimeLeft(); // Dayjs is also OK
-  const [productsSale, setProductsSale] = useState([]);
   function getTimeLeft() {
     return new Date().setHours(24, 0, 0, 0) - Date.now();
   }
-  useEffect(() => {
-    setProductsSale([
-      {
-        imageUrl: "/image/macbook2.png",
-        productName: "Laptop Dell XPS 13",
-        price: 15000000,
-        discountPercentage: 50,
-        soldQuantity: 50,
-      },
-      {
-        imageUrl: "/image/macbook2.png",
-        productName: "Laptop ASUS ZenBook 14",
-        price: 12000000,
-        discountPercentage: 25,
-        soldQuantity: 30,
-      },
-      {
-        imageUrl: "/image/iphone1.png",
-        productName: "Laptop HP Spectre x360",
-        price: 14000000,
-        discountPercentage: 40,
-        soldQuantity: 40,
-      },
-      {
-        imageUrl: "/image/iphone2.png",
-        productName: "Laptop Lenovo ThinkPad X1 Carbon",
-        price: 16900000,
-        discountPercentage: 30,
-        soldQuantity: 25,
-      },
-      {
-        imageUrl: "/image/iphone3.png",
-        productName: "Laptop Apple MacBook Pro 13",
-        price: 18990000,
-        discountPercentage: 25,
-        soldQuantity: 60,
-      },
-      {
-        imageUrl: "/image/macbook2.png",
-        productName: "Laptop Microsoft Surface Laptop 4",
-        price: 13900000,
-        discountPercentage: 23,
-        soldQuantity: 35,
-      },
-      {
-        imageUrl: "/image/tannhiet.png",
-        productName: "Laptop Razer Blade 15",
-        price: 20000000,
-        discountPercentage: 28,
-        soldQuantity: 20,
-      },
-      {
-        imageUrl: "/image/ipad1.png",
-        productName: "Laptop Acer Predator Helios 300",
-        price: 150090000,
-        discountPercentage: 35,
-        soldQuantity: 45,
-      },
-      {
-        imageUrl: "/image/magicmouse.png",
-        productName: "Laptop MSI GS66 Stealth",
-        price: 17990000,
-        discountPercentage: 25,
-        soldQuantity: 55,
-      },
-      {
-        imageUrl: "/image/macbook2.png",
-        productName: "Laptop Gigabyte Aero 15 OLED",
-        price: 19500000,
-        discountPercentage: 33,
-        soldQuantity: 70,
-      },
-    ]);
-  }, []);
+  useEffect(() => {}, []);
 
   return (
     <div className="container_flash_sale row px-3">
@@ -142,121 +69,128 @@ const ProductsFlashSale = () => {
             modules={[Navigation, Autoplay]}
             className="mySwiper px-4 py-2"
           >
-            {productsSale &&
-              productsSale?.length > 0 &&
-              productsSale?.map((item, index) => (
-                <SwiperSlide key={index}>
-                  <div className="row   item_product_sale ">
-                    <div className="col-12 overflow-hidden box_image_product_sale  image custom-product-selling">
-                      <Image
-                        quality={100}
-                        height={0}
-                        width={0}
-                        sizes="100vw"
-                        src={item.imageUrl}
-                        className="w-100 h-100 img_product_sale"
-                        alt="img_icon_share"
-                      />
-                      <div className="icon_flash_sale">
+            {productsFlashSale &&
+              productsFlashSale?.length > 0 &&
+              productsFlashSale?.map((item, index) => (
+                <SwiperSlide key={item.ProductId}>
+                  <Link href={`/detail-product/${item.UrlProduct}`}>
+                    <div className="row   item_product_sale ">
+                      <div className="col-12 overflow-hidden box_image_product_sale  image custom-product-selling">
                         <Image
-                          quality={75}
+                          quality={100}
                           height={0}
                           width={0}
                           sizes="100vw"
-                          className="w-100 h-100"
-                          src="/image/coupon.png"
+                          src={hostImage + item.Image}
+                          className="w-100 h-100 img_product_sale"
                           alt="img_icon_share"
                         />
-                      </div>
-                      <div className="percent_sale d-flex align-items-center justify-content-center">
-                        <div>
-                          <div className="text_sale text-center">Giảm đến</div>
-                          <div className="text_sale text-center ">
-                            {item.discountPercentage}%
+                        <div className="icon_flash_sale">
+                          <Image
+                            quality={75}
+                            height={0}
+                            width={0}
+                            sizes="100vw"
+                            className="w-100 h-100"
+                            src={hostImage + item.ImageStatus}
+                            alt="img_icon_share"
+                          />
+                        </div>
+                        <div className="percent_sale d-flex align-items-center justify-content-center">
+                          <div>
+                            <div className="text_sale text-center">
+                              Giảm đến
+                            </div>
+                            <div className="text_sale text-center ">
+                              {((item.PriceOld - item.discountPrice) /
+                                item.discountPrice) *
+                                100}
+                              %
+                            </div>
                           </div>
                         </div>
                       </div>
-                    </div>
-                    <div className="col-12 my-1">
-                      <div className="name_product_sale  d-flex justify-content-center align-items-center">
-                        <span className="text_genaral_two_line">
-                          {item.productName}
-                        </span>
-                      </div>
-                      <div className="price_product text-center">
-                        <span className="">
-                          {item.price.toLocaleString("vi", {
-                            style: "currency",
-                            currency: "VND",
-                          })}
-                        </span>
-                      </div>
+                      <div className="col-12 my-1">
+                        <div className="name_product_sale  d-flex justify-content-center align-items-center">
+                          <span className="text_genaral_two_line">
+                            {item.ProductName}
+                          </span>
+                        </div>
+                        <div className="price_product text-center">
+                          <span className="">
+                            {item.discountPrice.toLocaleString("vi", {
+                              style: "currency",
+                              currency: "VND",
+                            })}
+                          </span>
+                        </div>
 
-                      <div className="my-1 d-flex align-items-center justify-content-around">
-                        <Tooltip
-                          placement="top"
-                          title="Thêm vào giỏ hàng"
-                          arrow={false}
-                        >
-                          <div className="item_btn_hot_product w-100">
-                            <Image
-                              quality={75}
-                              height={0}
-                              width={0}
-                              sizes="100vw"
-                              src="/image/shopping-cart.png"
-                              className="img_btn_hot_product_2"
-                              alt="img_icon_share"
-                            />
-                          </div>
-                        </Tooltip>
-
-                        <Tooltip
-                          placement="top"
-                          title="Mua sản phẩm"
-                          arrow={false}
-                        >
-                          <div className="item_btn_hot_product w-100 py-1">
-                            {" "}
-                            <Image
-                              quality={75}
-                              height={0}
-                              width={0}
-                              sizes="100vw"
-                              src="/image/buy.png"
-                              className="img_btn_hot_product_2"
-                              alt="img_icon_share"
-                            />
-                          </div>
-                        </Tooltip>
-
-                        <Tooltip
-                          placement="top"
-                          title="So sánh sản phẩm"
-                          arrow={false}
-                        >
-                          <div
-                            onClick={showModal}
-                            className="item_btn_hot_product w-100"
+                        <div className="my-1 d-flex align-items-center justify-content-around">
+                          <Tooltip
+                            placement="top"
+                            title="Thêm vào giỏ hàng"
+                            arrow={false}
                           >
-                            {" "}
-                            <Image
-                              quality={75}
-                              height={0}
-                              width={0}
-                              sizes="100vw"
-                              src="/image/compare.png"
-                              className="img_btn_hot_product_2"
-                              alt="img_icon_share"
-                            />
-                          </div>
-                        </Tooltip>
-                      </div>
-                      <div className="my-1">
-                        <Progressbar soldQuantity={item.soldQuantity} />
+                            <div className="item_btn_hot_product w-100">
+                              <Image
+                                quality={75}
+                                height={0}
+                                width={0}
+                                sizes="100vw"
+                                src="/image/shopping-cart.png"
+                                className="img_btn_hot_product_2"
+                                alt="img_icon_share"
+                              />
+                            </div>
+                          </Tooltip>
+
+                          <Tooltip
+                            placement="top"
+                            title="Mua sản phẩm"
+                            arrow={false}
+                          >
+                            <div className="item_btn_hot_product w-100 py-1">
+                              {" "}
+                              <Image
+                                quality={75}
+                                height={0}
+                                width={0}
+                                sizes="100vw"
+                                src="/image/buy.png"
+                                className="img_btn_hot_product_2"
+                                alt="img_icon_share"
+                              />
+                            </div>
+                          </Tooltip>
+
+                          <Tooltip
+                            placement="top"
+                            title="So sánh sản phẩm"
+                            arrow={false}
+                          >
+                            <div
+                              onClick={showModal}
+                              className="item_btn_hot_product w-100"
+                            >
+                              {" "}
+                              <Image
+                                quality={75}
+                                height={0}
+                                width={0}
+                                sizes="100vw"
+                                src="/image/compare.png"
+                                className="img_btn_hot_product_2"
+                                alt="img_icon_share"
+                              />
+                            </div>
+                          </Tooltip>
+                        </div>
+                        <div className="my-1">
+                          <Progressbar soldQuantity={16} />
+                        </div>
                       </div>
                     </div>
-                  </div>
+                  </Link>
                 </SwiperSlide>
               ))}
           </Swiper>

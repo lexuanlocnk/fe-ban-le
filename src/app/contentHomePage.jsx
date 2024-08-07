@@ -58,15 +58,33 @@ async function fetchMenuCategories() {
   }
 }
 
+async function fetchDataProductFlashSale() {
+  try {
+    const response = await fetch(`${hostApi}/member/show-all-flash-sale`, {
+      method: "GET",
+    });
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+
+    const data = await response.json();
+    return data.ProductFashSale;
+  } catch (error) {
+    console.error("Fetch error: ", error);
+  }
+}
+
 const ContentHomePage = async ({ searchParams }) => {
+  const page = searchParams["page"] ?? "1";
   const session = await getServerSession(authOptions);
   // const dataCategory = await fetchDataCategory();
-  const dataMenuCategories = await fetchMenuCategories();
 
-  const productCategories = await fetchProductCategories();
-
-  const page = searchParams["page"] ?? "1";
-  const category = searchParams["category"] ?? "laptop";
+  const [productsFlashSale, dataMenuCategories, productCategories] =
+    await Promise.all([
+      fetchDataProductFlashSale(),
+      fetchMenuCategories(),
+      fetchProductCategories(),
+    ]);
 
   return (
     <>
@@ -79,14 +97,14 @@ const ContentHomePage = async ({ searchParams }) => {
         <div className="row container-content-homepage">
           <div className="col-12 box_container_slider_product my-2">
             <div className=" bg-white  box-slider-product ">
-              <TopProducts session={session} />
+              <TopProducts />
 
               {/* <Slider3dHotProducts session={session} /> */}
             </div>
           </div>
           <div className="col-12 box_container_flash_sale_bg mb-2">
             <div className="flash-sale-bg  bg-white py-2">
-              <ProductsFlashSale />
+              <ProductsFlashSale productsFlashSale={productsFlashSale} />
               {/* err */}
             </div>
           </div>
@@ -114,11 +132,7 @@ const ContentHomePage = async ({ searchParams }) => {
                     item.background ? "" : "bg-white"
                   } hot_category py-2`}
                 >
-                  <FeaturedProductsCategory
-                    item={item}
-                    session={session}
-                    category={category}
-                  />
+                  <FeaturedProductsCategory item={item} session={session} />
                 </div>
               </div>
             ))}

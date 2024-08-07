@@ -1,15 +1,13 @@
 "use client";
-import Image from "next/image";
 import Link from "next/link";
 import { FaEye, FaUserCircle } from "react-icons/fa";
 import { FaMapLocationDot } from "react-icons/fa6";
 import { GiNotebook } from "react-icons/gi";
-import { IoNotifications, IoLogOut } from "react-icons/io5";
+import { IoNotifications, IoLogOut, IoKeySharp } from "react-icons/io5";
 import { signOut, useSession } from "next-auth/react";
 
 const ContentHoverMenuAccount = () => {
   const { data } = useSession();
-
   const MenuAccount = [
     {
       id: 1,
@@ -50,10 +48,17 @@ const ContentHoverMenuAccount = () => {
     },
     {
       id: 7,
+      name: "Đổi mật khẩu",
+      link: "/account/change-password",
+      icon: <IoKeySharp />,
+      key: "changePassword",
+    },
+    {
+      id: 8,
       name: "Đăng xuất",
       signOut: "/account/notification",
       icon: <IoLogOut />,
-      key: "notification",
+      key: "signOut",
     },
   ];
 
@@ -75,27 +80,49 @@ const ContentHoverMenuAccount = () => {
         </div>
       </div>
       <div className="box_menu_hover_account mt-2">
-        {MenuAccount.map((item, index) => {
-          return item && item.link ? (
-            <Link key={index} href={item.link}>
-              <div className="box_item_hover_account">
-                <span className="icon_hover_account">{item.icon}</span>
-                <span className="text_hover_account">{item.name}</span>
-              </div>
-            </Link>
-          ) : (
-            <span
-              className="cursor-pointer"
-              key={index}
-              onClick={() => signOut({ callbackUrl: "/" })}
-            >
-              <div className="box_item_hover_account">
-                <span className="icon_hover_account">{item.icon}</span>
-                <span className="text_hover_account">{item.name}</span>
-              </div>
-            </span>
-          );
-        })}
+        {MenuAccount &&
+          MenuAccount.length > 0 &&
+          MenuAccount.map((item, index) => {
+            if (!item) return null;
+
+            if (
+              item.key === "changePassword" &&
+              data?.user?.provider === "credentials"
+            ) {
+              return (
+                <Link key={index} href={item.link}>
+                  <div className="box_item_hover_account">
+                    <span className="icon_hover_account">{item.icon}</span>
+                    <span className="text_hover_account">{item.name}</span>
+                  </div>
+                </Link>
+              );
+            } else if (item.key === "signOut") {
+              return (
+                <span
+                  className="cursor-pointer"
+                  key={index}
+                  onClick={() => signOut({ callbackUrl: "/" })}
+                >
+                  <div className="box_item_hover_account">
+                    <span className="icon_hover_account">{item.icon}</span>
+                    <span className="text_hover_account">{item.name}</span>
+                  </div>
+                </span>
+              );
+            } else if (item.key !== "changePassword") {
+              return (
+                <Link key={index} href={item.link}>
+                  <div className="box_item_hover_account">
+                    <span className="icon_hover_account">{item.icon}</span>
+                    <span className="text_hover_account">{item.name}</span>
+                  </div>
+                </Link>
+              );
+            }
+
+            return null;
+          })}
       </div>
     </div>
   );
