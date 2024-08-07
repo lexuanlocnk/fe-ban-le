@@ -8,7 +8,8 @@ import "swiper/css/pagination";
 import "swiper/css/grid";
 import "swiper/css/autoplay";
 import Image from "next/image";
-import { Navigation, Pagination, Autoplay } from "swiper/modules";
+import ImageTest from "../../public/image/test_image/t-shirt-test.png";
+import { Navigation, Pagination, Autoplay, Grid } from "swiper/modules";
 import Link from "next/link";
 
 const BannerHomePage = ({ dataMenuCategories }) => {
@@ -26,6 +27,14 @@ const BannerHomePage = ({ dataMenuCategories }) => {
       url: "/image/bannernew4.jpg",
     },
   ]);
+  const imageAdvertisingTest = [
+    {
+      url: "/image/sale_banner1.jpg",
+    },
+    {
+      url: "/image/sale_banner2.jpg",
+    },
+  ];
 
   const imageAdvertising = [
     {
@@ -38,21 +47,24 @@ const BannerHomePage = ({ dataMenuCategories }) => {
 
   const imageAdvertising2 = [
     {
-      url: "/image/banner_property1.jpg",
+      url: "/image/banner_property1.png",
     },
     {
-      url: "/image/banner_property2.jpg",
+      url: "/image/banner_property2.png",
     },
     {
-      url: "/image/banner_property3.jpg",
+      url: "/image/banner_property3.png",
     },
     {
-      url: "/image/banner_property4.jpg",
+      url: "/image/banner_property4.png",
     },
   ];
 
   return (
-    <div style={{ height: "570px " }} className="position-relative ">
+    <div
+      style={{ height: "570px " }}
+      className="container_menu_category_and_swiper position-relative"
+    >
       <div className="row container_banner_swiper_menu_category h-100">
         <div className="col-md-12 col-12 box_banner_swiper_menu_category">
           <div className="box_menu_category">
@@ -163,13 +175,114 @@ const BannerHomePage = ({ dataMenuCategories }) => {
                   <Image
                     alt={`image_${index}`}
                     src={item.url}
+                    quality={100}
                     width={300}
-                    height={140}
+                    height={0}
                   />
                 </div>
               ))}
             </div>
           )}
+        </div>
+      </div>
+      <div className="mobile_container_swiper_banner_pr">
+        <div className="row mobile_box_banner_swiper_menu_category">
+          <div className="row mobile_box_swiper_in_home">
+            <Swiper
+              autoplay={{ delay: 2000 }}
+              rewind={true}
+              navigation={true}
+              loop={true}
+              pagination={{
+                clickable: true,
+              }}
+              modules={[Pagination, Navigation, Autoplay]}
+              className="col mobile_my_swiper_in_home"
+            >
+              {imageBanner &&
+                imageBanner.length > 0 &&
+                imageBanner.map((item, index) => (
+                  <SwiperSlide key={index}>
+                    <div className="mobile_container_img_banner h-100">
+                      <Image
+                        quality={100}
+                        height={0}
+                        width={0}
+                        sizes="100vw"
+                        src={item.url}
+                        className="mobile_img_banner_genaral"
+                        alt="banner-image"
+                      />
+                    </div>
+                  </SwiperSlide>
+                ))}
+            </Swiper>
+            {imageAdvertisingTest && imageAdvertisingTest.length > 0 && (
+              <div className="col mobile_banner_pr_in_home  ">
+                {imageAdvertisingTest.map((item, index) => (
+                  <div key={index} className="mobile_box_image_advertising">
+                    <Image
+                      alt={`image_${index}`}
+                      src={item.url}
+                      sizes="100vw"
+                      width={0}
+                      height={0}
+                      quality={100}
+                    />
+                  </div>
+                ))}
+              </div>
+            )}
+          </div>
+          <div className="row mobile_category_menu_container">
+            <div className="mobile_category_header">
+              <div className="category_header_title">DANH MỤC</div>
+            </div>
+            <div className="mobile_category_menu">
+              <Swiper
+                breakpoints={{
+                  769: {
+                    grid: {
+                      rows: 1,
+                    },
+                  },
+                }}
+                grid={{
+                  rows: 2,
+                }}
+                slidesPerView={"auto"}
+                spaceBetween={1}
+                modules={[Grid, Pagination]}
+                className="mobile_category_swiper"
+              >
+                {dataMenuCategories &&
+                  dataMenuCategories.length > 0 &&
+                  dataMenuCategories.map((item, index) => (
+                    <SwiperSlide
+                      className="item_swiper_slide_grid"
+                      key={item.menu_id}
+                    >
+                      <div className="mobile_item_category_menu">
+                        <div className="mobile_img_category_menu_item">
+                          <Image
+                            height={75}
+                            width={75}
+                            quality={100}
+                            src={ImageTest}
+                          ></Image>
+                        </div>
+                        <Link
+                          className="mobile_text_category_menu"
+                          href={`/category/${item?.menu_desc?.link}`}
+                        >
+                          {item?.menu_desc?.title}
+                        </Link>
+                      </div>
+                    </SwiperSlide>
+                  ))}
+              </Swiper>
+            </div>
+          </div>
         </div>
       </div>
     </div>

@@ -114,12 +114,12 @@ function ContentHeader({ data, status }) {
       <header id="main-header-detail" className="">
         <div className="content-header-detail row bg-white  ">
           <div className="left-header-detail col-xl-2 col-md-2 col-12 px-0">
-            <div className="logo-header h-100">
+            <div className="logo-header">
               <Link href="/">
                 <Image
                   quality={100}
-                  height={50}
-                  width={210}
+                  height={0}
+                  width={226}
                   src="/image/logo.jpg"
                   alt="logo"
                   className="w-100 h-100"
