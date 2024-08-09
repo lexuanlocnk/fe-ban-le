@@ -40,7 +40,10 @@ const ProductsFlashSale = ({ productsFlashSale }) => {
           </div>
           <CountdownTimer duration={deadline} />
         </div>
-        <Link className="text-decoration-none link-show-more" href="#">
+        <Link
+          className="text-decoration-none link-show-more"
+          href="/flash-sale"
+        >
           Xem tất cả <RightCircleOutlined />
         </Link>
       </div>

@@ -1,0 +1,33 @@
+.container_image_promotion img {
+    height: 570px;
+    width: 100%;
+}
+
+.container_image_promotion {
+    max-width: 1600px;
+    margin: auto;
+}
+
+.box_products_promotion_main {
+    padding: 10px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.img_flash_sale_all {
+    height: 120px;
+    background-image: url('/image/banner_flashsale.png');
+    border-radius: 0px 23px 0px 0px;
+    background-size: cover;
+}
+
+.box_all_products_flash_sale {
+    border-radius: 8px;
+}
+
+.product_all_flash_sale {
+    padding: 10px;
+    background: #F7AB00;
+    border-radius: 0px 0px 8px 8px;
+}

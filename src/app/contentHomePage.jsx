@@ -68,7 +68,7 @@ async function fetchDataProductFlashSale() {
     }
 
     const data = await response.json();
-    return data.ProductFashSale;
+    return data.ProductFlashSale;
   } catch (error) {
     console.error("Fetch error: ", error);
   }

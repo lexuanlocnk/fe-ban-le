@@ -495,6 +495,7 @@
 }
 
 @media only screen and (min-width: 321px) and (max-width: 768px) {
+
   .box-content-products-cart,
   .box_breadcrumbs_cart {
     min-width: unset;
@@ -540,7 +541,8 @@
   .box-content-products-cart {
     min-width: 555px;
   }
-  .box_breadcrumbs_cart{
+
+  .box_breadcrumbs_cart {
     min-width: 555px;
   }
 }

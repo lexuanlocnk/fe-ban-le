@@ -6,6 +6,8 @@ import "swiper/css";
 import "swiper/css/navigation";
 import "swiper/css/pagination";
 import "swiper/css/autoplay";
+import "swiper/css/grid";
+
 import Image from "next/image";
 import ImageTest from "../../public/image/test_image/t-shirt-test.png";
 import { Navigation, Pagination, Autoplay, Grid } from "swiper/modules";

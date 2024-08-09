@@ -1,0 +1,12 @@
+import "../../../public/css/cssTypePromotion.css";
+import Header from "../header/header";
+import ContentPromotionType from "./contentPromotionType";
+export default async function Page({ params }) {
+  return (
+    <div className="container-fluid px-0 container_cart">
+      <Header />
+      <ContentPromotionType />
+      {/* <Footer /> */}
+    </div>
+  );
+}
