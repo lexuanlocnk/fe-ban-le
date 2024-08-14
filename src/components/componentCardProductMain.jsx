@@ -53,59 +53,113 @@ const ComponentCardProductMain = ({ item, col }) => {
     }
   }, 200);
 
-  const handleBuyNowNotAccount = (value) => {
-    const { ProductId } = value;
+  // const handleBuyNowNotAccount = (value) => {
+  //   const { ProductId } = value;
 
-    dispatch({
-      type: "CLICK_BUY_NOW",
-      payload: {
-        status: "only",
+  //   dispatch({
+  //     type: "CLICK_BUY_NOW",
+  //     payload: {
+  //       status: "only",
 
-        idCart: null,
-        idProduct: ProductId,
-      },
-    });
-    dispatch({ type: "ADD_TO_CART_NOT_ACCOUNT", payload: value });
+  //       idCart: null,
+  //       idProduct: ProductId,
+  //     },
+  //   });
+  //   dispatch({ type: "ADD_TO_CART_NOT_ACCOUNT", payload: value });
 
-    router.push("/cart");
-  };
+  //   router.push("/cart");
+  // };
 
-  const handleBuyNow = useDebouncedCallback(async (value) => {
-    try {
-      const response = await fetch(
-        `${hostApi}/member/add-update-cart/${data.user.id}`,
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-          body: JSON.stringify({
-            value,
-          }),
-        }
+  // const handleBuyNow = useDebouncedCallback(async (value) => {
+  //   try {
+  //     const response = await fetch(
+  //       `${hostApi}/member/add-update-cart/${data.user.id}`,
+  //       {
+  //         method: "POST",
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //         },
+  //         body: JSON.stringify({
+  //           value,
+  //         }),
+  //       }
+  //     );
+
+  //     const dataRes = await response.json();
+
+  //     if (dataRes.status) {
+  //       router.push("/cart");
+
+  //       dispatch({
+  //         type: "CLICK_BUY_NOW",
+  //         payload: {
+  //           status: "only",
+
+  //           idCart: dataRes.product.CartId,
+  //           idProduct: dataRes.product.ProductId,
+  //         },
+  //       });
+
+  //       dispatch({ type: "ADD_TO_PRODUCT_TO_CART", payload: dataRes.product });
+  //     }
+  //   } catch (error) {
+  //     console.error("Err:", error);
+  //   }
+  // }, 200);
+
+  const typeButtonCard = (type, checkAuth, item) => {
+    const compareButton = item?.compareStatus ? (
+      <div
+        onClick={() => showModal(item)}
+        className="btn_add_product_cart_basic bg_compare_btn_product color_three_btn_action"
+      >
+        <span>So sánh sản phẩm</span>
+      </div>
+    ) : (
+      <div className="btn_add_product_cart_basic no_compare">
+        <span>Không thể so sánh</span>
+      </div>
+    );
+
+    const contactButton = (
+      <div className="btn_add_product_cart_basic  color_btn_contact">
+        <span>Liên hệ</span>
+      </div>
+    );
+
+    const addToCartButton =
+      checkAuth === "unauthenticated" ? (
+        <div
+          onClick={() => addToCartNotAccount(item)}
+          className="btn_add_product_cart_basic bg_add_btn_cart color_three_btn_action"
+        >
+          <span>Thêm vào giỏ hàng</span>
+        </div>
+      ) : (
+        <div
+          onClick={() => addProductToCart(item)}
+          className="btn_add_product_cart_basic bg_add_btn_cart color_three_btn_action"
+        >
+          <span>Thêm vào giỏ hàng</span>
+        </div>
       );
 
-      const dataRes = await response.json();
-
-      if (dataRes.status) {
-        router.push("/cart");
-
-        dispatch({
-          type: "CLICK_BUY_NOW",
-          payload: {
-            status: "only",
-
-            idCart: dataRes.product.CartId,
-            idProduct: dataRes.product.ProductId,
-          },
-        });
-
-        dispatch({ type: "ADD_TO_PRODUCT_TO_CART", payload: dataRes.product });
-      }
-    } catch (error) {
-      console.error("Err:", error);
+    if (type === 0 || type === 2) {
+      return (
+        <>
+          {compareButton}
+          {contactButton}
+        </>
+      );
+    } else {
+      return (
+        <>
+          {compareButton}
+          {addToCartButton}
+        </>
+      );
     }
-  }, 200);
+  };
 
   return (
     <div className={`${col} p-1`}>
@@ -163,39 +217,23 @@ const ComponentCardProductMain = ({ item, col }) => {
           </div>
           <div className="box_price_card_product_basic"></div>
 
-          {item && item.compareStatus && item.compareStatus == true && (
+          <div className="box_promotion_card_main">
             <div
-              onClick={() => showModal(item)}
-              className="btn_add_product_cart_basic bg_compare_btn_product color_three_btn_action"
-            >
-              {" "}
-              <span>So sánh sản phẩm</span>
-            </div>
-          )}
+              className="content_promotion_card_main"
+              style={{
+                background: item?.checkPresent?.[0]?.content
+                  ? "rgb(246, 246, 246)"
+                  : "unset",
+              }}
+              dangerouslySetInnerHTML={{
+                __html: item?.checkPresent[0]?.content,
+              }}
+            ></div>
+          </div>
 
-          {item && item.compareStatus == false && (
-            <div className="btn_add_product_cart_basic no_compare">
-              <span>So thể so sánh</span>
-            </div>
-          )}
+          {typeButtonCard(item.stock, status, item)}
 
-          {status === "unauthenticated" ? (
-            <div
-              onClick={() => addToCartNotAccount(item)}
-              className="btn_add_product_cart_basic bg_add_btn_cart color_three_btn_action"
-            >
-              <span>Thêm vào giỏ hàng </span>
-            </div>
-          ) : (
-            <div
-              onClick={() => addProductToCart(item)}
-              className="btn_add_product_cart_basic bg_add_btn_cart color_three_btn_action"
-            >
-              <span>Thêm vào giỏ hàng </span>
-            </div>
-          )}
-
-          {status === "unauthenticated" ? (
+          {/* {status === "unauthenticated" ? (
             <div
               onClick={() => handleBuyNowNotAccount(item)}
               className="btn_add_product_cart_basic bg_buy_btn_products color_three_btn_action"
@@ -210,7 +248,7 @@ const ComponentCardProductMain = ({ item, col }) => {
               {" "}
               <span>Mua ngay </span>
             </div>
-          )}
+          )} */}
         </div>
       </div>
     </div>

@@ -16,9 +16,10 @@ import { UseAppContext } from "../../lib/appProvider";
 import GalleryImage from "./galleryImage";
 import dayjs from "dayjs";
 import { FiGift } from "react-icons/fi";
-import { hostApi } from "../../lib/config";
+import { hostApi, hostImage } from "../../lib/config";
 import { useDebouncedCallback } from "use-debounce";
 import { useRouter } from "next/navigation";
+import Image from "next/image";
 
 const InfoProduct = ({
   dataProduct,
@@ -159,7 +160,7 @@ const InfoProduct = ({
     }
   }, 200);
 
-  console.log("dataProduct", dataProduct);
+  console.log("valueVoucherDetail", valueVoucherDetail);
 
   return (
     <>
@@ -241,31 +242,55 @@ const InfoProduct = ({
                 </span>
               </div>
 
+              {dataProduct.status === 5 && (
+                <div className="box_brand_product_detail">
+                  <span className="title_brand_product_detail">
+                    Trạng thái:
+                  </span>{" "}
+                  <div className="box_image_flash_sale_detail">
+                    <Image
+                      width={35}
+                      height={35}
+                      alt={dataProduct?.ProductName}
+                      src={hostImage + dataProduct?.ImageFlashSale}
+                    />
+                  </div>
+                </div>
+              )}
+
               <div className="box_price_product_detail mt-2">
                 <div className="box_price_main">
-                  {valueVoucherDetail ? (
-                    <div>
-                      <span>
-                        {(
-                          dataProduct.PriceOld - valueVoucherDetail.valueVoucher
-                        ).toLocaleString("vi", {
-                          style: "currency",
-                          currency: "VND",
-                        })}
-                      </span>
-                      <span className="include_vat"> (Đã bao gồm VAT)</span>
-                    </div>
-                  ) : (
-                    <div>
-                      <span>
-                        {dataProduct.PriceOld.toLocaleString("vi", {
-                          style: "currency",
-                          currency: "VND",
-                        })}
-                      </span>
-                      <span className="include_vat"> (Đã bao gồm VAT)</span>
-                    </div>
-                  )}
+                  <div>
+                    <span>
+                      {(
+                        (dataProduct.status === 5
+                          ? dataProduct.PriceFlashSale
+                          : dataProduct.PriceOld) -
+                        (valueVoucherDetail?.valueVoucher || 0)
+                      ).toLocaleString("vi", {
+                        style: "currency",
+                        currency: "VND",
+                      })}
+                      {valueVoucherDetail?.valueVoucher && (
+                        <>
+                          <p className="text-sale-value">
+                            -{" "}
+                            {valueVoucherDetail.valueVoucher.toLocaleString(
+                              "vi",
+                              {
+                                style: "currency",
+                                currency: "VND",
+                              }
+                            )}
+                          </p>
+                          <Tag color="geekblue">
+                            {valueVoucherDetail.MaCouponDes}
+                          </Tag>
+                        </>
+                      )}
+                    </span>
+                    <p className="include_vat mb-0"> (Đã bao gồm VAT)</p>
+                  </div>
                 </div>
                 <div className="box_price_sale">
                   <s>
@@ -278,7 +303,19 @@ const InfoProduct = ({
                 </div>
               </div>
 
-              <div className="box_text_copy">
+              <div
+                onClick={() => {
+                  const url = location.href;
+
+                  navigator.clipboard.writeText(url);
+                  openNotificationWithIcon(
+                    "success",
+                    "Đã sao chép đường dẫn sản phẩm",
+                    ``
+                  );
+                }}
+                className="box_text_copy"
+              >
                 <IoMdCopy />
                 <span>COPY đường dẫn sản phẩm</span>
               </div>

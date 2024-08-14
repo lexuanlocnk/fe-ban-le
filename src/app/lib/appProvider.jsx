@@ -11,6 +11,7 @@ import { cartReducer } from "./cartReducer";
 import { notification } from "antd";
 import { Next13ProgressBar } from "next13-progressbar";
 
+import ComponentButtonHomepage from "../../components/componentButtonHomepage";
 export const AppContext = createContext();
 export const UseAppContext = () => {
   const context = useContext(AppContext);
@@ -64,11 +65,11 @@ export default function AppProvider({ children }) {
       );
 
       if (!isExist) {
-        let updatedViewed = [...viewedProducts, itemUpdate];
+        let updatedViewed = [itemUpdate, ...viewedProducts];
 
         // Nếu vượt quá 20 item, xóa item đầu tiên
-        if (updatedViewed.length > 20) {
-          updatedViewed = updatedViewed.slice(1);
+        if (updatedViewed.length > 10) {
+          updatedViewed = updatedViewed.pop();
         }
 
         localStorage.setItem("productsViewed", JSON.stringify(updatedViewed));
@@ -131,6 +132,7 @@ export default function AppProvider({ children }) {
         itemCompare,
       }}
     >
+      <ComponentButtonHomepage />
       <Next13ProgressBar
         height="3px"
         color="#0A2FFF"
