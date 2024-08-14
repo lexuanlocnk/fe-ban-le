@@ -101,7 +101,20 @@ const ComponentButtonHomepage = () => {
           >
             <IoIosArrowDropup />
           </div>
-
+          {status === "authenticated" ? (
+            <Link href="/account/viewed-products">
+              <div className="box_btn_viewed_products button_homepage_common">
+                <TbEyeCheck />
+              </div>
+            </Link>
+          ) : (
+            <div
+              onClick={showModal}
+              className="box_btn_viewed_products button_homepage_common"
+            >
+              <TbEyeCheck />
+            </div>
+          )}
           <div className="box_btn_contact button_homepage_common">
             <MdOutlineContactSupport />
           </div>
