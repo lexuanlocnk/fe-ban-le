@@ -1,5 +1,7 @@
+import Link from "next/link";
 import { hostApi } from "./lib/config";
 import SlideTopProducts from "./slideTopProducts";
+import { RightCircleOutlined } from "@ant-design/icons";
 
 async function fetchDataItem() {
   try {
@@ -22,10 +24,17 @@ async function TopProducts({}) {
 
   return (
     <div className="container_top_products py-2">
-      <div className="px-3 mb-1">
+      <div className="px-3 mb-1 d-flex justify-content-between align-items-center">
         <span className="related-product text-white">
           TOP SẢN PHẨM BÁN CHẠY
         </span>
+
+        <Link
+          className="text-decoration-none link-show-more text-white"
+          href="/hot-products"
+        >
+          Xem tất cả <RightCircleOutlined />
+        </Link>
       </div>
 
       <SlideTopProducts dataTopProducts={dataTopProducts} />

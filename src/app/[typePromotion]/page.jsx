@@ -5,7 +5,7 @@ export default async function Page({ params }) {
   return (
     <div className="container-fluid px-0 container_cart">
       <Header />
-      <ContentPromotionType />
+      <ContentPromotionType typePromotion={params?.typePromotion} />
       {/* <Footer /> */}
     </div>
   );

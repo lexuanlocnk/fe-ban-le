@@ -1706,3 +1706,27 @@
   font-size: 15px;
   line-height: normal;
 }
+
+.include_vat {
+  font-size: 12px;
+  color: rgb(130, 134, 158);
+  font-weight: unset;
+}
+
+.box_text_copy {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.box_text_copy span {
+  font-size: 13px;
+  font-weight: 500;
+}
+
+.box_text_copy {
+  margin-top: 5px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}

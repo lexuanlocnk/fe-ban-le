@@ -4,6 +4,7 @@ import { IoShieldCheckmarkOutline } from "react-icons/io5";
 import { RiRefundLine } from "react-icons/ri";
 import { MdPriceCheck } from "react-icons/md";
 import { GiAutoRepair } from "react-icons/gi";
+import { IoMdCopy } from "react-icons/io";
 
 import Breadcrumb from "../../../components/breadcrumb";
 import CompareProducts from "./compareProducts";
@@ -158,6 +159,8 @@ const InfoProduct = ({
     }
   }, 200);
 
+  console.log("dataProduct", dataProduct);
+
   return (
     <>
       <div className="row container-content-detail-product ">
@@ -221,7 +224,16 @@ const InfoProduct = ({
                   {dataProduct?.BrandName}
                 </span>
               </div>
-
+              <div className="box_brand_product_detail">
+                <span className="title_brand_product_detail">Tình trạng:</span>{" "}
+                <span className="value_brand_product_detail">
+                  {dataProduct?.stock === 1
+                    ? "Còn hàng"
+                    : dataProduct?.stock === 0
+                    ? "Liên hệ"
+                    : "Ngừng kinh doanh"}
+                </span>
+              </div>
               <div className="box_brand_product_detail">
                 <span className="title_brand_product_detail">Mã sản phẩm:</span>{" "}
                 <span className="value_brand_product_detail">
@@ -232,21 +244,27 @@ const InfoProduct = ({
               <div className="box_price_product_detail mt-2">
                 <div className="box_price_main">
                   {valueVoucherDetail ? (
-                    <span>
-                      {(
-                        dataProduct.PriceOld - valueVoucherDetail.valueVoucher
-                      ).toLocaleString("vi", {
-                        style: "currency",
-                        currency: "VND",
-                      })}
-                    </span>
+                    <div>
+                      <span>
+                        {(
+                          dataProduct.PriceOld - valueVoucherDetail.valueVoucher
+                        ).toLocaleString("vi", {
+                          style: "currency",
+                          currency: "VND",
+                        })}
+                      </span>
+                      <span className="include_vat"> (Đã bao gồm VAT)</span>
+                    </div>
                   ) : (
-                    <span>
-                      {dataProduct.PriceOld.toLocaleString("vi", {
-                        style: "currency",
-                        currency: "VND",
-                      })}
-                    </span>
+                    <div>
+                      <span>
+                        {dataProduct.PriceOld.toLocaleString("vi", {
+                          style: "currency",
+                          currency: "VND",
+                        })}
+                      </span>
+                      <span className="include_vat"> (Đã bao gồm VAT)</span>
+                    </div>
                   )}
                 </div>
                 <div className="box_price_sale">
@@ -258,6 +276,11 @@ const InfoProduct = ({
                   </s>
                   <span>-13.049%</span>
                 </div>
+              </div>
+
+              <div className="box_text_copy">
+                <IoMdCopy />
+                <span>COPY đường dẫn sản phẩm</span>
               </div>
 
               {dataGiftProduct?.checkPresent &&
@@ -385,7 +408,7 @@ const InfoProduct = ({
                   </div>
                 )}
 
-              <div className="box_btn_buy_now_add_cart_detail row mx-0 mt-1">
+              <div className="box_btn_buy_now_add_cart_detail row mx-0 mt-2">
                 <div className="  ps-0 pe-1 col-6">
                   {status === "unauthenticated" ? (
                     <div
@@ -481,30 +504,34 @@ const InfoProduct = ({
       </div>
 
       <div className="row box-description-much pb-3">
-        <div className="col-12 description-much bg-white my-2 p-3">
-          <div
-            id="box_description-much"
-            className={`${checkShowInfo ? "" : "box_description-much_hide"}  `}
-          >
-            {dataProduct && dataProduct.productDescription && (
-              <div
-                dangerouslySetInnerHTML={{
-                  __html: dataProduct.productDescription,
-                }}
-              />
-            )}
+        {dataProduct && dataProduct.productDescription && (
+          <div className="col-12 description-much bg-white my-2 p-3">
+            <div
+              id="box_description-much"
+              className={`${
+                checkShowInfo ? "" : "box_description-much_hide"
+              }  `}
+            >
+              {dataProduct && dataProduct.productDescription && (
+                <div
+                  dangerouslySetInnerHTML={{
+                    __html: dataProduct.productDescription,
+                  }}
+                />
+              )}
+            </div>
+            {elementBoxDescription &&
+              elementBoxDescription.offsetHeight > 400 && (
+                <div className=" text-center btn-show-hide ">
+                  {!checkShowInfo ? (
+                    <span onClick={() => handleShowHide("show")}>Xem thêm</span>
+                  ) : (
+                    <span onClick={() => handleShowHide("hide")}>Thu gọn</span>
+                  )}
+                </div>
+              )}
           </div>
-          {elementBoxDescription &&
-            elementBoxDescription.offsetHeight > 400 && (
-              <div className=" text-center btn-show-hide ">
-                {!checkShowInfo ? (
-                  <span onClick={() => handleShowHide("show")}>Xem thêm</span>
-                ) : (
-                  <span onClick={() => handleShowHide("hide")}>Thu gọn</span>
-                )}
-              </div>
-            )}
-        </div>
+        )}
 
         {dataProductsCompare && Object.keys(dataProductsCompare).length > 1 && (
           <CompareProducts

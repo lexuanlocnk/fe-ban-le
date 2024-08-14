@@ -1,5 +1,13 @@
 "use client";
-import { Button, DatePicker, Form, Input, Radio, Space } from "antd";
+import {
+  Button,
+  ConfigProvider,
+  DatePicker,
+  Form,
+  Input,
+  Radio,
+  Space,
+} from "antd";
 import InputNumberAntd from "../../components/inputNumberAntd";
 import AddAddress from "./addAddress";
 import ComponentSkeleton from "../../components/componentSkeleton";
@@ -7,6 +15,23 @@ import { useSession } from "next-auth/react";
 import { UseAppContext } from "../lib/appProvider";
 import { hostApi } from "../lib/config";
 import dayjs from "dayjs";
+import vi from "antd/es/date-picker/locale/vi_VN";
+import buddhistEra from "dayjs/plugin/buddhistEra";
+import "dayjs/locale/vi";
+
+dayjs.extend(buddhistEra);
+dayjs.locale("vi");
+
+// const buddhistLocale = {
+//   ...vi,
+//   lang: {
+//     ...vi.lang,
+//     fieldDateFormat: "DD-MM-YYYY",
+//     fieldDateTimeFormat: "DD-MM-YYYY HH:mm:ss",
+//     yearFormat: "YYYY",
+//     cellYearFormat: "YYYY",
+//   },
+// };
 
 const InfoAccount = ({}) => {
   const [form] = Form.useForm();
@@ -153,10 +178,14 @@ const InfoAccount = ({}) => {
                 ]}
               >
                 <DatePicker
+                  // locale={buddhistLocale}
                   disabledDate={(current) => {
                     const minDate = dayjs().subtract(100, "year");
                     const maxDate = dayjs().subtract(10, "year");
                     return current && (current < minDate || current > maxDate);
+                  }}
+                  onChange={(date) => {
+                    form.setFieldValue("birthday", date);
                   }}
                   className="w-100"
                   format={{

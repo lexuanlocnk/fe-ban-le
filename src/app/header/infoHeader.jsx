@@ -103,7 +103,9 @@ const InfoHeader = ({ status, data }) => {
           >
             <UserOutlined className="icon_item_menu" />
             <span className="text_item_menu">
-              Chào bạn {data?.user?.full_name?.split(" ").pop()}
+              Chào bạn{" "}
+              {data?.user?.full_name?.split(" ").pop() ||
+                data?.user?.username?.split(" ").pop()}
             </span>
           </Popover>
         </div>

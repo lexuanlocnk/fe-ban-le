@@ -70,12 +70,14 @@ const ContentHoverMenuAccount = () => {
             <span className="avatar_name">
               {data.user.full_name
                 ? data.user.full_name.split(" ").pop().charAt(0)
-                : "?".split(" ").pop().charAt(0)}
+                : data.user.username.split(" ").pop().charAt(0)}
             </span>
           </div>
         </div>
         <div className="box_name_mail_account">
-          <span className="name_account">{data.user.full_name}</span>
+          <span className="name_account">
+            {data.user.full_name || data.user.username}
+          </span>
           <span className="mail_account">{data.user.email}</span>
         </div>
       </div>

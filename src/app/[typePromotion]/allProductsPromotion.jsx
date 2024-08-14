@@ -9,7 +9,7 @@ import "swiper/css/grid";
 const AllProductsPromotion = ({ data }) => {
   return (
     <div>
-      {data && data.showAllFlashSale && data.showAllFlashSale.length > 0 && (
+      {data && data.length > 0 && (
         <div className="box_container_products_promotion my-3">
           <div className="box_all_products_flash_sale">
             <div className="img_flash_sale_all"></div>
@@ -26,7 +26,7 @@ const AllProductsPromotion = ({ data }) => {
                   modules={[Grid, Navigation]}
                   className=" mySwiper"
                 >
-                  {data.showAllFlashSale.map((product, index) => (
+                  {data.map((product, index) => (
                     <SwiperSlide className="" key={index}>
                       {" "}
                       <ComponentCardProductBasic item={product} col={""} />
