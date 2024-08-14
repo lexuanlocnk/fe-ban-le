@@ -7,6 +7,7 @@ import SecondaryBanner from "../../secondaryBanner";
 import Breadcrumb from "../../../components/breadcrumb";
 import PostCategory from "./postCategory";
 import BoxModalCompare from "../../boxModalCompare";
+import MobileFilterProducts from "../../../components/componentMobileFilterProduct";
 
 const ContentCategory = ({
   dataProperties,
@@ -16,12 +17,16 @@ const ContentCategory = ({
 }) => {
   return (
     <div className="box-container-content-category  ">
+      <MobileFilterProducts
+        dataProperties={dataProperties}
+        searchParams={searchParams}
+      ></MobileFilterProducts>
       <div className="in-box-container-content-category pt-1">
         <div className="row box-content-category mx-0">
           <div className="col-12 ">
             <Breadcrumb nameItem={"Laptop văn phòng"} />
           </div>
-          <div className="col-12 col-lg-3">
+          <div className="col-12 col-lg-3 box_filter_products_container">
             <FilterProducts
               searchParams={searchParams}
               dataProperties={dataProperties}
@@ -57,7 +62,6 @@ const ContentCategory = ({
               </div>
             </div> */}
           </div>
-
           <div className="col-12 mb-3">
             <PostCategory />
           </div>

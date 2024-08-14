@@ -5,6 +5,7 @@ import Footer from "../../../components/footer";
 import { redirect } from "next/navigation";
 import ContentCategory from "../[nameCategory]/contentCategory";
 import { hostApi } from "../../lib/config";
+import FilterProducts from "./filterProducts";
 
 async function fetchDataProperties(slug) {
   try {

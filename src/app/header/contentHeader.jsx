@@ -119,13 +119,16 @@ function ContentHeader({ data, status }) {
                 <Image
                   quality={100}
                   height={0}
-                  width={226}
+                  width={0}
+                  sizes="100vw"
                   src="/image/logo.jpg"
                   alt="logo"
-                  className="w-100 h-100"
                 />
               </Link>
             </div>
+            {/* <div className="mobile_info_header">
+              <InfoHeader data={data} status={status} />
+            </div> */}
           </div>
           <div className="right-header-detail col-xl-10 col-md-10 col-12 mt-1">
             <div className="content-right-header-detail-1 row mx-0">
