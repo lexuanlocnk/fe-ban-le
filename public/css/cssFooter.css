@@ -107,7 +107,7 @@
 
 /*Responsive START */
 /* desktop */
-@media only screen and (min-width: 1025px) and (max-width: 1221px) {
+@media only screen and (min-width: 1025px) {
   .name_company {
     font-size: 17px !important;
     padding: 7px 10px !important;
@@ -123,8 +123,47 @@
   .number_contact {
     font-size: 15px;
   }
+  .box_policy {
+    display: flex !important;
+    flex-direction: row;
+    width: fit-content !important;
+  }
+  .container_policy .mx-0 {
+    justify-content: space-between;
+  }
+}
+@media screen and (max-width: 1200px) {
+  .title_policy {
+    font-size: 14px;
+  }
+  .box_img_policy {
+    padding: 0 5px !important;
+    height: 40px;
+    width: 40px;
+  }
+  .box_img_policy img {
+    height: 35px;
+    width: 35px;
+  }
 }
 /* tablet */
+@media screen and (max-width: 1024px) {
+  .box_policy .row {
+    display: flex !important;
+    flex-direction: row !important;
+    width: 100% !important;
+    justify-content: center;
+    height: fit-content !important;
+    align-items: center;
+  }
+  .title_policy {
+    font-size: 12px;
+    flex: 1;
+  }
+  /* .container_policy .mx-0 {
+    justify-content: space-between;
+  } */
+}
 @media only screen and (min-width: 845px) and (max-width: 1024px) {
   .name_company {
     font-size: 15px !important;
@@ -166,12 +205,12 @@
     display: none !important;
   }
 }
-@media only screen and (max-width: 768px) {
+@media screen and (max-width: 768px) {
   .title_policy {
     font-size: 14px !important;
   }
   .box_image_footer,
-  .keywords_hot {
+  .keywords_hot, .container_policy {
     display: none;
   }
   .py-4 {
