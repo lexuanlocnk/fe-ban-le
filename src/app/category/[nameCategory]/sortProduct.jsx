@@ -22,7 +22,7 @@ const SortProduct = ({ getValueParams }) => {
     // },
 
     {
-      title: "Gía giảm dần",
+      title: "Giá giảm dần",
       key: "DESC",
     },
     {
@@ -42,31 +42,33 @@ const SortProduct = ({ getValueParams }) => {
   return (
     <div className="  box_sort_product bg-white mt-2 ">
       <div className="main_content_sort_product">
-        <div className="box_title_sort_product">
-          <span>Sắp xếp theo</span>
-        </div>
-        <div className="box_btn_sort_product">
-          {itemSort &&
-            itemSort?.length > 0 &&
-            itemSort?.map((item, index) => (
-              <div
-                key={index}
-                onClick={() => handleChooseSort(item)}
-                className={`item_sort_product ${
-                  item.key == (getValueParams["sort"] ?? "DESC")
-                    ? "border_active"
-                    : ""
-                }`}
-              >
-                {item.title}
-                {item.key == (getValueParams["sort"] ?? "DESC") && (
-                  <Fragment>
-                    <div className="bg_swoosh"></div>
-                    <FaCheck className="icon_swoosh" />
-                  </Fragment>
-                )}
-              </div>
-            ))}
+        <div className="box_sort_container">
+          <div className="box_title_sort_product">
+            <span>Sắp xếp theo</span>
+          </div>
+          <div className="box_btn_sort_product">
+            {itemSort &&
+              itemSort?.length > 0 &&
+              itemSort?.map((item, index) => (
+                <div
+                  key={index}
+                  onClick={() => handleChooseSort(item)}
+                  className={`item_sort_product ${
+                    item.key == (getValueParams["sort"] ?? "DESC")
+                      ? "border_active"
+                      : ""
+                  }`}
+                >
+                  {item.title}
+                  {item.key == (getValueParams["sort"] ?? "DESC") && (
+                    <Fragment>
+                      <div className="bg_swoosh"></div>
+                      <FaCheck className="icon_swoosh" />
+                    </Fragment>
+                  )}
+                </div>
+              ))}
+          </div>
         </div>
       </div>
     </div>

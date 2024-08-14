@@ -106,25 +106,25 @@
 }
 
 /*Responsive START */
-@media only screen and (min-width: 1024px) and (max-width: 1221px) {
+/* desktop */
+@media only screen and (min-width: 1025px) and (max-width: 1221px) {
   .name_company {
     font-size: 17px !important;
     padding: 7px 10px !important;
   }
-  .info_basic {
+  .info_basic,
+  .infor_company_footer {
     font-size: 14px;
   }
   .title_footer {
     font-size: 16px !important;
     padding: 4px 10px !important;
   }
-  .infor_company_footer {
-    font-size: 14px;
-  }
   .number_contact {
     font-size: 15px;
   }
 }
+/* tablet */
 @media only screen and (min-width: 845px) and (max-width: 1024px) {
   .name_company {
     font-size: 15px !important;
@@ -149,23 +149,47 @@
     font-size: 13px !important;
     padding: 7px 10px !important;
   }
-  .info_basic {
-    font-size: 12px !important;
-  }
   .title_footer {
     font-size: 12px !important;
     padding: 4px 2px !important;
   }
-  .infor_company_footer {
+  .infor_company_footer,
+  .number_contact,
+  .info_basic {
     font-size: 12px !important;
   }
-  .number_contact {
-    font-size: 12px !important;
+}
+/* mobile */
+@media only screen and (max-width: 610px) {
+  .container_policy,
+  .introduction_footer {
+    display: none !important;
   }
 }
 @media only screen and (max-width: 768px) {
   .title_policy {
     font-size: 14px !important;
+  }
+  .box_image_footer,
+  .keywords_hot {
+    display: none;
+  }
+  .py-4 {
+    padding-top: 5px !important;
+    padding-bottom: 5px !important;
+  }
+  .info_basic,
+  .infor_company_footer,
+  .number_contact,
+  .name_company,
+  .title_footer {
+    font-size: 12px !important;
+  }
+}
+@media only screen and (width: 768px) {
+  .title_footer,
+  .name_company {
+    font-size: 12px !important;
   }
 }
 /*Responsive END */

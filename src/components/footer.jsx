@@ -154,7 +154,7 @@ const Footer = () => {
           </div>
           <div className="col-md-8 col-12">
             <div className="row mt-md-0 mt-3">
-              <div className="col-md-4 col-6  text-center">
+              <div className="introduction_footer col-md-4 col-6  text-center">
                 <Tag color="purple" className="title_footer text-center">
                   VỀ QUANGBAO
                 </Tag>
@@ -185,7 +185,7 @@ const Footer = () => {
                   </a>
                 </div>
               </div>
-              <div className="col-md-4 col-6 text-center">
+              <div className="introduction_footer col-md-4 col-6 text-center">
                 <Tag color="purple" className="title_footer text-center">
                   CHÍNH SÁCH MUA HÀNG
                 </Tag>

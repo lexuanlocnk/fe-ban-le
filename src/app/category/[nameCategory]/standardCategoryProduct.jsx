@@ -67,7 +67,7 @@ const StandardCategoryProduct = ({
           <span className="text_title_products ">
             Danh mục sản phẩm: {nameCategory} ({totalProduct} sản phẩm)
           </span>
-          <div className="box_brand_product my-3">
+          <div className="box_brand_product custom_scroll my-3">
             {listBrand &&
               listBrand?.length > 0 &&
               listBrand?.map((item, index) => (
@@ -86,14 +86,14 @@ const StandardCategoryProduct = ({
                     height={0}
                     width={0}
                     sizes="100vw"
-                    quality={70}
+                    quality={100}
                     className="w-100 h-100"
                   />
                 </div>
               ))}
           </div>
           <span className="text_title_select_product">Chọn theo nhu cầu</span>
-          <div className="box_standard_product">
+          <div className="box_standard_product custom_scroll">
             {standardProduct &&
               standardProduct.length > 0 &&
               standardProduct.map((item, index) => (
@@ -109,7 +109,7 @@ const StandardCategoryProduct = ({
                       height={0}
                       width={0}
                       sizes="100vw"
-                      quality={70}
+                      quality={100}
                       className="w-100 h-100"
                     />
                   }
