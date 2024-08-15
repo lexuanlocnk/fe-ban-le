@@ -525,7 +525,7 @@
   cursor: pointer;
 }
 
-.box_image_news_sale_item  {
+.box_image_news_sale_item {
   height: 140px;
   width: 300px;
 }
@@ -535,6 +535,7 @@
   border-radius: 8px;
   transition: all 0.6s ease;
 }
+
 .box_image_news_sale_item img {
   height: 100%;
   width: 100%;
@@ -607,29 +608,36 @@
     display: none;
   }
 }
+
 /* tablet */
 @media only screen and (min-width: 768px) and (max-width: 1024px) {
+
   .box_menu_category,
   .banner_pr_in_home,
   .container_banner_swiper_menu_category,
   .container_img_news_sale {
     display: none;
   }
+
   .mobile_container_swiper_banner_pr {
     padding: 0 20px !important;
   }
+
   .box-container-content-homepage {
     margin-top: 15px;
   }
+
   .container_menu_category_and_swiper {
     margin-top: 5px !important;
     height: fit-content !important;
   }
+
   .swiper-button-prev,
   .swiper-button-next {
     display: flex !important;
     margin-top: -23px !important;
   }
+
   .mobile_category_header {
     margin-top: 5px;
     width: 100%;
@@ -640,30 +648,37 @@
     border-radius: 2px;
     margin-bottom: 2px;
   }
+
   .mobile_category_menu_container {
     margin: 0px;
     padding: 0px;
   }
+
   .category_header_title {
     margin-left: 15px;
     font-weight: 500;
     color: rgba(0, 0, 0, 0.54);
   }
+
   .mobile_container_swiper_banner_pr {
     padding: 0px 80px;
     height: 100%;
   }
+
   .mobile_box_banner_swiper_menu_category {
     height: 100%;
   }
+
   .mobile_box_swiper_in_home {
     padding: 0px !important;
     margin: 0px !important;
     width: 100%;
   }
+
   .mobile_my_swiper_in_home {
     flex: 1;
   }
+
   .mobile_banner_pr_in_home {
     flex: 0 0 30%;
     height: 100%;
@@ -673,33 +688,40 @@
     display: flex;
     flex-direction: column;
   }
+
   .mobile_box_image_advertising {
     height: 50%;
   }
+
   .mobile_box_image_advertising img {
     border-radius: 2px;
     width: 100% !important;
     height: 100% !important;
   }
+
   .mobile_container_img_banner img {
     border-radius: 2px;
     height: 100%;
     width: 100% !important;
   }
+
   .mobile_category_menu {
     width: 100%;
     height: fit-content;
     background-color: #fff;
     border-radius: 2px;
   }
+
   .mobile_category_swiper {
     width: 100%;
     height: 100%;
   }
+
   .mobile_img_category_menu_item {
     height: 75px;
     width: 75px;
   }
+
   .mobile_text_category_menu {
     font-size: 12px;
     display: -webkit-box;
@@ -714,6 +736,7 @@
     width: 100%;
     text-align: center;
   }
+
   .mobile_item_category_menu {
     display: flex;
     flex-direction: column;
@@ -722,10 +745,12 @@
     background-color: #fff;
     padding: 5px;
   }
+
   .mobile_container_swiper_banner_pr {
     background-color: #edf3fd;
   }
 }
+
 /* mobile */
 @media only screen and (min-width: 320px) and (max-width: 768px) {
   .box_banner_small {
@@ -924,18 +949,19 @@
     font-size: 24px;
   }
 }
+
 @media screen and (max-width: 768px) {
 
   .box_menu_category,
   .banner_pr_in_home,
   .container_banner_swiper_menu_category,
   .container_img_news_sale,
-  
+
   .mobile_box_image_advertising {
     display: none !important;
   }
 
-  .box-container-content-homepage  {
+  .box-container-content-homepage {
     margin-top: 15px;
   }
 
@@ -943,6 +969,7 @@
     margin-top: 5px !important;
     height: fit-content !important;
   }
+
   .px-3 .swiper-button-prev,
   .px-3 .swiper-button-next {
     display: flex !important;
@@ -960,7 +987,7 @@
     margin-bottom: 2px;
   }
 
-  .mobile_category_menu_container  {
+  .mobile_category_menu_container {
     margin: 0px;
     padding: 0px;
   }
@@ -989,6 +1016,7 @@
   .mobile_my_swiper_in_home {
     flex: 0 0 100%;
   }
+
   .mobile_container_img_banner,
   .mobile_category_swiper {
     width: 100% !important;
@@ -1050,12 +1078,14 @@
     background-color: #edf3fd;
   }
 }
+
 /* desktop */
 @media only screen and(max-width: 1193px) {
   .box_image_news_sale_item {
     height: 70px !important;
     width: 140px !important;
   }
+
   .box_image_news_sale_item img {
     height: 100%;
     width: 100%;
@@ -1072,4 +1102,22 @@
 .item_swiper_slide_grid {
   display: inline-block !important;
   width: 110px !important;
+}
+
+.box_categories_homepage {
+  display: flex;
+  align-items: center;
+  gap: 5px;
+}
+
+.box_categories_homepage .ant-breadcrumb-link a {
+  font-size: 14px !important;
+  color: white !important;
+  font-weight: 500;
+}
+
+.box_categories_homepage .ant-breadcrumb-separator {
+  color: white !important;
+
+
 }

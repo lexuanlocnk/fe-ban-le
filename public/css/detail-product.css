@@ -68,6 +68,7 @@
 }
 
 .box-content-search {
+  border-radius: 0px 0px 8px 8px;
   position: absolute;
   height: auto;
   width: 100%;

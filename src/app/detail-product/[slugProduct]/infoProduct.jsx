@@ -160,8 +160,6 @@ const InfoProduct = ({
     }
   }, 200);
 
-  console.log("valueVoucherDetail", valueVoucherDetail);
-
   return (
     <>
       <div className="row container-content-detail-product ">

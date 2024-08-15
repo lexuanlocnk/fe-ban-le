@@ -1,27 +1,26 @@
 "use client";
 
-import { UseAppContext } from "../lib/appProvider";
-import ComponentBackdropFilter from "../../components/componentBackdropFilter";
 import ContentHeader from "./contentHeader";
 import { useSession } from "next-auth/react";
-
+import ComponentButtonHomepage from "../../components/componentButtonHomepage";
 const Header = ({}) => {
   const { data, status } = useSession();
 
-  const { statusSearch, setStatusSearch } = UseAppContext();
-  const HandleSearchProduct = () => {
-    setStatusSearch(!statusSearch);
-  };
+  // const { statusSearch, setStatusSearch } = UseAppContext();
+  // const HandleSearchProduct = () => {
+  //   setStatusSearch(!statusSearch);
+  // };
 
   return (
     <>
       <ContentHeader data={data} status={status} />
+      <ComponentButtonHomepage />
 
-      {statusSearch && statusSearch === true ? (
+      {/* {statusSearch && statusSearch === true ? (
         <ComponentBackdropFilter onClick={HandleSearchProduct} />
       ) : (
         <></>
-      )}
+      )} */}
     </>
   );
 };

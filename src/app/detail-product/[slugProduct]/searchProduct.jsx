@@ -1,8 +1,8 @@
 "use client";
 
-import React, { useState } from "react";
-import { Input } from "antd"; // Import Input từ antd
-import { SearchOutlined, ClockCircleOutlined } from "@ant-design/icons";
+import React, { useEffect, useState } from "react";
+import { Input, Spin } from "antd"; // Import Input từ antd
+import { SearchOutlined, LoadingOutlined } from "@ant-design/icons";
 import Image from "next/image";
 import { UseAppContext } from "../../lib/appProvider";
 import { useDebouncedCallback } from "use-debounce";
@@ -11,7 +11,8 @@ import { useSession } from "next-auth/react";
 import Link from "next/link";
 const SearchProduct = ({}) => {
   const { statusSearch, setStatusSearch } = UseAppContext();
-  const { data, status } = useSession();
+  const { status } = useSession();
+  const [loading, setLoading] = useState(false);
 
   const [dataSearchProducts, setDataSearchProducts] = useState();
   const [historySearch, setHistorySearch] = useState(
@@ -24,20 +25,9 @@ const SearchProduct = ({}) => {
     setStatusSearch(!statusSearch);
   };
 
-  const [hotProduct, setHotProduct] = useState([
-    { link: "/image/linhkien-1.jpg", name: "Thiết bị phát WiFi di động" },
-    { link: "/image/linhkien2.jpg", name: "Ổ cứng di động WD" },
-    {
-      link: "/image/linhkien3.jpg",
-      name: "Card đồ họa Nvidia GeForce RTX 3080",
-    },
-    { link: "/image/linhkien4.jpg", name: "Bàn phím cơ Corsair" },
-    { link: "/image/linhkien5.jpg", name: "Loa Bluetooth JBL" },
-    { link: "/image/linhkien6.jpg", name: "Phụ kiện máy tính" },
-  ]);
-
   const handleSearch = useDebouncedCallback((term) => {
     if (term.length >= 2) {
+      setLoading(true);
       fetchDataProducts(term);
     } else {
       setDataSearchProducts({});
@@ -58,12 +48,22 @@ const SearchProduct = ({}) => {
       setHistorySearch((prev) => [value, ...prev]);
 
       const data = await response.json();
-      setDataSearchProducts(data.product);
+
+      if (data.status) {
+        setLoading(false);
+        setDataSearchProducts(data.product);
+        setStatusSearch(true);
+      }
     } catch (error) {
       console.error("Fetch error:", error);
+    } finally {
+      setLoading(false);
     }
   };
 
+  useEffect(() => {
+    setStatusSearch(false);
+  }, []);
   return (
     <>
       <div className="w-100 position-relative">
@@ -85,49 +85,54 @@ const SearchProduct = ({}) => {
                   Kết quả tìm kiếm
                 </span>
               </div>
-
-              <div className="container_result_search custom_scroll">
-                {dataSearchProducts &&
-                  dataSearchProducts?.length > 0 &&
-                  dataSearchProducts.map((item, index) => (
-                    <Link href={`detail-product/${item.friendLyUrl}`}>
-                      <div className="col-12 px-4 py-2 " key={index}>
-                        <div className="row mx-0 card_product_search">
-                          <div className="col-3">
-                            <div className="box_img_card_product_search">
-                              <Image
-                                src={hostImage + item.picture}
-                                width={100}
-                                height={80}
-                                alt={item.productName}
-                              />
+              {loading ? (
+                <div className="load_search_product my-2 text-center">
+                  <Spin tip="Loading" />
+                </div>
+              ) : (
+                <div className="container_result_search custom_scroll">
+                  {dataSearchProducts &&
+                    dataSearchProducts?.length > 0 &&
+                    dataSearchProducts.map((item, index) => (
+                      <Link href={`detail-product/${item.friendLyUrl}`}>
+                        <div className="col-12 px-4 py-2 " key={index}>
+                          <div className="row mx-0 card_product_search">
+                            <div className="col-3">
+                              <div className="box_img_card_product_search">
+                                <Image
+                                  src={hostImage + item.picture}
+                                  width={100}
+                                  height={80}
+                                  alt={item.productName}
+                                />
+                              </div>
                             </div>
-                          </div>
-                          <div className="col-9">
-                            <div className="box_name_price_product_search">
-                              <span className="name_product_search">
-                                {item.productName}
-                              </span>
-                              <span className="price_product_search">
-                                {status == "unauthenticated"
-                                  ? item.price.toLocaleString("vi", {
-                                      style: "currency",
-                                      currency: "VND",
-                                    })
-                                  : item.priceOld.toLocaleString("vi", {
-                                      style: "currency",
-                                      currency: "VND",
-                                    })}
-                              </span>
+                            <div className="col-9">
+                              <div className="box_name_price_product_search">
+                                <span className="name_product_search">
+                                  {item.productName}
+                                </span>
+                                <span className="price_product_search">
+                                  {status == "unauthenticated"
+                                    ? item.price.toLocaleString("vi", {
+                                        style: "currency",
+                                        currency: "VND",
+                                      })
+                                    : item.priceOld.toLocaleString("vi", {
+                                        style: "currency",
+                                        currency: "VND",
+                                      })}
+                                </span>
+                              </div>
                             </div>
                           </div>
                         </div>
-                      </div>
-                    </Link>
-                  ))}
-              </div>
+                      </Link>
+                    ))}
+                </div>
+              )}
             </div>
-            <div className="popular-searches  row mx-0">
+            {/* <div className="popular-searches  row mx-0">
               <div className="col-12 py-2">
                 <span className="name-category-first-research d-flex align-items-center">
                   <Image
@@ -168,7 +173,7 @@ const SearchProduct = ({}) => {
                     ))}
                 </div>
               </div>
-            </div>
+            </div> */}
           </div>
         )}
       </div>

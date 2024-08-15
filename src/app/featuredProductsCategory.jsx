@@ -4,13 +4,27 @@ import { GrNext } from "react-icons/gr";
 import ComponentSlideProduct from "../components/componentSlideProduct";
 import { hostImage } from "./lib/config";
 import Image from "next/image";
+import { Breadcrumb } from "antd";
 const FeaturedProductsCategory = ({ item }) => {
   return (
     <div className="container_featured_products_category row mx-1">
       <div className="col-12 px-3 mb-1 d-flex justify-content-between align-items-center text-light">
-        <span className="related-product">
-          DANH MỤC {item.Category.toUpperCase()}
-        </span>
+        <div className="box_categories_homepage">
+          <span className="related-product">{item.Category.toUpperCase()}</span>
+          <Breadcrumb
+            className="box_breadcrumb_antd"
+            items={item?.CateChild?.map((itemCate, idxCate) => {
+              return {
+                key: idxCate, // Thêm key duy nhất cho mỗi mục
+                title: (
+                  <Link href={`/category/${itemCate.friendly_url}`}>
+                    {itemCate.cat_name} {/* Hiển thị tiêu đề của danh mục */}
+                  </Link>
+                ),
+              };
+            })}
+          />
+        </div>
 
         <Link href={"/category/" + item.CatUrl}>
           <div className="text_show_more_category d-flex align-items-center">
