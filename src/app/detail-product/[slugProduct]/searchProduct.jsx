@@ -77,8 +77,11 @@ const SearchProduct = ({}) => {
           size="large"
         />
         {statusSearch && (
-          <div className="box-content-search">
-            <div className={`  "category-sale" } row mx-0`}>
+          <div
+            onMouseLeave={() => setStatusSearch(false)}
+            className="box-content-search"
+          >
+            <div className={`    row mx-0`}>
               <div className="col-12 py-2">
                 <span className="name-category-first-research">
                   {" "}

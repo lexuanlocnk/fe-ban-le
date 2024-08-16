@@ -1,16 +1,40 @@
-import React from "react";
+import React, { useEffect, useState } from "react";
 import Link from "next/link";
+import { hostApi } from "../../lib/config";
 
 const SuggestedProducts = () => {
-  const categories = ["Laptop HP", "Máy tính", "RAM DDR5", "RAM DDR4", "HPE"];
+  const [dataCategoriesHeader, setDataCategoriesHeader] = useState();
+
+  const categoriesHeader = async () => {
+    try {
+      const response = await fetch(`${hostApi}/member/show-category-header`, {
+        method: "GET",
+      });
+      if (!response.ok) {
+        throw new Error("Network response was not ok");
+      }
+      const data = await response.json();
+      setDataCategoriesHeader(data.data);
+    } catch (error) {
+      console.error("Fetch error:", error);
+    }
+  };
+
+  useEffect(() => {
+    categoriesHeader();
+  }, []);
 
   return (
     <>
-      {categories &&
-        categories.map((category, index) => (
-          <Link className="suggest-product   " key={index} href="">
-            {category}
-          </Link> // Sử dụng Link từ antd
+      {dataCategoriesHeader &&
+        dataCategoriesHeader.map((category, index) => (
+          <Link
+            className="suggest-product   "
+            key={category?.CatId}
+            href={`/category/${category.CatUrl}`}
+          >
+            {category?.Category}
+          </Link> //
         ))}
     </>
   );
