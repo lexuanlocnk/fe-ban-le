@@ -12,11 +12,11 @@ function ComponentSlideProduct({ dataProducts }) {
         breakpoints={{
           320: {
             slidesPerView: 2,
-            spaceBetween: 10,
+            spaceBetween: 0,
           },
           480: {
             slidesPerView: 2,
-            spaceBetween: 30,
+            spaceBetween: 0,
           },
 
           768: {

@@ -5,23 +5,23 @@ import "swiper/css/navigation";
 import { Swiper, SwiperSlide } from "swiper/react";
 import ComponentCardProductMain from "../components/componentCardProductMain";
 
-function  SlideTopProducts({ dataTopProducts }) {
+function SlideTopProducts({ dataTopProducts }) {
   return (
     <div className="px-3">
       <Swiper
         breakpoints={{
           320: {
             slidesPerView: 2,
-            spaceBetween: 10,
+            spaceBetween: 0,
           },
           480: {
             slidesPerView: 2,
-            spaceBetween: 30,
+            spaceBetween: 0,
           },
 
           768: {
             slidesPerView: 3,
-            spaceBetween: 10,
+            spaceBetween: 0,
           },
           1280: {
             slidesPerView: 5,

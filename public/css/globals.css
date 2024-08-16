@@ -87,7 +87,6 @@
   width: 20%;
 }
 
-
 @media only screen and (min-width: 1000px) {
   .col-md-custom-3 {
     flex: 0 0 auto;
@@ -252,8 +251,7 @@
 }
 
 .content-header-detail {
-  padding-top: 15px !important;
-  padding-bottom: 15px !important;
+  padding: 15px 5px !important;
   min-height: 102px;
 }
 
@@ -1638,7 +1636,7 @@ footer {
 
   .name_card_product_basic span {
     line-height: 21px !important;
-    font-size: 18px !important;
+    font-size: 15px !important;
   }
 
   .price_discount_card_product_basic span {
@@ -1646,7 +1644,7 @@ footer {
   }
 
   .btn_add_product_cart_basic {
-    font-size: 11px !important;
+    font-size: 12px !important;
   }
 
   .text_item_menu {
@@ -1746,7 +1744,7 @@ footer {
   }
 
   .content-header-detail {
-    padding: 0px 5px !important;
+    padding: 5px !important;
   }
 
   .box_menu_header {
@@ -1800,7 +1798,6 @@ footer {
 
 /* Tablet */
 @media only screen and (min-width: 768px) and (max-width: 1024px) {
-
   .box_container_products_promotion,
   .container_img_news_sale,
   .box_banner_swiper_menu_category,

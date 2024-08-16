@@ -179,57 +179,60 @@ const ModalAccessory = ({
         <div className="filter_sorted  ">
           <div className="box_sorted">
             <span className="title_sort">Sắp xếp theo</span>
+            <div className="item_sort_container">
+              <span
+                className={`item_sort ${
+                  valueOptionFilter &&
+                  valueOptionFilter.bestSeller &&
+                  "border_active"
+                }`}
+                onClick={() => handleSetValueOptionFilter("bestSeller", "Desc")}
+              >
+                Bán chạy
+                {valueOptionFilter && valueOptionFilter.bestSeller && (
+                  <Fragment>
+                    <div className="bg_swoosh"></div>
+                    <FaCheck className="icon_swoosh" />
+                  </Fragment>
+                )}
+              </span>
 
-            <span
-              className={`item_sort ${
-                valueOptionFilter &&
-                valueOptionFilter.bestSeller &&
-                "border_active"
-              }`}
-              onClick={() => handleSetValueOptionFilter("bestSeller", "Desc")}
-            >
-              Bán chạy
-              {valueOptionFilter && valueOptionFilter.bestSeller && (
-                <Fragment>
-                  <div className="bg_swoosh"></div>
-                  <FaCheck className="icon_swoosh" />
-                </Fragment>
-              )}
-            </span>
+              <span
+                className={`item_sort ${
+                  valueOptionFilter &&
+                  valueOptionFilter.bestSeller &&
+                  "border_active"
+                }`}
+                onClick={() =>
+                  handleSetValueOptionFilter("priceIncreases", true)
+                }
+              >
+                Gía tăng dần
+                {valueOptionFilter && valueOptionFilter.priceIncreases && (
+                  <Fragment>
+                    <div className="bg_swoosh"></div>
+                    <FaCheck className="icon_swoosh" />
+                  </Fragment>
+                )}
+              </span>
 
-            <span
-              className={`item_sort ${
-                valueOptionFilter &&
-                valueOptionFilter.bestSeller &&
-                "border_active"
-              }`}
-              onClick={() => handleSetValueOptionFilter("priceIncreases", true)}
-            >
-              Gía tăng dần
-              {valueOptionFilter && valueOptionFilter.priceIncreases && (
-                <Fragment>
-                  <div className="bg_swoosh"></div>
-                  <FaCheck className="icon_swoosh" />
-                </Fragment>
-              )}
-            </span>
-
-            <span
-              className={`item_sort ${
-                valueOptionFilter &&
-                valueOptionFilter.bestSeller &&
-                "border_active"
-              }`}
-              onClick={() => handleSetValueOptionFilter("priceReduced", true)}
-            >
-              {valueOptionFilter && valueOptionFilter.priceReduced && (
-                <Fragment>
-                  <div className="bg_swoosh"></div>
-                  <FaCheck className="icon_swoosh" />
-                </Fragment>
-              )}
-              Gía giảm dần
-            </span>
+              <span
+                className={`item_sort ${
+                  valueOptionFilter &&
+                  valueOptionFilter.bestSeller &&
+                  "border_active"
+                }`}
+                onClick={() => handleSetValueOptionFilter("priceReduced", true)}
+              >
+                {valueOptionFilter && valueOptionFilter.priceReduced && (
+                  <Fragment>
+                    <div className="bg_swoosh"></div>
+                    <FaCheck className="icon_swoosh" />
+                  </Fragment>
+                )}
+                Gía giảm dần
+              </span>
+            </div>
           </div>
           <Input
             onChange={(e) => searchConfig(e)}
@@ -245,7 +248,7 @@ const ModalAccessory = ({
             itemCart.productResult.map((item, index) => (
               <div key={index}>
                 <div className="item_products_accessory row mx-0">
-                  <div className="col-2">
+                  <div className="col-2 box_img_accessory_container">
                     <div className="box_img_accessory">
                       <Image
                         src={hostImage + item.Picture}
@@ -256,7 +259,7 @@ const ModalAccessory = ({
                       />
                     </div>
                   </div>
-                  <div className="col-7">
+                  <div className="col-7 name_accessory_choosing_button">
                     <div className="name_accessory">
                       <span>{item.ProductName}</span>
                     </div>
@@ -270,36 +273,35 @@ const ModalAccessory = ({
                         </span>
                       </div>
                     </div>
-                  </div>
+                    <div className="col-3 d-flex justify-content-between align-items-center price_and_choosing_label">
+                      <div>
+                        <div className="price_sale_accessory">
+                          <span>
+                            {status === "unauthenticated"
+                              ? // Đoạn mã khi không xác thực
+                                item.Price.toLocaleString("vi", {
+                                  style: "currency",
+                                  currency: "VND",
+                                })
+                              : // Đoạn mã khi đã xác thực
+                              status === "loading"
+                              ? "Đang cập nhật"
+                              : item.PriceOld.toLocaleString("vi", {
+                                  style: "currency",
+                                  currency: "VND",
+                                })}
+                          </span>
+                        </div>
 
-                  <div className="col-3 d-flex justify-content-between align-items-center">
-                    <div>
-                      <div className="price_sale_accessory">
-                        <span>
-                          {status === "unauthenticated"
-                            ? // Đoạn mã khi không xác thực
-                              item.Price.toLocaleString("vi", {
-                                style: "currency",
-                                currency: "VND",
-                              })
-                            : // Đoạn mã khi đã xác thực
-                            status === "loading"
-                            ? "Đang cập nhật"
-                            : item.PriceOld.toLocaleString("vi", {
-                                style: "currency",
-                                currency: "VND",
-                              })}
-                        </span>
+                        <div className="price_accessory"></div>
                       </div>
 
-                      <div className="price_accessory"></div>
-                    </div>
-
-                    <div
-                      className="btn_choose_accessory"
-                      onClick={() => chooseAccessory(item)}
-                    >
-                      <span>Chọn</span>
+                      <div
+                        className="btn_choose_accessory"
+                        onClick={() => chooseAccessory(item)}
+                      >
+                        <span>Chọn</span>
+                      </div>
                     </div>
                   </div>
                 </div>{" "}
