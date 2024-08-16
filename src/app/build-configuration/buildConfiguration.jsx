@@ -85,7 +85,7 @@ const BuildConfiguration = ({ dataBuildPc }) => {
     <div className="box-container-content-category  ">
       <div className="in-box-container-content-category pt-1">
         <div className="row box-content-category mx-0">
-          <div className="col-12 ">
+          <div className="col-12 build-configuration-header">
             <Breadcrumb nameItem={"Xây dựng cấu hình"} />
           </div>
           <div className="my-2 col-8">

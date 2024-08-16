@@ -31,7 +31,10 @@ const MobileFilterProduct = ({ searchParams, dataProperties }) => {
             <FilterProducts
               searchParams={searchParams}
               dataProperties={dataProperties}
-            />
+            ></FilterProducts>
+            <div className="mobile_close_button">
+              <button onClick={() => setIsFiltered(!isFilered)}>Đóng</button>
+            </div>
           </div>
         </div>
       )}
