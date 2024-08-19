@@ -693,7 +693,6 @@
   .mobile_container_swiper_banner_pr {
     padding: 0 20px !important;
   }
-
   .name_product_cart_hover {
     font-size: 14px !important;
   }
@@ -1253,6 +1252,7 @@
 .box_categories_homepage {
   display: flex;
   gap: 10px;
+  margin-right: 5px;
 }
 
 .box_categories_homepage .ant-breadcrumb-link a {
