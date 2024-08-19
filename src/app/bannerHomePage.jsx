@@ -64,10 +64,9 @@ const BannerHomePage = ({ dataMenuCategories }) => {
 
   return (
     <div
-      style={{ height: "570px " }}
       className="container_menu_category_and_swiper position-relative"
     >
-      <div className="row container_banner_swiper_menu_category h-100">
+      <div className="row container_banner_swiper_menu_category">
         <div className="col-md-12 col-12 box_banner_swiper_menu_category">
           <div className="box_menu_category">
             <div className="box_content_menu_category">
@@ -132,14 +131,14 @@ const BannerHomePage = ({ dataMenuCategories }) => {
                 imageBanner.length > 0 &&
                 imageBanner.map((item, index) => (
                   <SwiperSlide key={index}>
-                    <div className="container_img_banner  w-100 h-100">
+                    <div className="container_img_banner">
                       <Image
                         quality={100}
                         height={0}
                         width={0}
                         sizes="100vw"
                         src={item.url}
-                        className="w-100 h-100 img_banner_genaral"
+                        className="img_banner_genaral"
                         alt="banner-image"
                       />
                     </div>
@@ -172,8 +171,9 @@ const BannerHomePage = ({ dataMenuCategories }) => {
                     alt={`image_${index}`}
                     src={item.url}
                     quality={100}
-                    width={300}
+                    width={0}
                     height={0}
+                    sizes="100vw"
                   />
                 </div>
               ))}
@@ -259,7 +259,10 @@ const BannerHomePage = ({ dataMenuCategories }) => {
                       className="item_swiper_slide_grid"
                       key={item.menu_id}
                     >
-                      <div className="mobile_item_category_menu">
+                      <Link
+                        className="mobile_item_category_menu"
+                        href={`/category/${item?.menu_desc?.link}`}
+                      >
                         <div className="mobile_img_category_menu_item">
                           <Image
                             height={75}
@@ -274,7 +277,7 @@ const BannerHomePage = ({ dataMenuCategories }) => {
                         >
                           {item?.menu_desc?.title}
                         </Link>
-                      </div>
+                      </Link>
                     </SwiperSlide>
                   ))}
               </Swiper>

@@ -163,52 +163,69 @@ const ModalCompareProducts = ({}) => {
                 addonAfter="₫"
               />
             </div>
-          </div>
 
-          <div className="col-md-5 col-12 mt-md-0 mt-1 px-md-2 px-0">
-            <Select
-              value={itemCompareTwo.value}
-              className="w-100 custom_antd_select"
-              showSearch
-              optionFilterProp="children"
-              filterOption={false}
-              onSearch={handleSearch}
-              placeholder="Tên sản phẩm"
-              options={dataSearchName}
-              notFoundContent={
-                loadingSelect.loadingNameCate ? <Spin size="small" /> : null
-              }
-              optionRender={(option) => (
-                <div
-                  onClick={() => handleSelectValue(option.data)}
-                  className="row mx-0 "
-                  key={option.data.productId}
-                >
-                  <div className="col-3 image box_image_select_antd  custom-select-antd-name">
-                    <img
-                      src={hostImage + option.data.picture}
-                      className="w-100 image_select_antd h-100"
-                    />
-                  </div>
-                  <div className="col-9 d-flex align-items-center">
-                    <div>
-                      <div className="name_select_compare">
-                        <span>{option.data.productName}</span>
-                      </div>
-                      <div className="box_price_select_compare">
-                        Giá chỉ:
-                        <span className="ms-1 price_select_compare">
-                          {option.data.price_old.toLocaleString("vi", {
-                            style: "currency",
-                            currency: "VND",
-                          })}
-                        </span>
+            <div className="col-md-4 col-6 px-md-2 px-0 box_price_filter_compare_container">
+              <div className="box_price_filter_compare">
+                <span className="text_compare_price">Giá từ</span>
+                <InputNumberPrice
+                  value={optionsFilter.priceMin}
+                  addonAfter="₫"
+                  onChange={updateOptionsFilter("priceMin")}
+                />
+                <span className="text_compare_price">Đến</span>
+                <InputNumberPrice
+                  value={optionsFilter.priceMax}
+                  onChange={updateOptionsFilter("priceMax")}
+                  addonAfter="₫"
+                />
+              </div>
+            </div>
+
+            <div className="compare_tool_name col-md-5 col-12 mt-md-0 mt-1 px-md-2 px-0">
+              <Select
+                value={itemCompareTwo.value}
+                className="w-100 custom_antd_select"
+                showSearch
+                optionFilterProp="children"
+                filterOption={false}
+                onSearch={handleSearch}
+                placeholder="Tên sản phẩm"
+                options={dataSearchName}
+                notFoundContent={
+                  loadingSelect.loadingNameCate ? <Spin size="small" /> : null
+                }
+                optionRender={(option) => (
+                  <div
+                    onClick={() => handleSelectValue(option.data)}
+                    className="row mx-0 "
+                    key={option.data.productId}
+                  >
+                    <div className="col-3 image box_image_select_antd  custom-select-antd-name">
+                      <img
+                        src={hostImage + option.data.picture}
+                        className="w-100 image_select_antd h-100"
+                      />
+                    </div>
+                    <div className="col-9 d-flex align-items-center">
+                      <div>
+                        <div className="name_select_compare">
+                          <span>{option.data.productName}</span>
+                        </div>
+                        <div className="box_price_select_compare">
+                          Giá chỉ:
+                          <span className="ms-1 price_select_compare">
+                            {option.data.price_old.toLocaleString("vi", {
+                              style: "currency",
+                              currency: "VND",
+                            })}
+                          </span>
+                        </div>
                       </div>
                     </div>
                   </div>
-                </div>
-              )}
-            />
+                )}
+              />
+            </div>
           </div>
           <div className="col-12 px-md-2 px-0">
             <div className="row mx-0 box_product_compare">
@@ -219,14 +236,13 @@ const ModalCompareProducts = ({}) => {
                 <div className="box_image_product_compare">
                   <div className="container_image_product_compare  image custom-product-selling">
                     <Image
-                      quality={75}
+                      quality={100}
                       height={0}
                       width={0}
                       sizes="100vw"
                       src={
                         hostImage + itemCompare.Image || "/image/macbook2.png"
                       }
-                      className="w-100 h-100"
                       alt={itemCompare.ProductName}
                     />
                   </div>
@@ -240,10 +256,7 @@ const ModalCompareProducts = ({}) => {
                     </div>
                     <div className="box_image_product_compare">
                       <div className="container_image_product_compare  image custom-product-selling">
-                        <img
-                          src={hostImage + itemCompareTwo.picture}
-                          className="w-100 h-100"
-                        />
+                        <img src={hostImage + itemCompareTwo.picture} />
                       </div>
                     </div>
                   </Fragment>

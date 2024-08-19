@@ -170,16 +170,16 @@ const InfoProduct = ({
   return (
     <>
       <div className="row container-content-detail-product ">
-        <div className="my-2">
+        <div className="my-2 box_breadcrumb_category_container">
           <Breadcrumb
             breadcrumbData={breadcrumbData}
             nameItem={dataProduct.ProductName}
           />
         </div>
 
-        <div className="col-md-9 col-12      ps-0 ">
+        <div className="col-md-9 col-12 ps-0 box_info_detail_product_container">
           <div className="row mx-0 box_info_detail_product bg-white">
-            <div className="col-5 px-0">
+            <div className="col-5 px-0 box_container_gallery_image">
               <GalleryImage
                 imageMain={dataProduct?.Image || ""}
                 listImages={
@@ -218,7 +218,7 @@ const InfoProduct = ({
                 </span>
               </div>
             </div>
-            <div className="col-7">
+            <div className="col-7 box_container_info_product">
               <div className="container_info_product">
                 <div className="box_name_product_detail">
                   <span>{dataProduct.ProductName}</span>

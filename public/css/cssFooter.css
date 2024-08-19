@@ -92,7 +92,13 @@
   color: #531dab;
   margin-left: 3px;
 }
-
+.footer_main_container {
+  width: 100%;
+}
+.container_footer {
+  padding-left: 5px;
+  padding-right: 5px;
+}
 .container_policy {
   padding: 5px 20px;
   border: 1px solid #c3d0fd;
@@ -160,9 +166,6 @@
     font-size: 12px;
     flex: 1;
   }
-  /* .container_policy .mx-0 {
-    justify-content: space-between;
-  } */
 }
 @media only screen and (min-width: 845px) and (max-width: 1024px) {
   .name_company {
@@ -210,7 +213,8 @@
     font-size: 14px !important;
   }
   .box_image_footer,
-  .keywords_hot, .container_policy {
+  .keywords_hot,
+  .container_policy {
     display: none;
   }
   .py-4 {
