@@ -78,25 +78,27 @@ const ItemConfiguration = ({
           return (
             <div className="item_accessory" key={index}>
               <div className="box_info_basic_accessory">
-                <div className="title_accessory">
-                  <span>{item.catName}</span>
-                </div>
-                <div className="icon_configuration">
-                  {accessory ? (
-                    <Image
-                      src={hostImage + accessory.Picture}
-                      alt={accessory.ProductName}
-                      width={70}
-                      height={70}
-                    />
-                  ) : (
-                    <Image
-                      src={hostImage + item.picture}
-                      alt={item.catName}
-                      width={70}
-                      height={70}
-                    />
-                  )}
+                <div className="title_accessory_and_img">
+                  <div className="title_accessory">
+                    <span>{item.catName}</span>
+                  </div>
+                  <div className="icon_configuration">
+                    {accessory ? (
+                      <Image
+                        src={hostImage + accessory.Picture}
+                        alt={accessory.ProductName}
+                        width={70}
+                        height={70}
+                      />
+                    ) : (
+                      <Image
+                        src={hostImage + item.picture}
+                        alt={item.catName}
+                        width={70}
+                        height={70}
+                      />
+                    )}
+                  </div>
                 </div>
                 {accessory ? (
                   <div className="box_basic_info_accessory ">

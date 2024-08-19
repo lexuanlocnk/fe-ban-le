@@ -21,7 +21,7 @@ export default function ComponentPagination({ data, pageSize, page }) {
   );
 
   return (
-    <div className="d-flex justify-content-end">
+    <div className="pagination_container d-flex justify-content-end">
       <Pagination
         // style={{ float: "right" }}
         // showSizeChanger

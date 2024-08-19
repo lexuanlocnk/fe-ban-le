@@ -26,12 +26,13 @@ const CardItemCard = ({
             value={item}
           />
         </div>
-        <div className=" w-100 row">
+        <div className=" w-100 row product_info_container">
           <div className="col-lg-10 box_name_img_product_cart col-10 ">
             <div className="box_img_product_cart">
               <Image
-                width={130}
-                height={100}
+                width={0}
+                height={0}
+                sizes="100vw"
                 alt={item.ProductName}
                 src={hostImage + item.Image}
                 className="img_product_cart "
@@ -68,60 +69,58 @@ const CardItemCard = ({
               </div>
             </div>
           </div>
-          <div className="col-lg-2 col-2 flex-column d-flex align-items-end flex-column justify-content-between  ">
-            <Popconfirm
-              onConfirm={() => handleRemoveProduct(item)}
-              okText="Chắc chắn"
-              cancelText="Hủy"
-              title="Xác nhận"
-              description={"Bạn có chắc muốn xóa sản phẩm ra khỏi giỏ hàng"}
-              icon={
-                <QuestionCircleOutlined
-                  style={{
-                    color: "red",
-                  }}
-                />
-              }
-            >
-              <div className="box_icon_trash">
-                <FaRegTrashCan />
-              </div>
-            </Popconfirm>
+          <Popconfirm
+            onConfirm={() => handleRemoveProduct(item)}
+            okText="Chắc chắn"
+            cancelText="Hủy"
+            title="Xác nhận"
+            description={"Bạn có chắc muốn xóa sản phẩm ra khỏi giỏ hàng"}
+            icon={
+              <QuestionCircleOutlined
+                style={{
+                  color: "red",
+                }}
+              />
+            }
+          >
+            <div className="box_icon_trash">
+              <FaRegTrashCan />
+            </div>
+          </Popconfirm>
 
-            <div className="box_up_down_quantity">
-              {item.quantity && item.quantity > 1 ? (
-                <div
-                  className="box_up_quantity"
-                  onClick={() =>
-                    handleDownQuantity({ ...item, quantity: item.quantity - 1 })
-                  }
-                >
-                  <span className="btn_up_quantity">
-                    <FaMinus />
-                  </span>
-                </div>
-              ) : (
-                <div className="box_up_quantity btn_disabled_minus">
-                  <span className="btn_up_quantity">
-                    <FaMinus />
-                  </span>
-                </div>
-              )}
-
-              <div className="box_quantity">
-                <span className="quantity">{item.quantity}</span>
-              </div>
-
+          <div className="box_up_down_quantity">
+            {item.quantity && item.quantity > 1 ? (
               <div
-                className="box_down_quantity"
+                className="box_up_quantity"
                 onClick={() =>
-                  handleUpQuantity({ ...item, quantity: item.quantity + 1 })
+                  handleDownQuantity({ ...item, quantity: item.quantity - 1 })
                 }
               >
-                <span className="btn_down_quantity">
-                  <FaPlus />
+                <span className="btn_up_quantity">
+                  <FaMinus />
                 </span>
               </div>
+            ) : (
+              <div className="box_up_quantity btn_disabled_minus">
+                <span className="btn_up_quantity">
+                  <FaMinus />
+                </span>
+              </div>
+            )}
+
+            <div className="box_quantity">
+              <span className="quantity">{item.quantity}</span>
+            </div>
+
+            <div
+              className="box_down_quantity"
+              onClick={() =>
+                handleUpQuantity({ ...item, quantity: item.quantity + 1 })
+              }
+            >
+              <span className="btn_down_quantity">
+                <FaPlus />
+              </span>
             </div>
           </div>
 

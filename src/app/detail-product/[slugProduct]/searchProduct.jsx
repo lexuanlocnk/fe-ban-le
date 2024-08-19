@@ -98,9 +98,9 @@ const SearchProduct = ({}) => {
                     dataSearchProducts?.length > 0 &&
                     dataSearchProducts.map((item, index) => (
                       <Link href={`detail-product/${item.friendLyUrl}`}>
-                        <div className="col-12 px-4 py-2 " key={index}>
+                        <div className="col-12 px-4 py-2 box_cart_product_search" key={index}>
                           <div className="row mx-0 card_product_search">
-                            <div className="col-3">
+                            <div className="col-3 box_img_card_product_search_container">
                               <div className="box_img_card_product_search">
                                 <Image
                                   src={hostImage + item.picture}
@@ -110,7 +110,7 @@ const SearchProduct = ({}) => {
                                 />
                               </div>
                             </div>
-                            <div className="col-9">
+                            <div className="col-9 box_name_price_product_search_container">
                               <div className="box_name_price_product_search">
                                 <span className="name_product_search">
                                   {item.productName}

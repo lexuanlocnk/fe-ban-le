@@ -8,7 +8,7 @@ import { Breadcrumb } from "antd";
 const FeaturedProductsCategory = ({ item }) => {
   return (
     <div className="container_featured_products_category row mx-1">
-      <div className="col-12 px-3 mb-1 d-flex justify-content-between align-items-center text-light">
+      <div className="col-12 px-3 mb-1 d-flex justify-content-between text-light">
         <div className="box_categories_homepage">
           <span className="related-product">{item.Category.toUpperCase()}</span>
           <Breadcrumb
@@ -38,8 +38,8 @@ const FeaturedProductsCategory = ({ item }) => {
         <div className="col-12">
           <div className="box_banner_category_product mb-3">
             <Image
-              quality={75}
-              height={100}
+              quality={100}
+              height={0}
               width={0}
               sizes="100vw"
               src={hostImage + item?.Banner[0]?.picture}

@@ -40,7 +40,7 @@ const SortProduct = ({ getValueParams }) => {
   ];
 
   return (
-    <div className="  box_sort_product bg-white mt-2 ">
+    <div className="  box_sort_product bg-white mt-2 custom_scroll">
       <div className="main_content_sort_product">
         <div className="box_sort_container">
           <div className="box_title_sort_product">
