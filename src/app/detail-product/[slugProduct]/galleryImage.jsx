@@ -7,6 +7,12 @@ import Lightbox from "yet-another-react-lightbox";
 import Thumbnails from "yet-another-react-lightbox/plugins/thumbnails";
 import "yet-another-react-lightbox/plugins/thumbnails.css";
 import "yet-another-react-lightbox/styles.css";
+import { Swiper, SwiperSlide } from "swiper/react";
+import "swiper/css";
+import "swiper/css/navigation";
+import "swiper/css/pagination";
+import "swiper/css/scrollbar";
+import { Navigation, Pagination } from "swiper/modules";
 
 const GalleryImage = ({ imageMain, listImages }) => {
   const [imageProductMain, setImageProductMain] = useState({
@@ -38,13 +44,46 @@ const GalleryImage = ({ imageMain, listImages }) => {
 
   return (
     <div className="container_gallery_image">
+      <div className="mobile_container_image_main">
+        <Swiper
+          navigation={true}
+          loop={true}
+          pagination={{
+            clickable: true,
+            type: "fraction",
+          }}
+          modules={[Pagination, Navigation]}
+          className="mobile_product_swiper"
+        >
+          {listImages &&
+            listImages.length > 0 &&
+            listImages.map((image, index) => (
+              <SwiperSlide key={index}>
+                <div
+                  className="gallery_image"
+                  onClick={() => handleImageClick(index)}
+                >
+                  <Image
+                    quality={100}
+                    width={0}
+                    height={0}
+                    sizes="100vw"
+                    src={hostImage + image.picture}
+                    alt="image_main"
+                  />
+                </div>
+              </SwiperSlide>
+            ))}
+        </Swiper>
+      </div>
       <div className="container_image_main">
         <div className="box_image_main" onClick={() => handleImageClick(0)}>
           <Image
             src={hostImage + imageProductMain.src}
             alt="image_main"
-            width={370}
-            height={320}
+            width={0}
+            height={0}
+            sizes="100vw"
             quality={100}
           />
         </div>

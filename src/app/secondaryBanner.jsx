@@ -12,7 +12,7 @@ const SecondaryBanner = () => {
   ]);
 
   return (
-    <div className="row mx-2">
+    <div className="row mx-2 ">
       {imageBanner &&
         imageBanner.length > 0 &&
         imageBanner.map((item, index) => (

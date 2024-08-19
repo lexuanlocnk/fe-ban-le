@@ -50,8 +50,10 @@ const CardProductPay = ({ item, status, formOrder }) => {
           <div className="box_product_checked  ">
             <div className="box_image_product_checked">
               <Image
-                width={80}
-                height={75}
+                quality={100}
+                width={0}
+                height={0}
+                sizes="100vw"
                 alt={item.ProductName}
                 src={hostImage + item.Image}
               />

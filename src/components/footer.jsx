@@ -29,7 +29,7 @@ const Footer = () => {
     { id: 20, keyword: "phần mềm diệt virus" },
   ];
   return (
-    <footer className="py-4">
+    <footer className="py-4 footer_main_container">
       <div id="main_footer" className="footer_main">
         <div className="container_footer row">
           <div className="col-12 container_policy ">

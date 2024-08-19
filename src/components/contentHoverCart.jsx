@@ -28,8 +28,9 @@ const ContentHoverCart = ({ dataCart, total, status, dispatch }) => {
                     <div className="box_image_item_product_cart_hover">
                       <Image
                         quality={100}
-                        height={70}
-                        width={70}
+                        height={0}
+                        width={0}
+                        sizes="100vw"
                         src={
                           hostImage + (item.Image ? item.Image : item.Picture)
                         }

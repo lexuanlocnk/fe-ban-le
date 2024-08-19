@@ -32,7 +32,7 @@ const ContentCategory = ({
               dataProperties={dataProperties}
             />
           </div>
-          <div className="col-12 col-lg-9 mb-3">
+          <div className="col-12 col-lg-9 mb-3 standar_category_container">
             <StandardCategoryProduct
               totalProduct={dataProducts.total}
               nameCategory={dataProperties.nameCategory}
@@ -42,12 +42,12 @@ const ContentCategory = ({
             <SortProduct getValueParams={searchParams} />
             <ProductCategory page={page} dataProducts={dataProducts} />
           </div>
-          <div className="col-12 mb-3 ">
+          <div className="col-12 mb-3 banner_category_container">
             <div className="banner_category bg-white">
               <SecondaryBanner />
             </div>
           </div>
-          <div className="col-12 mb-3 ">
+          {/* <div className="col-12 mb-3 "> */}
             {/* <div className="box_products_seen bg-white">
               <div className="text_product_seen mb-1">
                 <span>Sản phẩm đã xem</span>
@@ -61,8 +61,8 @@ const ContentCategory = ({
                 />
               </div>
             </div> */}
-          </div>
-          <div className="col-12 mb-3">
+          {/* </div> */}
+          <div className="col-12 mb-3 post_category_container">
             <PostCategory />
           </div>
         </div>

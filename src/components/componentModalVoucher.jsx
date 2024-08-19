@@ -184,7 +184,7 @@ const ComponentModalVoucher = ({
                           <div className="col-2 box-img-voucher">
                             <FiGift className="icon_voucher" />
                           </div>
-                          <div className="col-10 d-flex justify-content-between align-items-center">
+                          <div className="col-10 d-flex justify-content-between align-items-center box_voucher_info">
                             <div>
                               <div className="name_voucher">
                                 <Tag color="geekblue">
