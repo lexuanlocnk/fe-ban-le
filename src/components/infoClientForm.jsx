@@ -1,6 +1,7 @@
 "use client";
 import { Form, Input, Radio, Space } from "antd";
-import InputNumberAntd from "../components/inputNumberAntd";
+// import InputNumberAntd from "../components/inputNumberAntd";
+import ComponentNumberPhoneForm from "./componentNumberPhoneForm";
 
 const InfoClientForm = ({ nameEmail, nameFull, numberPhone, nameGender }) => {
   return (
@@ -16,12 +17,12 @@ const InfoClientForm = ({ nameEmail, nameFull, numberPhone, nameGender }) => {
         ]}
       >
         <Radio.Group>
-          <Radio value="anh" className="position-relative">
+          <Radio value="male" className="position-relative">
             {" "}
             Anh
           </Radio>
 
-          <Radio value="chị" className="position-relative">
+          <Radio value="female" className="position-relative">
             Chị
           </Radio>
         </Radio.Group>
@@ -62,13 +63,14 @@ const InfoClientForm = ({ nameEmail, nameFull, numberPhone, nameGender }) => {
               required: true,
               message: "Hãy nhập số điện thoại!",
             },
+            {
+              pattern: /^0\d{9}$/,
+              message: "Số điện thoại không đúng định dạng!",
+            },
           ]}
           name={numberPhone}
         >
-          <InputNumberAntd
-            addonBefore="Số điện thoại"
-            placeholder={"Nhập số điện thoại"}
-          />
+          <ComponentNumberPhoneForm />
         </Form.Item>
       </Space>
     </>

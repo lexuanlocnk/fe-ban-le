@@ -1,7 +1,7 @@
 import Image from "next/image";
 import React from "react";
 
-const ContactCard = ({ name, email, phone, skype }) => (
+const ContactCard = ({ name, email, phone }) => (
   <div className="contact-card">
     <span className="name_staff">{name}</span>
     <a href={`mailto:${email}`}>
@@ -20,7 +20,7 @@ const ContactCard = ({ name, email, phone, skype }) => (
         height={25}
         alt="Số điện thoại"
       />{" "}
-      {phone}
+      {phone.replace(/(\d{4})(\d{3})(\d{3})/, "$1.$2.$3")}
     </a>
 
     <a
@@ -35,7 +35,7 @@ const ContactCard = ({ name, email, phone, skype }) => (
         height={25}
         alt="Số điện thoại"
       />{" "}
-      Tư vấn Zalo: 0912.246.137
+      Tư vấn Zalo: {phone.replace(/(\d{4})(\d{3})(\d{3})/, "$1.$2.$3")}
     </a>
   </div>
 );

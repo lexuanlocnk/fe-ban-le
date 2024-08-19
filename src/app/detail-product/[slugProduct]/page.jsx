@@ -96,6 +96,7 @@ const HomePage = async ({ params }) => {
         dataProductsCompare={dataProductsCompare}
         dataGiftProduct={dataProduct}
         dataProduct={dataProduct?.productDetail}
+        comments={dataProduct?.commentProductId}
         params={params.slugProduct}
       />
 

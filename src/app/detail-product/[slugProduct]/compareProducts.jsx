@@ -53,19 +53,10 @@ const CompareProducts = ({ dataProductsCompare, status }) => {
               <th className="product-comparison-th" key={index}>
                 <Link href={"/detail-product/" + item.friendlyUrl}>
                   <h5 className="price_detail_product text-center">
-                    {status === "unauthenticated"
-                      ? // Đoạn mã khi không xác thực
-                        item.price.toLocaleString("vi", {
-                          style: "currency",
-                          currency: "VND",
-                        })
-                      : // Đoạn mã khi đã xác thực
-                      status === "loading"
-                      ? "Đang cập nhật"
-                      : item.priceOld.toLocaleString("vi", {
-                          style: "currency",
-                          currency: "VND",
-                        })}
+                    {item.priceOld.toLocaleString("vi", {
+                      style: "currency",
+                      currency: "VND",
+                    })}
                   </h5>
                 </Link>
               </th>

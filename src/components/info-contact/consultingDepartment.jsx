@@ -8,10 +8,10 @@ const ContactSection = ({ title, contacts, bgColor }) => (
     {contacts.map((contact, index) => (
       <ContactCard
         key={index}
-        name={contact.name}
+        name={contact.title}
         email={contact.email}
         phone={contact.phone}
-        skype={contact.skype}
+        // skype={contact.skype}
       />
     ))}
   </section>

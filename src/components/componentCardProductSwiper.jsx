@@ -86,13 +86,13 @@ const ComponentCardProductSwiper = ({ item }) => {
           <div className="box-price-selling-product color-product-selling  d-flex align-items-center justify-content-between cursor-pointer">
             <div className="box_price_card_swiper">
               <span>
-                {item.PriceOld.toLocaleString("vi", {
+                {item?.PriceOld?.toLocaleString("vi", {
                   style: "currency",
                   currency: "VND",
                 })}
               </span>
               <s>
-                {item.Price.toLocaleString("vi", {
+                {item?.Price?.toLocaleString("vi", {
                   style: "currency",
                   currency: "VND",
                 })}

@@ -12,8 +12,11 @@ import { UseAppContext } from "../lib/appProvider";
 import Link from "next/link";
 import { useCallback, useEffect } from "react";
 import { hostApi } from "../lib/config";
+import { useSession } from "next-auth/react";
 
-const InfoHeader = ({ status, data }) => {
+const InfoHeader = () => {
+  const { data, status } = useSession();
+
   const {
     dispatch,
     stateCart: { products, total, productNotAccount },
@@ -68,77 +71,90 @@ const InfoHeader = ({ status, data }) => {
     );
 
   return (
-    <div className="box_menu_header col-md-5 col-12 py-1  ">
-      {status && status == "loading" ? (
-        <div
-          className={`item_menu_header ${
-            status == "loading" ? "skeleton" : ""
-          }`}
-        >
+    <>
+      {status == "loading" ? (
+        <div className="col-md-5  box_skeleton_info_header">
           <Skeleton
-            avatar
-            paragraph={{
-              rows: 3,
-            }}
-            size={"small"}
             active
-            className=""
+            paragraph={{
+              rows: 4,
+            }}
           />
         </div>
-      ) : status === "unauthenticated" ? (
-        <div className="item_property_header">
-          <Link href={"/login"}>
-            <div className="item_menu_header">
-              <UserOutlined className="icon_item_menu" />
-              <span className="text_item_menu">Đăng nhập</span>
-            </div>
-          </Link>
-        </div>
       ) : (
-        <div className="item_property_header">
-          <Popover
-            className="item_menu_header"
-            placement="bottomRight"
-            content={contentAccount}
-          >
-            <UserOutlined className="icon_item_menu" />
-            <span className="text_item_menu">
-              Chào bạn{" "}
-              {data?.user?.full_name?.split(" ").pop() ||
-                data?.user?.username?.split(" ").pop()}
-            </span>
-          </Popover>
+        <div className="box_menu_header col-md-5 col-12 py-1  ">
+          {status && status == "loading" ? (
+            <div
+              className={`item_menu_header ${
+                status == "loading" ? "skeleton" : ""
+              }`}
+            >
+              <Skeleton
+                avatar
+                paragraph={{
+                  rows: 3,
+                }}
+                size={"small"}
+                active
+                className=""
+              />
+            </div>
+          ) : status === "unauthenticated" ? (
+            <div className="item_property_header">
+              <Link href={"/login"}>
+                <div className="item_menu_header">
+                  <UserOutlined className="icon_item_menu" />
+                  <span className="text_item_menu">Đăng nhập</span>
+                </div>
+              </Link>
+            </div>
+          ) : (
+            <div className="item_property_header">
+              <Popover
+                className="item_menu_header"
+                placement="bottomRight"
+                content={contentAccount}
+              >
+                <UserOutlined className="icon_item_menu" />
+                <span className="text_item_menu">
+                  Chào bạn{" "}
+                  {data?.user?.full_name?.split(" ").pop() ||
+                    data?.user?.username?.split(" ").pop()}
+                </span>
+              </Popover>
+            </div>
+          )}
+
+          <div className="item_property_header">
+            <Popover
+              className="item_menu_header"
+              placement="bottomRight"
+              content={contentNotifications}
+            >
+              <BellOutlined className="icon_item_menu" />
+              <span className="text_item_menu">Thông báo</span>
+            </Popover>
+          </div>
+
+          <div className="item_property_header">
+            <Popover
+              className="item_menu_header"
+              placement="bottomRight"
+              content={contentCart}
+            >
+              <ShoppingCartOutlined className="icon_item_menu" />
+              <span className="text_item_menu">
+                {status === "loading"
+                  ? `Đang cập nhật`
+                  : status === "unauthenticated"
+                  ? `Giỏ hàng: ${productNotAccount?.length} sản phẩm`
+                  : `Giỏ hàng: ${products?.length} sản phẩm`}
+              </span>
+            </Popover>
+          </div>
         </div>
       )}
-
-      <div className="item_property_header">
-        <Popover
-          className="item_menu_header"
-          placement="bottomRight"
-          content={contentNotifications}
-        >
-          <BellOutlined className="icon_item_menu" />
-          <span className="text_item_menu">Thông báo</span>
-        </Popover>
-      </div>
-
-      <div className="item_property_header">
-        <Popover
-          className="item_menu_header"
-          placement="bottomRight"
-          content={contentCart}
-        >
-          <ShoppingCartOutlined className="icon_item_menu" />
-          <span className="text_item_menu">
-            {status === "loading"
-              ? `Đang cập nhật`
-              : status === "unauthenticated"
-              ? `Giỏ hàng: ${productNotAccount?.length} sản phẩm`
-              : `Giỏ hàng: ${products?.length} sản phẩm`}
-          </span>
-        </Popover>
-      </div>
-    </div>
+    </>
   );
 };
 

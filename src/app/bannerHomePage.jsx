@@ -4,7 +4,7 @@ import React, { useState } from "react";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
 import "swiper/css/navigation";
-import 'swiper/css/grid';
+import "swiper/css/grid";
 import "swiper/css/pagination";
 import "swiper/css/autoplay";
 import "swiper/css/grid";
@@ -71,52 +71,46 @@ const BannerHomePage = ({ dataMenuCategories }) => {
         <div className="col-md-12 col-12 box_banner_swiper_menu_category">
           <div className="box_menu_category">
             <div className="box_content_menu_category">
-              {dataMenuCategories &&
-                dataMenuCategories.length > 0 &&
-                dataMenuCategories.map((item, index) => (
+              {dataMenuCategories?.length > 0 &&
+                dataMenuCategories.map((item) => (
                   <div className="item_category_menu" key={item.menu_id}>
                     <Link
                       className="text_category_menu"
-                      href={`/category/${item?.menu_desc?.link}`}
+                      href={`/category/${item.menu_desc?.link}`}
                     >
-                      {item?.menu_desc?.title}
+                      {item.menu_desc?.title}
                     </Link>
 
                     <div className="box_menu_categories_children">
-                      {item?.parenty?.map((i) => {
-                        return (
-                          <div key={i.menu_id} className="box_full_sub_menu ">
-                            <Link
-                              title={i.menu_desc.title}
-                              href=""
-                              className="text_sub_category_menu "
-                            >
-                              {i.menu_desc.title}
-                            </Link>
+                      {item.parenty?.map((i) => (
+                        <div key={i.menu_id} className="box_full_sub_menu">
+                          <Link
+                            title={i.menu_desc.title}
+                            href=""
+                            className="text_sub_category_menu"
+                          >
+                            {i.menu_desc.title}
+                          </Link>
 
-                            <div className="mt-3">
-                              {i.parentx
-                                .filter((item) => item.menu_desc.link != "#")
-                                .map((i2, index) => {
-                                  return (
-                                    <div
-                                      key={index}
-                                      className="box_value_menu_sub "
-                                    >
-                                      <Link
-                                        title={i2.menu_desc.title}
-                                        href={`/category/${i2.menu_desc.link}`}
-                                        className=" "
-                                      >
-                                        {i2.menu_desc.title}
-                                      </Link>
-                                    </div>
-                                  );
-                                })}
-                            </div>
+                          <div className="mt-3">
+                            {i.parentx
+                              .filter((i2) => i2.menu_desc.link !== "#")
+                              .map((i2) => (
+                                <div
+                                  key={i2.menu_id}
+                                  className="box_value_menu_sub"
+                                >
+                                  <Link
+                                    title={i2.menu_desc.title}
+                                    href={`/category/${i2.menu_desc.link}`}
+                                  >
+                                    {i2.menu_desc.title}
+                                  </Link>
+                                </div>
+                              ))}
                           </div>
-                        );
-                      })}
+                        </div>
+                      ))}
                     </div>
                   </div>
                 ))}

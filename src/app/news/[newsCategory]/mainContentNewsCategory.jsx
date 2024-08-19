@@ -114,7 +114,7 @@ const MainContentNewsCategory = async ({ page }) => {
         )}
       </div>
 
-      {dataNewsPromotion && dataNewsPromotion.length > 8 && (
+      {dataNewsPromotion && dataNewsPromotion.total > 8 && (
         <div className="col-12 ">
           {" "}
           <ComponentPagination pageSize={8} data={dataNewsPromotion} />{" "}

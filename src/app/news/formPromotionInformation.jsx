@@ -35,8 +35,8 @@ const FormPromotionInformation = () => {
             >
               <Form.Item className="mb-0" name="gender">
                 <Radio.Group onChange={onChangeRatio} value={valueRatio}>
-                  <Radio value="anh"> Anh </Radio>
-                  <Radio value="chị"> Chị </Radio>
+                  <Radio value="male"> Anh </Radio>
+                  <Radio value="female"> Chị </Radio>
                 </Radio.Group>
               </Form.Item>
 

@@ -16,6 +16,8 @@ const ModalCompareProducts = ({}) => {
     brand: "",
   };
   const { handleCancel, isModalOpen, itemCompare } = UseAppContext();
+  console.log("itemCompare itemCompare", itemCompare);
+
   const [brand, setBrand] = useState();
   const [optionsFilter, setOptionsFilter] = useState(initialOptionsFilter);
   const [urlCompare, setUrlCompare] = useState(
@@ -43,7 +45,7 @@ const ModalCompareProducts = ({}) => {
   const fetchDataBrand = async () => {
     try {
       const response = await fetch(
-        `${hostApi}/member/brand-list/${itemCompare.CatId}`,
+        `${hostApi}/member/brand-list/${itemCompare.ParentCatId}`,
         {
           method: "GET",
         }
@@ -52,7 +54,7 @@ const ModalCompareProducts = ({}) => {
         throw new Error("Network response was not ok");
       }
       const data = await response.json();
-      setBrand(data.listBrand);
+      setBrand(data);
     } catch (error) {
       console.error("Fetch error:", error);
     }
@@ -70,7 +72,7 @@ const ModalCompareProducts = ({}) => {
     try {
       const response = await fetch(
         `${hostApi}/member/compare-product-search?&key=${
-          itemCompare.CatId
+          itemCompare.ParentCatId
         }&brand=${optionsFilter.brand.id ?? ""}&priceMin=${
           optionsFilter.priceMin
         }&priceMax=${optionsFilter.priceMax}&search=${value}`,
@@ -123,7 +125,7 @@ const ModalCompareProducts = ({}) => {
             <Select
               className="w-100 custom_antd_select"
               showSearch
-              // value={optionsFilter.brand}
+              value={optionsFilter.brand.title}
               optionFilterProp="children"
               placeholder="Thương hiệu sản phẩm"
               options={brand}
@@ -139,7 +141,7 @@ const ModalCompareProducts = ({}) => {
                     />
                   </div>
                   <div className="col-7 name_brand">
-                    <span>{option.data.label}</span>
+                    <span>{option.data.title}</span>
                   </div>
                 </div>
               )}
@@ -261,6 +263,7 @@ const ModalCompareProducts = ({}) => {
             >
               {!(Object.keys(itemCompareTwo).length === 0) ? (
                 <Link
+                  onClick={handleCancel}
                   className="link_general"
                   href={`/compare-product${urlCompare}`}
                 >

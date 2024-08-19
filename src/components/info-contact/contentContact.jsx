@@ -1,47 +1,26 @@
+import { hostApi } from "../../app/lib/config";
 import ConsultingDepartment from "./consultingDepartment";
 
-const ContentContact = ({}) => {
-  const contactsOnlineShowroom = [
-    { name: "Ms. Ly", email: "ly.huynh@chinhnhan.vn", phone: "0967633904" },
-    {
-      name: "Mr. Khang",
-      email: "khang.tran@chinhnhan.vn",
-      phone: "0565678779",
-    },
-    { name: "Mr. Lộc", email: "loc.dang@chinhnhan.vn", phone: "0335979789" },
-    { name: "Ms. Minh", email: "minh.nguyen@chinhnhan.vn", phone: "036704291" },
-  ];
+async function fetchDataContact() {
+  try {
+    const response = await fetch(`${hostApi}/show-all-support`, {
+      method: "GET",
+    });
 
-  const contactsSMB = [
-    { name: "Ms. Hằng", email: "hang.to@chinhnhan.vn", phone: "0358955089" },
-    {
-      name: "Mr. Hưng",
-      email: "hung.nguyenquoc@chinhnhan.vn",
-      phone: "0779494294",
-    },
-    { name: "Mr. Nam", email: "nam.tat@chinhnhan.vn", phone: "0938808816" },
-    { name: "Mr. An", email: "an.nguyen@chinhnhan.vn", phone: "0938808831" },
-    { name: "Mr. Huệ", email: "hue.duong@chinhnhan.vn", phone: "0933808835" },
-  ];
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
 
-  const contactsDuAn = [
-    {
-      name: "Ms. Trân",
-      email: "tran.tranbao@chinhnhan.vn",
-      phone: "0931808146",
-    },
-    {
-      name: "Ms. Trâm",
-      email: "tram.nguyen@chinhnhan.vn",
-      phone: "0902429683",
-    },
-    { name: "Ms. Trang", email: "trang.ly@chinhnhan.vn", phone: "0938808960" },
-    { name: "Ms. Trân", email: "tran.tran@chinhnhan.vn", phone: "0933808847" },
-  ];
+    const data = await response.json();
 
-  const contactsCallCenter = [
-    { name: "Ms. Phượng", email: "cskh@chinhnhan.vn", phone: "0933808837" },
-  ];
+    return data.data;
+  } catch (error) {
+    console.error("Fetch error: ", error);
+  }
+}
+
+const ContentContact = async ({}) => {
+  const dataContact = await fetchDataContact();
 
   return (
     <div className="container_contact_header">
@@ -58,26 +37,16 @@ const ContentContact = ({}) => {
       </div>
 
       <div className="box_info_counselor">
-        <ConsultingDepartment
-          title="KD ONLINE/ SHOWROOM"
-          contacts={contactsOnlineShowroom}
-          bgColor="#ecf0f1"
-        />
-        <ConsultingDepartment
-          title="KD SMB"
-          contacts={contactsSMB}
-          bgColor="#ecf0f1"
-        />
-        <ConsultingDepartment
-          title="KD DỰ ÁN"
-          contacts={contactsDuAn}
-          bgColor="#ecf0f1"
-        />
-        <ConsultingDepartment
-          title="CALL CENTER"
-          contacts={contactsCallCenter}
-          bgColor="#ecf0f1"
-        />
+        {dataContact &&
+          Object.keys(dataContact).length > 0 &&
+          Object.entries(dataContact).map(([key, value]) => (
+            <ConsultingDepartment
+              key={key}
+              title={key}
+              contacts={value}
+              bgColor="#ecf0f1"
+            />
+          ))}
       </div>
     </div>
   );

@@ -11,6 +11,7 @@ const ContentDetailProduct = ({
   dataRelated,
   dataGiftProduct,
   breadcrumbData,
+  comments,
 }) => {
   return dataProduct ? (
     <div className="box-container-detail-product">
@@ -46,7 +47,10 @@ const ContentDetailProduct = ({
             </div>
           )}
 
-          <ProductReviews />
+          <ProductReviews
+            productId={dataProduct.ProductId}
+            comments={comments}
+          />
         </div>
       </div>
     </div>

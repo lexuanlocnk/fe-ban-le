@@ -123,7 +123,15 @@ const ComponentCardProductMain = ({ item, col }) => {
 
     const contactButton = (
       <div className="btn_add_product_cart_basic  color_btn_contact">
-        <span>Liên hệ</span>
+        <a
+          className="d-block"
+          rel="nofollow"
+          title="Tư vấn Zalo"
+          href={`https://zalo.me/0912246137`}
+          target="_blank"
+        >
+          <span>Liên hệ</span>
+        </a>
       </div>
     );
 

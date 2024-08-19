@@ -52,6 +52,13 @@ const InfoProduct = ({
   };
 
   useEffect(() => {
+    dispatch({
+      type: "ADD_VOUCHER_DETsAIL",
+      payload: {
+        status: "remove",
+      },
+    });
+
     const element = document?.getElementById("box_description-much");
     setElementBoxDescription(element);
   }, []);
@@ -443,42 +450,60 @@ const InfoProduct = ({
                   </div>
                 )}
 
-              <div className="box_btn_buy_now_add_cart_detail row mx-0 mt-2">
-                <div className="  ps-0 pe-1 col-6">
-                  {status === "unauthenticated" ? (
-                    <div
-                      onClick={handleBuyNowNotAccount}
-                      className="btn_buy_now btn_detail border_solid_common"
+              {dataProduct &&
+              (dataProduct.stock === 0 || dataProduct.stock === 2) ? (
+                <div className="box_btn_buy_now_add_cart_detail row mx-0 mt-2">
+                  <div className="ps-0 pe-1 col-12">
+                    <a
+                      rel="nofollow"
+                      title="Tư vấn Zalo"
+                      href={`https://zalo.me/0912246137`}
+                      target="_blank"
                     >
-                      <span>MUA NGAY</span>
-                    </div>
-                  ) : (
-                    <div
-                      onClick={handleBuyNow}
-                      className="btn_buy_now btn_detail border_solid_common"
-                    >
-                      <span>MUA NGAY</span>
-                    </div>
-                  )}
+                      <div className="btn_buy_contact btn_detail border_solid_common">
+                        <span>Liên hệ</span>
+                      </div>
+                    </a>
+                  </div>
                 </div>
-                <div className="pe-0 ps-1  col-6">
-                  {status === "unauthenticated" ? (
-                    <div
-                      onClick={addToCartNotAccount}
-                      className="btn_add_cart btn_detail border_solid_common"
-                    >
-                      <span>THÊM VÀO GIỎ HÀNG</span>
-                    </div>
-                  ) : (
-                    <div
-                      onClick={addProductToCart}
-                      className="btn_add_cart btn_detail border_solid_common"
-                    >
-                      <span>THÊM VÀO GIỎ HÀNG</span>
-                    </div>
-                  )}
+              ) : (
+                <div className="box_btn_buy_now_add_cart_detail row mx-0 mt-2">
+                  <div className="ps-0 pe-1 col-6">
+                    {status === "unauthenticated" ? (
+                      <div
+                        onClick={handleBuyNowNotAccount}
+                        className="btn_buy_now btn_detail border_solid_common"
+                      >
+                        <span>MUA NGAY</span>
+                      </div>
+                    ) : (
+                      <div
+                        onClick={handleBuyNow}
+                        className="btn_buy_now btn_detail border_solid_common"
+                      >
+                        <span>MUA NGAY</span>
+                      </div>
+                    )}
+                  </div>
+                  <div className="pe-0 ps-1 col-6">
+                    {status === "unauthenticated" ? (
+                      <div
+                        onClick={addToCartNotAccount}
+                        className="btn_add_cart btn_detail border_solid_common"
+                      >
+                        <span>THÊM VÀO GIỎ HÀNG</span>
+                      </div>
+                    ) : (
+                      <div
+                        onClick={addProductToCart}
+                        className="btn_add_cart btn_detail border_solid_common"
+                      >
+                        <span>THÊM VÀO GIỎ HÀNG</span>
+                      </div>
+                    )}
+                  </div>
                 </div>
-              </div>
+              )}
 
               {dataGiftProduct?.checkGiftPromotion &&
                 dataGiftProduct.checkGiftPromotion.length > 0 && (

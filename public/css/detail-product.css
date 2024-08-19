@@ -743,6 +743,7 @@
   color: #707070;
   font-size: 12px;
   font-weight: 600;
+  gap: 3px;
 }
 
 .box-admin-reply {
@@ -1656,8 +1657,9 @@
 }
 
 .btn_detail {
+  margin-top: 0px !important;
   cursor: pointer;
-  padding: 8px 15px;
+  padding: 8px 15px !important;
   border-radius: 8px;
   text-align: center;
 }
@@ -1742,4 +1744,19 @@
   display: flex;
   align-items: center;
   gap: 5px;
+}
+
+.btn_buy_contact span {
+  color: rgb(20, 53, 195) !important;
+  font-size: 16px;
+  font-weight: 500;
+}
+
+.btn_submit_comment {
+  display: flex;
+  align-items: center;
+}
+
+.btn_submit_comment span {
+  color: white !important;
 }

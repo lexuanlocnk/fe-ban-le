@@ -194,7 +194,7 @@ const InfoClientPay = ({
             ? addressSelected?.Phone
             : "",
         sex: addressSelected?.gender
-          ? addressSelected?.gender === "anh"
+          ? addressSelected?.gender === "male"
             ? "anh"
             : "chị"
           : "",
@@ -223,7 +223,7 @@ const InfoClientPay = ({
         ? addressSelected?.Phone
         : "",
     sex: addressSelected?.gender
-      ? addressSelected?.gender === "anh"
+      ? addressSelected?.gender === "male"
         ? "anh"
         : "chị"
       : "",

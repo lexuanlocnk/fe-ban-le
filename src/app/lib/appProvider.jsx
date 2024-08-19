@@ -80,8 +80,6 @@ export default function AppProvider({ children }) {
   }, []);
 
   useEffect(() => {
-    console.log("kakakakakaka");
-
     localStorage.setItem(
       "cart_not_account",
       JSON.stringify(stateCart.productNotAccount)

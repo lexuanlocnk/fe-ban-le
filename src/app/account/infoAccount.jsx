@@ -18,6 +18,7 @@ import dayjs from "dayjs";
 import vi from "antd/es/date-picker/locale/vi_VN";
 import buddhistEra from "dayjs/plugin/buddhistEra";
 import "dayjs/locale/vi";
+import ComponentNumberPhoneForm from "../../components/componentNumberPhoneForm";
 
 dayjs.extend(buddhistEra);
 dayjs.locale("vi");
@@ -160,11 +161,15 @@ const InfoAccount = ({}) => {
                 rules={[
                   {
                     required: true,
-                    message: "Vui lòng nhập số điện thoại!",
+                    message: "Hãy nhập số điện thoại!",
+                  },
+                  {
+                    pattern: /^0\d{9}$/,
+                    message: "Số điện thoại không đúng định dạng!",
                   },
                 ]}
               >
-                <InputNumberAntd />
+                <ComponentNumberPhoneForm />
               </Form.Item>
 
               <Form.Item

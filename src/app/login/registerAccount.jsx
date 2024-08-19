@@ -236,8 +236,8 @@ const RegisterAccount = ({ setStatusAccount }) => {
             ]}
           >
             <Select placeholder={"Giới tính"}>
-              <Option value="anh">Anh</Option>
-              <Option value="chị">Chị</Option>
+              <Option value="male">Anh</Option>
+              <Option value="female">Chị</Option>
             </Select>
           </Form.Item>
 

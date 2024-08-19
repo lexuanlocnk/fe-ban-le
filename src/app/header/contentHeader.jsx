@@ -10,9 +10,9 @@ import ContentContact from "../../components/info-contact/contentContact";
 import InfoHeader from "./infoHeader";
 import SearchProduct from "../detail-product/[slugProduct]/searchProduct";
 import Link from "next/link";
-import { Skeleton } from "antd";
+import { hostApi } from "../lib/config";
 
-function ContentHeader({ data, status }) {
+function ContentHeader() {
   const categories = [
     {
       key: "promotionInformation",
@@ -126,9 +126,6 @@ function ContentHeader({ data, status }) {
                 />
               </Link>
             </div>
-            {/* <div className="mobile_info_header">
-              <InfoHeader data={data} status={status} />
-            </div> */}
           </div>
           <div className="right-header-detail col-xl-10 col-md-10 col-12 mt-1">
             <div className="content-right-header-detail-1 row mx-0">
@@ -139,18 +136,7 @@ function ContentHeader({ data, status }) {
                 </div>
               </div>
 
-              {status == "loading" ? (
-                <div className="col-md-5  box_skeleton_info_header">
-                  <Skeleton
-                    active
-                    paragraph={{
-                      rows: 4,
-                    }}
-                  />
-                </div>
-              ) : (
-                <InfoHeader data={data} status={status} />
-              )}
+              <InfoHeader />
             </div>
           </div>
         </div>

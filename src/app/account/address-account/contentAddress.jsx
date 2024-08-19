@@ -103,7 +103,7 @@ const ContentAddress = ({ dataAdd }) => {
         ["email"]: address.email,
         ["fullName"]: address.fullName,
         ["numberPhone"]: address.Phone,
-        ["sex"]: address.gender === "anh" ? "anh" : "chị",
+        ["sex"]: address.gender === "male" ? "anh" : "chị",
         ["streetAddress"]: address.address,
         ["wardAddress"]: address.ward,
         ["addressDefault"]: address.status === 1 ? true : false,
