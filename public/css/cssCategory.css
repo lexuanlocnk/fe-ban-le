@@ -344,8 +344,8 @@
   bottom: 0;
   width: 100%;
 }
-.mobile_breadcrumb {
-  margin-top: 5px;
+.ant-drawer-extra {
+  display: flex !important;
 }
 .ant-drawer .ant-drawer-body {
   padding: 0 !important;
@@ -354,7 +354,7 @@
 .drawerButtonAccept {
   border-radius: 8px !important;
 }
-.drawerButtonAccept span{
+.drawerButtonAccept span {
   color: #fff !important;
 }
 /* Mobile */

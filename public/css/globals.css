@@ -1694,10 +1694,15 @@ footer {
   .box_container_hot_products,
   .box_container_hot_category,
   .box-description-much,
-  .container-content-detail-product {
+  .container-content-detail-product,
+  .mobile_container_swiper_banner_pr {
     padding: 0px 5px !important;
   }
-
+  .box_item_products,
+  .container_hot_products,
+  .container_flash_sale {
+    width: 100% !important;
+  }
   .box_image_banner_top_header {
     display: none;
   }
