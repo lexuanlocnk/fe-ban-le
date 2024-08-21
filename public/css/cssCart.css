@@ -647,7 +647,8 @@
   .space_info_client_form .ant-space-item .ant-form-item {
     margin-bottom: 0 !important;
   }
-  .ant-space {
+  .space_info_client_form,
+  .products_receiving {
     display: flex !important;
     flex-direction: column !important;
   }
@@ -755,13 +756,16 @@
   .space_info_client_form .ant-space-item {
     width: 100% !important;
   }
-  .space_info_client_form .ant-space-item .ant-form-item, .pro_box_product_checked .ant-form-item {
+  .space_info_client_form .ant-space-item .ant-form-item,
+  .pro_box_product_checked .ant-form-item {
     margin-bottom: 0 !important;
   }
   .box_promotion_product {
-  margin-top: 0px;
-padding: 5px;}
-  .ant-space {
+    margin-top: 0px;
+    padding: 5px;
+  }
+  .space_info_client_form,
+  .products_receiving {
     display: flex !important;
     flex-direction: column !important;
   }
