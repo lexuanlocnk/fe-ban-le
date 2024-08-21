@@ -10,6 +10,7 @@ import ContentContact from "../../components/info-contact/contentContact";
 import InfoHeader from "./infoHeader";
 import SearchProduct from "../detail-product/[slugProduct]/searchProduct";
 import Link from "next/link";
+import LeftHeaderDetail from "./leftHeaderDetail";
 import { hostApi } from "../lib/config";
 
 function ContentHeader() {
@@ -113,20 +114,7 @@ function ContentHeader() {
 
       <header id="main-header-detail" className="">
         <div className="content-header-detail row bg-white  ">
-          <div className="left-header-detail col-xl-2 col-md-2 col-12 px-0">
-            <div className="logo-header">
-              <Link href="/">
-                <Image
-                  quality={100}
-                  height={0}
-                  width={0}
-                  sizes="100vw"
-                  src="/image/logo.jpg"
-                  alt="logo"
-                />
-              </Link>
-            </div>
-          </div>
+          <LeftHeaderDetail />
           <div className="right-header-detail col-xl-10 col-md-10 col-12 mt-1">
             <div className="content-right-header-detail-1 row mx-0">
               <div className="search-product d-flex col-md-7 col-12 px-0    flex-column">

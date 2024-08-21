@@ -121,7 +121,7 @@ const ModalCompareProducts = ({}) => {
     >
       <div className="container_body_modal_compare">
         <div className="row box_body_modal_compare mx-0">
-          <div className="col-md-3 col-6 px-md-2 px-0">
+          <div className="col-md-3 col-6 px-md-2 px-0 product_brand_container">
             <Select
               className="w-100 custom_antd_select"
               showSearch
@@ -148,22 +148,7 @@ const ModalCompareProducts = ({}) => {
             />
           </div>
 
-          <div className="col-md-4 col-6 px-md-2 px-0">
-            <div className="box_price_filter_compare">
-              <span className="text_compare_price">Giá từ</span>
-              <InputNumberPrice
-                value={optionsFilter.priceMin}
-                addonAfter="₫"
-                onChange={updateOptionsFilter("priceMin")}
-              />
-              <span className="text_compare_price">Đến</span>
-              <InputNumberPrice
-                value={optionsFilter.priceMax}
-                onChange={updateOptionsFilter("priceMax")}
-                addonAfter="₫"
-              />
-            </div>
-
+          <div className="col-md-4 col-6 px-md-2 px-0 compare_tool_container">
             <div className="col-md-4 col-6 px-md-2 px-0 box_price_filter_compare_container">
               <div className="box_price_filter_compare">
                 <span className="text_compare_price">Giá từ</span>
@@ -180,7 +165,6 @@ const ModalCompareProducts = ({}) => {
                 />
               </div>
             </div>
-
             <div className="compare_tool_name col-md-5 col-12 mt-md-0 mt-1 px-md-2 px-0">
               <Select
                 value={itemCompareTwo.value}
