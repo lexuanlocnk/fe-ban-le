@@ -93,7 +93,14 @@ const LeftHeaderDetail = () => {
         <BoxMenuCategory />
       </div>
       {isScrolled && isLargeScreen && isOpen && (
-        <div className="transformed_menu_category_container"></div>
+        <div
+          onClick={() => {
+            if (isOpen) {
+              setIsOpen(false);
+            }
+          }}
+          className="transformed_menu_category_container"
+        ></div>
       )}
     </div>
   );
