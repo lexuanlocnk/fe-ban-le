@@ -14,7 +14,7 @@ const ContentDetailOrder = ({ dataDetailOrder }) => {
 
           <div className="box_item_info_top">
             <div className="item_info_top_content">
-              <span className="title_top_content">Người nhận:</span>
+              <span className="title_top_content">Họ và tên:</span>
               <span className="value_top_content">
                 {dataDetailOrder.d_name}
               </span>
@@ -65,7 +65,7 @@ const ContentDetailOrder = ({ dataDetailOrder }) => {
               </span>
             </div>
             <div className="item_info_top_content">
-              <span className="title_top_content">Thời gian tạo: </span>
+              <span className="title_top_content">Thời gian đặt hàng: </span>
               <span className="value_top_content">
                 {dayjs
                   .unix(dataDetailOrder.date_order)

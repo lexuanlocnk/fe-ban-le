@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useState } from "react";
-import { Input } from "antd";
+import { Form, Input } from "antd";
 import { SendOutlined, FieldTimeOutlined } from "@ant-design/icons";
 import {
   differenceInDays,
@@ -18,16 +18,17 @@ const { TextArea } = Input;
 const ProductReviews = ({ comments, productId }) => {
   const { openNotificationWithIcon } = UseAppContext();
   const [isModalOpen, setIsModalOpen] = useState(false);
+  const [form] = Form.useForm();
 
   const { data, status } = useSession();
   const [valueComment, setValueComment] = useState("");
 
-  const handleSubmitComment = async (valuesComment) => {
+  const handleSubmitComment = async (valuesComments) => {
     let values = {};
 
     if (status == "unauthenticated") {
       values = {
-        ...valuesComment,
+        ...valuesComments,
         productId: productId,
         content: valueComment,
       };
@@ -38,6 +39,7 @@ const ProductReviews = ({ comments, productId }) => {
         productId: productId,
       };
     }
+
     try {
       const response = await fetch(`${hostApi}/member/add-comment`, {
         method: "POST",
@@ -55,6 +57,10 @@ const ProductReviews = ({ comments, productId }) => {
           "Bình luận",
           `Bình luần thành công!`
         );
+        if (status == "unauthenticated") {
+          form.resetFields();
+          setIsModalOpen(false);
+        }
       }
     } catch (error) {
       console.error("Err:", error);
@@ -105,8 +111,8 @@ const ProductReviews = ({ comments, productId }) => {
             <button
               onClick={() =>
                 status === "unauthenticated"
-                  ? setIsModalOpen(true)
-                  : handleSubmitComment
+                  ? valueComment.length > 0 && setIsModalOpen(true)
+                  : handleSubmitComment()
               }
               className="btn btn-primary w-100"
             >
@@ -177,6 +183,7 @@ const ProductReviews = ({ comments, productId }) => {
       </div>
       {status && status === "unauthenticated" && (
         <ModalInfoComment
+          form={form}
           handleSubmitComment={handleSubmitComment}
           setIsModalOpen={setIsModalOpen}
           isModalOpen={isModalOpen}

@@ -10,7 +10,6 @@ export default function PaginationServer({ data, page, pageSize }) {
 
   const createPageURL = (page) => {
     const params = new URLSearchParams(searchParams);
-
     params.set("page", page);
 
     router.replace(`${pathname}?${params.toString()}`, { scroll: false });
@@ -21,7 +20,7 @@ export default function PaginationServer({ data, page, pageSize }) {
       style={{ float: "right" }}
       defaultPageSize={pageSize}
       current={page}
-      total={data.totalProduct}
+      total={data?.totalProduct}
       showSizeChanger={false}
       defaultCurrent={1}
       onChange={createPageURL}

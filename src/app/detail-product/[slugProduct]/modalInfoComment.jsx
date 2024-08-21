@@ -7,24 +7,31 @@ const ModalInfoComment = ({
   isModalOpen,
   setIsModalOpen,
   handleSubmitComment,
+  form,
 }) => {
   const handleCancel = () => {
     setIsModalOpen(false);
   };
 
   const onFinish = async (values) => {
+    console.log("check co do ham onfinish khong");
+
     handleSubmitComment(values);
   };
 
   return (
     <Modal
-      onFinish={onFinish}
       title={"Thông tin bình luận"}
       open={isModalOpen}
       footer={null}
       onCancel={handleCancel}
     >
-      <Form requiredMark="optional" name="nest-messages">
+      <Form
+        form={form}
+        onFinish={onFinish}
+        requiredMark="optional"
+        name="nest-messages"
+      >
         <Space className="w-100 space_select_address">
           <Form.Item
             name="fullName"
@@ -39,12 +46,15 @@ const ModalInfoComment = ({
           </Form.Item>
           <Form.Item
             name="email"
+            label="Nhập mail "
             rules={[
               {
+                type: "email",
+                message: "E-mail không đúng định dạng!",
+              },
+              {
                 required: true,
-                message: "Hãy nhập email!",
-
-                type: "Email",
+                message: "Hãy nhập E-mail!",
               },
             ]}
           >
