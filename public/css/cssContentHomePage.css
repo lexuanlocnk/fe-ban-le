@@ -638,6 +638,11 @@
 .container_menu_category_and_swiper {
   background-color: #edf3fd;
 }
+.compare_tool_container {
+  flex: 1 !important;
+  display: flex;
+  padding: 0 !important;
+}
 
 /* desktop */
 @media only screen and (min-width: 1025px) {
@@ -682,7 +687,18 @@
     display: flex;
     flex-direction: column;
   }
+  .product_brand_container {
+    margin-bottom: 5px;
+  }
+  .compare_tool_container {
+    flex: 1 !important;
+    display: flex;
+    flex-direction: column !important;
+    padding: 0 !important;
+    gap: 5px;
+  }
   .compare_tool_name,
+  .product_brand_container,
   .box_price_filter_compare_container,
   .product_brand_compare_tool {
     width: 100% !important;
@@ -855,9 +871,7 @@
   }
 
   .color_product_cart_hover,
-  .text_title_total_product_cart,
-  .ant-input,
-  .text_compare_price {
+  .text_title_total_product_cart {
     font-size: 12px !important;
   }
 
@@ -1070,6 +1084,7 @@
   }
   .box_flash_sale {
     display: flex;
+    padding: 0 !important;
   }
   .px-3 {
     padding: 0px 5px !important;
@@ -1084,7 +1099,17 @@
     display: flex;
     flex-direction: column;
   }
+  .product_brand_container {
+    margin-bottom: 5px;
+  }
+  .compare_tool_container {
+    flex: 1 !important;
+    display: flex;
+    flex-direction: column !important;
+    padding: 0 !important;
+  }
   .compare_tool_name,
+  .product_brand_container,
   .box_price_filter_compare_container,
   .product_brand_compare_tool {
     width: 100% !important;
@@ -1108,14 +1133,19 @@
   .mobile_box_image_advertising,
   .box_breadcrumb_antd,
   .box_banner_category_product,
-  .box_container_secondary_banner {
+  .box_container_secondary_banner,
+  .image_flash_sale {
     display: none !important;
   }
   .related-product {
     font-size: 16px !important;
   }
-  img {
+  img,
+  .text_countdown {
     font-size: 12px !important;
+  }
+  .ant-tag {
+    margin-right: 4px !important;
   }
   .box-container-content-homepage {
     margin-top: 15px;
@@ -1130,6 +1160,13 @@
     display: flex !important;
     margin-top: -23px !important;
   }
+  .container_flash_sale {
+    margin-left: 0 !important;
+  }
+  .box_products_flash_sale {
+    margin-top: 5px !important;
+    padding: 0 !important;
+  }
   .mobile_category_header {
     margin-top: 5px;
     width: 100%;
@@ -1142,7 +1179,7 @@
     margin-bottom: 2px;
   }
   .image_flash_sale {
-    width: 75px;
+    width: 70px;
     height: 60px;
   }
   .mobile_category_menu_container {
