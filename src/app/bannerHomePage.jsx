@@ -63,9 +63,7 @@ const BannerHomePage = ({ dataMenuCategories }) => {
   ];
 
   return (
-    <div
-      className="container_menu_category_and_swiper position-relative"
-    >
+    <div className="container_menu_category_and_swiper position-relative">
       <div className="row container_banner_swiper_menu_category">
         <div className="col-md-12 col-12 box_banner_swiper_menu_category">
           <div className="box_menu_category">
