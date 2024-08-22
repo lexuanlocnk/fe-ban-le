@@ -826,12 +826,15 @@ footer {
 }
 
 .type_notification_time_hover span {
+  white-space: nowrap;
   font-size: 13px;
   font-weight: 300;
   color: rgb(132, 135, 136) !important;
 }
 
 .bg_is_read_hover .type_notification_time_hover span {
+  white-space: nowrap;
+
   font-size: 13px;
   font-weight: 300;
   color: black !important;
@@ -1699,11 +1702,13 @@ footer {
   .mobile_container_swiper_banner_pr {
     padding: 0px 5px !important;
   }
+
   .box_item_products,
   .container_hot_products,
   .container_flash_sale {
     width: 100% !important;
   }
+
   .box_image_banner_top_header {
     display: none;
   }
@@ -1745,6 +1750,7 @@ footer {
   .box_title_sort_product span {
     font-size: 12px !important;
   }
+
   .text_title_products {
     font-size: 14px !important;
   }

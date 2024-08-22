@@ -10,12 +10,17 @@ import {
 } from "@ant-design/icons";
 import { UseAppContext } from "../lib/appProvider";
 import Link from "next/link";
-import { useCallback, useEffect } from "react";
+import { useCallback, useEffect, useState } from "react";
 import { hostApi } from "../lib/config";
 import { useSession } from "next-auth/react";
-
+import { io } from "socket.io-client";
 const InfoHeader = () => {
   const { data, status } = useSession();
+  const [dataNotification, setDataNotification] = useState(
+    typeof window !== "undefined" && localStorage.getItem("notification")
+      ? JSON.parse(localStorage.getItem("notification"))
+      : []
+  );
 
   const {
     dispatch,
@@ -31,7 +36,7 @@ const InfoHeader = () => {
   const fetchDataProductsCart = useCallback(async () => {
     try {
       const response = await fetch(
-        `${hostApi}/member/show-cart?id=${data.user.id}`,
+        `${hostApi}/member/show-cart?id=${data?.user?.id}`,
         {
           method: "GET",
           headers: {
@@ -48,8 +53,54 @@ const InfoHeader = () => {
     }
   }, []);
 
+  useEffect(() => {
+    const socket = io("http://192.168.245.190:3000");
+    socket.on("notify", (data) => {
+      const dataConvert = JSON.parse(data);
+      const convert = JSON.parse(dataConvert.message);
+
+      setDataNotification((prev) => {
+        const updatedNotifications = [convert, ...prev];
+
+        localStorage.setItem(
+          "notification",
+          JSON.stringify(updatedNotifications)
+        );
+
+        return updatedNotifications;
+      });
+    });
+
+    return () => {
+      socket.disconnect();
+    };
+  }, []);
+
+  const checkNotifications = (notifications) => {
+    if (status && status === "authenticated") {
+      return notifications
+        .map((item) => {
+          if (item.type === "orderStatus" && item.memberId === data.user.id) {
+            return item;
+          }
+          if (item.type !== "orderStatus") {
+            return item;
+          }
+          return null; // or return undefined; if you want to skip the invalid items
+        })
+        .filter((item) => item !== null); // filter out null values
+    } else {
+      return notifications.filter((item) => item.type !== "orderStatus");
+    }
+  };
+
   const contentAccount = <ContentHoverMenuAccount />;
-  const contentNotifications = <ContentHoverNotifications />;
+  const contentNotifications = (
+    <ContentHoverNotifications
+      status={status}
+      dataNotification={checkNotifications(dataNotification)}
+    />
+  );
   const contentCart =
     status === "loading" ? (
       <div className="skeleton">

@@ -85,7 +85,7 @@ const ProductReviews = ({ comments, productId }) => {
     } else {
       const hoursDiff = differenceInHours(now, createdAt);
       const minutesDiff = differenceInMinutes(now, createdAt) % 60;
-      return `${hoursDiff} giờ ${minutesDiff} phút`;
+      return `${hoursDiff > 0 ? `${hoursDiff} giờ` : ``}  ${minutesDiff} phút`;
     }
   };
 

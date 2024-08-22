@@ -303,7 +303,7 @@ const ContentNotification = () => {
                       }`}
                       key={index}
                     >
-                      <div className="col-2 d-flex justify-content-center align-items-center flex-column">
+                      <div className="col-2 d-flex justify-content-center align-items-center flex-column px-2">
                         <div className="date_notification">
                           {item.isRead ? (
                             <Image

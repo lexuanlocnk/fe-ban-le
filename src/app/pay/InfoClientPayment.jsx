@@ -5,7 +5,7 @@ const InfoClientPayment = ({ dataOrder, userId }) => {
   return (
     <>
       <span className="title_pay">
-        Cảm ơn {dataOrder.orderSum.gender}
+        Cảm ơn {dataOrder.orderSum.gender == "male" ? "anh" : "chị"}
         <p className="name_pay mb-0">{dataOrder.orderSum.d_name}</p> đã cho
         QUANGBAO cơ hội được phục vụ.
       </span>
