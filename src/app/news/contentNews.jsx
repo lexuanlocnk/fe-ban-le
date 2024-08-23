@@ -72,7 +72,7 @@ const ContentNews = async ({ categoryNews, page }) => {
     <div className="box-container-content-news">
       <div className="in-box-container-content-news pt-1">
         <div className="row box-content-news mx-0">
-          <div className="col-12 col-lg-8 ps-lg-0">
+          <div className="col-12 col-lg-8 ps-lg-0 box_news_content_container">
             {dataNewsCategory && dataNewsCategory.listNew.length > 0 && (
               <BoxCardNewsHot dataNewsHot={dataNewsCategory?.listNew} />
             )}
@@ -84,7 +84,7 @@ const ContentNews = async ({ categoryNews, page }) => {
             {/* <FormPromotionInformation />
             <ProductsInNews /> */}
           </div>
-          <div className="col-12 col-lg-4 pe-lg-0">
+          <div className="col-12 col-lg-4 pe-lg-0 most_post_viewed_container">
             <TopNews dataNewsTop={dataNewsTop} />
             <NewProductsNews />
             <NewsSale dataNewsSale={dataNewsSale} />

@@ -584,7 +584,7 @@
   flex: 0 0 16.66%;
   display: block;
   max-width: 16.66%;
-  min-width: 155px;
+  min-width: 195px;
   background: white;
   position: relative;
   z-index: 10;
@@ -961,7 +961,7 @@
   .price_product,
   .progressPercent,
   .item_featured_products_category {
-    font-size: 20px;
+    font-size: 14px;
   }
   .progressbar {
     height: 30px;
@@ -1029,11 +1029,6 @@
   .name_company {
     font-size: 26px !important;
     padding: 12px 30px !important;
-  }
-
-  .icon_social_networt {
-    width: 60px !important;
-    height: 60px !important;
   }
 
   .modal_compare_product {

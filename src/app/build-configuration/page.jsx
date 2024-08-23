@@ -30,7 +30,7 @@ export default async function Home() {
 
   return (
     <div className="container-fluid px-0">
-      <Header />
+      <Header/>
       <BuildConfiguration dataBuildPc={dataBuildPc} />
       <Footer />
     </div>

@@ -7,6 +7,8 @@ import {
   UserOutlined,
   BellOutlined,
   ShoppingCartOutlined,
+  HomeOutlined,
+  AppstoreOutlined,
 } from "@ant-design/icons";
 import { UseAppContext } from "../lib/appProvider";
 import Link from "next/link";
@@ -122,7 +124,7 @@ const InfoHeader = () => {
               />
             </div>
           ) : status === "unauthenticated" ? (
-            <div className="item_property_header">
+            <div className="item_property_header" id="header-login">
               <Link href={"/login"}>
                 <div className="item_menu_header">
                   <UserOutlined className="icon_item_menu" />
@@ -147,7 +149,7 @@ const InfoHeader = () => {
             </div>
           )}
 
-          <div className="item_property_header">
+          <div className="item_property_header" id="header-noti">
             <Popover
               className="item_menu_header"
               placement="bottomRight"
@@ -158,7 +160,7 @@ const InfoHeader = () => {
             </Popover>
           </div>
 
-          <div className="item_property_header">
+          <div className="item_property_header" id="header-cart">
             <Popover
               className="item_menu_header"
               placement="bottomRight"
@@ -176,6 +178,84 @@ const InfoHeader = () => {
           </div>
         </div>
       )}
+      <div className="mobile_box_menu_header  ">
+        <div className="item_property_header" id="mobile-header-home">
+          <Link href={"/"}>
+            <div className="item_menu_header">
+              <HomeOutlined className="icon_item_menu" />
+              <span className="text_item_menu">Trang chủ</span>
+            </div>
+          </Link>
+        </div>
+        <div className="item_property_header" id="mobile-header-category">
+          <div>
+            <div className="item_menu_header">
+              <AppstoreOutlined className="icon_item_menu" />
+              <span className="text_item_menu">Danh mục</span>
+            </div>
+          </div>
+        </div>
+        <div className="item_property_header" id="mobile-header-cart">
+          <Link className="item_menu_header" href={"/cart"}>
+            <ShoppingCartOutlined className="icon_item_menu" />
+            <div className="cart-product-number">
+              <span>
+                {status === "unauthenticated"
+                  ? `${productNotAccount?.length}`
+                  : `${products?.length}`}
+              </span>
+            </div>
+            <span className="text_item_menu">
+              {status === "loading"
+                ? `Đang cập nhật`
+                : status === "unauthenticated"
+                ? `Giỏ hàng`
+                : `Giỏ hàng`}
+            </span>
+          </Link>
+        </div>
+        {status && status == "loading" ? (
+          <div
+            className={`item_menu_header ${
+              status == "loading" ? "skeleton" : ""
+            }`}
+          >
+            <Skeleton
+              avatar
+              paragraph={{
+                rows: 3,
+              }}
+              size={"small"}
+              active
+              className=""
+            />
+          </div>
+        ) : status === "unauthenticated" ? (
+          <div className="item_property_header" id="mobile-header-login">
+            <Link href={"/login"}>
+              <div className="item_menu_header">
+                <UserOutlined className="icon_item_menu" />
+                <span className="text_item_menu">Đăng nhập</span>
+              </div>
+            </Link>
+          </div>
+        ) : (
+          <div className="item_property_header">
+            <Popover
+              className="item_menu_header"
+              placement="bottomRight"
+              content={contentAccount}
+            >
+              <UserOutlined className="icon_item_menu" />
+              <span className="text_item_menu">
+                Chào bạn{" "}
+                {data?.user?.full_name?.split(" ").pop() ||
+                  data?.user?.username?.split(" ").pop()}
+              </span>
+            </Popover>
+          </div>
+        )}
+      </div>
     </>
   );
 };

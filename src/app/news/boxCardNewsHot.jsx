@@ -20,7 +20,7 @@ const BoxCardNewsHot = ({ dataNewsHot }) => {
                     width={0}
                     sizes="100vw"
                     src={hostImage + dataNewsHot[0]?.picture}
-                    className="w-100 h-100 img_hover_news_common"
+                    className="img_hover_news_common"
                     alt="banner-image"
                   />
                 </div>
@@ -46,7 +46,7 @@ const BoxCardNewsHot = ({ dataNewsHot }) => {
                     key={item.news_id}
                     href={`/news/${item?.url_cat}/${item?.friendly_url}`}
                   >
-                    <div className="col-md-12 col-6 mb-2 px-md-1 px-1">
+                    <div className="col-md-12 col-6 mb-2 px-md-1 px-1 orther_news_container">
                       <div className="row mx-0">
                         <div className="col-md-5 col-12 box_second_news_hot px-0">
                           <div className="box_item_news_second custom-img-news-hot image overflow-hidden">
