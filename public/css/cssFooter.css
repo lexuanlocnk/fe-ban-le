@@ -228,6 +228,10 @@
   .title_footer {
     font-size: 12px !important;
   }
+  .icon_social_networt {
+    width: 30px !important;
+    height: 30px !important;
+  }
 }
 @media only screen and (width: 768px) {
   .title_footer,

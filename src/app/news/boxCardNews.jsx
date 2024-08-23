@@ -13,7 +13,7 @@ const BoxCardNews = ({ dataNewsCategory }) => {
       </div>
 
       {dataNewsCategory && dataNewsCategory.total > 15 && (
-        <div className="col-12">
+        <div className="col-12 box_pagination_component">
           <ComponentPagination pageSize={15} data={dataNewsCategory} />
         </div>
       )}

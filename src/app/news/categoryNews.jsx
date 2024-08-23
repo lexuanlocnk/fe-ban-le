@@ -101,7 +101,7 @@ const CategoryNews = ({ dataCategory, categoryNews }) => {
                       // <div className="box_text_item_category">
 
                       // </div>
-                      dataCategory.slice(0, 3).map((item, index) => (
+                      dataCategory.slice(0, 1).map((item, index) => (
                         <Link
                           key={index}
                           href={`/news?categoryNews=${item?.news_category_desc?.friendly_url}`}
