@@ -1,7 +1,7 @@
 "use client";
 
 import { MenuOutlined } from "@ant-design/icons";
-import { Fragment } from "react";
+import { Fragment, useState } from "react";
 import ComponentBackdropFilter from "../../components/componentBackdropFilter";
 import { UseAppContext } from "../lib/appProvider";
 import Link from "next/link";
@@ -15,6 +15,7 @@ import Breadcrumb from "../../components/breadcrumb";
 
 const CategoryNews = ({ dataCategory, categoryNews }) => {
   const { menuCategories, setMenuCategories } = UseAppContext();
+  const [selectedText, setSelectedText] = useState("");
 
   return (
     <Fragment>
@@ -99,21 +100,20 @@ const CategoryNews = ({ dataCategory, categoryNews }) => {
                     {dataCategory &&
                       dataCategory.length > 0 &&
                       // <div className="box_text_item_category">
-
                       // </div>
                       dataCategory.slice(0, 1).map((item, index) => (
-                        <Link
+                        <div
                           key={index}
-                          href={`/news?categoryNews=${item?.news_category_desc?.friendly_url}`}
+                          // href={`/news?categoryNews=${item?.news_category_desc?.friendly_url}`}
                         >
                           <span
                             className={`text_item_category ${
                               index === 0 ? "active_category" : ""
                             }`}
                           >
-                            {item?.news_category_desc?.cat_name}
+                            {selectedText || `Tin tức`}
                           </span>
-                        </Link>
+                        </div>
                       ))}
                   </div>
                   <div
@@ -140,6 +140,9 @@ const CategoryNews = ({ dataCategory, categoryNews }) => {
                         <Link
                           key={index}
                           href={`/news?categoryNews=${item?.news_category_desc?.friendly_url}`}
+                          onClick={() =>
+                            setSelectedText(item?.news_category_desc?.cat_name)
+                          }
                         >
                           <span className={`text_item_category `}>
                             {item?.news_category_desc?.cat_name}
