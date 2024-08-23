@@ -13,14 +13,8 @@ import Link from "next/link";
 import { useCallback, useEffect, useState } from "react";
 import { hostApi } from "../lib/config";
 import { useSession } from "next-auth/react";
-import { io } from "socket.io-client";
 const InfoHeader = () => {
   const { data, status } = useSession();
-  const [dataNotification, setDataNotification] = useState(
-    typeof window !== "undefined" && localStorage.getItem("notification")
-      ? JSON.parse(localStorage.getItem("notification"))
-      : []
-  );
 
   const {
     dispatch,
@@ -47,74 +41,37 @@ const InfoHeader = () => {
 
       const dataRes = await response.json();
 
-      dispatch({ type: "FETCH_PRODUCT_CART", payload: dataRes.data });
+      if (dataRes.status) {
+        dispatch({ type: "FETCH_PRODUCT_CART", payload: dataRes.data });
+      }
     } catch (error) {
       console.error("Err:", error);
     }
   }, []);
 
-  useEffect(() => {
-    const socket = io("http://192.168.245.190:3000");
-
-    socket.on("notify", (data) => {
-      try {
-        // Check if data is a string, parse only if it is
-        const dataConvert = typeof data === "string" ? JSON.parse(data) : data;
-        const convert =
-          typeof dataConvert.message === "string"
-            ? JSON.parse(dataConvert.message)
-            : dataConvert.message;
-
-        setDataNotification((prev) => {
-          if (!prev.some((item) => convert.socketId.includes(item.socketId))) {
-            const updatedNotifications = [convert, ...prev.slice(0, 9)]; // Add new notification and keep only the first 10 items
-
-            localStorage.setItem(
-              "notification",
-              JSON.stringify(updatedNotifications)
-            );
-            return updatedNotifications;
-          }
-          return prev;
-        });
-      } catch (error) {
-        console.error("Error parsing notification data:", error);
-      }
-    });
-
-    return () => {
-      socket.disconnect();
-    };
-  }, []);
-
-  const checkNotifications = (notifications) => {
-    if (status && status === "authenticated") {
-      return notifications
-        .map((item) => {
-          if (
-            item.type === "orderStatus" &&
-            item?.memberId === data?.user?.id
-          ) {
-            return item;
-          }
-          if (item.type !== "orderStatus") {
-            return item;
-          }
-          return null; // or return undefined; if you want to skip the invalid items
-        })
-        .filter((item) => item !== null); // filter out null values
-    } else {
-      return notifications.filter((item) => item.type !== "orderStatus");
-    }
-  };
+  // const checkNotifications = (notifications) => {
+  //   if (status && status === "authenticated") {
+  //     return notifications
+  //       .map((item) => {
+  //         if (
+  //           item.type === "orderStatus" &&
+  //           item?.memberId === data?.user?.id
+  //         ) {
+  //           return item;
+  //         }
+  //         if (item.type !== "orderStatus") {
+  //           return item;
+  //         }
+  //         return null; // or return undefined; if you want to skip the invalid items
+  //       })
+  //       .filter((item) => item !== null); // filter out null values
+  //   } else {
+  //     return notifications.filter((item) => item.type !== "orderStatus");
+  //   }
+  // };
 
   const contentAccount = <ContentHoverMenuAccount />;
-  const contentNotifications = (
-    <ContentHoverNotifications
-      setDataNotification={setDataNotification}
-      dataNotification={checkNotifications(dataNotification)}
-    />
-  );
+  const contentNotifications = <ContentHoverNotifications />;
   const contentCart =
     status === "loading" ? (
       <div className="skeleton">

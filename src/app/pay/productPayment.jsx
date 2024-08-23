@@ -75,8 +75,15 @@ const ProductPayment = ({ dataOrder, userId, dataPaymentMethod }) => {
 
                 <div className="option_choose_payment">
                   <Radio.Group
+                    disabled={
+                      dataOrder?.orderSum?.payment_method ? true : false
+                    }
                     onChange={(e) => handleChoosePayment(e.target.value)}
-                    defaultValue={"atStore"}
+                    defaultValue={
+                      dataOrder?.orderSum?.payment_method
+                        ? dataOrder?.orderSum?.payment_method
+                        : undefined
+                    }
                   >
                     <Space direction="vertical">
                       {dataPaymentMethod &&
@@ -103,15 +110,20 @@ const ProductPayment = ({ dataOrder, userId, dataPaymentMethod }) => {
                   dataOrder={dataOrder}
                   methodPayment={methodPayment.methodPayment}
                 />
-                <div className="mt-3 d-flex justify-content-center">
-                  <Button
-                    loading={loadingPayment}
-                    onClick={handlePaymentOrder}
-                    className="btn_order d-flex justify-content-center align-items-center"
-                  >
-                    Thanh toán
-                  </Button>
-                </div>
+
+                {dataOrder?.orderSum?.payment_method ? (
+                  <></>
+                ) : (
+                  <div className="mt-3 d-flex justify-content-center">
+                    <Button
+                      loading={loadingPayment}
+                      onClick={handlePaymentOrder}
+                      className="btn_order d-flex justify-content-center align-items-center"
+                    >
+                      Thanh toán
+                    </Button>
+                  </div>
+                )}
               </div>
             </div>
           </div>

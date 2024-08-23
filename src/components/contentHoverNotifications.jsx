@@ -5,15 +5,65 @@ import {
   differenceInMinutes,
 } from "date-fns";
 import Image from "next/image";
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import { Tooltip } from "antd";
 import { useRouter } from "next/navigation";
+import { useSession } from "next-auth/react";
+import { io } from "socket.io-client";
 
-const ContentHoverNotifications = ({
-  dataNotification,
-  setDataNotification,
-}) => {
+const ContentHoverNotifications = ({}) => {
+  const { data, status } = useSession();
+
   const router = useRouter();
+  const [dataNotification, setDataNotification] = useState(
+    typeof window !== "undefined" && localStorage.getItem("notification")
+      ? JSON.parse(localStorage.getItem("notification"))
+      : []
+  );
+  useEffect(() => {
+    const socket = io("http://192.168.245.190:3000");
+
+    socket.on("notify", (dataSocket) => {
+      try {
+        // Parse the data if it's a string
+        const dataConvert =
+          typeof dataSocket === "string" ? JSON.parse(dataSocket) : dataSocket;
+        const convert =
+          typeof dataConvert.message === "string"
+            ? JSON.parse(dataConvert.message)
+            : dataConvert.message;
+
+        // Check if the status is either authenticated or unauthenticated and match conditions
+        const isRelevantNotification =
+          (status === "authenticated" && convert.memberId === data?.user?.id) ||
+          (status !== "loading" &&
+            status === "unauthenticated" &&
+            convert.type !== "orderStatus");
+
+        if (isRelevantNotification) {
+          setDataNotification((prev) => {
+            if (
+              !prev.some((item) => convert.socketId.includes(item.socketId))
+            ) {
+              const updatedNotifications = [convert, ...prev.slice(0, 9)]; // Keep only the first 10 items
+              localStorage.setItem(
+                "notification",
+                JSON.stringify(updatedNotifications)
+              );
+              return updatedNotifications;
+            }
+            return prev;
+          });
+        }
+      } catch (error) {
+        console.error("Error parsing notification data:", error);
+      }
+    });
+
+    return () => {
+      socket.disconnect();
+    };
+  }, []);
 
   const [seen, setSeen] = useState(false);
   const formatTimeDifference = (createdAt) => {

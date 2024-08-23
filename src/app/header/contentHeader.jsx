@@ -11,7 +11,6 @@ import InfoHeader from "./infoHeader";
 import SearchProduct from "../detail-product/[slugProduct]/searchProduct";
 import Link from "next/link";
 import LeftHeaderDetail from "./leftHeaderDetail";
-import { hostApi } from "../lib/config";
 
 function ContentHeader() {
   const categories = [

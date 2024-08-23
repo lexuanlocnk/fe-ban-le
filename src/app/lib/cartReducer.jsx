@@ -103,11 +103,14 @@ export const cartReducer = (state, action) => {
 
       if (existingProduct >= 0) {
         // Nếu sản phẩm đã có trong giỏ hàng, tăng số lượng lên
-        const updatedCart = state.products.map((item, index) =>
-          index === existingProduct
-            ? { ...item, quantity: item.quantity + 1 }
-            : item
-        );
+        const updatedCart =
+          state.products &&
+          state.products.length > 0 &&
+          state.products.map((item, index) =>
+            index === existingProduct
+              ? { ...item, quantity: item.quantity + 1 }
+              : item
+          );
         return {
           ...state,
           products: updatedCart,
@@ -199,7 +202,8 @@ export const cartReducer = (state, action) => {
     case "FETCH_PRODUCT_CART":
       return {
         ...state,
-        products: action.payload,
+        products:
+          action.payload && action.payload.length > 0 ? action.payload : [],
       };
 
     case "ADD_VOUCHER":

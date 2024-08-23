@@ -19,8 +19,8 @@ const InfoClientPayment = ({ dataOrder, userId }) => {
           <li>
             <span className="text_title">Người nhận hàng:</span>{" "}
             <span className="text_value">
-              {dataOrder.orderSum.gender} {dataOrder.orderSum.d_name},{" "}
-              {dataOrder.orderSum.d_phone}
+              {dataOrder.orderSum.gender === "male" ? "anh" : "chị"}{" "}
+              {dataOrder.orderSum.d_name}, {dataOrder.orderSum.d_phone}
             </span>
           </li>
 
