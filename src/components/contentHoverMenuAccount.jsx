@@ -39,13 +39,7 @@ const ContentHoverMenuAccount = () => {
       icon: <FaMapLocationDot />,
       key: "address",
     },
-    {
-      id: 6,
-      name: "Thông báo",
-      link: "/account/notification",
-      icon: <IoNotifications />,
-      key: "notification",
-    },
+
     {
       id: 7,
       name: "Đổi mật khẩu",

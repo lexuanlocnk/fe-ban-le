@@ -797,6 +797,7 @@ footer {
 }
 
 .item_notification_hover {
+  min-width: 300px;
   max-width: 350px;
   cursor: pointer;
   padding: 10px;
@@ -827,7 +828,7 @@ footer {
 
 .type_notification_time_hover span {
   white-space: nowrap;
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 300;
   color: rgb(132, 135, 136) !important;
 }
@@ -835,7 +836,7 @@ footer {
 .bg_is_read_hover .type_notification_time_hover span {
   white-space: nowrap;
 
-  font-size: 13px;
+  font-size: 12px;
   font-weight: 300;
   color: black !important;
 }
@@ -1654,12 +1655,15 @@ footer {
   .btn_add_product_cart_basic {
     font-size: 12px !important;
   }
+
   .category_header {
     overflow: auto;
   }
+
   .category_header::-webkit-scrollbar {
     display: none;
   }
+
   .box_category_header {
     gap: 5px;
   }
@@ -1828,6 +1832,7 @@ footer {
 
 /* Tablet */
 @media only screen and (min-width: 768px) and (max-width: 1024px) {
+
   .box_container_products_promotion,
   .container_img_news_sale,
   .box_banner_swiper_menu_category,
@@ -1939,17 +1944,20 @@ footer {
   .left-header-detail .col-md-2 {
     flex: 1;
   }
+
   .transformed_menu_category_container {
-    position: absolute !important ;
+    position: absolute !important;
     top: 102px;
     left: 0;
     right: 0;
     background-color: rgba(0, 0, 0, 0.45);
     height: 100vh;
   }
+
   .box_category_menu_container .box_menu_category {
     min-width: 195px !important;
   }
+
   /* Mặc định ẩn menu */
   .hide-menu {
     display: none !important;
@@ -1959,10 +1967,12 @@ footer {
   .show-menu {
     display: block !important;
   }
+
   .transformed_menu_category_container .box_content_menu_category,
   .transformed_menu_category_container .item_category_menu {
     width: 100% !important;
   }
+
   .box_category_menu_container {
     width: 231px;
     padding-left: 35px;
@@ -1977,15 +1987,18 @@ footer {
   height: 100%;
   width: 100%;
 }
+
 .logo-header img {
   object-fit: contain;
 }
+
 .transformed-left-header-detail {
   display: flex;
   height: 100%;
   width: 100%;
   gap: 5px;
 }
+
 .transformed-category-menu {
   border: 1px solid rgb(224, 224, 224);
   color: rgb(130, 134, 158);
@@ -1998,12 +2011,15 @@ footer {
   background-color: #fff;
   height: fit-content;
 }
+
 .transformed-category-menu:hover {
   background-color: #edf3fd;
 }
+
 .transformed-category-menu span {
   font-size: 14px;
 }
+
 .content_promotion_card_main {
   display: -webkit-box;
   -webkit-box-orient: vertical;
@@ -2074,4 +2090,12 @@ footer {
   color: rgb(20, 53, 195);
   font-size: 14px;
   font-weight: 500;
+}
+
+.container_content_hover {
+  min-width: 360px;
+}
+
+.img_card_product_basic img {
+  object-fit: contain;
 }

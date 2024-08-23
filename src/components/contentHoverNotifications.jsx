@@ -5,13 +5,17 @@ import {
   differenceInMinutes,
 } from "date-fns";
 import Image from "next/image";
-import Link from "next/link";
 import { useState } from "react";
 import { Tooltip } from "antd";
+import { useRouter } from "next/navigation";
 
-const ContentHoverNotifications = ({ dataNotification, status }) => {
+const ContentHoverNotifications = ({
+  dataNotification,
+  setDataNotification,
+}) => {
+  const router = useRouter();
+
   const [seen, setSeen] = useState(false);
-
   const formatTimeDifference = (createdAt) => {
     const now = new Date();
     const daysDiff = differenceInDays(now, createdAt);
@@ -29,49 +33,68 @@ const ContentHoverNotifications = ({ dataNotification, status }) => {
     }
   };
 
+  const clickSeenNotification = (i) => {
+    if (i.type == "orderStatus") {
+      router.push(`/account/order/${i?.idOrder}`);
+    }
+    setDataNotification((prev) => {
+      // Tạo một mảng mới với các thông báo đã cập nhật
+      const newDataNotification = prev.map((item) =>
+        item.socketId === i.socketId ? { ...item, seen: true } : item
+      );
+
+      // Lưu mảng thông báo mới vào localStorage
+      localStorage.setItem("notification", JSON.stringify(newDataNotification));
+
+      // Trả về mảng thông báo mới để cập nhật state
+      return newDataNotification;
+    });
+  };
+
   return (
-    <>
+    <div className="container_content_hover">
       <div className="btn_click_filter">
         <span
-          className={`item_filter_notification ${seen ? "active_filer" : ""}`}
           onClick={() => setSeen(true)}
+          className={`item_filter_notification   ${
+            seen == true ? "active_filer" : ""
+          }   `}
         >
           Đã đọc
         </span>
         <span
-          className={`item_filter_notification ${!seen ? "active_filer" : ""}`}
           onClick={() => setSeen(false)}
+          className={`item_filter_notification ${
+            seen == false ? "active_filer" : ""
+          }   `}
         >
           Chưa đọc
         </span>
       </div>
       <div className="container_hover_notification custom_scroll">
-        {dataNotification && dataNotification.length > 0 ? (
-          <>
-            {dataNotification.map((item, index) => (
+        {dataNotification?.length > 0 &&
+          dataNotification
+            .filter((item) => item?.seen === seen) // Lọc theo giá trị của `seen`
+            .map((item, index) => (
               <div
+                onClick={() => clickSeenNotification(item)}
                 className={`item_notification_hover row ms-0 me-1 ${
                   item?.isRead ? "" : "bg_is_read_hover"
                 }`}
                 key={index}
               >
-                <div className="col-3 d-flex justify-content-center align-items-center flex-column ">
+                <div className="col-3 d-flex justify-content-center align-items-center flex-column">
                   <div className="date_notification_hover">
-                    {item?.isRead ? (
-                      <Image
-                        width={40}
-                        height={40}
-                        alt="ring"
-                        src={"/image/icon_image/bell.png"}
-                      />
-                    ) : (
-                      <Image
-                        width={40}
-                        height={40}
-                        alt="ring"
-                        src={"/image/icon_image/bell-ring.png"}
-                      />
-                    )}
+                    <Image
+                      width={40}
+                      height={40}
+                      alt="ring"
+                      src={
+                        item?.seen
+                          ? "/image/icon_image/bell.png"
+                          : "/image/icon_image/bell-ring.png"
+                      }
+                    />
                   </div>
                   <div className="type_notification_time_hover">
                     <span>{formatTimeDifference(item?.date)}</span>
@@ -117,15 +140,8 @@ const ContentHoverNotifications = ({ dataNotification, status }) => {
                 </div>
               </div>
             ))}
-          </>
-        ) : (
-          <></>
-        )}
       </div>
-      <div className="btn_show_all_nitifications text-center mt-2">
-        <Link href={"/account/notification"}>Xem tất cả các thông báo</Link>
-      </div>
-    </>
+    </div>
   );
 };
 export default ContentHoverNotifications;

@@ -14,8 +14,6 @@ const ModalInfoComment = ({
   };
 
   const onFinish = async (values) => {
-    console.log("check co do ham onfinish khong");
-
     handleSubmitComment(values);
   };
 

@@ -113,7 +113,6 @@ const ContentCart = ({ dataMethodShipping }) => {
         valueVoucher,
         valueOfPoint
       );
-      console.log("dataRes", dataRes);
 
       if (dataRes.status) {
         dispatch({

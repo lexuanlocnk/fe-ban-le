@@ -24,7 +24,7 @@ async function HotProducts({ session, page }) {
   const dataHotProducts = await fetchRecommendedProducts(page);
 
   return (
-    <div className="container_hot_products row">
+    <div className="container_hot_products row mx-0">
       <div className="col-12 box_text_hot_products">
         <div className="box_name_hot_products  px-3">
           {" "}

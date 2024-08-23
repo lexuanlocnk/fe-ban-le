@@ -55,20 +55,31 @@ const InfoHeader = () => {
 
   useEffect(() => {
     const socket = io("http://192.168.245.190:3000");
+
     socket.on("notify", (data) => {
-      const dataConvert = JSON.parse(data);
-      const convert = JSON.parse(dataConvert.message);
+      try {
+        // Check if data is a string, parse only if it is
+        const dataConvert = typeof data === "string" ? JSON.parse(data) : data;
+        const convert =
+          typeof dataConvert.message === "string"
+            ? JSON.parse(dataConvert.message)
+            : dataConvert.message;
 
-      setDataNotification((prev) => {
-        const updatedNotifications = [convert, ...prev];
+        setDataNotification((prev) => {
+          if (!prev.some((item) => convert.socketId.includes(item.socketId))) {
+            const updatedNotifications = [convert, ...prev.slice(0, 9)]; // Add new notification and keep only the first 10 items
 
-        localStorage.setItem(
-          "notification",
-          JSON.stringify(updatedNotifications)
-        );
-
-        return updatedNotifications;
-      });
+            localStorage.setItem(
+              "notification",
+              JSON.stringify(updatedNotifications)
+            );
+            return updatedNotifications;
+          }
+          return prev;
+        });
+      } catch (error) {
+        console.error("Error parsing notification data:", error);
+      }
     });
 
     return () => {
@@ -80,7 +91,10 @@ const InfoHeader = () => {
     if (status && status === "authenticated") {
       return notifications
         .map((item) => {
-          if (item.type === "orderStatus" && item.memberId === data.user.id) {
+          if (
+            item.type === "orderStatus" &&
+            item?.memberId === data?.user?.id
+          ) {
             return item;
           }
           if (item.type !== "orderStatus") {
@@ -97,7 +111,7 @@ const InfoHeader = () => {
   const contentAccount = <ContentHoverMenuAccount />;
   const contentNotifications = (
     <ContentHoverNotifications
-      status={status}
+      setDataNotification={setDataNotification}
       dataNotification={checkNotifications(dataNotification)}
     />
   );

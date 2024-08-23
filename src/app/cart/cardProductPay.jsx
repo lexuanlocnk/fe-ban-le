@@ -6,6 +6,8 @@ import { useEffect } from "react";
 
 const CardProductPay = ({ item, status, formOrder }) => {
   const onChange = (value, productId) => {
+    const dataOrder = formOrder.getFieldValue("dataOrder");
+
     // Tìm productOrder và promotionChoose
     const productOrderNew = dataOrder.map((item) =>
       item.ProductId === productId

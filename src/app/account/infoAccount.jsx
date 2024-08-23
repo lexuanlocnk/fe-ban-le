@@ -129,7 +129,6 @@ const InfoAccount = ({}) => {
               >
                 <Input />
               </Form.Item>
-
               <Form.Item
                 name="email"
                 label="Email"
@@ -154,7 +153,6 @@ const InfoAccount = ({}) => {
                   }
                 />
               </Form.Item>
-
               <Form.Item
                 name="numberPhone"
                 label="Số điện thoại"
@@ -171,7 +169,6 @@ const InfoAccount = ({}) => {
               >
                 <ComponentNumberPhoneForm />
               </Form.Item>
-
               <Form.Item
                 name="birthday"
                 label="Ngày sinh"
@@ -199,7 +196,6 @@ const InfoAccount = ({}) => {
                   }}
                 />
               </Form.Item>
-
               <Form.Item
                 className="mb-2"
                 rules={[
@@ -216,7 +212,6 @@ const InfoAccount = ({}) => {
                   <Radio value="female">Nữ</Radio>
                 </Radio.Group>
               </Form.Item>
-
               <Form.Item>
                 <Space className="d-flex justify-content-center mt-3">
                   <Button
@@ -227,6 +222,7 @@ const InfoAccount = ({}) => {
                   </Button>
                 </Space>
               </Form.Item>
+              ``
             </Form>
           </div>
         </div>

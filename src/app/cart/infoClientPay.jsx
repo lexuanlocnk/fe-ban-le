@@ -195,8 +195,8 @@ const InfoClientPay = ({
             : "",
         sex: addressSelected?.gender
           ? addressSelected?.gender === "male"
-            ? "anh"
-            : "chị"
+            ? "male"
+            : "female"
           : "",
         cityAddress: addressSelected?.province || "",
         districtAddress: addressSelected?.district || "",
@@ -211,6 +211,8 @@ const InfoClientPay = ({
     formOrder.setFieldsValue({ accumulatedPoints: value });
   }, 700);
 
+  console.log("addressSelected", addressSelected);
+
   const initialValues = {
     shippingMethod: "pickUpStore",
     day_receiving: dayjs(new Date()).format("DD/MM/YYYY"),
@@ -222,11 +224,7 @@ const InfoClientPay = ({
       addressSelected?.Phone && addressSelected?.Phone !== "NULL"
         ? addressSelected?.Phone
         : "",
-    sex: addressSelected?.gender
-      ? addressSelected?.gender === "male"
-        ? "anh"
-        : "chị"
-      : "",
+    sex: "male",
     cityAddress:
       addressSelected && addressSelected.province && addressSelected.province,
     districtAddress:

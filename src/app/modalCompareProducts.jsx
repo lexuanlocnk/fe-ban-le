@@ -16,7 +16,6 @@ const ModalCompareProducts = ({}) => {
     brand: "",
   };
   const { handleCancel, isModalOpen, itemCompare } = UseAppContext();
-  console.log("itemCompare itemCompare", itemCompare);
 
   const [brand, setBrand] = useState();
   const [optionsFilter, setOptionsFilter] = useState(initialOptionsFilter);
