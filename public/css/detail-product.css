@@ -259,7 +259,8 @@
 
 .btn-disable {
   pointer-events: none !important;
-  border: 1px solid var(--button-neutral-outlined-border-disabled, rgba(196, 196, 207, 0.3)) !important;
+  border: 1px solid
+    var(--button-neutral-outlined-border-disabled, rgba(196, 196, 207, 0.3)) !important;
 }
 
 .ant-breadcrumb-link a {
@@ -1436,7 +1437,6 @@
 /* RESPONSIVE START */
 /* desktop */
 @media screen and (min-width: 1025px) {
-
   .breadcrumb_category a,
   .breadcrumb_category span {
     font-size: 13px !important;
@@ -1548,6 +1548,21 @@
 }
 
 @media only screen and (min-width: 320px) and (max-width: 768px) {
+  .img_product_sale {
+    height: 100% !important;
+    width: 100% !important;
+  }
+
+  .img_compare {
+    height: 70px !important;
+    width: 100% !important;
+  }
+  .img_compare img,
+  .img_product_sale img {
+    width: 100% !important;
+    height: 100% !important;
+    object-fit: contain;
+  }
   .box_container_info_product {
     padding-left: 0 !important;
     padding-right: 0 !important;
@@ -1573,7 +1588,7 @@
   }
 
   .product-comparison-th h5 {
-    font-size: 16px !important;
+    font-size: 13px !important;
   }
 
   table td,
@@ -1635,7 +1650,7 @@
     padding: 8px;
   }
 
-  .ant-table-thead>tr>th {
+  .ant-table-thead > tr > th {
     font-size: 22px;
   }
 

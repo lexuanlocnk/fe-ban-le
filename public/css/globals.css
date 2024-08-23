@@ -11,7 +11,58 @@
   height: 100% !important;
   background: #edf3fd;
 }
-
+.box_menu_category {
+  flex: 0 0 16.66%;
+  display: block;
+  max-width: 16.66%;
+  min-width: 195px;
+  background: white;
+  position: relative;
+  z-index: 10;
+  border-radius: 8px;
+  height: fit-content;
+  margin-top: 15px;
+}
+.box_menu_category:hover {
+  border-radius: 8px 0px 0px 8px;
+}
+.item_category_menu {
+  padding: 5px 10px;
+}
+.item_category_menu:hover .text_category_menu {
+  color: #1435c3;
+}
+.item_category_menu:hover {
+  background-color: #f3f5fc;
+  border-radius: 8px;
+}
+.item_category_menu .text_category_menu {
+  font-weight: 500;
+  font-size: 14px;
+  transition: color 0.3s;
+  display: block;
+}
+.item_category_menu:hover .box_menu_categories_children {
+  display: grid !important;
+  /* gap: 12px; */
+  grid-template-columns: repeat(auto-fit, minmax(150px, 1fr));
+  grid-auto-flow: dense;
+}
+.box_menu_categories_children {
+  width: calc(62.625rem);
+  background-color: white;
+  min-height: 100%;
+  position: absolute;
+  display: none;
+  top: 0px;
+  left: 100%;
+  border-radius: 0px 8px 8px 0px;
+  padding: 5px 10px;
+}
+.box_full_sub_menu {
+  width: fit-content;
+  display: inline-block;
+}
 .container_type_promotion,
 .container_banner_swiper_menu_category,
 .container_menu_category,
@@ -1591,6 +1642,18 @@ footer {
   --swiper-theme-color: #333333;
   border-radius: 50%;
 }
+.mobile_box_menu_header {
+  display: none;
+}
+/* Mặc định ẩn menu */
+.hide-menu {
+  display: none !important;
+}
+
+/* Hiển thị menu khi `isOpen` là true */
+.show-menu {
+  display: block !important;
+}
 
 /* Responsive START */
 /* Mobile */
@@ -1678,10 +1741,6 @@ footer {
     font-size: 16px !important;
   }
 
-  #main-header-detail {
-    position: relative;
-  }
-
   .item_category_header {
     gap: 5px;
   }
@@ -1723,9 +1782,46 @@ footer {
   .container_flash_sale {
     width: 100% !important;
   }
-
-  .box_image_banner_top_header {
+  .box_image_banner_top_header,
+  .box_menu_header #header-login,
+  .box_menu_header #header-cart,
+  #header-noti .text_item_menu {
     display: none;
+  }
+  .mobile_box_menu_header {
+    position: fixed;
+    left: 0;
+    right: 0;
+    background-color: #fff;
+    bottom: 0;
+    display: flex;
+    padding-top: 5px;
+    padding-bottom: 5px;
+    justify-content: space-between;
+  }
+  .container-fluid {
+    padding-bottom: 60px !important;
+  }
+  .mobile_box_menu_header #mobile-header-cart {
+    position: relative;
+  }
+  .cart-product-number {
+    display: inline-flex;
+    justify-content: center;
+    align-items: center;
+    border-radius: 50%;
+    padding: 2px;
+    min-width: 14px;
+    height: auto;
+    background-color: #e74c3c;
+    position: absolute;
+    right: -5px;
+    top: -2px;
+  }
+  .cart-product-number span {
+    color: #fff;
+    font-size: 10px;
+    line-height: 1;
   }
 
   .left-header-detail {
@@ -1735,10 +1831,21 @@ footer {
     align-items: center;
   }
 
+  #header-noti {
+    width: 40px;
+  }
+  #header-noti .item_menu_header .icon_item_menu {
+    font-size: 30px;
+  }
   .right-header-detail {
     width: 100% !important;
   }
-
+  .mobile_box_menu_header .item_menu_header .icon_item_menu {
+    font-size: 18px;
+  }
+  .mobile_box_menu_header .text_item_menu {
+    font-weight: 400;
+  }
   .logo-header {
     height: 100% !important;
   }
@@ -1772,7 +1879,7 @@ footer {
 
   #main-header-detail {
     position: sticky;
-    top: 0;
+    top: -32px;
   }
 
   .content-header-detail {
@@ -1797,16 +1904,6 @@ footer {
 }
 
 @media only screen and (max-width: 550px) {
-  .right-header-detail {
-    display: flex !important;
-    flex-direction: row !important;
-  }
-
-  .box_menu_header,
-  .search-product {
-    width: 100% !important;
-  }
-
   .mobile_box_sort_container {
     position: sticky;
     top: 162.4px;
@@ -1815,10 +1912,6 @@ footer {
 
   .box_sort_product {
     padding: 4px !important;
-  }
-
-  .content-right-header-detail-1 {
-    gap: 0px !important;
   }
 
   .price_discount_card_product_basic span {
@@ -1957,17 +2050,6 @@ footer {
   .box_category_menu_container .box_menu_category {
     min-width: 195px !important;
   }
-
-  /* Mặc định ẩn menu */
-  .hide-menu {
-    display: none !important;
-  }
-
-  /* Hiển thị menu khi `isOpen` là true */
-  .show-menu {
-    display: block !important;
-  }
-
   .transformed_menu_category_container .box_content_menu_category,
   .transformed_menu_category_container .item_category_menu {
     width: 100% !important;

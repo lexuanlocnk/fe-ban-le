@@ -6,9 +6,8 @@
 }
 
 .container_cart #main-header-detail {
-  position: unset;
+  /* position: unset; */
 }
-
 .box-content-products-cart,
 .box_breadcrumbs_cart {
   width: 100%;
@@ -506,6 +505,7 @@
   align-items: center;
   justify-content: center;
 }
+
 
 @media only screen and (min-width: 320px) and (max-width: 768px) {
   .box-content-products-cart,

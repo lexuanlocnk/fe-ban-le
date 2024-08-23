@@ -87,7 +87,7 @@ const LeftHeaderDetail = () => {
       )}
       <div
         className={`box_category_menu_container ${
-          isOpen && isScrolled && isLargeScreen ? "show-menu" : "hide-menu"
+          isOpen ? "show-menu" : "hide-menu"
         }`}
       >
         <BoxMenuCategory />

@@ -52,12 +52,8 @@ const ProductsFlashSale = ({ productsFlashSale }) => {
           <Swiper
             autoplay={{ delay: 2000 }}
             breakpoints={{
-              640: {
-                slidesPerView: 2,
-                spaceBetween: 20,
-              },
               768: {
-                slidesPerView: 4,
+                slidesPerView: 3,
                 spaceBetween: 40,
               },
               1024: {
@@ -85,7 +81,7 @@ const ProductsFlashSale = ({ productsFlashSale }) => {
                           width={0}
                           sizes="100vw"
                           src={hostImage + item.Image}
-                          className="w-100 h-100 img_product_sale"
+                          className="img_product_sale"
                           alt="img_icon_share"
                         />
                         <div className="icon_flash_sale">
@@ -94,7 +90,7 @@ const ProductsFlashSale = ({ productsFlashSale }) => {
                             height={0}
                             width={0}
                             sizes="100vw"
-                            className="w-100 h-100"
+                            className=""
                             src={hostImage + item.ImageStatus}
                             alt="img_icon_share"
                           />
@@ -126,67 +122,6 @@ const ProductsFlashSale = ({ productsFlashSale }) => {
                               currency: "VND",
                             })}
                           </span>
-                        </div>
-
-                        <div className="my-1 d-flex align-items-center justify-content-around">
-                          <Tooltip
-                            placement="top"
-                            title="Thêm vào giỏ hàng"
-                            arrow={false}
-                          >
-                            <div className="item_btn_hot_product w-100">
-                              <Image
-                                quality={75}
-                                height={0}
-                                width={0}
-                                sizes="100vw"
-                                src="/image/shopping-cart.png"
-                                className="img_btn_hot_product_2"
-                                alt="img_icon_share"
-                              />
-                            </div>
-                          </Tooltip>
-
-                          <Tooltip
-                            placement="top"
-                            title="Mua sản phẩm"
-                            arrow={false}
-                          >
-                            <div className="item_btn_hot_product w-100 py-1">
-                              {" "}
-                              <Image
-                                quality={75}
-                                height={0}
-                                width={0}
-                                sizes="100vw"
-                                src="/image/buy.png"
-                                className="img_btn_hot_product_2"
-                                alt="img_icon_share"
-                              />
-                            </div>
-                          </Tooltip>
-
-                          <Tooltip
-                            placement="top"
-                            title="So sánh sản phẩm"
-                            arrow={false}
-                          >
-                            <div
-                              onClick={showModal}
-                              className="item_btn_hot_product w-100"
-                            >
-                              {" "}
-                              <Image
-                                quality={75}
-                                height={0}
-                                width={0}
-                                sizes="100vw"
-                                src="/image/compare.png"
-                                className="img_btn_hot_product_2"
-                                alt="img_icon_share"
-                              />
-                            </div>
-                          </Tooltip>
                         </div>
                         <div className="my-1">
                           <Progressbar soldQuantity={16} />

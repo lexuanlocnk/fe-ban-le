@@ -34,7 +34,7 @@ const TableCompareProducts = ({ dataCompare }) => {
             {dataCompare.map((item, index) => (
               <th className="product-comparison-th" key={item.ProductId}>
                 <ImageAntd
-                  className="h-100 w-100 img_compare "
+                  className=" img_compare "
                   src={hostImage + item.Image}
                 />
               </th>

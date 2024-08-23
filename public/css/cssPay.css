@@ -1,210 +1,238 @@
 .box-content-products-payment {
-    padding: 15px;
-    border-radius: 0px 0px 5px 5px;
-    min-width: 700px;
+  padding: 15px;
+  border-radius: 0px 0px 5px 5px;
+  min-width: 700px;
 }
-
-
 
 .head_table_pay {
-    border-radius: 5px 5px 0px 0px;
-    padding: 10px;
-    font-size: 23px;
-    font-weight: 600;
-    background: #f0fff7;
-    color: #219653;
-    display: flex;
-    align-items: center;
-    justify-content: center;
+  border-radius: 5px 5px 0px 0px;
+  padding: 10px;
+  font-size: 23px;
+  font-weight: 600;
+  background: #f0fff7;
+  color: #219653;
+  display: flex;
+  align-items: center;
+  justify-content: center;
 }
 
-
 .container_content_payment {
-    width: 850px;
-    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+  width: 850px;
+  box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
 }
 
 .title_pay {
-    font-size: 15px;
-    font-weight: 500;
+  font-size: 15px;
+  font-weight: 500;
 }
 
 .name_pay {
-    display: inline-block;
-    margin-left: 3px;
-    color: #219653;
+  display: inline-block;
+  margin-left: 3px;
+  color: #219653;
 }
 
 .box_text_order_management {
-    display: flex;
-    align-items: center;
-    justify-content: end;
-    gap: 5px;
-    line-height: normal;
+  display: flex;
+  align-items: center;
+  justify-content: end;
+  gap: 5px;
+  line-height: normal;
 }
 
 .text_management {
-    color: #2f80ed;
-    font-size: 15px;
-    font-weight: 500;
-    cursor: pointer;
-
+  color: #2f80ed;
+  font-size: 15px;
+  font-weight: 500;
+  cursor: pointer;
 }
 
 .text_cancel {
-    cursor: pointer;
-    color: #dd1c1a;
-    font-size: 15px;
-    font-weight: 400;
+  cursor: pointer;
+  color: #dd1c1a;
+  font-size: 15px;
+  font-weight: 400;
 }
 
 .dot {
-    font-size: 10px;
-    line-height: normal;
+  font-size: 10px;
+  line-height: normal;
 }
 
 .text_title {
-    font-size: 15px;
-    font-weight: 600;
-    margin-right: 5px;
+  font-size: 15px;
+  font-weight: 600;
+  margin-right: 5px;
 }
 
 .text_value {
-    font-size: 15px;
+  font-size: 15px;
 }
 
 .info_order {
-    background: #f3f3f3;
-    padding: 5px 15px;
-    border-radius: 5px;
+  background: #f3f3f3;
+  padding: 5px 15px;
+  border-radius: 5px;
 }
 
 .box_statistical_point {
-    display: flex;
-    align-items: center;
-    gap: 5px;
-    background: #eaf2fd;
-    padding: 5px 5px;
-    border-radius: 5px;
+  display: flex;
+  align-items: center;
+  gap: 5px;
+  background: #eaf2fd;
+  padding: 5px 5px;
+  border-radius: 5px;
 }
 
 .status_order {
-    padding: 10px;
-    border: 1px dashed #fb6e2e;
-    color: #fb6e2e;
-    text-align: center;
-    background: rgba(251, 110, 46, .05);
-    font-size: 16px;
-    font-weight: 500;
-    border-radius: 5px;
+  padding: 10px;
+  border: 1px dashed #fb6e2e;
+  color: #fb6e2e;
+  text-align: center;
+  background: rgba(251, 110, 46, 0.05);
+  font-size: 16px;
+  font-weight: 500;
+  border-radius: 5px;
 }
 
 .choose_payment span {
-    font-size: 15px;
-    font-weight: 500;
+  font-size: 15px;
+  font-weight: 500;
 }
 
 .box_info_banking {
-    padding: 10px 20px;
-    border: 1px solid #e5e5e5;
-    border-radius: 5px;
+  padding: 10px 20px;
+  border: 1px solid #e5e5e5;
+  border-radius: 5px;
 }
 
 .text_title_banking {
-    display: inline-block;
-    font-size: 15px;
-    color: #666;
-    font-weight: 400;
-    width: 140px;
+  display: inline-block;
+  font-size: 15px;
+  color: #666;
+  font-weight: 400;
+  width: 140px;
 }
 
 .text_item_info {
-    margin: 7px 0px;
-    display: flex;
+  margin: 7px 0px;
+  display: flex;
 }
 
 .text_value_banking {
-    font-size: 15px;
-    font-weight: 400;
+  font-size: 15px;
+  font-weight: 400;
 }
 
 .example {
-    color: #2f80ed;
-    font-size: 13px;
-    font-weight: 300;
+  color: #2f80ed;
+  font-size: 13px;
+  font-weight: 300;
 }
 
 .text_money_banking {
-    font-size: 15px;
-    font-weight: 600;
-    color: red;
+  font-size: 15px;
+  font-weight: 600;
+  color: red;
 }
 
 .image_qr_banking {
-    display: flex;
-    justify-content: center;
+  display: flex;
+  justify-content: center;
 }
 
 .text_remind span {
-    font-size: 15px;
-    font-weight: 500;
+  font-size: 15px;
+  font-weight: 500;
 }
-
 
 /* CARD PRODUCT PAYMENT START*/
 
-
 .box_image_product_checked {
-    border-radius: 8px;
-    border: 1px solid #c3d0fd;
-    box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
-    display: flex;
-    align-items: center;
+  border-radius: 8px;
+  border: 1px solid #c3d0fd;
+  box-shadow: rgba(0, 0, 0, 0.16) 0px 1px 4px;
+  display: flex;
+  align-items: center;
 }
 
 .box_image_product_checked img {
-    object-fit: cover;
-    border-radius: 8px;
+  object-fit: cover;
+  border-radius: 8px;
 }
 
-
 .box_name_product_checked {
-    font-size: 16px;
-    font-weight: 500;
-    line-height: normal;
+  font-size: 16px;
+  font-weight: 500;
+  line-height: normal;
 }
 
 .info_basic_product_checked {
-    display: flex;
-    gap: 50px;
-    font-size: 13px;
-    font-weight: 400;
-    color: #666;
+  display: flex;
+  gap: 50px;
+  font-size: 13px;
+  font-weight: 400;
+  color: #666;
 }
 
 .price_card_product_pay {
-    color: #f30c28;
-    font-size: 14px;
-    font-weight: 500;
+  color: #f30c28;
+  font-size: 14px;
+  font-weight: 500;
 }
-
 
 /* CARD PRODUCT PAYMENT END*/
 
 .text_delivery_time span {
-    font-size: 15px;
+  font-size: 15px;
 }
 
 .time_ship {
-    font-weight: 600;
+  font-weight: 600;
 }
 
 .money {
-    font-size: 15px;
-    font-weight: 500;
-    color: red;
+  font-size: 15px;
+  font-weight: 500;
+  color: red;
 }
 
 .container_content_payment_empty {
-    margin-top: 70px;
+  margin-top: 70px;
+}
+@media screen and (max-width: 768px) {
+  .head_table_pay,
+  .status_order {
+    font-size: 14px;
+  }
+  .pay_container {
+    padding: 0 !important;
+  }
+  .container_content_payment,
+  .btn_order {
+    width: 100%;
+  }
+  .option_choose_payment {
+    width: fit-content !important;
+  }
+  .box-content-products-payment {
+    min-width: fit-content;
+  }
+  .title_pay,
+  .text_delivery_time span,
+  .choose_payment span {
+    font-size: 13px;
+  }
+  .text_title,
+  .text_title_banking,
+  .text_remind span,
+  .ant-radio-wrapper span {
+    font-size: 12px !important;
+  }
+  .text_value,
+  .text_value_banking,
+  .text_management,
+  .example {
+    font-size: 11px;
+  }
 }
