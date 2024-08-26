@@ -75,7 +75,7 @@ function ContentHeader() {
         />
       </div>
       <div className="container_category_header">
-        <div className="category_header row mx-0 h-100">
+        <div className="category_header custom_scroll row mx-0 h-100">
           <div className="col-lg-2 col-md-2 d-md-block d-none left_box_category_header"></div>
           <div className="col-lg-10 col-md-10 col-12 box_category_header">
             {categories &&

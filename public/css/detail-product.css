@@ -976,6 +976,7 @@
 .box_breadcrumb_category_container {
   padding-left: 0px !important;
   padding-right: 0px !important;
+  overflow: auto;
 }
 
 @keyframes scroll-up {
@@ -1433,13 +1434,15 @@
 .btn_submit_comment span {
   color: white !important;
 }
-
 /* RESPONSIVE START */
 /* desktop */
 @media screen and (min-width: 1025px) {
   .breadcrumb_category a,
   .breadcrumb_category span {
     font-size: 13px !important;
+  }
+  .mobile_container_image_main {
+    display: none;
   }
 }
 
@@ -1463,91 +1466,12 @@
     height: 13px;
   }
 }
-
-/* tablet */
-@media only screen and (max-width: 1024px) {
-  .img-product-detail {
-    position: sticky;
-  }
-
-  .box_btn_buy_now_add_cart_detail {
-    position: fixed;
-    right: 0;
-    left: 0;
-    bottom: 0;
-    background-color: #fff;
-    padding: 5px;
-    z-index: 15;
-  }
-
-  .box_info_detail_product_container {
-    width: 100% !important;
-    padding: 0 !important;
-  }
-
-  .buy-product-detail {
-    width: 100% !important;
-    margin-top: 5px !important;
-  }
-
-  .box-card-selling-product {
-    margin: 5px !important;
-  }
-
-  .box_container_gallery_image,
-  .box_breadcrumb_category,
-  .box_container_info_product {
-    width: 100% !important;
-  }
-
-  .container_image_main,
-  .box_thumbnail {
-    display: none;
-  }
-
-  .mobile_container_image_main,
-  .mobile_product_swiper,
-  .gallery_image {
-    width: 100%;
-    height: 100%;
-  }
-
-  .gallery_image img {
-    width: 100%;
-    height: calc(100% - 30px);
-    object-fit: contain;
-  }
-
-  .item_card_product_basic:hover {
-    box-shadow: none;
-  }
-
-  .category-hot-search,
-  .name-category-first-research {
-    font-size: 14px;
-    font-weight: 400;
-  }
-
-  .name_product_search {
-    font-size: 12px;
-  }
-
-  .price_product_search {
-    font-size: 13px;
-    text-align: right;
-  }
-
-  .box_cart_product_search {
-    padding: 5px !important;
-  }
-
-  .box_img_card_product_search_container,
-  .box_name_price_product_search_container {
-    width: 100% !important;
-  }
-}
-
 @media only screen and (min-width: 320px) and (max-width: 768px) {
+  .btn_buy_now span,
+  .btn_add_cart span {
+    font-size: 11px;
+    font-weight: 500;
+  }
   .img_product_sale {
     height: 100% !important;
     width: 100% !important;
@@ -1844,11 +1768,7 @@
   }
 
   .breadcrumb_category span {
-    display: -webkit-box;
-    -webkit-box-orient: vertical;
-    -webkit-line-clamp: 2;
-    overflow: hidden;
-    text-overflow: ellipsis;
+    white-space: nowrap;
   }
 
   .ant-modal {
@@ -1861,6 +1781,89 @@
 
   .box-input-user-review {
     flex: 1 !important;
+  }
+}
+
+/* tablet */
+@media only screen and (max-width: 1024px) {
+  .img-product-detail {
+    position: sticky;
+  }
+
+  .box_btn_buy_now_add_cart_detail {
+    position: fixed;
+    right: 0;
+    left: 0;
+    bottom: 0;
+    background-color: #fff;
+    padding: 5px;
+    z-index: 20;
+  }
+
+  .box_info_detail_product_container {
+    width: 100% !important;
+    padding: 0 !important;
+  }
+
+  .buy-product-detail {
+    width: 100% !important;
+    margin-top: 5px !important;
+  }
+
+  .box-card-selling-product {
+    margin: 5px !important;
+  }
+
+  .box_container_gallery_image,
+  .box_breadcrumb_category,
+  .box_container_info_product {
+    width: 100% !important;
+  }
+
+  .container_image_main,
+  .box_thumbnail {
+    display: none;
+  }
+
+  .mobile_container_image_main,
+  .mobile_product_swiper,
+  .gallery_image {
+    width: 100%;
+    height: 100%;
+  }
+
+  .gallery_image img {
+    width: 100%;
+    height: calc(100% - 30px);
+    object-fit: contain;
+  }
+
+  .item_card_product_basic:hover {
+    box-shadow: none;
+  }
+
+  .category-hot-search,
+  .name-category-first-research {
+    font-size: 14px;
+    font-weight: 400;
+  }
+
+  .name_product_search {
+    font-size: 12px;
+  }
+
+  .price_product_search {
+    font-size: 13px;
+    text-align: right;
+  }
+
+  .box_cart_product_search {
+    padding: 5px !important;
+  }
+
+  .box_img_card_product_search_container,
+  .box_name_price_product_search_container {
+    width: 100% !important;
   }
 }
 

@@ -99,77 +99,77 @@ const ItemConfiguration = ({
                       />
                     )}
                   </div>
-                </div>
-                {accessory ? (
-                  <div className="box_basic_info_accessory ">
-                    <div className="title_name_accessory  ">
-                      <span className="text_genaral_two_line">
-                        {accessory.ProductName}
-                      </span>
-                    </div>
-                    <div className="box_quality_price_accessory">
-                      <div className="box_quality_accessory ">
-                        {accessory?.quantity && accessory?.quantity > 1 ? (
+                  {accessory ? (
+                    <div className="box_basic_info_accessory ">
+                      <div className="title_name_accessory  ">
+                        <span className="text_genaral_two_line">
+                          {accessory.ProductName}
+                        </span>
+                      </div>
+                      <div className="box_quality_price_accessory">
+                        <div className="box_quality_accessory ">
+                          {accessory?.quantity && accessory?.quantity > 1 ? (
+                            <div
+                              className="item_up_down"
+                              onClick={() =>
+                                decrementQuantity(
+                                  checkedConfiguration.idConfiguration,
+                                  item.catId
+                                )
+                              }
+                            >
+                              <span>-</span>
+                            </div>
+                          ) : (
+                            <div
+                              className="item_up_down"
+                              onClick={() => removeAccessory(item.catId)}
+                            >
+                              <RiDeleteBin5Line />
+                            </div>
+                          )}
+
+                          <span>{accessory.quantity}</span>
                           <div
-                            className="item_up_down"
                             onClick={() =>
-                              decrementQuantity(
+                              incrementQuantity(
                                 checkedConfiguration.idConfiguration,
                                 item.catId
                               )
                             }
-                          >
-                            <span>-</span>
-                          </div>
-                        ) : (
-                          <div
                             className="item_up_down"
-                            onClick={() => removeAccessory(item.catId)}
                           >
-                            <RiDeleteBin5Line />
+                            <span>+</span>
                           </div>
-                        )}
-
-                        <span>{accessory.quantity}</span>
-                        <div
-                          onClick={() =>
-                            incrementQuantity(
-                              checkedConfiguration.idConfiguration,
-                              item.catId
-                            )
-                          }
-                          className="item_up_down"
-                        >
-                          <span>+</span>
                         </div>
-                      </div>
-                      <div className="box_price_quality_accessory  ">
-                        <div className="price_main_accessory">
-                          <span>
-                            {status === "unauthenticated"
-                              ? // Đoạn mã khi không xác thực
-                                accessory.Price.toLocaleString("vi", {
-                                  style: "currency",
-                                  currency: "VND",
-                                })
-                              : // Đoạn mã khi đã xác thực
-                              status === "loading"
-                              ? "Đang cập nhật"
-                              : accessory.PriceOld.toLocaleString("vi", {
-                                  style: "currency",
-                                  currency: "VND",
-                                })}
-                          </span>
+                        <div className="box_price_quality_accessory  ">
+                          <div className="price_main_accessory">
+                            <span>
+                              {status === "unauthenticated"
+                                ? // Đoạn mã khi không xác thực
+                                  accessory.Price.toLocaleString("vi", {
+                                    style: "currency",
+                                    currency: "VND",
+                                  })
+                                : // Đoạn mã khi đã xác thực
+                                status === "loading"
+                                ? "Đang cập nhật"
+                                : accessory.PriceOld.toLocaleString("vi", {
+                                    style: "currency",
+                                    currency: "VND",
+                                  })}
+                            </span>
+                          </div>
+                          <div className="price_accessory"></div>
                         </div>
-                        <div className="price_accessory"></div>
                       </div>
                     </div>
-                  </div>
-                ) : (
-                  <div className="title_description">
-                    <span>Vui lòng chọn linh kiện</span>
-                  </div>
-                )}
+                  ) : (
+                    <div className="title_description">
+                      <span>Vui lòng chọn linh kiện</span>
+                    </div>
+                  )}
+                </div>
                 <ButtonChooseAccessory
                   item={item}
                   checkedConfiguration={checkedConfiguration}

@@ -86,8 +86,8 @@ const ContentCompareProduct = ({ dataCompare }) => {
         <div className="container_content_compare_product row">
           <div className="mt-2 col-12 box_image_product_compare_page">
             <div className="bg-white content_info_compare_page">
-              <div className="row mx-0">
-                <div className="col-6 col-lg-4  px-3 mb-2 mt-1">
+              <div className="row mx-0 box_compare_container">
+                <div className="col-6 col-lg-4  px-3 mb-2 mt-1 compare_title_container">
                   <span className="related-product">SO SÁNH SẢN PHẨM</span>
 
                   <div className="box_name_product_compare_2">
@@ -119,7 +119,7 @@ const ContentCompareProduct = ({ dataCompare }) => {
                       ))}
                   </div>
                 </div>
-                <div className="col-6 col-lg-8 mt-1">
+                <div className="col-6 col-lg-8 mt-1 box_info_product_compare_container">
                   <div className="box_info_product_compare row">
                     {dataCompare &&
                       dataCompare.map((item, index) => (

@@ -170,7 +170,7 @@ const InfoProduct = ({
   return (
     <>
       <div className="row container-content-detail-product ">
-        <div className="my-2 box_breadcrumb_category_container">
+        <div className="my-2 box_breadcrumb_category_container custom_scroll">
           <Breadcrumb
             breadcrumbData={breadcrumbData}
             nameItem={dataProduct.ProductName}
