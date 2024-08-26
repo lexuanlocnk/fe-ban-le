@@ -50,15 +50,19 @@ const ProductsFlashSale = ({ productsFlashSale }) => {
       <div className="col-12 box_products_flash_sale">
         <div className="container_products_flash_sale ">
           <Swiper
-            autoplay={{ delay: 2000 }}
+            // autoplay={{ delay: 2000 }}
             breakpoints={{
+              320: {
+                slidesPerView: 2,
+                spaceBetween: 10,
+              },
               768: {
                 slidesPerView: 3,
-                spaceBetween: 40,
+                spaceBetween: 10,
               },
               1024: {
                 slidesPerView: 5,
-                spaceBetween: 50,
+                spaceBetween: 10,
               },
             }}
             loop={true}

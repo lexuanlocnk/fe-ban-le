@@ -1038,6 +1038,7 @@ footer {
 .custom_scroll::-webkit-scrollbar {
   padding-left: 5px;
   width: 6px;
+  height: 3px;
   background-color: #f5f5f5;
 }
 
@@ -1610,6 +1611,10 @@ footer {
   /* box-shadow: rgba(33, 35, 38, 0.1) 0px 10px 10px -10px; */
 }
 
+.active_bottom_tab {
+  color: #0f71fb;
+}
+
 .swiper-button-prev {
   display: none !important;
 
@@ -1723,10 +1728,6 @@ footer {
     overflow: auto;
   }
 
-  .category_header::-webkit-scrollbar {
-    display: none;
-  }
-
   .box_category_header {
     gap: 5px;
   }
@@ -1798,6 +1799,7 @@ footer {
     padding-top: 5px;
     padding-bottom: 5px;
     justify-content: space-between;
+    z-index: 14;
   }
   .container-fluid {
     padding-bottom: 60px !important;
@@ -1925,7 +1927,6 @@ footer {
 
 /* Tablet */
 @media only screen and (min-width: 768px) and (max-width: 1024px) {
-
   .box_container_products_promotion,
   .container_img_news_sale,
   .box_banner_swiper_menu_category,
@@ -2181,3 +2182,90 @@ footer {
 .img_card_product_basic img {
   object-fit: contain;
 }
+
+/* CSS Category Menu cho bottom tab navigation */
+.mb_box_menu_category,
+.mb_box_content_menu_category {
+  height: 100% !important;
+  width: 100% !important;
+}
+.mb_box_content_menu_category {
+  background-color: #f3f5fc;
+  gap: 5px;
+}
+.menu_category_item_container_mb,
+.mb_item_category_menu {
+  background-color: #fff;
+}
+.mb_item_category_menu {
+  flex: 1;
+  overflow: auto;
+}
+.mb_box_content_menu_category {
+  display: flex;
+}
+.mb_box_value_sub_menu_container {
+  display: flex;
+  flex-flow: wrap;
+}
+.menu_category_item_container_mb {
+  width: max-content;
+  height: 100% !important;
+  overflow: auto;
+}
+.ant-drawer-content .ant-drawer-body {
+  padding: 0 !important;
+}
+.menu_category_item_mb {
+  padding: 8px;
+  font-size: 11px;
+}
+
+.mb-box-value-menu-p-5 {
+  flex: 0 0 50% !important;
+  padding: 5px 2.5px;
+}
+
+.mb_box_value_menu_sub {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  border-radius: 2px;
+  border: 0.75px #c5bbbb solid;
+  padding: 8px 0px;
+  width: 100%;
+  max-height: 36px;
+}
+.mb_box_value_menu_sub a {
+  font-size: 12px;
+  color: #000 !important;
+  width: fit-content !important;
+  height: fit-content;
+  text-align: center;
+}
+.hidden {
+  display: none;
+}
+.mb_item_category_menu {
+  padding: 8px 5px;
+  height: 100% !important;
+}
+.menu_category_item_mb.active {
+  color: #0a68ff;
+  border-left: 4px solid #0a68ff;
+}
+.active {
+  display: block;
+}
+.mb_text_category_menu {
+  font-size: 18px;
+  font-weight: 500;
+}
+.mb_text_sub_category_menu {
+  font-size: 14px;
+  font-weight: 500;
+}
+.css-dev-only-do-not-override-11xg00t.ant-drawer .ant-drawer-title {
+  font-size: 13px !important;
+}
+/* CSS Category Menu cho bottom tab navigation */

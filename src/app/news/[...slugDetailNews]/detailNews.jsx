@@ -53,13 +53,13 @@ const DetailNews = ({ dataNewsDetail, dataRelatedNews }) => {
                         >
                           <div className="card_news_image image custom-img-sale-news">
                             <Image
-                              quality={75}
+                              quality={100}
                               height={0}
                               width={0}
                               sizes="100vw"
                               alt={item.title}
                               src={hostImage + item.picture}
-                              className="w-100 h-100"
+                              // className="w-100 h-100"
                             />
                           </div>
                           <div className="">
