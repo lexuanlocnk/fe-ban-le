@@ -44,8 +44,7 @@ const ModalInfoComment = ({
           </Form.Item>
           <Form.Item
             name="email"
-            label="Nhập mail "
-            rules={[
+             rules={[
               {
                 type: "email",
                 message: "E-mail không đúng định dạng!",

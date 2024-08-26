@@ -15,12 +15,10 @@ const ContentHoverNotifications = ({}) => {
   const { data, status } = useSession();
 
   const router = useRouter();
-  const [dataNotification, setDataNotification] = useState(
-    typeof window !== "undefined" && localStorage.getItem("notification")
-      ? JSON.parse(localStorage.getItem("notification"))
-      : []
-  );
+  const [dataNotification, setDataNotification] = useState();
   useEffect(() => {
+    localStorage.removeItem("notification");
+
     const socket = io("http://192.168.245.190:3000");
 
     socket.on("notify", (dataSocket) => {
@@ -42,17 +40,15 @@ const ContentHoverNotifications = ({}) => {
 
         if (isRelevantNotification) {
           setDataNotification((prev) => {
-            if (
-              !prev.some((item) => convert.socketId.includes(item.socketId))
-            ) {
-              const updatedNotifications = [convert, ...prev.slice(0, 9)]; // Keep only the first 10 items
-              localStorage.setItem(
-                "notification",
-                JSON.stringify(updatedNotifications)
-              );
-              return updatedNotifications;
-            }
-            return prev;
+            const updatedNotifications = [
+              convert,
+              ...(prev?.slice(0, 9) || []),
+            ];
+            localStorage.setItem(
+              "notification",
+              JSON.stringify(updatedNotifications)
+            );
+            return updatedNotifications;
           });
         }
       } catch (error) {

@@ -171,6 +171,8 @@ export const cartReducer = (state, action) => {
             newProduct.ProductId
           );
           existingProduct.quantity = newProduct.quantity;
+          // existingProduct.quantity += newProduct.quantity;
+
           productMapNotAccount.set(newProduct.ProductId, existingProduct);
         } else {
           // If product does not exist in the cart, add it with the specified quantity

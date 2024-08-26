@@ -1,7 +1,9 @@
+import { getServerSession } from "next-auth";
 import "../../../../public/css/detail-product.css";
 import Footer from "../../../components/footer";
 import Header from "../../header/header";
 import { hostApi } from "../../lib/config";
+import { authOptions } from "../../lib/nextAuth";
 import ContentDetailProduct from "./contentDetailProduct";
 export async function generateMetadata({ params }) {
   // read route params
@@ -20,11 +22,14 @@ export async function generateMetadata({ params }) {
   };
 }
 
-async function fetchDataDetailProduct(params) {
+async function fetchDataDetailProduct(params, userId) {
   try {
-    const response = await fetch(`${hostApi}/member/product-detail/${params}`, {
-      method: "GET",
-    });
+    const response = await fetch(
+      `${hostApi}/member/product-detail/${params}?userId=${userId ?? null}`,
+      {
+        method: "GET",
+      }
+    );
 
     if (!response.ok) {
       throw new Error("Network response was not ok");
@@ -77,7 +82,12 @@ async function fetchDataProductsRelated(params) {
 }
 
 const HomePage = async ({ params }) => {
-  const fetchDataProduct = fetchDataDetailProduct(params.slugProduct);
+  const session = await getServerSession(authOptions);
+
+  const fetchDataProduct = fetchDataDetailProduct(
+    params.slugProduct,
+    session?.user?.id
+  );
   const fetchProductsCompare = fetchDataProductsCompare(params.slugProduct);
   const fetchDataRelated = fetchDataProductsRelated(params.slugProduct);
   const [dataProduct, dataProductsCompare, dataRelated] = await Promise.all([

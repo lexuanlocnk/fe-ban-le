@@ -109,53 +109,65 @@ const ComponentFilter = ({ dataProperties, getValueParams }) => {
           return null;
         })}
       </div>
+      {dataProperties.rangePrice.maxPrice &&
+        dataProperties.rangePrice.maxPrice > 0 && (
+          <div className="box_price_slider">
+            <span className="price_slide">Khoảng giá</span>
 
-      <div className="box_price_slider">
-        <span className="price_slide">Khoảng giá</span>
-        <div className="slider_filter_price">
-          <div className="box_input_value_slider ">
-            <div className="input_value_slider">
-              <span>
-                {getValueParams.minPrice
-                  ? Number(getValueParams.minPrice).toLocaleString("vi", {
-                      style: "currency",
-                      currency: "VND",
-                    })
-                  : dataProperties.rangePrice.minPrice.toLocaleString("vi", {
-                      style: "currency",
-                      currency: "VND",
-                    })}
-              </span>
-            </div>
-            <div className="input_value_slider">
-              <span>
-                {getValueParams.maxPrice
-                  ? Number(getValueParams.maxPrice).toLocaleString("vi", {
-                      style: "currency",
-                      currency: "VND",
-                    })
-                  : dataProperties?.rangePrice.maxPrice?.toLocaleString("vi", {
-                      style: "currency",
-                      currency: "VND",
-                    })}
-              </span>
+            <div className="slider_filter_price">
+              <div className="box_input_value_slider ">
+                <div className="input_value_slider">
+                  <span>
+                    {getValueParams.minPrice
+                      ? Number(getValueParams.minPrice).toLocaleString("vi", {
+                          style: "currency",
+                          currency: "VND",
+                        })
+                      : dataProperties.rangePrice.minPrice.toLocaleString(
+                          "vi",
+                          {
+                            style: "currency",
+                            currency: "VND",
+                          }
+                        )}
+                  </span>
+                </div>
+                <div className="input_value_slider">
+                  <span>
+                    {getValueParams.maxPrice
+                      ? Number(getValueParams.maxPrice).toLocaleString("vi", {
+                          style: "currency",
+                          currency: "VND",
+                        })
+                      : dataProperties?.rangePrice.maxPrice?.toLocaleString(
+                          "vi",
+                          {
+                            style: "currency",
+                            currency: "VND",
+                          }
+                        )}
+                  </span>
+                </div>
+              </div>
+              <Slider
+                tooltip={{
+                  formatter,
+                }}
+                defaultValue={[
+                  getValueParams["minPrice"] ??
+                    dataProperties.rangePrice.minPrice,
+                  getValueParams["maxPrice"] ??
+                    dataProperties.rangePrice.maxPrice,
+                ]}
+                min={dataProperties.rangePrice.minPrice}
+                max={dataProperties.rangePrice.maxPrice}
+                range
+                onChange={onChangeSlider}
+              />
             </div>
           </div>
-          <Slider
-            tooltip={{
-              formatter,
-            }}
-            defaultValue={[
-              getValueParams["minPrice"] ?? dataProperties.rangePrice.minPrice,
-              getValueParams["maxPrice"] ?? dataProperties.rangePrice.maxPrice,
-            ]}
-            min={dataProperties.rangePrice.minPrice}
-            max={dataProperties.rangePrice.maxPrice}
-            range
-            onChange={onChangeSlider}
-          />
-        </div>
-      </div>
+        )}
+
       <ConfigProvider
         theme={{
           components: {

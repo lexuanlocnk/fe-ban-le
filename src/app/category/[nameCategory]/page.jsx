@@ -6,6 +6,8 @@ import { redirect } from "next/navigation";
 import ContentCategory from "../[nameCategory]/contentCategory";
 import { hostApi } from "../../lib/config";
 import FilterProducts from "./filterProducts";
+import { authOptions } from "../../lib/nextAuth";
+import { getServerSession } from "next-auth";
 
 async function fetchDataProperties(slug) {
   try {
@@ -14,6 +16,10 @@ async function fetchDataProperties(slug) {
       {
         method: "GET",
       }
+    );
+
+    console.log(
+      `http://192.168.245.190:8000/api/member/category-option?categoryUrl=${slug}`
     );
 
     if (!response.ok) {
@@ -33,14 +39,18 @@ async function fetchDataProperties(slug) {
   }
 }
 
-async function fetchDataProducts(slug, valuePage, dataParams) {
+async function fetchDataProducts(slug, valuePage, userId, dataParams) {
   try {
     const queryParams = new URLSearchParams({
+      userId: userId ?? null,
       catUrl: slug,
       page: valuePage ?? 1,
       ...dataParams,
     });
 
+    console.log(
+      `http://192.168.245.190:8000/api/member/filter-category?${queryParams.toString()}`
+    );
     const response = await fetch(
       `${hostApi}/member/filter-category?${queryParams.toString()}`,
       {
@@ -79,11 +89,13 @@ export async function generateMetadata({ params }) {
 }
 
 export default async function Page({ params, searchParams }) {
+  const session = await getServerSession(authOptions);
   const page = searchParams["page"];
   const dataProperties = await fetchDataProperties(params.nameCategory);
   const dataProducts = await fetchDataProducts(
     params.nameCategory,
     page,
+    session?.user?.id,
     searchParams
   );
 
