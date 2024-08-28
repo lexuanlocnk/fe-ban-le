@@ -1798,8 +1798,9 @@ footer {
   .box_image_banner_top_header,
   .box_menu_header #header-login,
   .box_menu_header #header-cart,
-  #header-noti .text_item_menu {
-    display: none;
+  #header-noti .text_item_menu,
+  .box_skeleton_info_header {
+    display: none !important;
   }
   .mobile_box_menu_header {
     position: fixed;

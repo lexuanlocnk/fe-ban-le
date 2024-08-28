@@ -272,23 +272,7 @@ const InfoHeader = () => {
             </span>
           </Link>
         </div>
-        {status && status == "loading" ? (
-          <div
-            className={`item_menu_header ${
-              status == "loading" ? "skeleton" : ""
-            }`}
-          >
-            <Skeleton
-              avatar
-              paragraph={{
-                rows: 3,
-              }}
-              size={"small"}
-              active
-              className=""
-            />
-          </div>
-        ) : status === "unauthenticated" ? (
+        {status === "unauthenticated" ? (
           <div
             className={`item_menu_header ${
               activeItem === "/login" ? "active_bottom_tab" : ""
