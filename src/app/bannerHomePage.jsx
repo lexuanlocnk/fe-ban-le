@@ -263,8 +263,8 @@ const BannerHomePage = ({ dataMenuCategories }) => {
                       >
                         <div className="mobile_img_category_menu_item">
                           <Image
-                            height={75}
-                            width={75}
+                            height={0}
+                            width={0}
                             quality={100}
                             src={ImageTest}
                           ></Image>

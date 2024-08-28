@@ -159,7 +159,7 @@ const InfoHeader = () => {
               </Link>
             </div>
           ) : (
-            <div className="item_property_header">
+            <div className="item_property_header" id="header-login">
               <Popover
                 className="item_menu_header"
                 placement="bottomRight"
@@ -272,23 +272,7 @@ const InfoHeader = () => {
             </span>
           </Link>
         </div>
-        {status && status == "loading" ? (
-          <div
-            className={`item_menu_header ${
-              status == "loading" ? "skeleton" : ""
-            }`}
-          >
-            <Skeleton
-              avatar
-              paragraph={{
-                rows: 3,
-              }}
-              size={"small"}
-              active
-              className=""
-            />
-          </div>
-        ) : status === "unauthenticated" ? (
+        {status === "unauthenticated" ? (
           <div
             className={`item_menu_header ${
               activeItem === "/login" ? "active_bottom_tab" : ""

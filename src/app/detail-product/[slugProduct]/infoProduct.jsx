@@ -350,103 +350,108 @@ const InfoProduct = ({
                     <span className="title_gift_product">
                       CHỌN 1 TRONG NHỮNG KHUYẾN MÃI SAU
                     </span>
-                    {dataGiftProduct.checkCoupon.map((item) => (
-                      <div className="my-2" key={item.id}>
-                        {item?.coupon_desc &&
-                          item.coupon_desc.length > 0 &&
-                          item.coupon_desc.map((itemVoucher, index) => {
-                            const customItemVoucher = {
-                              releaseCode: item.MaPhatHanh,
-                              valueVoucher: item.GiaTriCoupon,
-                              status: "add",
-                              ...itemVoucher,
-                            };
+                    <div className="gift_box_container custom_scroll">
+                      {dataGiftProduct.checkCoupon.map((item) => (
+                        <div className="my-2" key={item.id}>
+                          {item?.coupon_desc &&
+                            item.coupon_desc.length > 0 &&
+                            item.coupon_desc.map((itemVoucher, index) => {
+                              const customItemVoucher = {
+                                releaseCode: item.MaPhatHanh,
+                                valueVoucher: item.GiaTriCoupon,
+                                status: "add",
+                                ...itemVoucher,
+                              };
 
-                            const handleClick = () => {
-                              if (
-                                valueVoucherDetail?.MaCouponDes ===
-                                itemVoucher.MaCouponDes
-                              ) {
-                                dispatch({
-                                  type: "ADD_VOUCHER_DETAIL",
-                                  payload: {
-                                    valueVoucherOld: item.GiaTriCoupon || 0,
-                                    status: "remove",
-                                  },
-                                });
-                              } else {
-                                dispatch({
-                                  type: "ADD_VOUCHER_DETAIL",
-                                  payload: customItemVoucher,
-                                });
-                              }
-                            };
-
-                            return (
-                              <div
-                                key={index}
-                                className={` ${
+                              const handleClick = () => {
+                                if (
                                   valueVoucherDetail?.MaCouponDes ===
                                   itemVoucher.MaCouponDes
-                                    ? " active_voucher"
-                                    : "border_solid_common"
-                                } row mx-0 mt-2 item-voucher cursor-pointer `}
-                                onClick={handleClick}
-                              >
-                                <div className="col-2 box-img-voucher">
-                                  <div>
-                                    <FiGift className="icon_voucher" />
+                                ) {
+                                  dispatch({
+                                    type: "ADD_VOUCHER_DETAIL",
+                                    payload: {
+                                      valueVoucherOld: item.GiaTriCoupon || 0,
+                                      status: "remove",
+                                    },
+                                  });
+                                } else {
+                                  dispatch({
+                                    type: "ADD_VOUCHER_DETAIL",
+                                    payload: customItemVoucher,
+                                  });
+                                }
+                              };
+
+                              return (
+                                <div
+                                  key={index}
+                                  className={` ${
+                                    valueVoucherDetail?.MaCouponDes ===
+                                    itemVoucher.MaCouponDes
+                                      ? " active_voucher"
+                                      : "border_solid_common"
+                                  } row mx-0 mt-2 item-voucher cursor-pointer `}
+                                  onClick={handleClick}
+                                >
+                                  <div className="col-2 box-img-voucher">
+                                    <div>
+                                      <FiGift className="icon_voucher" />
+                                    </div>
                                   </div>
-                                </div>
-                                <div className="col-10 d-flex justify-content-between align-items-center">
-                                  <div>
-                                    <div className="name_voucher">
-                                      <Tag color="geekblue">
-                                        {itemVoucher.MaCouponDes}
-                                      </Tag>
-                                      <p>
-                                        {item.GiaTriCoupon.toLocaleString(
+                                  <div className="col-10 d-flex justify-content-between align-items-center box-voucher-info">
+                                    <div className="info-voucher-container">
+                                      <div className="name_voucher">
+                                        <Tag color="geekblue">
+                                          {itemVoucher.MaCouponDes}
+                                        </Tag>
+                                        <p>
+                                          {item.GiaTriCoupon.toLocaleString(
+                                            "vi",
+                                            {
+                                              style: "currency",
+                                              currency: "VND",
+                                            }
+                                          )}
+                                        </p>
+                                      </div>
+                                      <div className="text-voucher">
+                                        Đơn tối thiểu:{" "}
+                                        {item.DonHangChapNhanTu.toLocaleString(
                                           "vi",
                                           { style: "currency", currency: "VND" }
-                                        )}
-                                      </p>
-                                    </div>
-                                    <div className="text-voucher">
-                                      Đơn tối thiểu:{" "}
-                                      {item.DonHangChapNhanTu.toLocaleString(
-                                        "vi",
-                                        { style: "currency", currency: "VND" }
-                                      )}{" "}
-                                    </div>
-                                    <div className="text-voucher">
-                                      HSD:{" "}
-                                      {dayjs
-                                        .unix(item.EndCouponDate)
-                                        .format("DD/MM/YYYY")}
-                                    </div>
-                                  </div>
-                                  <div className="btn_choose">
-                                    {valueVoucherDetail?.MaCouponDes ===
-                                    itemVoucher?.MaCouponDes ? (
-                                      <div className="box_choose">
-                                        <span className="text_choose_voucher">
-                                          Bỏ chọn
-                                        </span>
+                                        )}{" "}
                                       </div>
-                                    ) : (
-                                      <div className="box_choose">
-                                        <span className="text_choose_voucher">
-                                          Áp dụng
-                                        </span>
+                                      <div className="text-voucher">
+                                        HSD:{" "}
+                                        {dayjs
+                                          .unix(item.EndCouponDate)
+                                          .format("DD/MM/YYYY")}
                                       </div>
-                                    )}
+                                    </div>
+                                    <div className="btn_choose">
+                                      {valueVoucherDetail?.MaCouponDes ===
+                                      itemVoucher?.MaCouponDes ? (
+                                        <div className="box_choose">
+                                          <span className="text_choose_voucher">
+                                            Bỏ chọn
+                                          </span>
+                                        </div>
+                                      ) : (
+                                        <div className="box_choose">
+                                          <span className="text_choose_voucher">
+                                            Áp dụng
+                                          </span>
+                                        </div>
+                                      )}
+                                    </div>
                                   </div>
                                 </div>
-                              </div>
-                            );
-                          })}
-                      </div>
-                    ))}
+                              );
+                            })}
+                        </div>
+                      ))}
+                    </div>
                   </div>
                 )}
 

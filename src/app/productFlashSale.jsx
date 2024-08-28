@@ -70,7 +70,7 @@ const ProductsFlashSale = ({ productsFlashSale }) => {
             slidesPerView={2}
             navigation={true}
             modules={[Navigation, Autoplay]}
-            className="mySwiper px-4 py-2"
+            className="mySwiper px-4 py-2 "
           >
             {productsFlashSale &&
               productsFlashSale?.length > 0 &&
@@ -114,12 +114,12 @@ const ProductsFlashSale = ({ productsFlashSale }) => {
                         </div>
                       </div>
                       <div className="col-12 my-1">
-                        <div className="name_product_sale  d-flex justify-content-center align-items-center">
+                        <div className="name_product_sale  d-flex align-items-center">
                           <span className="text_genaral_two_line">
                             {item.ProductName}
                           </span>
                         </div>
-                        <div className="price_product text-center">
+                        <div className="price_product">
                           <span className="">
                             {item.discountPrice.toLocaleString("vi", {
                               style: "currency",

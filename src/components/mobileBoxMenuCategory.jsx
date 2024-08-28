@@ -27,20 +27,16 @@ const MobileBoxMenuCategory = () => {
   };
 
   const [dataMenuCategories, setDataMenuCategories] = useState([]);
-  const [hasFetched, setHasFetched] = useState(false); // Trạng thái theo dõi việc fetch
 
   useEffect(() => {
-    if (!hasFetched) {
-      // Chỉ fetch nếu chưa fetch
-      const loadData = async () => {
-        const data = await fetchMenuCategories();
-        setDataMenuCategories(data || []); // Đảm bảo không bị lỗi khi không có dữ liệu
-        setHasFetched(true); // Đánh dấu là đã fetch
-      };
+    const loadData = async () => {
+      const data = await fetchMenuCategories();
+      setDataMenuCategories(data || []); // Đảm bảo không bị lỗi khi không có dữ liệu
+      setHasFetched(true); // Đánh dấu là đã fetch
+    };
 
-      loadData();
-    }
-  }, [hasFetched]); // Chỉ chạy khi `hasFetched` là false
+    loadData();
+  }, []);
 
   return (
     <div className="mb_box_menu_category">
@@ -90,9 +86,10 @@ const MobileBoxMenuCategory = () => {
                         .filter((i2) => i2.menu_desc.link !== "#")
                         .map((i2) => (
                           <div className="mb-box-value-menu-p-5">
-                            <div
+                            <Link
                               key={i2.menu_id}
                               className="mb_box_value_menu_sub"
+                              href={`/category/${i2.menu_desc.link}`}
                             >
                               <Link
                                 title={i2.menu_desc.title}
@@ -100,7 +97,7 @@ const MobileBoxMenuCategory = () => {
                               >
                                 {i2.menu_desc.title}
                               </Link>
-                            </div>
+                            </Link>
                           </div>
                         ))}
                     </div>

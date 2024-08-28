@@ -2,6 +2,7 @@ import Header from "../header/header";
 import Footer from "../../components/footer";
 import ContentCart from "./contentCart";
 import "../../../public/css/cssCart.css";
+import "../../../public/css/globals.css";
 import { hostApi } from "../lib/config";
 
 async function fetchDataMethodShipping() {
