@@ -21,20 +21,15 @@ const fetchMenuCategories = async () => {
 
 const BoxMenuCategory = () => {
   const [dataMenuCategories, setDataMenuCategories] = useState([]);
-  const [hasFetched, setHasFetched] = useState(false); // Trạng thái theo dõi việc fetch
 
   useEffect(() => {
-    if (!hasFetched) {
-      // Chỉ fetch nếu chưa fetch
-      const loadData = async () => {
-        const data = await fetchMenuCategories();
-        setDataMenuCategories(data || []); // Đảm bảo không bị lỗi khi không có dữ liệu
-        setHasFetched(true); // Đánh dấu là đã fetch
-      };
+    const loadData = async () => {
+      const data = await fetchMenuCategories();
+      setDataMenuCategories(data || []); // Đảm bảo không bị lỗi khi không có dữ liệu
+    };
 
-      loadData();
-    }
-  }, [hasFetched]); // Chỉ chạy khi `hasFetched` là false
+    loadData();
+  }, []);
 
   return (
     <div className="box_menu_category">

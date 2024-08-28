@@ -355,6 +355,13 @@
   align-items: center;
   justify-content: center;
   flex-shrink: 0;
+  width: 75px !important;
+  height: 60px !important;
+}
+.box-voucher-info {
+  flex: 1 !important;
+  padding: 0px 5px !important;
+  position: relative;
 }
 
 .box-review-product,
@@ -396,6 +403,10 @@
   font-size: 14px;
   color: rgb(25, 144, 255);
   font-weight: 500;
+  white-space: nowrap;
+}
+.info-voucher-container {
+  flex: 1;
 }
 
 .name_type_voucher {
@@ -1434,6 +1445,13 @@
 .btn_submit_comment span {
   color: white !important;
 }
+
+.gift_box_container {
+  max-height: 300px;
+  overflow: auto;
+  margin: 5px 0px;
+}
+
 /* RESPONSIVE START */
 /* desktop */
 @media screen and (min-width: 1025px) {
@@ -1525,7 +1543,8 @@
   }
 
   .text_genaral_two_line,
-  .box_text_commit span {
+  .box_text_commit span,
+  .title_gift_product {
     font-size: 13px !important;
   }
 
@@ -1781,6 +1800,14 @@
 
   .box-input-user-review {
     flex: 1 !important;
+  }
+  .box_choose {
+    position: absolute;
+    right: 0;
+    bottom: 0;
+  }
+  .box_choose .text_choose_voucher {
+    font-size: 12px;
   }
 }
 

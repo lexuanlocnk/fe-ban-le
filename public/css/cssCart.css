@@ -506,7 +506,6 @@
   justify-content: center;
 }
 
-
 @media only screen and (min-width: 320px) and (max-width: 768px) {
   .box-content-products-cart,
   .box_breadcrumbs_cart {
@@ -816,7 +815,9 @@
   .text_cart,
   .title_price,
   .points,
-  .title_points {
+  .title_points,
+  .text_ship,
+  .please_add_ship {
     font-size: 15px !important;
   }
   .btn_order span {
@@ -853,5 +854,12 @@
   .box_image_product_checked {
     max-width: 80px !important;
     max-height: 80px !important;
+  }
+  .space_select_address {
+    display: flex !important;
+    flex-direction: column !important;
+  }
+  .box_info_client {
+    margin: 0 !important;
   }
 }

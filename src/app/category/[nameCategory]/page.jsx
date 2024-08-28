@@ -94,7 +94,9 @@ export default async function Page({ params, searchParams }) {
 
   return (
     <div className="container-fluid px-0">
-      <Header />
+      <div className="category-header">
+        <Header />
+      </div>
       <ContentCategory
         dataProducts={dataProducts}
         searchParams={searchParams}

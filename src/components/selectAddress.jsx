@@ -57,7 +57,7 @@ const SelectAddress = ({ form }) => {
     <>
       <Space className="w-100 space_select_address">
         <Form.Item
-          className="mb-2"
+          className="mb-2 city_Address"
           name="cityAddress"
           rules={[
             {
@@ -74,7 +74,7 @@ const SelectAddress = ({ form }) => {
         </Form.Item>
         <Form.Item
           name="districtAddress"
-          className="mb-2"
+          className="mb-2 district_Address"
           rules={[
             {
               required: true,
@@ -91,7 +91,7 @@ const SelectAddress = ({ form }) => {
       </Space>
       <Space className="w-100 space_select_address">
         <Form.Item
-          className="mb-0"
+          className="mb-0 ward_Address"
           name="wardAddress"
           rules={[
             {
@@ -113,7 +113,7 @@ const SelectAddress = ({ form }) => {
               message: "Hãy chọn đường/số nhà!",
             },
           ]}
-          className="mb-0 "
+          className="mb-0 street_Address"
           name="streetAddress"
         >
           <Input
