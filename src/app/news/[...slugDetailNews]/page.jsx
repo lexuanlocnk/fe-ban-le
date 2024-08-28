@@ -1,7 +1,7 @@
 import Header from "../../header/header";
 import DetailNews from "./detailNews";
 import DetailPromotionNews from "./detailPromotionNews";
-
+import { redirect } from "next/navigation";
 import { hostApi } from "../../lib/config";
 import "../../../../public/css/cssNews.css";
 import Footer from "../../../components/footer";
@@ -21,8 +21,14 @@ async function fetchNewsDetail(slug) {
     }
 
     const data = await response.json();
+
+    if (!data.status || !data.data) {
+      redirect("/");
+    }
     return data.data;
   } catch (error) {
+    redirect("/");
+
     console.error("Fetch error: ", error);
   }
 }
@@ -75,10 +81,10 @@ const HomePage = async ({ params }) => {
       {slugDetailNews[0] !== "tin-khuyen-mai" ? (
         <DetailNews
           dataRelatedNews={dataRelatedNews}
-          dataNewsDetail={dataNewsDetail}
+          dataNewsDetail={dataNewsDetail || []}
         />
       ) : (
-        <DetailPromotionNews data={dataNewsDetail} />
+        <DetailPromotionNews data={dataNewsDetail || []} />
       )}
 
       <Footer />

@@ -28,6 +28,8 @@ async function fetchDataNewsPromotion(pageValue) {
 const MainContentNewsCategory = async ({ page }) => {
   const dataNewsPromotion = await fetchDataNewsPromotion(page);
 
+  console.log("item.date_start_promotion", dataNewsPromotion);
+
   return (
     <div className="col-12 main_content_news_category mt-2 mb-3">
       <div className="row mx-0">
@@ -90,7 +92,13 @@ const MainContentNewsCategory = async ({ page }) => {
                   ) : (
                     <>
                       <p className="timeline mb-0">
-                        {item.date_start_promotion} - {item.date_end_promotion}
+                        {dayjs
+                          .unix(item.date_start_promotion)
+                          .format("DD/MM/YYYY")}{" "}
+                        -{" "}
+                        {dayjs
+                          .unix(item.date_end_promotion)
+                          .format("DD/MM/YYYY")}
                       </p>
                       <span> Xem chi tiết</span>
                     </>

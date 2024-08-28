@@ -1,33 +1,35 @@
-"use client";
-
 import React from "react";
 import { Tag } from "antd";
+import { redirect } from "next/navigation";
 
 import "../../public/css/cssFooter.css";
 import Image from "next/image";
-const Footer = () => {
-  const popularKeywords = [
-    { id: 1, keyword: "smartphone" },
-    { id: 2, keyword: "laptop" },
-    { id: 3, keyword: "tablet" },
-    { id: 4, keyword: "điện thoại di động" },
-    { id: 5, keyword: "máy tính xách tay" },
-    { id: 6, keyword: "đồng hồ thông minh" },
-    { id: 7, keyword: "Tai nghe Bluetooth" },
-    { id: 8, keyword: "ổ cứng di động" },
-    { id: 9, keyword: "máy ảnh DSLR" },
-    { id: 10, keyword: "màn hình cảm ứng" },
-    { id: 11, keyword: "cáp sạc nhanh" },
-    { id: 12, keyword: "pin dự phòng" },
-    { id: 13, keyword: "loa không dây" },
-    { id: 14, keyword: "gaming gear" },
-    { id: 15, keyword: "điều khiển thông minh" },
-    { id: 16, keyword: "robot hút bụi" },
-    { id: 17, keyword: "máy in phun màu" },
-    { id: 18, keyword: "bộ kích sóng WiFi" },
-    { id: 19, keyword: "chuột không dây" },
-    { id: 20, keyword: "phần mềm diệt virus" },
-  ];
+import { hostApi } from "../app/lib/config";
+import Link from "next/link";
+
+async function fetchMostSearch() {
+  try {
+    const response = await fetch(`${hostApi}/member/statistics-category`, {
+      method: "GET",
+    });
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+
+    const data = await response.json();
+
+    if (!data.status || !data.data) {
+      redirect("/");
+    }
+    return data.data;
+  } catch (error) {
+    console.error("Fetch error: ", error);
+  }
+}
+
+const Footer = async () => {
+  const dataMostSearch = await fetchMostSearch();
+
   return (
     <footer className="py-4 footer_main_container">
       <div id="main_footer" className="footer_main">
@@ -280,11 +282,20 @@ const Footer = () => {
               <span>TÌM KIẾM NHIỀU:</span>
             </div>
             <div className="box_item_hotkey">
-              {popularKeywords &&
-                popularKeywords.length > 0 &&
-                popularKeywords.map((item, index) => (
+              {dataMostSearch &&
+                dataMostSearch.length > 0 &&
+                dataMostSearch.map((item, index) => (
                   <Tag key={index} className="item_hotkey mt-1">
-                    {item.keyword}
+                    <Link
+                      className="text_genaral_one_line"
+                      href={
+                        item?.type == "product"
+                          ? `/detail-product/${item?.url}`
+                          : `/category/${item?.url}`
+                      }
+                    >
+                      {item.name}
+                    </Link>
                   </Tag>
                 ))}
             </div>

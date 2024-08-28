@@ -10,6 +10,7 @@ import { Tooltip } from "antd";
 import { useRouter } from "next/navigation";
 import { useSession } from "next-auth/react";
 import { io } from "socket.io-client";
+import Link from "next/link";
 
 const ContentHoverNotifications = ({}) => {
   const { data, status } = useSession();
@@ -61,7 +62,6 @@ const ContentHoverNotifications = ({}) => {
     };
   }, []);
 
-  const [seen, setSeen] = useState(false);
   const formatTimeDifference = (createdAt) => {
     const now = new Date();
     const daysDiff = differenceInDays(now, createdAt);
@@ -79,113 +79,79 @@ const ContentHoverNotifications = ({}) => {
     }
   };
 
-  const clickSeenNotification = (i) => {
-    if (i.type == "orderStatus") {
-      router.push(`/account/order/${i?.idOrder}`);
-    }
-    setDataNotification((prev) => {
-      // Tạo một mảng mới với các thông báo đã cập nhật
-      const newDataNotification = prev.map((item) =>
-        item.socketId === i.socketId ? { ...item, seen: true } : item
-      );
-
-      // Lưu mảng thông báo mới vào localStorage
-      localStorage.setItem("notification", JSON.stringify(newDataNotification));
-
-      // Trả về mảng thông báo mới để cập nhật state
-      return newDataNotification;
-    });
-  };
-
   return (
     <div className="container_content_hover">
-      <div className="btn_click_filter">
-        <span
-          onClick={() => setSeen(true)}
-          className={`item_filter_notification   ${
-            seen == true ? "active_filer" : ""
-          }   `}
-        >
-          Đã đọc
-        </span>
-        <span
-          onClick={() => setSeen(false)}
-          className={`item_filter_notification ${
-            seen == false ? "active_filer" : ""
-          }   `}
-        >
-          Chưa đọc
-        </span>
-      </div>
       <div className="container_hover_notification custom_scroll">
-        {dataNotification?.length > 0 &&
-          dataNotification
-            .filter((item) => item?.seen === seen) // Lọc theo giá trị của `seen`
-            .map((item, index) => (
-              <div
-                onClick={() => clickSeenNotification(item)}
-                className={`item_notification_hover row ms-0 me-1 ${
-                  item?.isRead ? "" : "bg_is_read_hover"
-                }`}
-                key={index}
-              >
-                <div className="col-3 d-flex justify-content-center align-items-center flex-column">
-                  <div className="date_notification_hover">
-                    <Image
-                      width={40}
-                      height={40}
-                      alt="ring"
-                      src={
-                        item?.seen
-                          ? "/image/icon_image/bell.png"
-                          : "/image/icon_image/bell-ring.png"
-                      }
-                    />
-                  </div>
-                  <div className="type_notification_time_hover">
-                    <span>{formatTimeDifference(item?.date)}</span>
-                  </div>
-                </div>
-                <div className="col-9">
-                  <div className="title_notification_hover">
-                    <span>
-                      {item?.type === "orderStatus"
-                        ? "Trạng thái đơn hàng"
-                        : item?.type === "coupon"
-                        ? "Mã khuyến mãi"
-                        : ""}
-                    </span>
-                  </div>
-                  <div className="title_content_hover">
-                    <span className="text_genaral_two_line">
-                      {item?.type === "orderStatus" ? (
-                        `Đơn hàng ${
-                          item.codeOrder
-                        } ${item.statusOrder.toLowerCase()}`
-                      ) : item?.type === "coupon" ? (
-                        <Tooltip
-                          title={`Mã giảm giá ${
-                            item.codeCoupon
-                          } trị giá ${(+item.priceCoupon).toLocaleString("vi", {
-                            style: "currency",
-                            currency: "VND",
-                          })}`}
-                        >
-                          {`Mã giảm giá ${
-                            item.codeCoupon
-                          } trị giá ${(+item.priceCoupon).toLocaleString("vi", {
-                            style: "currency",
-                            currency: "VND",
-                          })}`}
-                        </Tooltip>
-                      ) : (
-                        ""
-                      )}
-                    </span>
-                  </div>
-                </div>
+        {dataNotification?.map((item, index) => {
+          const isOrderStatus = item?.type === "orderStatus";
+          const isPromotion = item?.type === "promotion";
+          const isCoupon = item?.type === "coupon";
+
+          const content = (
+            <div className="item_notification_hover row ms-0 me-1" key={index}>
+              <div className="col-3 d-flex justify-content-center align-items-center flex-column">
+                <Image
+                  width={40}
+                  height={40}
+                  alt="ring"
+                  src="/image/icon_image/bell-ring.png"
+                />
+                <span className="type_notification_time_hover">
+                  {formatTimeDifference(item?.date)}
+                </span>
               </div>
-            ))}
+              <div className="col-9">
+                <span className="title_notification_hover">
+                  {isOrderStatus
+                    ? "Trạng thái đơn hàng"
+                    : isCoupon
+                    ? "Mã khuyến mãi"
+                    : ""}
+                </span>
+                <span className="text_genaral_two_line">
+                  {isOrderStatus ? (
+                    `Đơn hàng ${
+                      item.codeOrder
+                    } ${item.statusOrder.toLowerCase()}`
+                  ) : isCoupon ? (
+                    <Tooltip
+                      title={`Mã giảm giá ${
+                        item.codeCoupon
+                      } trị giá ${(+item.priceCoupon).toLocaleString("vi", {
+                        style: "currency",
+                        currency: "VND",
+                      })}`}
+                    >
+                      {`Mã giảm giá ${
+                        item.codeCoupon
+                      } trị giá ${(+item.priceCoupon).toLocaleString("vi", {
+                        style: "currency",
+                        currency: "VND",
+                      })}`}
+                    </Tooltip>
+                  ) : (
+                    item?.titlePromotion
+                  )}
+                </span>
+              </div>
+            </div>
+          );
+
+          return isOrderStatus || isPromotion ? (
+            <Link
+              href={
+                isOrderStatus
+                  ? `/account/order/${item?.idOrder}`
+                  : `/news/tin-khuyen-mai/${item?.linkPromotion}`
+              }
+              key={index}
+            >
+              {content}
+            </Link>
+          ) : (
+            content
+          );
+        })}
       </div>
     </div>
   );

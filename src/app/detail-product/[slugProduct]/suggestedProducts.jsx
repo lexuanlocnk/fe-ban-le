@@ -4,18 +4,18 @@ import Link from "next/link";
 import { hostApi } from "../../lib/config";
 
 const SuggestedProducts = () => {
-  const [dataCategoriesHeader, setDataCategoriesHeader] = useState();
+  const [dataMostSearch, setDataMostSearch] = useState();
 
   const categoriesHeader = async () => {
     try {
-      const response = await fetch(`${hostApi}/member/show-category-header`, {
+      const response = await fetch(`${hostApi}/member/statistics-category`, {
         method: "GET",
       });
       if (!response.ok) {
         throw new Error("Network response was not ok");
       }
       const data = await response.json();
-      setDataCategoriesHeader(data.data);
+      setDataMostSearch(data.data);
     } catch (error) {
       console.error("Fetch error:", error);
     }
@@ -27,14 +27,18 @@ const SuggestedProducts = () => {
 
   return (
     <>
-      {dataCategoriesHeader &&
-        dataCategoriesHeader.map((category, index) => (
+      {dataMostSearch &&
+        dataMostSearch.map((item, index) => (
           <Link
             className="suggest-product   "
-            key={category?.CatId}
-            href={`/category/${category.CatUrl}`}
+            key={index}
+            href={
+              item?.type == "product"
+                ? `/detail-product/${item?.url}`
+                : `/category/${item?.url}`
+            }
           >
-            {category?.Category}
+            {item?.name}
           </Link> //
         ))}
     </>
