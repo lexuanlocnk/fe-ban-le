@@ -18,10 +18,6 @@ async function fetchDataProperties(slug) {
       }
     );
 
-    console.log(
-      `http://192.168.245.190:8000/api/member/category-option?categoryUrl=${slug}`
-    );
-
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
@@ -48,9 +44,6 @@ async function fetchDataProducts(slug, valuePage, userId, dataParams) {
       ...dataParams,
     });
 
-    console.log(
-      `http://192.168.245.190:8000/api/member/filter-category?${queryParams.toString()}`
-    );
     const response = await fetch(
       `${hostApi}/member/filter-category?${queryParams.toString()}`,
       {

@@ -100,19 +100,9 @@ const StandardCategoryProduct = ({
                 <Card
                   className="item_card_standard_product"
                   key={index}
-                  style={{ width: "110px" }}
+                  style={{ width: "80px" }}
                   hoverable
-                  cover={
-                    <Image
-                      alt={item.name}
-                      src={item.url}
-                      height={0}
-                      width={0}
-                      sizes="100vw"
-                      quality={100}
-                      className="w-100 h-100"
-                    />
-                  }
+                  cover={null}
                 >
                   <Meta title={item.name} />
                 </Card>

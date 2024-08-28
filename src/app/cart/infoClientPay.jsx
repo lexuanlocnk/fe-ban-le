@@ -211,8 +211,6 @@ const InfoClientPay = ({
     formOrder.setFieldsValue({ accumulatedPoints: value });
   }, 700);
 
-  console.log("addressSelected", addressSelected);
-
   const initialValues = {
     shippingMethod: "pickUpStore",
     day_receiving: dayjs(new Date()).format("DD/MM/YYYY"),
