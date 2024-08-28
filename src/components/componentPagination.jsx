@@ -27,7 +27,7 @@ export default function ComponentPagination({ data, pageSize, page }) {
         // showSizeChanger
         showQuickJumper
         // showTotal={(total) => `${total} sản phẩm`}
-        defaultPageSize={pageSize}
+        defaultPageSize={pageSize - 1}
         current={page ? page : data.current_page}
         total={data.total}
         showSizeChanger={false}

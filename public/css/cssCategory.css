@@ -431,6 +431,7 @@
     flex-direction: row;
     align-items: center;
     justify-content: space-between;
+    gap: 5px;
   }
   .filter_product {
     display: flex;
@@ -566,11 +567,18 @@
     font-size: 12px !important;
   }
   .item_img {
-    min-width: 60px;
-    max-height: 45px;
+    min-width: 55px;
+    max-height: 35px;
+  }
+  .item_card_standard_product .ant-card-body {
+    padding: 10px 0px !important;
   }
   .box_products_category {
     margin-top: 5px !important;
+  }
+  .box_brand_product,
+  .box_standard_product {
+    gap: 2px;
   }
 }
 /* tablet */

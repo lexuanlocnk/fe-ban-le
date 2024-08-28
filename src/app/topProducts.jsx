@@ -24,7 +24,7 @@ async function TopProducts({}) {
 
   return (
     <div className="container_top_products py-2">
-      <div className="px-3 mb-1 d-flex justify-content-between align-items-center">
+      <div className="px-3 mb-1 d-flex justify-content-between align-items-center box_related_product_container">
         <span className="related-product text-white">
           TOP SẢN PHẨM BÁN CHẠY
         </span>

@@ -129,7 +129,7 @@ const ContentHoverNotifications = ({}) => {
                 }`}
                 key={index}
               >
-                <div className="col-3 d-flex justify-content-center align-items-center flex-column">
+                <div className="col-3 d-flex justify-content-center align-items-center flex-column box_date_noti_hover">
                   <div className="date_notification_hover">
                     <Image
                       width={40}
