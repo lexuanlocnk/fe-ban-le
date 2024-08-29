@@ -28,8 +28,6 @@ async function fetchDataNewsPromotion(pageValue) {
 const MainContentNewsCategory = async ({ page }) => {
   const dataNewsPromotion = await fetchDataNewsPromotion(page);
 
-  console.log("item.date_start_promotion", dataNewsPromotion);
-
   return (
     <div className="col-12 main_content_news_category mt-2 mb-3">
       <div className="row mx-0">

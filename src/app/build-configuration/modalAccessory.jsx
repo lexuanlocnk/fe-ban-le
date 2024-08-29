@@ -251,7 +251,7 @@ const ModalAccessory = ({
                   <div className="col-2 box_img_accessory_container">
                     <div className="box_img_accessory">
                       <Image
-                        src={hostImage + item.Picture}
+                        src={hostImage + item.Image}
                         width={90}
                         height={80}
                         quality={100}
