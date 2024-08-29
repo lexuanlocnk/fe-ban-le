@@ -180,7 +180,7 @@ const ComponentCardProductMain = ({ item, col }) => {
               width={200}
               sizes="100vw"
               src={hostImage + item.Image}
-              alt={item.ProductName}
+              alt={item.Image}
               className="w-100 h-100"
             />
           </div>

@@ -24,7 +24,7 @@ const ContentCategory = ({
       <div className="in-box-container-content-category pt-1">
         <div className="row box-content-category mx-0">
           <div className="col-12 ">
-            <Breadcrumb nameItem={"Laptop văn phòng"} />
+            <Breadcrumb nameItem={dataProperties?.breadcrumb?.cat_name} />
           </div>
           <div className="col-12 col-lg-3 box_filter_products_container">
             <FilterProducts
@@ -48,7 +48,7 @@ const ContentCategory = ({
             </div>
           </div>
           {/* <div className="col-12 mb-3 "> */}
-            {/* <div className="box_products_seen bg-white">
+          {/* <div className="box_products_seen bg-white">
               <div className="text_product_seen mb-1">
                 <span>Sản phẩm đã xem</span>
               </div>

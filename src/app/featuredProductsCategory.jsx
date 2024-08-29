@@ -11,19 +11,20 @@ const FeaturedProductsCategory = ({ item }) => {
       <div className="col-12 px-3 mb-1 d-flex justify-content-between text-light align-items-center">
         <div className="box_categories_homepage">
           <span className="related-product">{item.Category.toUpperCase()}</span>
-          <Breadcrumb
+          {/*  <Breadcrumb
             className="box_breadcrumb_antd"
             items={item?.CateChild?.map((itemCate, idxCate) => {
               return {
                 key: idxCate, // Thêm key duy nhất cho mỗi mục
                 title: (
                   <Link href={`/category/${itemCate.friendly_url}`}>
-                    {itemCate.cat_name} {/* Hiển thị tiêu đề của danh mục */}
+                    {itemCate.cat_name} {/* Hiển thị tiêu đề của danh mục 
                   </Link>
                 ),
               };
             })}
           />
+          */}
         </div>
 
         <Link href={"/category/" + item.CatUrl}>

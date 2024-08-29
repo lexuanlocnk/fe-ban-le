@@ -141,6 +141,7 @@ const GalleryImage = ({ imageMain, listImages }) => {
             index: -1,
           }))
         }
+        controller={{ closeOnPullDown: true, closeOnBackdropClick: true }}
         slides={listImages.map((item, index) => ({
           src: hostImage + item.picture,
           index: index,
