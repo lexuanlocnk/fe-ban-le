@@ -1565,6 +1565,14 @@ footer {
   line-height: 13px;
 }
 
+.price_yet_sale_flash_sale {
+  display: block;
+  font-size: 11px;
+  color: rgb(130, 134, 158);
+  line-height: 13px;
+}
+
+
 .box_image_account {
   overflow: hidden;
   border-radius: 50%;

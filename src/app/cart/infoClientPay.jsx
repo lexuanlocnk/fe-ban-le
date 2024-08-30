@@ -341,52 +341,58 @@ const InfoClientPay = ({
         </Form.Item>
       )}
 
-      {status === "authenticated" && (
-        <Space
-          align="center"
-          className="w-100 space_accumulated_points"
-          size={"large"}
-        >
-          <Form.Item className="mt-0 mb-0" name="accumulatedPoints">
-            <Checkbox onChange={(e) => handleCheck(e, "useAccumulatedPoints")}>
-              {stateCheck && stateCheck.useAccumulatedPoints
-                ? `Sử dụng ${points} điểm tích lũy`
-                : "Sử dụng điểm tích lũy"}
-            </Checkbox>
-          </Form.Item>
+      {status === "authenticated" &&
+        dataUser.accumulatedPoints &&
+        dataUser.accumulatedPoints > 0 && (
+          <Space
+            align="center"
+            className="w-100 space_accumulated_points"
+            size={"large"}
+          >
+            <Form.Item className="mt-0 mb-0" name="accumulatedPoints">
+              <Checkbox
+                onChange={(e) => handleCheck(e, "useAccumulatedPoints")}
+              >
+                {stateCheck && stateCheck.useAccumulatedPoints
+                  ? `Sử dụng ${points} điểm tích lũy`
+                  : "Sử dụng điểm tích lũy"}
+              </Checkbox>
+            </Form.Item>
 
-          {stateCheck &&
-            stateCheck.useAccumulatedPoints &&
-            (dataUser.accumulatedPoints > 0 ? (
-              <Form.Item className="mt-0 mb-2" name="accumulatedPoints">
-                <Slider
-                  defaultValue={1}
-                  marks={{
-                    0: "0 điểm",
-                    [dataUser.accumulatedPoints.toString()]: {
-                      style: {
-                        color: "#f50",
+            {stateCheck &&
+              stateCheck.useAccumulatedPoints &&
+              (dataUser.accumulatedPoints > 0 ? (
+                <Form.Item className="mt-0 mb-2" name="accumulatedPoints">
+                  <Slider
+                    defaultValue={1}
+                    marks={{
+                      0: "0 điểm",
+                      [dataUser.accumulatedPoints.toString()]: {
+                        style: {
+                          color: "#f50",
+                        },
+                        label: (
+                          <strong>{dataUser.accumulatedPoints} điểm</strong>
+                        ),
                       },
-                      label: <strong>{dataUser.accumulatedPoints} điểm</strong>,
-                    },
-                  }}
-                  step={1}
-                  tooltip={{
-                    formatter,
-                  }}
-                  className="mb-0"
-                  onChange={handSliderUsePoint}
-                  min={1}
-                  max={dataUser.accumulatedPoints}
-                />
-              </Form.Item>
-            ) : (
-              <span className="text_not_point">
-                Bạn không đủ điểm tích lũy!
-              </span>
-            ))}
-        </Space>
-      )}
+                    }}
+                    step={1}
+                    tooltip={{
+                      formatter,
+                    }}
+                    className="mb-0"
+                    onChange={handSliderUsePoint}
+                    min={1}
+                    max={dataUser.accumulatedPoints}
+                  />
+                </Form.Item>
+              ) : (
+                <span className="text_not_point">
+                  Bạn không đủ điểm tích lũy!
+                </span>
+              ))}
+          </Space>
+        )}
 
       <Form.Item className="mt-0 mb-2" name="companyInvoice">
         <Checkbox onChange={(e) => handleCheck(e, "billCompany")}>

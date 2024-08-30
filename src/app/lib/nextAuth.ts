@@ -88,7 +88,7 @@ export const authOptions: AuthOptions = {
             return false;
           }
         } catch (error) {
-          console.error("Lỗi khi lưu thông tin người dùng:", error);
+          console.error("Lỗi khi lưu thông tin người dùng: 11111", error);
           return false;
         }
       }
@@ -115,7 +115,7 @@ export const authOptions: AuthOptions = {
         }
         return session;
       } catch (error) {
-        console.error("Lỗi khi lưu thông tin người dùng:", error);
+        console.error("Lỗi khi lưu thông tin người dùng 22222:", error);
       }
     },
   },

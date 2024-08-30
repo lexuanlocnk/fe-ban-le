@@ -99,19 +99,21 @@ const ProductsFlashSale = ({ productsFlashSale }) => {
                             alt="img_icon_share"
                           />
                         </div>
-                        <div className="percent_sale d-flex align-items-center justify-content-center">
+                        {/* <div className="percent_sale d-flex align-items-center justify-content-center">
                           <div>
                             <div className="text_sale text-center">
                               Giảm đến
                             </div>
                             <div className="text_sale text-center ">
-                              {((item.PriceOld - item.discountPrice) /
-                                item.discountPrice) *
-                                100}
+                              {Math.round(
+                                ((item.PriceOld - item.discountPrice) /
+                                  item.discountPrice) *
+                                  100
+                              )}
                               %
                             </div>
                           </div>
-                        </div>
+                        </div> */}
                       </div>
                       <div className="col-12 my-1">
                         <div className="name_product_sale  d-flex align-items-center">
@@ -119,6 +121,15 @@ const ProductsFlashSale = ({ productsFlashSale }) => {
                             {item.ProductName}
                           </span>
                         </div>
+                        <div className="mt-2 mb-1">
+                          <s className="price_yet_sale_flash_sale">
+                            {item.Price.toLocaleString("vi", {
+                              style: "currency",
+                              currency: "VND",
+                            })}
+                          </s>
+                        </div>
+
                         <div className="price_product">
                           <span className="">
                             {item.discountPrice.toLocaleString("vi", {
@@ -126,10 +137,18 @@ const ProductsFlashSale = ({ productsFlashSale }) => {
                               currency: "VND",
                             })}
                           </span>
+                          <div className="text_sale text-center ">
+                            {Math.round(
+                              ((item.PriceOld - item.discountPrice) /
+                                item.discountPrice) *
+                                100
+                            )}
+                            %
+                          </div>
                         </div>
-                        <div className="my-1">
+                        {/* <div className="my-1">
                           <Progressbar soldQuantity={16} />
-                        </div>
+                        </div> */}
                       </div>
                     </div>
                   </Link>

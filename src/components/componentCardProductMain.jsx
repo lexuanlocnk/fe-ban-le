@@ -211,13 +211,13 @@ const ComponentCardProductMain = ({ item, col }) => {
 
           <div className="price_discount_card_product_basic">
             <span>
-              {item.Price.toLocaleString("vi", {
+              {item.PriceOld.toLocaleString("vi", {
                 style: "currency",
                 currency: "VND",
               })}
             </span>
             <s className="price_yet_sale">
-              {item.PriceOld.toLocaleString("vi", {
+              {item.Price.toLocaleString("vi", {
                 style: "currency",
                 currency: "VND",
               })}
