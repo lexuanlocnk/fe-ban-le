@@ -7,30 +7,29 @@ import Image from "next/image";
 import { hostApi } from "../app/lib/config";
 import Link from "next/link";
 
-// async function fetchMostSearch() {
-//   try {
-//     const response = await fetch(`${hostApi}/member/statistics-category`, {
-//       method: "GET",
-//     });
-//     if (!response.ok) {
-//       throw new Error("Network response was not ok");
-//     }
+async function fetchMostSearch() {
+  try {
+    const response = await fetch(`${hostApi}/member/statistics-category`, {
+      method: "GET",
+    });
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
 
-//     const data = await response.json();
+    const data = await response.json();
 
-//     if (!data.status || !data.data) {
-//       redirect("/");
-//     }
-//     return data.data;
-//   } catch (error) {
-//     console.error("Fetch error: ", error);
-//   }
-// }
+    if (!data.status || !data.data) {
+      redirect("/");
+    }
+    return data.data;
+  } catch (error) {
+    console.error("Fetch error: ", error);
+  }
+}
 
 const Footer = async () => {
-  // const dataMostSearch = await fetchMostSearch();
+  const dataMostSearch = await fetchMostSearch();
 
-  const dataMostSearch = [];
   return (
     <footer className="py-4 footer_main_container">
       <div id="main_footer" className="footer_main">
