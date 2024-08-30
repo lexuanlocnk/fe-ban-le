@@ -222,7 +222,6 @@ const InfoAccount = ({}) => {
                   </Button>
                 </Space>
               </Form.Item>
-              ``
             </Form>
           </div>
         </div>

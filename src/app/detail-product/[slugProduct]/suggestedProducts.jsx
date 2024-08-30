@@ -30,7 +30,7 @@ const SuggestedProducts = () => {
       {dataMostSearch &&
         dataMostSearch.map((item, index) => (
           <Link
-            className="suggest-product   "
+            className="suggest-product"
             key={index}
             href={
               item?.type == "product"

@@ -15,7 +15,7 @@ const StatusOrder = ({ dataStatusOrder, activeStatusOrder }) => {
   };
 
   return (
-    <div className="box_status_order">
+    <div className="box_status_order custom_scroll">
       {dataStatusOrder &&
         dataStatusOrder.length > 0 &&
         dataStatusOrder.map((item, index) => (

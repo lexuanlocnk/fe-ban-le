@@ -112,17 +112,16 @@ function ContentHeader() {
       </div>
 
       <header id="main-header-detail" className="">
-        <div className="content-header-detail row bg-white  ">
+        <div className="content-header-detail bg-white  ">
           <LeftHeaderDetail />
           <div className="right-header-detail col-xl-10 col-md-10 col-12 mt-1">
             <div className="content-right-header-detail-1 row mx-0">
               <div className="search-product d-flex col-md-7 col-12 px-0    flex-column">
                 <SearchProduct />
-                <div className="list-suggest-product">
+                <div className="list-suggest-product custom_scroll">
                   <SuggestedProducts />
                 </div>
               </div>
-
               <InfoHeader />
             </div>
           </div>

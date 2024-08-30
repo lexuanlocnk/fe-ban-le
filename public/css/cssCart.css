@@ -505,6 +505,19 @@
   align-items: center;
   justify-content: center;
 }
+.box_voucher_code_search {
+  gap: 5px;
+}
+.box_voucher_info {
+  position: relative;
+  flex: 1;
+}
+.text_not_point {
+  float: inline-end;
+  font-size: 14px;
+  font-weight: 500;
+  color: red;
+}
 
 @media only screen and (min-width: 320px) and (max-width: 768px) {
   .box-content-products-cart,
@@ -538,13 +551,6 @@
     width: 40px;
     height: 40px;
   }
-}
-
-.text_not_point {
-  float: inline-end;
-  font-size: 14px;
-  font-weight: 500;
-  color: red;
 }
 
 /* Responsive START */
@@ -589,8 +595,16 @@
   .box_name_img_product_cart {
     flex: 1 !important;
   }
+  .modal_voucher {
+    width: 100% !important;
+    max-width: 700px !important;
+  }
 }
 @media only screen and (min-width: 769px) and (max-width: 1024px) {
+  .modal_voucher {
+    width: 100% !important;
+    max-width: 700px !important;
+  }
   .container_content_layout_cart {
     padding: 0 20px !important;
   }
@@ -723,6 +737,10 @@
 }
 /* mobile */
 @media screen and (max-width: 768px) {
+  .modal_voucher {
+    top: 0 !important;
+    margin: 0 !important;
+  }
   .icon_home {
     font-size: 24px !important;
   }
@@ -733,6 +751,11 @@
   .box_voucher_info {
     padding: 5px !important;
     flex: 1 !important;
+  }
+  .btn_choose {
+    position: absolute;
+    right: 0;
+    bottom: 0;
   }
   .item-voucher {
     padding: 5px !important;

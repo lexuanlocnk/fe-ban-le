@@ -7,7 +7,7 @@ const OrderManagement = ({ dataStatusOrder, activeStatusOrder, dataOrder }) => {
       <div className="col-12 box_title_status_order mb-3    ">
         <span className="text_title_common ">Quản lý đơn hàng</span>
       </div>
-      <div className="col-12 d-flex justify-content-end mb-1">
+      <div className="col-12 d-flex justify-content-end mb-1 box_status_order_container">
         <StatusOrder
           activeStatusOrder={activeStatusOrder}
           dataStatusOrder={dataStatusOrder}

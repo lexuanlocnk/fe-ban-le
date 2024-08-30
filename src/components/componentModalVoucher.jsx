@@ -50,10 +50,11 @@ const ComponentModalVoucher = ({
       footer={
         <Button onClick={() => setIsModalVoucherOpen(false)}>Đóng</Button>
       }
+      className="modal_voucher"
       onCancel={handleCancel}
     >
       <div className="row w-100 mx-0">
-        <div className="col-12 px-0 d-flex align-items-center">
+        <div className="col-12 px-0 d-flex align-items-center box_voucher_code_search">
           <span className="mr-2 text-nowrap code-sale">Mã giảm</span>
           <Input
             addonAfter={<HandleApply />}

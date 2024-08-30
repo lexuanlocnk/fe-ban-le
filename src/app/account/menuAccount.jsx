@@ -115,8 +115,9 @@ const MenuAccount = async ({ defaultMenuItem }) => {
               <Image
                 alt="coin"
                 src={"/image/goldenpot1.png"}
-                width={80}
-                height={90}
+                width={0}
+                height={0}
+                sizes="100vw"
                 quality={100}
               />
             </div>
