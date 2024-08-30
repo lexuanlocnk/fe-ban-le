@@ -52,7 +52,7 @@ const ComponentCardProductBasic = ({ item, col }) => {
   }, 200);
 
   return (
-    <div className={`${col} p-1`}>
+    <div className={`${col} p-1 viewed_product_card_container`}>
       <div className="item_card_product_basic bg-white">
         <Link className="" href={"/detail-product/" + item.UrlProduct}>
           <div className="img_card_product_basic  overflow-hidden   image custom-product-selling">

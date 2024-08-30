@@ -17,7 +17,7 @@ const ListOrder = ({ dataOrder, activeStatusOrder }) => {
   };
 
   return (
-    <div className="box_list_order mt-2">
+    <div className="box_list_order custom_scroll mt-2">
       <table className="table table-striped">
         <thead>
           <tr>

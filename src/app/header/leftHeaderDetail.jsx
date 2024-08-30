@@ -59,8 +59,8 @@ const LeftHeaderDetail = () => {
             <Link href="/">
               <Image
                 quality={100}
-                height={35}
-                width={36}
+                height={45}
+                width={45}
                 src="/image/transformed_logo.png"
                 alt="logo"
               />

@@ -17,7 +17,7 @@ const ContentAccount = () => {
           </div>
 
           <MenuAccount defaultMenuItem={defaultMenuItem} />
-          <div className="col-9  mt-2">
+          <div className="col-9  mt-2 item_info_account_container">
             <InfoAccount />
           </div>
         </div>

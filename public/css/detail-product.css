@@ -24,14 +24,6 @@
   float: right;
 }
 
-.suggest-product {
-  text-decoration: none;
-  color: rgb(128, 128, 137);
-  font-weight: 400;
-  font-size: 11px;
-  margin-right: 11px;
-}
-
 .name-category-content-product,
 .cart-product {
   text-decoration: none;
@@ -688,11 +680,23 @@
 }
 
 /* .name-category-content-product, */
-.list-category-technology,
-.list-suggest-product {
+.list-category-technology {
   white-space: nowrap;
   overflow: hidden;
   text-overflow: ellipsis;
+}
+.list-suggest-product {
+  display: flex;
+  width: 100%;
+  overflow: auto;
+}
+.suggest-product {
+  white-space: nowrap;
+  text-decoration: none;
+  color: rgb(128, 128, 137);
+  font-weight: 400;
+  font-size: 11px;
+  margin-right: 11px;
 }
 
 .list-suggest-product {
@@ -1800,11 +1804,6 @@
 
   .box-input-user-review {
     flex: 1 !important;
-  }
-  .box_choose {
-    position: absolute;
-    right: 0;
-    bottom: 0;
   }
   .box_choose .text_choose_voucher {
     font-size: 12px;
