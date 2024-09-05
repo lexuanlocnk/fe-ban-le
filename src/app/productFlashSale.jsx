@@ -1,8 +1,6 @@
 "use client";
-import { useEffect, useState } from "react";
 import CountdownTimer from "../components/countDownTimer";
 import Link from "next/link";
-import { Tooltip } from "antd";
 import { RightCircleOutlined } from "@ant-design/icons";
 import { Swiper, SwiperSlide } from "swiper/react";
 import "swiper/css";
@@ -10,7 +8,6 @@ import "swiper/css/navigation";
 import "swiper/css/autoplay";
 import { UseAppContext } from "./lib/appProvider";
 import { Autoplay, Navigation } from "swiper/modules";
-import Progressbar from "../components/componentProccessbar";
 import Image from "next/image";
 import { hostImage } from "./lib/config";
 
@@ -21,7 +18,6 @@ const ProductsFlashSale = ({ productsFlashSale }) => {
   function getTimeLeft() {
     return new Date().setHours(24, 0, 0, 0) - Date.now();
   }
-  useEffect(() => {}, []);
 
   return (
     <div className="container_flash_sale row px-3">

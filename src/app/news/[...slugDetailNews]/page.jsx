@@ -28,8 +28,6 @@ async function fetchNewsDetail(slug) {
     return data.data;
   } catch (error) {
     redirect("/");
-
-    console.error("Fetch error: ", error);
   }
 }
 

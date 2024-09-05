@@ -10,22 +10,6 @@ import { getServerSession } from "next-auth";
 import { authOptions } from "./lib/nextAuth";
 import { hostApi, hostImage } from "./lib/config";
 
-// async function fetchDataCategory() {
-//   try {
-//     const response = await fetch(`${hostApi}/member/category-parent`, {
-//       method: "GET",
-//     });
-//     if (!response.ok) {
-//       throw new Error("Network response was not ok");
-//     }
-
-//     const data = await response.json();
-//     return data.categories;
-//   } catch (error) {
-//     console.error("Fetch error: ", error);
-//   }
-// }
-
 async function fetchProductCategories() {
   try {
     const response = await fetch(`${hostApi}/member/show-category`, {
@@ -74,23 +58,43 @@ async function fetchDataProductFlashSale() {
   }
 }
 
+async function fetchDataBanner() {
+  try {
+    const response = await fetch(`${hostApi}/member/show-advertise`, {
+      method: "GET",
+    });
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+
+    const data = await response.json();
+    return data.data;
+  } catch (error) {
+    console.error("Fetch error: ", error);
+  }
+}
+
 const ContentHomePage = async ({ searchParams }) => {
   const page = searchParams["page"] ?? "1";
   const session = await getServerSession(authOptions);
   // const dataCategory = await fetchDataCategory();
 
-  const [productsFlashSale, dataMenuCategories, productCategories] =
+  const [productsFlashSale, dataMenuCategories, productCategories, dataBanner] =
     await Promise.all([
       fetchDataProductFlashSale(),
       fetchMenuCategories(),
       fetchProductCategories(),
+      fetchDataBanner(),
     ]);
 
   return (
     <>
       <div className="col-12 box_container_banner   ">
         <div className="container_banner bg-white">
-          <BannerHomePage dataMenuCategories={dataMenuCategories} />
+          <BannerHomePage
+            banner={dataBanner}
+            dataMenuCategories={dataMenuCategories}
+          />
         </div>
       </div>
       <div className="box-container-content-homepage">
@@ -102,15 +106,18 @@ const ContentHomePage = async ({ searchParams }) => {
               {/* <Slider3dHotProducts session={session} /> */}
             </div>
           </div>
-          <div className="col-12 box_container_flash_sale_bg mb-2">
-            <div className="flash-sale-bg  bg-white py-2">
-              <ProductsFlashSale productsFlashSale={productsFlashSale} />
-              {/* err */}
+          {productsFlashSale && productsFlashSale.length > 0 && (
+            <div className="col-12 box_container_flash_sale_bg mb-2">
+              <div className="flash-sale-bg  bg-white py-2">
+                <ProductsFlashSale productsFlashSale={productsFlashSale} />
+                {/* err */}
+              </div>
             </div>
-          </div>
+          )}
+
           <div className="col-12  box_container_secondary_banner mb-2">
             <div className="secondary_banner  bg-white py-2">
-              <SecondaryBanner />
+              <SecondaryBanner bannerMiddle={dataBanner?.bannerMiddle} />
             </div>
           </div>
           {/*  */}

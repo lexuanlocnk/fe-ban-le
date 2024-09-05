@@ -13,55 +13,9 @@ import Image from "next/image";
 import ImageTest from "../../public/image/test_image/t-shirt-test.png";
 import { Navigation, Pagination, Autoplay, Grid } from "swiper/modules";
 import Link from "next/link";
+import { hostImage } from "./lib/config";
 
-const BannerHomePage = ({ dataMenuCategories }) => {
-  const [imageBanner, setImageBanner] = useState([
-    {
-      url: "/image/bannernew1.jpg",
-    },
-    {
-      url: "/image/bannernew2.jpg",
-    },
-    {
-      url: "/image/bannernew3.jpg",
-    },
-    {
-      url: "/image/bannernew4.jpg",
-    },
-  ]);
-  const imageAdvertisingTest = [
-    {
-      url: "/image/sale_banner1.jpg",
-    },
-    {
-      url: "/image/sale_banner2.jpg",
-    },
-  ];
-
-  const imageAdvertising = [
-    {
-      url: "/image/banner_sale1.gif",
-    },
-    {
-      url: "/image/banner_sale2.gif",
-    },
-  ];
-
-  const imageAdvertising2 = [
-    {
-      url: "/image/banner_property1.png",
-    },
-    {
-      url: "/image/banner_property2.png",
-    },
-    {
-      url: "/image/banner_property3.png",
-    },
-    {
-      url: "/image/banner_property4.png",
-    },
-  ];
-
+const BannerHomePage = ({ dataMenuCategories, banner }) => {
   return (
     <div className="container_menu_category_and_swiper position-relative">
       <div className="row container_banner_swiper_menu_category">
@@ -125,9 +79,9 @@ const BannerHomePage = ({ dataMenuCategories }) => {
               modules={[Pagination, Navigation, Autoplay]}
               className="my_swiper_in_home"
             >
-              {imageBanner &&
-                imageBanner.length > 0 &&
-                imageBanner.map((item, index) => (
+              {banner?.middle &&
+                banner?.middle?.length > 0 &&
+                banner?.middle?.map((item, index) => (
                   <SwiperSlide key={index}>
                     <div className="container_img_banner">
                       <Image
@@ -135,7 +89,7 @@ const BannerHomePage = ({ dataMenuCategories }) => {
                         height={0}
                         width={0}
                         sizes="100vw"
-                        src={item.url}
+                        src={hostImage + item.picture}
                         className="img_banner_genaral"
                         alt="banner-image"
                       />
@@ -145,13 +99,13 @@ const BannerHomePage = ({ dataMenuCategories }) => {
             </Swiper>
           </div>
 
-          {imageAdvertising && imageAdvertising.length > 0 && (
+          {banner?.bannerRight && banner?.bannerRight?.length > 0 && (
             <div className="banner_pr_in_home w-100  ">
-              {imageAdvertising.map((item, index) => (
+              {banner?.bannerRight?.map((item, index) => (
                 <div key={index} className="box_image_advertising">
                   <Image
                     alt={`image_${index}`}
-                    src={item.url}
+                    src={hostImage + item.picture}
                     width={220}
                     height={200}
                   />
@@ -161,13 +115,13 @@ const BannerHomePage = ({ dataMenuCategories }) => {
           )}
         </div>
         <div className=" container_img_news_sale">
-          {imageAdvertising2 && imageAdvertising2.length > 0 && (
+          {banner?.bannerBottom && banner?.bannerBottom?.length > 0 && (
             <div className="box_img_news_sale w-100">
-              {imageAdvertising2.map((item, index) => (
+              {banner?.bannerBottom?.map((item, index) => (
                 <div key={index} className="box_image_news_sale_item">
                   <Image
                     alt={`image_${index}`}
-                    src={item.url}
+                    src={hostImage + item.picture}
                     quality={100}
                     width={0}
                     height={0}
@@ -193,9 +147,9 @@ const BannerHomePage = ({ dataMenuCategories }) => {
               modules={[Pagination, Navigation, Autoplay]}
               className="col mobile_my_swiper_in_home"
             >
-              {imageBanner &&
-                imageBanner.length > 0 &&
-                imageBanner.map((item, index) => (
+              {banner?.middle &&
+                banner?.middle?.length > 0 &&
+                banner?.middle?.map((item, index) => (
                   <SwiperSlide key={index}>
                     <div className="mobile_container_img_banner h-100">
                       <Image
@@ -203,7 +157,7 @@ const BannerHomePage = ({ dataMenuCategories }) => {
                         height={0}
                         width={0}
                         sizes="100vw"
-                        src={item.url}
+                        src={hostImage + item.picture}
                         className="mobile_img_banner_genaral"
                         alt="banner-image"
                       />
@@ -211,13 +165,13 @@ const BannerHomePage = ({ dataMenuCategories }) => {
                   </SwiperSlide>
                 ))}
             </Swiper>
-            {imageAdvertisingTest && imageAdvertisingTest.length > 0 && (
+            {banner?.bannerRight && banner?.bannerRight?.length > 0 && (
               <div className="col mobile_banner_pr_in_home  ">
-                {imageAdvertisingTest.map((item, index) => (
-                  <div key={index} className="mobile_box_image_advertising">
+                {banner?.bannerRight?.map((item, index) => (
+                  <div key={item.id} className="mobile_box_image_advertising">
                     <Image
                       alt={`image_${index}`}
-                      src={item.url}
+                      src={hostImage + item.picture}
                       sizes="100vw"
                       width={0}
                       height={0}
