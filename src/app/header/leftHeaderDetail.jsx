@@ -9,13 +9,9 @@ const LeftHeaderDetail = () => {
   const [isScrolled, setIsScrolled] = useState(false);
   const [isLargeScreen, setIsLargeScreen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
-  const [isBoxRendered, setIsBoxRendered] = useState(false);
 
   const handleOpenMenu = () => {
     setIsOpen((prev) => !prev);
-    if (!isBoxRendered) {
-      setIsBoxRendered(true); // Chỉ render BoxMenuCategory một lần
-    }
   };
 
   useEffect(() => {

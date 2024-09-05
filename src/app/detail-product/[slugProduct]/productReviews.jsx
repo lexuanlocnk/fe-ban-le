@@ -97,7 +97,7 @@ const ProductReviews = ({ comments, productId }) => {
             <span className="">Hỏi và đáp</span>
           </div>
         </div>
-        <div className="row  mb-3">
+        <div className="row  mb-3 comment_container">
           <div className="col-md-11 col-10  box-input-user-review">
             <TextArea
               className="custom-text-area"
@@ -107,7 +107,7 @@ const ProductReviews = ({ comments, productId }) => {
               autoSize={{ minRows: 2, maxRows: 3 }}
             />
           </div>
-          <div className="col-md-1  col-2 d-flex align-items-center">
+          <div className="col-md-1  col-2 d-flex align-items-center send-comment-button">
             <button
               onClick={() =>
                 status === "unauthenticated"

@@ -1676,7 +1676,8 @@ footer {
   /* font size */
   .suggest-product,
   .text_item_menu,
-  .content_promotion_card_main p {
+  .content_promotion_card_main p,
+  .text_item_menu {
     font-size: 11px !important;
   }
   .btn_add_product_cart_basic,
@@ -1695,9 +1696,6 @@ footer {
   }
   .color_product_cart_hover {
     font-size: 15px !important;
-  }
-  .text_item_menu {
-    font-size: 16px !important;
   }
   .box_text_buy_other {
     font-size: 17px !important;

@@ -1550,11 +1550,13 @@
   }
 
   table td,
-  .box_description-much_hide {
+  .box_description-much_hide,
+  .box_price_card_swiper span {
     font-size: 14px !important;
   }
 
-  img {
+  img,
+  .box_price_card_swiper s {
     font-size: 12px !important;
   }
 
@@ -1792,7 +1794,12 @@
     width: 55px;
     height: 55px;
   }
-
+  .send-comment-button {
+    width: 100% !important;
+  }
+  .comment_container {
+    gap: 5px;
+  }
   .breadcrumb_category span a {
     display: inline-block;
     white-space: nowrap;

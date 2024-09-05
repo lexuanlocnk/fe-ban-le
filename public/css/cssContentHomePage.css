@@ -577,8 +577,8 @@
 }
 
 .container_img_banner img {
-  width: 100%;
-  height: 100%;
+  width: 100% !important;
+  height: 100% !important;
 }
 
 .container_img_news_sale {
@@ -870,7 +870,7 @@
   }
 
   .mobile_box_image_advertising {
-    height: 50%;
+    height: 107.5px;
   }
 
   .mobile_box_image_advertising img {
@@ -883,7 +883,7 @@
     border-radius: 2px;
     height: 100%;
     width: 100% !important;
-    /* object-fit: contain; */
+    object-fit: cover;
   }
 
   .mobile_category_menu {

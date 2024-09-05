@@ -88,7 +88,7 @@ const BannerHomePage = ({ dataMenuCategories, banner }) => {
                         quality={100}
                         height={0}
                         width={0}
-                        sizes="100vw"
+                        sizes="100%"
                         src={hostImage + item.picture}
                         className="img_banner_genaral"
                         alt="banner-image"
