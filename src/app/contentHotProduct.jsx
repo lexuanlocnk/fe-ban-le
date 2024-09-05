@@ -5,7 +5,7 @@ import PaginationServer from "./paginationServer";
 function ContentHotProducts({ session, page, dataHotProducts }) {
   return (
     <div className="col-12 box_item_products">
-      <div className="row mx-md-3 mx-1">
+      <div className="row mx-md-3 mx-1 box_item_products_container">
         {dataHotProducts &&
           dataHotProducts?.listProductRecommend &&
           dataHotProducts?.listProductRecommend?.length > 0 &&

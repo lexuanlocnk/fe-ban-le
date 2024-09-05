@@ -1544,7 +1544,6 @@ footer {
   line-height: 13px;
 }
 
-
 .box_image_account {
   overflow: hidden;
   border-radius: 50%;
@@ -1915,6 +1914,9 @@ footer {
     overflow: hidden;
     text-overflow: ellipsis;
   }
+  .input-search-product {
+    font-size: 14px !important;
+  }
 }
 
 @media only screen and (max-width: 550px) {
@@ -1999,12 +2001,15 @@ footer {
   .box_container_hot_category,
   .box-description-much,
   .container-content-detail-product {
-    padding: 0px 20px !important;
+    padding: 0px 10px !important;
   }
 
   .box_image_banner_top_header,
   .left_box_category_header {
     display: none !important;
+  }
+  .input-search-product {
+    font-size: 14px !important;
   }
 
   .box_category_header {

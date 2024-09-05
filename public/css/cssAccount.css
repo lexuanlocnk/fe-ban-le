@@ -622,6 +622,9 @@
   }
 }
 @media screen and (max-width: 1024px) {
+  .box_all_item_menu {
+    display: none !important;
+  }
   .modal_add_address,
   .item_info_account .col-8,
   .item_info_account .col-4,
@@ -667,6 +670,9 @@
   }
 }
 @media screen and (max-width: 768px) {
+  .box_all_item_menu {
+    display: none !important;
+  }
   .menu-account {
     width: 100% !important;
     flex-flow: column-reverse !important;
