@@ -1,29 +1,24 @@
-"use client";
-import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { hostApi } from "../../lib/config";
 
-const SuggestedProducts = () => {
-  const [dataMostSearch, setDataMostSearch] = useState([]);
-
-  const categoriesHeader = async () => {
-    try {
-      const response = await fetch(`${hostApi}/member/statistics-category`, {
-        method: "GET",
-      });
-      if (!response.ok) {
-        throw new Error("Network response was not ok");
-      }
-      const data = await response.json();
-      setDataMostSearch(data.data);
-    } catch (error) {
-      console.error("Fetch error:", error);
+async function fetchNewsCategory() {
+  try {
+    const response = await fetch(`${hostApi}/member/statistics-category`, {
+      method: "GET",
+    });
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
     }
-  };
 
-  useEffect(() => {
-    categoriesHeader();
-  }, []);
+    const data = await response.json();
+    return data.data;
+  } catch (error) {
+    console.error("Fetch error: ", error);
+  }
+}
+
+const SuggestedProducts = async () => {
+  const dataMostSearch = await fetchNewsCategory();
 
   return (
     <>

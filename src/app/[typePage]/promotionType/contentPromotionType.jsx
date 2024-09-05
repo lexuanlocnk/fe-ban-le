@@ -1,4 +1,4 @@
-import { hostApi } from "../lib/config";
+import { hostApi } from "../../lib/config";
 import BannerPromotion from "./bannerPromotion";
 import ProductsPromotion from "./productsPromotion";
 import AllProductsPromotion from "./allProductsPromotion";

@@ -31,3 +31,17 @@
     background: #F7AB00;
     border-radius: 0px 0px 8px 8px;
 }
+
+
+.box-content-service {
+    padding: 15px;
+    background: white;
+    border-radius: 8px;
+    box-shadow: rgba(0, 0, 0, 0.24) 0px 3px 8px;
+}
+
+.title_service span {
+    font-size: 19px;
+    font-weight: 600;
+    color: #1435c3;
+}

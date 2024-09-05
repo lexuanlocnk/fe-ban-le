@@ -1,5 +1,5 @@
 import Image from "next/image";
-import ComponentCardProductBasic from "../../components/componentCardProductBasic";
+import ComponentCardProductBasic from "../../../components/componentCardProductBasic";
 
 const ProductsPromotion = ({ products }) => {
   const banner = "/image/banner_laptop.png";
