@@ -727,7 +727,7 @@
 }
 
 /* tablet */
-@media only screen and (min-width: 768px) and (max-width: 1024px) {
+@media only screen and (min-width: 769px) and (max-width: 1024px) {
   .box_menu_category,
   .banner_pr_in_home,
   .container_banner_swiper_menu_category,
@@ -1298,34 +1298,9 @@
   /* mobile category header end*/
 
   /* font-size */
-  .btn_show_more_category {
-    font-size: 24px;
-  }
   .number_contact {
     font-size: 11px !important;
   }
-  .link-show-more,
-  .progressPercent {
-    font-size: 13px;
-  }
-  .text_btn_show_more,
-  .price_discount_hot_product,
-  .item_hotkey,
-  .ant-select-selection-item,
-  .ant-select-item-option-content {
-    font-size: 19px;
-  }
-  .price_3d,
-  .price-old {
-    font-size: 17px !important;
-  }
-
-  .text_specifications,
-  .percent_discount_hot_product,
-  .related-product {
-    font-size: 16px !important;
-  }
-
   .color_product_cart_hover,
   .text_title_total_product_cart,
   .text_compare_price,
@@ -1335,7 +1310,10 @@
   .text_countdown {
     font-size: 12px !important;
   }
-
+  .link-show-more,
+  .progressPercent {
+    font-size: 13px;
+  }
   .price_product_cart_hover,
   .text_total__products_cart,
   .box_name_product_compare,
@@ -1351,6 +1329,25 @@
   .name_select_compare {
     font-size: 14px !important;
   }
+  .text_specifications,
+  .percent_discount_hot_product,
+  .related-product {
+    font-size: 16px !important;
+  }
+  .price_3d,
+  .price-old {
+    font-size: 17px !important;
+  }
+  .text_btn_show_more,
+  .price_discount_hot_product,
+  .item_hotkey,
+  .ant-select-selection-item,
+  .ant-select-item-option-content {
+    font-size: 19px;
+  }
+  .btn_show_more_category {
+    font-size: 24px;
+  }
   /* font-size end */
 }
 @media only screen and (max-width: 480px) {
@@ -1359,7 +1356,11 @@
   .text_sale {
     font-size: 11px;
   }
-
+  .text_genaral_two_line,
+  .box_text_commit span,
+  .title_gift_product {
+    font-size: 12px !important;
+  }
   .price_product,
   .item_featured_products_category {
     font-size: 13px;
@@ -1367,12 +1368,6 @@
 
   .item_product_sale {
     min-width: 140px !important;
-  }
-
-  .text_genaral_two_line,
-  .box_text_commit span,
-  .title_gift_product {
-    font-size: 12px !important;
   }
 
   .icon_flash_sale {
