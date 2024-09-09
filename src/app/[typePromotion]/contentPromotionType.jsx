@@ -14,7 +14,7 @@ async function fetchData(category) {
     );
 
     if (!response.ok) {
-      throw new Error("Network response was not ok");
+      throw new Error("fetchData Network response was not ok");
     }
 
     return await response.json();

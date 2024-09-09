@@ -4,8 +4,11 @@ import Image from "next/image";
 import { useState, useEffect } from "react";
 import { MenuOutlined } from "@ant-design/icons";
 import BoxMenuCategory from "../../components/boxMenuCategory";
+import { useSession } from "next-auth/react";
+import { Skeleton } from "antd";
 
 const LeftHeaderDetail = () => {
+  const { status } = useSession();
   const [isScrolled, setIsScrolled] = useState(false);
   const [isLargeScreen, setIsLargeScreen] = useState(false);
   const [isOpen, setIsOpen] = useState(false);
@@ -52,57 +55,68 @@ const LeftHeaderDetail = () => {
   }, [isOpen]);
 
   return (
-    <div className="left-header-detail col-xl-2 col-md-2 col-12 px-0 ">
-      {isScrolled && isLargeScreen ? (
-        <div className="transformed-left-header-detail">
-          <div className="transformed-logo">
-            <Link href="/">
-              <Image
-                quality={100}
-                height={35}
-                width={35}
-                src="/image/transformed_logo.png"
-                alt="logo"
-              />
-            </Link>
-          </div>
-          <div className="transformed-category-menu" onClick={handleOpenMenu}>
-            <MenuOutlined />
-            <span>Danh mục sản phẩm</span>
-          </div>
+    <>
+      {status === "loading" ? (
+        <div className="col-xl-2 col-md-2 col-12 box_skeleton_info_header">
+          <Skeleton active />
         </div>
       ) : (
-        <div className="logo-header">
-          <Link href="/">
-            <Image
-              quality={100}
-              height={0}
-              width={0}
-              sizes="100vw"
-              src="/image/logo.jpg"
-              alt="logo"
-            />
-          </Link>
+        <div className="left-header-detail col-xl-2 col-md-2 col-12 px-0 ">
+          {isScrolled && isLargeScreen ? (
+            <div className="transformed-left-header-detail">
+              <div className="transformed-logo">
+                <Link href="/">
+                  <Image
+                    quality={100}
+                    height={35}
+                    width={35}
+                    src="/image/transformed_logo.png"
+                    alt="logo"
+                  />
+                </Link>
+              </div>
+              <div
+                className="transformed-category-menu"
+                onClick={handleOpenMenu}
+              >
+                <MenuOutlined />
+                <span>Danh mục sản phẩm</span>
+              </div>
+            </div>
+          ) : (
+            <div className="logo-header">
+              <Link href="/">
+                <Image
+                  quality={100}
+                  height={0}
+                  width={0}
+                  sizes="100vw"
+                  src="/image/logo.jpg"
+                  alt="logo"
+                />
+              </Link>
+            </div>
+          )}
+          <div
+            className={`box_category_menu_container ${
+              isOpen ? "show-menu" : "hide-menu"
+            }`}
+          >
+            <BoxMenuCategory />
+          </div>
+          {isScrolled && isLargeScreen && isOpen && (
+            <div
+              onClick={() => {
+                if (isOpen) {
+                  setIsOpen(false);
+                }
+              }}
+              className="transformed_menu_category_container"
+            ></div>
+          )}
         </div>
       )}
-      <div
-        className={`box_category_menu_container ${
-          isOpen ? "show-menu" : "hide-menu"
-        }`}
-      >
-        <BoxMenuCategory />
-      </div>
-      {isScrolled && isLargeScreen && isOpen && (
-        <div
-          onClick={() => {
-            if (isOpen) {
-              setIsOpen(false);
-            }
-          }}
-          className="transformed_menu_category_container"
-        ></div>
-      )}
-    </div>
+    </>
   );
 };
 

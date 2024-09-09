@@ -21,7 +21,7 @@ async function fetchDataAddress(userId) {
       }
     );
     if (!response.ok) {
-      throw new Error("Network response was not ok");
+      throw new Error("fetchDataAddress Network response was not ok");
     }
 
     const data = await response.json();

@@ -40,7 +40,7 @@ const AddAddress = ({ dataUser }) => {
         }
       );
       if (!response.ok) {
-        throw new Error("Network response was not ok");
+        throw new Error("fetchAddressDefault Network response was not ok");
       }
       const data = await response.json();
       setAddressDefault(data.address);

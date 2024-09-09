@@ -16,7 +16,7 @@ async function fetchProductCategories() {
       method: "GET",
     });
     if (!response.ok) {
-      throw new Error("Network response was not ok");
+      throw new Error("fetchProductCategories Network response was not ok");
     }
 
     const data = await response.json();
@@ -32,7 +32,7 @@ async function fetchMenuCategories() {
       method: "GET",
     });
     if (!response.ok) {
-      throw new Error("Network response was not ok");
+      throw new Error("fetchMenuCategories Network response was not ok");
     }
 
     const data = await response.json();
@@ -48,7 +48,7 @@ async function fetchDataProductFlashSale() {
       method: "GET",
     });
     if (!response.ok) {
-      throw new Error("Network response was not ok");
+      throw new Error("fetchDataProductFlashSale Network response was not ok");
     }
 
     const data = await response.json();
@@ -64,7 +64,7 @@ async function fetchDataBanner() {
       method: "GET",
     });
     if (!response.ok) {
-      throw new Error("Network response was not ok");
+      throw new Error("fetchDataBanner Network response was not ok");
     }
 
     const data = await response.json();

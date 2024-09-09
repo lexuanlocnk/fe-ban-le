@@ -22,7 +22,7 @@ function Slider3dHotProducts({ session }) {
         method: "GET",
       });
       if (!response.ok) {
-        throw new Error("Network response was not ok");
+        throw new Error("Slider3dHotProducts Network response was not ok");
       }
 
       const data = await response.json();

@@ -50,7 +50,7 @@ const ModalCompareProducts = ({}) => {
         }
       );
       if (!response.ok) {
-        throw new Error("Network response was not ok");
+        throw new Error("fetchDataBrand Network response was not ok");
       }
       const data = await response.json();
       setBrand(data);
@@ -80,7 +80,7 @@ const ModalCompareProducts = ({}) => {
         }
       );
       if (!response.ok) {
-        throw new Error("Network response was not ok");
+        throw new Error("fetchDataProduct Network response was not ok");
       }
       const data = await response.json();
       setDataSearchName(data);

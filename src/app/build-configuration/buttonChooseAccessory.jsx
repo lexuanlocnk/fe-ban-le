@@ -27,7 +27,7 @@ const ButtonChooseAccessory = ({
         }
       );
       if (!response.ok) {
-        throw new Error("Network response was not ok");
+        throw new Error("showModalAccessory Network response was not ok");
       }
       const data = await response.json();
       setOptionFilter(data);

@@ -19,7 +19,7 @@ async function fetchDataProperties(slug) {
     );
 
     if (!response.ok) {
-      throw new Error("Network response was not ok");
+      throw new Error("fetchDataProperties Network response was not ok");
     }
 
     const data = await response.json();
@@ -52,7 +52,7 @@ async function fetchDataProducts(slug, valuePage, userId, dataParams) {
     );
 
     if (!response.ok) {
-      throw new Error("Network response was not ok");
+      throw new Error("fetchDataProducts Network response was not ok");
     }
 
     const data = await response.json();

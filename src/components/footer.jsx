@@ -6,6 +6,7 @@ import "../../public/css/cssFooter.css";
 import Image from "next/image";
 import { hostApi } from "../app/lib/config";
 import Link from "next/link";
+import { error } from "console";
 
 async function fetchMostSearch() {
   try {
@@ -13,7 +14,7 @@ async function fetchMostSearch() {
       method: "GET",
     });
     if (!response.ok) {
-      throw new Error("Network response was not ok");
+      throw new Error("fetchMostSearch Network response was not ok");
     }
 
     const data = await response.json();

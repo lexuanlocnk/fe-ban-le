@@ -2,8 +2,10 @@
 import React, { useEffect, useState } from "react";
 import Link from "next/link";
 import { hostApi } from "../../lib/config";
+import { Skeleton } from "antd";
 
 const SuggestedProducts = () => {
+  const [loading, setLoading] = useState(true);
   const [dataMostSearch, setDataMostSearch] = useState([]);
 
   const categoriesHeader = async () => {
@@ -18,6 +20,8 @@ const SuggestedProducts = () => {
       setDataMostSearch(data.data);
     } catch (error) {
       console.error("Fetch error:", error);
+    } finally {
+      setLoading(false); // Khi fetch hoàn thành, chuyển loading về false
     }
   };
 
@@ -27,7 +31,14 @@ const SuggestedProducts = () => {
 
   return (
     <>
-      {dataMostSearch &&
+      {loading ? (
+        <div className="box_skeleton_info_header">
+          <Skeleton
+            active
+          ></Skeleton>
+        </div>
+      ) : (
+        dataMostSearch &&
         dataMostSearch.map((item, index) => (
           <Link
             className="suggest-product"
@@ -39,8 +50,9 @@ const SuggestedProducts = () => {
             }
           >
             {item?.name}
-          </Link> //
-        ))}
+          </Link>
+        ))
+      )}
     </>
   );
 };
