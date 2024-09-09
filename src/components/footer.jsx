@@ -162,16 +162,19 @@ const Footer = async () => {
                 </Tag>
                 <div>
                   {" "}
-                  <a href="#" className="infor_company_footer">
+                  <a
+                    href="/ve-cong-ty/gioi-thieu-ve-cong-ty"
+                    className="infor_company_footer"
+                  >
                     Giới thiệu công ty
                   </a>
                 </div>
 
                 <div>
                   {" "}
-                  <a href="#" className="infor_company_footer">
+                  <Link href="/dich-vu" className="infor_company_footer">
                     Dịch vụ
-                  </a>
+                  </Link>
                 </div>
 
                 <div>
