@@ -181,15 +181,6 @@ const InfoHeader = () => {
         </div>
       )}
       <div className="mobile_box_menu_header  ">
-        <Drawer
-          title="Danh mục sản phẩm"
-          placement={"bottom"}
-          width={500}
-          onClose={onClose}
-          open={mobileOpenFilter}
-        >
-          <MobileBoxMenuCategory />
-        </Drawer>
         <div className="item_property_header" id="mobile-header-home">
           <Link href={"/"} onClick={() => handleClick("/")}>
             <div
@@ -212,13 +203,21 @@ const InfoHeader = () => {
               className="item_menu_header"
               onClick={() => {
                 setMobileOpenFilter(!mobileOpenFilter);
-                setIsMobileMenuRendered(true);
               }}
             >
               <AppstoreOutlined className="icon_item_menu" />
               <span className="text_item_menu">Danh mục</span>
             </div>
           </div>
+          <Drawer
+            title="Danh mục sản phẩm"
+            placement={"bottom"}
+            width={500}
+            onClose={onClose}
+            open={mobileOpenFilter}
+          >
+            <MobileBoxMenuCategory />
+          </Drawer>
         </div>
         <div className="item_property_header" id="mobile-header-cart">
           <Link

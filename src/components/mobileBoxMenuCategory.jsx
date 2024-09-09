@@ -32,6 +32,7 @@ const MobileBoxMenuCategory = () => {
     const loadData = async () => {
       const data = await fetchMenuCategories();
       setDataMenuCategories(data || []); // Đảm bảo không bị lỗi khi không có dữ liệu
+      // setHasFetched(true);
     };
 
     loadData();
