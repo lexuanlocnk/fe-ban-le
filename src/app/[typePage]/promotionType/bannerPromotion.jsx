@@ -1,6 +1,7 @@
 import Image from "next/image";
+import { hostImage } from "../../lib/config";
 
-const BannerPromotion = ({}) => {
+const BannerPromotion = ({ dataBanner }) => {
   return (
     <div className="container_image_promotion">
       <Image
@@ -9,7 +10,7 @@ const BannerPromotion = ({}) => {
         width={0}
         sizes="100vw"
         alt="bannerPromotion"
-        src={"/image/bannerPromotion.jpg"}
+        src={hostImage + dataBanner[0]?.picture}
       />
     </div>
   );

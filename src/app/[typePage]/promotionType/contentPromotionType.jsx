@@ -23,6 +23,22 @@ async function fetchData(category) {
   }
 }
 
+async function fetchDataBanner() {
+  try {
+    const response = await fetch(`${hostApi}/member/show-advertise`, {
+      method: "GET",
+    });
+    if (!response.ok) {
+      throw new Error("Network response was not ok");
+    }
+
+    const data = await response.json();
+    return data.data;
+  } catch (error) {
+    console.error("Fetch error: ", error);
+  }
+}
+
 const ContentPromotionType = async ({ typePromotion }) => {
   if (!["flash-sale", "hot-products"].includes(typePromotion)) {
     redirect("/");
@@ -32,9 +48,17 @@ const ContentPromotionType = async ({ typePromotion }) => {
     typePromotion === "flash-sale" ? "flash-sale" : "hot"
   );
 
+  const dataBanner = await fetchDataBanner();
+
   return (
     <div>
-      <BannerPromotion />
+      <BannerPromotion
+        dataBanner={
+          typePromotion === "flash-sale"
+            ? dataBanner?.BannerFlashSale
+            : dataBanner?.BannerProductHot
+        }
+      />
       <div className="box_container_type_promotion">
         <div className="container_type_promotion">
           <AllProductsPromotion

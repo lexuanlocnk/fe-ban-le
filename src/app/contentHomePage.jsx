@@ -15,6 +15,7 @@ async function fetchProductCategories() {
     const response = await fetch(`${hostApi}/member/show-category`, {
       method: "GET",
     });
+    console.log("response.ok", response.ok);
     if (!response.ok) {
       throw new Error("Network response was not ok");
     }
